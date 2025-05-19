@@ -1,26 +1,29 @@
 #pragma once 
 
 // Class for game engine where combines all game components 
-#include <Utility.hpp>
+#include "Utility.hpp"
+#include<Book/Player.hpp>   
 
 class Game
 {
-    private : 
-        bool isRunning;  
-        sf::RenderWindow window; // Window object
-        int width, height; // Window size
-    public:
-        // Window object
-        Game(int width=600, int height=800) ; 
-        ~Game();
-        
-        // Statistics   
-        bool Running()const { return isRunning; }
-        
-        // Game loop
-        void Run() ; 
-        void PollEvents() ; 
-        void Update() ; 
-        void Draw() ; 
-}; 
+public:
+    Game();
+    ~Game();
 
+    void Run();
+
+    sf::Vector2f mousePosWindow;
+    // sf::Vector2f mousePosView;
+    sf::RenderWindow window;
+
+private:
+
+    void PollEvents();
+    void UpdateMousePosition();
+    void Update();
+    void Render();
+    bool isRunning;
+    int width;
+    int height;
+    Player player ;  
+};

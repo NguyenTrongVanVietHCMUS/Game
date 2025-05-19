@@ -18,6 +18,10 @@ target_link_libraries(Game ${CMAKE_CURRENT_SOURCE_DIR}/lib/sfml-network.lib)
 target_link_libraries(Game ${CMAKE_CURRENT_SOURCE_DIR}/lib/sfml-system.lib)
 target_link_libraries(Game ${CMAKE_CURRENT_SOURCE_DIR}/lib/sfml-window.lib)
 
+# target_link_libraries(Game ${CMAKE_CURRENT_SOURCE_DIR}/lib/raylib.lib)
+# target_link_libraries(Game ${CMAKE_CURRENT_SOURCE_DIR}/lib/raylibdll.lib)
+
+
 set(FILES_TO_COPY
 	${CMAKE_CURRENT_SOURCE_DIR}/bin/openal32.dll
     ${CMAKE_CURRENT_SOURCE_DIR}/bin/sfml-audio-2.dll
@@ -25,6 +29,7 @@ set(FILES_TO_COPY
     ${CMAKE_CURRENT_SOURCE_DIR}/bin/sfml-network-2.dll
     ${CMAKE_CURRENT_SOURCE_DIR}/bin/sfml-system-2.dll
     ${CMAKE_CURRENT_SOURCE_DIR}/bin/sfml-window-2.dll
+	# ${CMAKE_CURRENT_SOURCE_DIR}/bin/raylib.dll
 )
 
 foreach(file ${FILES_TO_COPY}) 

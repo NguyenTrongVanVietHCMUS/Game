@@ -1,12 +1,59 @@
-#include<Game.hpp>
+#include "Book/Game.hpp"
 
-Game::Game(int width, int height) : window(sf::VideoMode(width, height), "SFML Game"), m_width(width), m_height(height)
+// Constructor
+Game::Game()
+: isRunning(true), width(800), height(600), window(sf::VideoMode(800, 600), "Game Window",sf::Style::Titlebar|sf::Style::Close)
 {
-    // Initialize the game
     window.setFramerateLimit(60);
-    isRunning = true;
+    sf::Texture texture; 
+    if(!texture.loadFromFile("Media/Textures/player.png"))
+    {
+        abort() 
+    }
 }
+
+// Destructor
 Game::~Game()
 {
-    // Cleanup if needed
+
 }
+
+void Game::Run()
+{
+    while (isRunning && window.isOpen())
+    {
+        PollEvents();
+        UpdateMousePosition() ; 
+        Update();
+        Render();
+    }
+    window.close();
+}
+// Poll events
+void Game::PollEvents()
+{
+    player.PollEvents(window);
+}
+
+void Game::UpdateMousePosition()
+{
+    // Get the mouse position in the window
+    // mousePosWindow = sf::Mouse::getPosition(window);
+    mousePosWindow = sf::Vector2f(static_cast<float>(mousePosWindow.x), static_cast<float>(mousePosWindow.y));
+    // mousePosView = window.mapPixelToCoords(mousePosWindow);
+    // std::cout<<mousePosView.x<<" "<<mousePosView.y<<std::endl
+}
+// Update game logic
+void Game::Update()
+{
+    // Add game update logic here
+}
+
+// Render the game
+void Game::Render()
+{
+    window.clear();
+    window.display();
+}
+
+// Main game loop

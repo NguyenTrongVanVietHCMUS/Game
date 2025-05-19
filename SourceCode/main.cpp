@@ -1,12 +1,7 @@
-#include<Game.hpp>
+#include<Book/Game.hpp>
 int main()
 {
-    Game game = Game(600,800) ; 
-    while(game.Running())
-    {
-        game.Update() ; 
-        game.Draw() ; 
-    }
-
+    Game game ; 
+    game.Run();
     return 0;
 }
