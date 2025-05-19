@@ -4,6 +4,8 @@
 #include "Utility.hpp"
 #include<Book/Player.hpp>   
 
+const int width = 800;
+const int height = 600;
 class Game
 {
 public:
@@ -17,13 +19,11 @@ public:
     sf::RenderWindow window;
 
 private:
-
+    const sf::Time TimePerFrame = sf::seconds(1.0f/ 60.f); // 60 FPS   
     void PollEvents();
     void UpdateMousePosition();
-    void Update();
+    void Update(sf::Time);
     void Render();
     bool isRunning;
-    int width;
-    int height;
     Player player ;  
 };

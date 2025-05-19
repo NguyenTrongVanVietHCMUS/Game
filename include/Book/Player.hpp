@@ -8,15 +8,15 @@ class Player
         sf::Vector2f final_position;
         float speed ; 
         sf::Vector2f velocity;
-    
-    public : 
+        
+        public : 
         Player();
         ~Player(); 
         
         sf::Texture texture;
         sf::Sprite sprite;
 
-        void PollEvents(sf::RenderWindow& window) ; 
-        void Update(float dt) ; 
+        void PollEvents(sf::Event event) ; 
+        void Update(sf::Time deltaTime) ; 
         void Render(sf::RenderWindow& window) ; 
 };

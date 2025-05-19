@@ -2,50 +2,67 @@
 
 // Constructor
 Game::Game()
-: isRunning(true), width(800), height(600), window(sf::VideoMode(800, 600), "Game Window",sf::Style::Titlebar|sf::Style::Close)
+: window(sf::VideoMode(width, height), "SFML Game", sf::Style::Close | sf::Style::Titlebar)
 {
+    // Create the window
     window.setFramerateLimit(60);
-    sf::Texture texture; 
-    if(!texture.loadFromFile("Media/Textures/player.png"))
-    {
-        abort() 
-    }
+    window.setVerticalSyncEnabled(true);
+    // Load the texture from a file
 }
 
 // Destructor
-Game::~Game()
+Game::~Game()   
 {
 
 }
 
 void Game::Run()
 {
-    while (isRunning && window.isOpen())
-    {
+    sf::Clock clock;
+    sf::Time timeSinceLastUpdate = sf::Time::Zero;
+    while (window.isOpen())
+    {       
         PollEvents();
-        UpdateMousePosition() ; 
-        Update();
-        Render();
+        timeSinceLastUpdate += clock.restart();
+        while (timeSinceLastUpdate > TimePerFrame)
+        {
+            timeSinceLastUpdate -= TimePerFrame;
+            PollEvents();
+            Update(TimePerFrame); 
+        }
+        Render(); 
     }
-    window.close();
 }
 // Poll events
 void Game::PollEvents()
 {
-    player.PollEvents(window);
+    sf::Event event;
+    while (window.pollEvent(event))
+    {
+        if (event.type == sf::Event::Closed)
+            window.close();
+        if(event.type==sf::Event::KeyPressed)
+        {
+            if(event.key.code==sf::Keyboard::Escape)
+                window.close();
+        }
+        player.PollEvents(event) ; 
+    }
+
 }
 
-void Game::UpdateMousePosition()
-{
-    // Get the mouse position in the window
-    // mousePosWindow = sf::Mouse::getPosition(window);
-    mousePosWindow = sf::Vector2f(static_cast<float>(mousePosWindow.x), static_cast<float>(mousePosWindow.y));
-    // mousePosView = window.mapPixelToCoords(mousePosWindow);
-    // std::cout<<mousePosView.x<<" "<<mousePosView.y<<std::endl
-}
+// void Game::UpdateMousePosition()
+// {
+//     // Get the mouse position in the window
+//     // mousePosWindow = sf::Mouse::getPosition(window);
+//     mousePosWindow = sf::Vector2f(static_cast<float>(mousePosWindow.x), static_cast<float>(mousePosWindow.y));
+//     // mousePosView = window.mapPixelToCoords(mousePosWindow);
+//     // std::cout<<mousePosView.x<<" "<<mousePosView.y<<std::endl
+// }
 // Update game logic
-void Game::Update()
+void Game::Update(sf::Time dt)
 {
+    player.Update(dt);
     // Add game update logic here
 }
 
@@ -53,6 +70,7 @@ void Game::Update()
 void Game::Render()
 {
     window.clear();
+    player.Render(window) ; 
     window.display();
 }
 
