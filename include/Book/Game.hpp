@@ -2,10 +2,10 @@
 
 // Class for game engine where combines all game components 
 #include "Utility.hpp"
-#include<Book/Player.hpp>   
+#include<Book/Character.hpp>   
 
-const int width = 800;
-const int height = 600;
+const int width = 1920;
+const int height = 1080;
 class Game
 {
 public:
@@ -25,5 +25,6 @@ private:
     void Update(sf::Time);
     void Render();
     bool isRunning;
-    Player player ;  
+    Character player ; // Character object
+
 };

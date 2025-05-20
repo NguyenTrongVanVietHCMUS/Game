@@ -2,7 +2,9 @@
 
 // Constructor
 Game::Game()
-: window(sf::VideoMode(width, height), "SFML Game", sf::Style::Close | sf::Style::Titlebar)
+: 
+    window(sf::VideoMode(width, height), "SFML Game", sf::Style::Close | sf::Style::Titlebar),
+    player("Knight", "Media/Assets/Characters/Knight/MovingKnightLeftRight.png",sf::Vector2u(8,2), 0.3f)
 {
     // Create the window
     window.setFramerateLimit(60);
@@ -69,7 +71,7 @@ void Game::Update(sf::Time dt)
 // Render the game
 void Game::Render()
 {
-    window.clear();
+    window.clear(sf::Color::White);
     player.Render(window) ; 
     window.display();
 }
