@@ -2,6 +2,7 @@
 
 // Class for game engine where combines all game components 
 #include "Utility.hpp"
+#include<Book/TileMap.hpp>
 #include<Book/Character.hpp>   
 
 const int width = 1920;
@@ -21,10 +22,9 @@ public:
 private:
     const sf::Time TimePerFrame = sf::seconds(1.0f/ 60.f); // 60 FPS   
     void PollEvents();
-    void UpdateMousePosition();
     void Update(sf::Time);
     void Render();
-    bool isRunning;
     Character player ; // Character object
+    TileMap map; // TileMap object
 
 };

@@ -13,6 +13,9 @@
     <ClCompile Include="V:\Game\SourceCode\MovingAnimation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="V:\Game\SourceCode\TileMap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="V:\Game\SourceCode\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

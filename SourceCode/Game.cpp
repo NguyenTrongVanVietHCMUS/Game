@@ -1,5 +1,4 @@
 #include "Book/Game.hpp"
-
 // Constructor
 Game::Game()
 : 
@@ -8,8 +7,13 @@ Game::Game()
 {
     // Create the window
     window.setFramerateLimit(60);
-    window.setVerticalSyncEnabled(true);
-    // Load the texture from a file
+    
+    if(!map.load("Media/Assets/Maps/Lobby/lobby.json"))
+    {
+        std::cerr << "Failed to load map" << std::endl;
+        exit(EXIT_FAILURE);
+    }
+    // Load the tile map
 }
 
 // Destructor
@@ -72,6 +76,7 @@ void Game::Update(sf::Time dt)
 void Game::Render()
 {
     window.clear(sf::Color::White);
+    window.draw(map) ; // Draw the tile map
     player.Render(window) ; 
     window.display();
 }

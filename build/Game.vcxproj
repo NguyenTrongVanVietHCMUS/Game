@@ -600,6 +600,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="V:\Game\SourceCode\Entity.cpp" />
     <ClCompile Include="V:\Game\SourceCode\Game.cpp" />
     <ClCompile Include="V:\Game\SourceCode\MovingAnimation.cpp" />
+    <ClCompile Include="V:\Game\SourceCode\TileMap.cpp" />
     <ClCompile Include="V:\Game\SourceCode\main.cpp" />
   </ItemGroup>
   <ItemGroup />
