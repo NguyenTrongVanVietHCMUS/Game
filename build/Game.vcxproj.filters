@@ -1,19 +1,43 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="V:\Game\SourceCode\Character.cpp">
+    <ClCompile Include="V:\Game\SourceCode\Control\Hitbox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="V:\Game\SourceCode\Entity.cpp">
+    <ClCompile Include="V:\Game\SourceCode\Control\MusicPlayer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="V:\Game\SourceCode\Game.cpp">
+    <ClCompile Include="V:\Game\SourceCode\Control\SoundPlayer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="V:\Game\SourceCode\MovingAnimation.cpp">
+    <ClCompile Include="V:\Game\SourceCode\Control\State.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="V:\Game\SourceCode\TileMap.cpp">
+    <ClCompile Include="V:\Game\SourceCode\Control\StateStack.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="V:\Game\SourceCode\Game\Character.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="V:\Game\SourceCode\Game\Entity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="V:\Game\SourceCode\Game\Game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="V:\Game\SourceCode\Game\MovingAnimation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="V:\Game\SourceCode\Game\TileMap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="V:\Game\SourceCode\Game\World.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="V:\Game\SourceCode\Screens\Lobby.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="V:\Game\SourceCode\Screens\Title.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="V:\Game\SourceCode\main.cpp">

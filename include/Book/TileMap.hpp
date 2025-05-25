@@ -1,5 +1,5 @@
 #pragma once
-#include <Book/Utility.hpp> 
+#include "Book/Utility.hpp"
 #include <nlohmann/json.hpp>
 using json = nlohmann::json;
 
@@ -22,14 +22,22 @@ struct Tileset {
 
 class TileMap : public sf::Drawable {
 private:
+    
     std::vector<TileLayer> layers;
     std::vector<Tileset> tilesets;
-    std::vector<sf::VertexArray> layerVertices;
-    
-    void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
-
+    std::vector<sf::Sprite> backgroundSprites; 
 public:
-    bool load(const std::string& jsonFile);
+    std::string File;
+    TileMap();
+    TileMap(const TileMap& map) ;
+    ~TileMap() ; 
+    
+    bool loadFromFile(const std::string& jsonFile);
+    
     void setLayerVisible(size_t layerIndex, bool visible);
     bool isLayerVisible(size_t layerIndex) const;
+
+    bool handleEvent(const sf::Event& event) ;
+    bool update(sf::Time dt) ; 
+    void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 };

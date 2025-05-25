@@ -2,11 +2,20 @@
 
 // Class for game engine where combines all game components 
 #include "Utility.hpp"
-#include<Book/TileMap.hpp>
-#include<Book/Character.hpp>   
+#include"Book/TileMap.hpp"
+#include"Book/Character.hpp"   
+#include"Control/StateStack.hpp"  
+#include"Control/StateIdentifiers.hpp"
 
-const int width = 1920;
-const int height = 1080;
+#include"Control/ResourceHolder.hpp" 
+#include"Control/ResourceIdentifiers.hpp"
+
+#include"Control/SoundPlayer.hpp"
+#include"Control/MusicPlayer.hpp"
+#include "Screens/Lobby.hpp"
+#include "Screens/Title.hpp"
+const int width = 1216;
+const int height = 672;
 class Game
 {
 public:
@@ -14,17 +23,23 @@ public:
     ~Game();
 
     void Run();
-
-    sf::Vector2f mousePosWindow;
-    // sf::Vector2f mousePosView;
-    sf::RenderWindow window;
-
+    
 private:
     const sf::Time TimePerFrame = sf::seconds(1.0f/ 60.f); // 60 FPS   
     void PollEvents();
     void Update(sf::Time);
     void Render();
-    Character player ; // Character object
-    TileMap map; // TileMap object
 
+    void registerStates();
+private :
+    
+    sf::RenderWindow window;
+    
+    TextureHolder textures;
+    FontHolder fonts;
+    MusicPlayer music ; 
+    SoundPlayer sounds ; 
+    MapHolder maps;
+
+    StateStack stateStack;
 };

@@ -4,13 +4,18 @@
 
 # Add source to this project's executable.
 
-set(SOURCE_DIR "${CMAKE_SOURCE_DIR}/SourceCode")
-file(GLOB SOURCES "${SOURCE_DIR}/*.cpp")
 
 cmake_minimum_required (VERSION 3.10)
 project ("Game")
 
-add_executable (Game ${SOURCES})
+set(SOURCE_DIR "${CMAKE_SOURCE_DIR}/SourceCode")
+
+file(GLOB_RECURSE SOURCES "${SOURCE_DIR}/*.cpp")  # Recursive glob
+
+add_executable(Game ${SOURCES})
+# set(SOURCE_DIR "${CMAKE_SOURCE_DIR}/SourceCode")
+# file(GLOB SOURCES "${SOURCE_DIR}/*.cpp")
+# add_executable (Game ${SOURCES})
 
 target_link_libraries(Game ${CMAKE_CURRENT_SOURCE_DIR}/lib/sfml-audio.lib)
 target_link_libraries(Game ${CMAKE_CURRENT_SOURCE_DIR}/lib/sfml-graphics.lib)

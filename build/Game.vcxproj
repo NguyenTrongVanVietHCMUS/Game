@@ -596,11 +596,19 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="V:\Game\SourceCode\Character.cpp" />
-    <ClCompile Include="V:\Game\SourceCode\Entity.cpp" />
-    <ClCompile Include="V:\Game\SourceCode\Game.cpp" />
-    <ClCompile Include="V:\Game\SourceCode\MovingAnimation.cpp" />
-    <ClCompile Include="V:\Game\SourceCode\TileMap.cpp" />
+    <ClCompile Include="V:\Game\SourceCode\Control\Hitbox.cpp" />
+    <ClCompile Include="V:\Game\SourceCode\Control\MusicPlayer.cpp" />
+    <ClCompile Include="V:\Game\SourceCode\Control\SoundPlayer.cpp" />
+    <ClCompile Include="V:\Game\SourceCode\Control\State.cpp" />
+    <ClCompile Include="V:\Game\SourceCode\Control\StateStack.cpp" />
+    <ClCompile Include="V:\Game\SourceCode\Game\Character.cpp" />
+    <ClCompile Include="V:\Game\SourceCode\Game\Entity.cpp" />
+    <ClCompile Include="V:\Game\SourceCode\Game\Game.cpp" />
+    <ClCompile Include="V:\Game\SourceCode\Game\MovingAnimation.cpp" />
+    <ClCompile Include="V:\Game\SourceCode\Game\TileMap.cpp" />
+    <ClCompile Include="V:\Game\SourceCode\Game\World.cpp" />
+    <ClCompile Include="V:\Game\SourceCode\Screens\Lobby.cpp" />
+    <ClCompile Include="V:\Game\SourceCode\Screens\Title.cpp" />
     <ClCompile Include="V:\Game\SourceCode\main.cpp" />
   </ItemGroup>
   <ItemGroup />
