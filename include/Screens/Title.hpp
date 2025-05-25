@@ -5,13 +5,13 @@
 // #include"Book/TileMap.hpp"
 #include"Book/World.hpp"
 #include "Control/ResourceHolder.hpp"
-class Title : public State , public World
+class Title :  public State, public World 
 {
 public:
     Title(StateStack&stack ,Context context);
     ~Title(); 
 
-    void draw(); 
-    bool update(sf::Time dt);
-    bool handleEvent(const sf::Event& event);
+    virtual void draw(); 
+    virtual bool update(sf::Time dt);
+    virtual bool handleEvent(const sf::Event& event) ;
 };

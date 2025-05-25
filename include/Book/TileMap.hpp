@@ -25,6 +25,7 @@ private:
     
     std::vector<TileLayer> layers;
     std::vector<Tileset> tilesets;
+    std::vector<sf::Texture>backgroundTextures;
     std::vector<sf::Sprite> backgroundSprites; 
 public:
     std::string File;
@@ -38,6 +39,6 @@ public:
     bool isLayerVisible(size_t layerIndex) const;
 
     bool handleEvent(const sf::Event& event) ;
-    bool update(sf::Time dt) ; 
-    void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+    bool update(sf::Time dt) ;
+    void draw(sf::RenderTarget& target, sf::RenderStates states)const;
 };

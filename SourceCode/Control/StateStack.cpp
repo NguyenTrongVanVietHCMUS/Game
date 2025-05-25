@@ -1,5 +1,5 @@
-#include "Control/StateStack.hpp"
-#include "Control/Foreach.hpp"
+#include <Control/StateStack.hpp>
+#include <Control/Foreach.hpp>
 
 #include <cassert>
 
@@ -15,11 +15,11 @@ StateStack::StateStack(State::Context context)
 void StateStack::update(sf::Time dt)
 {
 	// Iterate from top to bottom, stop as soon as update() returns false
-	for (auto itr = mStack.rbegin(); itr != mStack.rend(); ++itr)
-	{
-		if (!(*itr)->update(dt))
-			break;
-	}
+	// for (auto itr = mStack.rbegin(); itr != mStack.rend(); ++itr)
+	// {
+	// 	if (!(*itr)->update(dt))
+	// 		break;
+	// }
 
 	applyPendingChanges();
 }
@@ -67,7 +67,6 @@ State::Ptr StateStack::createState(States::ID stateID)
 {
 	auto found = mFactories.find(stateID);
 	assert(found != mFactories.end());
-
 	return found->second();
 }
 
@@ -78,7 +77,10 @@ void StateStack::applyPendingChanges()
 		switch (change.action)
 		{
 			case Push:
+
+				VV
 				mStack.push_back(createState(change.stateID));
+				VV
 				break;
 
 			case Pop:
@@ -90,7 +92,6 @@ void StateStack::applyPendingChanges()
 				break;
 		}
 	}
-
 	mPendingList.clear();
 }
 

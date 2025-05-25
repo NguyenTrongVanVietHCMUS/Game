@@ -46,6 +46,7 @@ class StateStack : private sf::NonCopyable
 		void				clearStates();
 
 		bool				isEmpty() const;
+		std::vector<State::Ptr>								mStack;
 
 
 	private:
@@ -64,7 +65,6 @@ class StateStack : private sf::NonCopyable
 
 
 	private:
-		std::vector<State::Ptr>								mStack;
 		std::vector<PendingChange>							mPendingList;
 
 		State::Context										mContext;

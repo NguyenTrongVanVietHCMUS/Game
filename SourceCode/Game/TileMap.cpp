@@ -1,4 +1,5 @@
 #include "Book/TileMap.hpp"
+#include<Control/Foreach.hpp>
 #include <fstream>
 
 TileMap::TileMap()
@@ -11,6 +12,10 @@ TileMap::TileMap(const TileMap& map)
     this->loadFromFile(map.File) ; 
 }
 
+TileMap::~TileMap() 
+{
+    // Destructor
+}  
 bool TileMap::loadFromFile(const std::string& jsonFile) {
     File = jsonFile ; 
     // Load JSON file
@@ -23,7 +28,8 @@ bool TileMap::loadFromFile(const std::string& jsonFile) {
     file >> mapData;
     
     // Load tilesetsf
-    for (auto& tilesetData : mapData["tilesets"]) {
+    for (auto& tilesetData : mapData["tilesets"]) 
+    {
         Tileset tileset;
         std::string imagePath = tilesetData["image"];
         // Resolve imagePath relative to the JSON file's directory
@@ -45,7 +51,8 @@ bool TileMap::loadFromFile(const std::string& jsonFile) {
     }
     
     // Load layers
-    for (auto& layerData : mapData["layers"]) {
+    for (auto& layerData : mapData["layers"]) 
+    {
         if (layerData["type"] == "imagelayer") 
         {
             std::string imagePath = layerData["image"];
@@ -56,46 +63,52 @@ bool TileMap::loadFromFile(const std::string& jsonFile) {
             
             // Load the background texture
             sf::Texture backgroundTexture;
+            std::cout<< "Loading background texture from: " << resolvedImagePath.string() << std::endl;
+
             if (!backgroundTexture.loadFromFile(resolvedImagePath.string())) {
                 return false;
             }
-            sf::Sprite backgroundSprite(backgroundTexture);
+            // backgroundTexture.loadFromFile("Media/Assets/Maps/Title/background.png");
+            backgroundTextures.push_back(backgroundTexture) ; 
+            sf::Sprite backgroundSprite(backgroundTextures.back());
 
             backgroundSprite.setPosition(layerData["x"], layerData["y"]);
-            backgroundSprites.push_back(backgroundSprite);
+            backgroundSprites.push_back(backgroundSprite);  
         }
         else if(layerData["type"] == "objectlayer")
         {
-            
+
         }
     }
     return true;
 }
 
-TileMap::~TileMap() {
-    // Destructor
-}  
-void TileMap::setLayerVisible(size_t layerIndex, bool visible) {
+void TileMap::setLayerVisible(size_t layerIndex, bool visible) 
+{
     if (layerIndex < layers.size()) {
         layers[layerIndex].visible = visible;
     }
 }
 
-bool TileMap::isLayerVisible(size_t layerIndex) const {
+bool TileMap::isLayerVisible(size_t layerIndex) const 
+{
     return (layerIndex < layers.size()) ? layers[layerIndex].visible : false;
 }
 
-void TileMap::draw(sf::RenderTarget& target, sf::RenderStates states) const {
-    for (const auto& sprite : backgroundSprites) {
-        target.draw(sprite, states);
+void TileMap::draw(sf::RenderTarget& target, sf::RenderStates states)const
+{
+    // std::cout<< "Drawing TileMap from file: " << File << std::endl;
+    for (auto backgroundSprite : backgroundSprites) {
+        std::cout<<"Drawing background sprite" << std::endl;
+        target.draw(backgroundSprite, states);
     }
     // You may want to draw tile layers here as well
 }
 bool TileMap::handleEvent(const sf::Event& event) 
 {
-    return 0 ;
+    return 0 ; 
 }
 bool TileMap::update(sf::Time dt)
 {
-    return 0 ;  
+    return  0 ; 
 }

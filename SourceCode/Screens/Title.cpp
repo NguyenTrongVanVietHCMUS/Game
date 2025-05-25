@@ -1,11 +1,10 @@
 #include"Screens/Title.hpp"
-
+#include<iostream> 
 Title::Title(StateStack& stack,Context context):
     State(stack,context)
 {       
-        // std::cout<<map.File<<std::endl;
-    map = TileMap(context.maps->get(Map::ID::Title));
-    std::cout << "Title map loaded from: " << map.File << std::endl;
+        // map = TileMap(context.maps->get(Map::ID::Title));  
+    map = new TileMap(context.maps->get(Map::ID::Title)); // Assuming Map::ID::Title is defined in your MapHolder
 }
 Title::~Title()
 {
@@ -13,12 +12,13 @@ Title::~Title()
 }
 void Title::draw()
 {
-    getContext().window->draw(map);
+    std::cout<<"Drawing Title"<<std::endl;
+    getContext().window->draw(*map);
 }
 bool Title::update(sf::Time dt)
 {
-    map.update(dt);
-    return false ; 
+    // map.update(dt);
+    return 0 ; 
 }
 bool Title::handleEvent(const sf::Event& event)
 {
@@ -37,5 +37,5 @@ bool Title::handleEvent(const sf::Event& event)
             requestStackPush(States::Lobby);
         }
     }
-    return false ; 
+    return 0 ;
 }

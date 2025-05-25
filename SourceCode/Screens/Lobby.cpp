@@ -1,27 +1,38 @@
 #include "Screens/Lobby.hpp"
 Lobby::Lobby(StateStack& stack,Context context):
     State(stack,context) 
-{      
-    map=TileMap(context.maps->get(Map::ID::Lobby));
+{         
+
+    map = new TileMap(context.maps->get(Map::ID::Lobby));
 }
 
 Lobby::~Lobby()
 {
-
+    delete map;
 }
-
-bool Lobby::handleEvent(const sf::Event&event)
-{
-    return false ; 
-}
-
-bool Lobby::update(sf::Time dt)
-{
-    return false ; 
-    
-}
-
 void Lobby::draw()
 {
-    
-}       
+
+    getContext().window->draw(*map);
+}
+bool Lobby::update(sf::Time dt)
+{
+    // map.update(dt);
+    return false; 
+}
+bool Lobby::handleEvent(const sf::Event& event)
+{
+    if (event.type == sf::Event::KeyPressed)
+    {
+        if (event.key.code == sf::Event::Closed)
+        {
+            requestStackPop(); // Pop the current state when the window is closed
+        }
+        if (event.key.code == sf::Keyboard::Escape)
+        {
+            requestStackPush(States::Title); // Push the Title state when Escape is pressed
+        }
+
+    }
+    return false; 
+}

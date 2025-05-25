@@ -12,9 +12,11 @@ World::World(const World& other) {
     entities = other.entities;
 }
 
-void World::draw(sf::RenderTarget& target, sf::RenderStates states) const {
+void World::draw(sf::RenderTarget& target, sf::RenderStates states)const
+{
     // Draw implementation
-    map.draw(target, states); // Assuming map is a member of World
+    std::cout<<"Drawing"<<std::endl;
+    map->draw(target, states); // Assuming map is a member of World
 }
 bool World::handleEvent(const sf::Event& event) {
     // Handle event implementation

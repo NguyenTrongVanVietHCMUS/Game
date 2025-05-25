@@ -1,5 +1,4 @@
 #include "Book/Game.hpp"
-#include "Control/State.hpp"
 // Constructor
 Game::Game()
 : 
@@ -11,10 +10,10 @@ Game::Game()
     stateStack(State::Context(window, textures, fonts, music, sounds, maps))
 {
 	maps.load(Map::ID::Title, "Media/Assets/Maps/Title/title.json");
-	// maps.load(Map::ID::Lobby, "Media/Assets/Lobby/lobby.json");
+	maps.load(Map::ID::Lobby, "Media/Assets/Maps/Lobby/lobby.json");
 
-	fonts.load(Fonts::ID::Title, "Media/Fonts/PressStart2P_Regular.ttf");
-	fonts.load(Fonts::ID::Main, "Media/Fonts/Sansation.ttf");
+	// fonts.load(Fonts::ID::Title, "Media/Fonts/PressStart2P_Regular.ttf");
+	// fonts.load(Fonts::ID::Main, "Media/Fonts/Sansation.ttf");
 
 
 	registerStates();
@@ -34,6 +33,7 @@ void Game::Run()
     while (window.isOpen())
     {       
         timeSinceLastUpdate += clock.restart();
+		Update(sf::Time::Zero); // Initial update to set up the game state
         while (timeSinceLastUpdate > TimePerFrame)
         {
             timeSinceLastUpdate -= TimePerFrame;
@@ -51,7 +51,7 @@ void Game::PollEvents()
     sf::Event event;
     while (window.pollEvent(event))
     {
-        // stateStack.handleEvent(event);
+        stateStack.handleEvent(event);
         if (event.type == sf::Event::Closed)
             window.close() ; 
     }
@@ -65,12 +65,7 @@ void Game::Update(sf::Time dt)
 void Game::Render()
 {
     window.clear();
-
 	stateStack.draw();
-	// window.draw(maps.get(Map::ID::Title));
-
-	// mWindow.setView(mWindow.getDefaultView());
-
 	window.display();
 }
 void Game::registerStates()
