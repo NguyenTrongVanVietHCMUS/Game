@@ -1,2 +1,4 @@
 # Game
-Game of  Nguyen Trong Van Viet built by sfml 
+Adventure Knight 
+Game of  Nguyen Trong Van Viet and Doan Tuan Anh
+Using SFML for C++ visual implementation
