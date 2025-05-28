@@ -11,7 +11,7 @@ public :
     World();
     World(const World& other); // Copy constructor
     ~World();
-    TileMap* map ; 
+    TileMap*map ; 
     
     bool loadFromFile(const std::string& jsonFile);
     void setLayerVisible(size_t layerIndex, bool visible);
