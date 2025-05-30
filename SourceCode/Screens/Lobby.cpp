@@ -1,8 +1,7 @@
-#include "Screens/Lobby.hpp"
+#include <Screens/Lobby.hpp>
 Lobby::Lobby(StateStack& stack,Context context):
     State(stack,context) 
 {         
-
     map = new TileMap(context.maps->get(Map::ID::Lobby));
 }
 
@@ -12,13 +11,12 @@ Lobby::~Lobby()
 }
 void Lobby::draw()
 {
-
     getContext().window->draw(*map);
 }
 bool Lobby::update(sf::Time dt)
 {
-    // map.update(dt);
-    return false; 
+    map->update(dt);
+    return 0; 
 }
 bool Lobby::handleEvent(const sf::Event& event)
 {
@@ -28,11 +26,12 @@ bool Lobby::handleEvent(const sf::Event& event)
         {
             requestStackPop(); // Pop the current state when the window is closed
         }
-        if (event.key.code == sf::Keyboard::Escape)
+        else if (event.key.code == sf::Keyboard::Escape)
         {
+            requestStackPop(); 
             requestStackPush(States::Title); // Push the Title state when Escape is pressed
         }
 
     }
-    return false; 
+    return 0;
 }
