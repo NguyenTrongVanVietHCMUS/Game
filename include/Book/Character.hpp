@@ -15,6 +15,8 @@ Character(std::string name , sf::Texture& texture,sf::Vector2u imageCount, float
 public : 
 // Functions
     MovingAnimation movingAnimation ; 
+	SkillManager skillManager;
+	void operator=(const Character& other); // Disable assignment operator
     bool handleEvent(const sf::Event& event) ; 
     bool update(sf::Time deltaTime) ; 
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override

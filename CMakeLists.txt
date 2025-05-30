@@ -33,7 +33,7 @@ set(FILES_TO_COPY
     ${CMAKE_CURRENT_SOURCE_DIR}/bin/sfml-graphics-2.dll
     ${CMAKE_CURRENT_SOURCE_DIR}/bin/sfml-network-2.dll
     ${CMAKE_CURRENT_SOURCE_DIR}/bin/sfml-system-2.dll
-    ${CMAKE_CURRENT_SOURCE_DIR}/bin/sfml-window-2.dll
+    ${CMAKE_CURRENT_SOURCE_DIR}/bin/sfml-window-2.dll 
 	# ${CMAKE_CURRENT_SOURCE_DIR}/bin/raylib.dll
 )
 

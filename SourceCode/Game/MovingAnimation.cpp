@@ -25,7 +25,7 @@ MovingAnimation::~MovingAnimation()
 }
 void MovingAnimation::handleEvent(sf::Event event)
 {
-    std::cout<<"Handling event in MovingAnimation" << std::endl;
+    //std::cout<<"Handling event in MovingAnimation" << std::endl;
     if(event.type==sf::Event::MouseButtonPressed)
     {
         if(event.mouseButton.button==sf::Mouse::Right)

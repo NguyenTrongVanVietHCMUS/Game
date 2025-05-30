@@ -29,7 +29,7 @@ void Lobby::draw()
 }
 bool Lobby::update(sf::Time dt)
 {
-    std::cout<<"Updating Lobby" << std::endl;
+    //std::cout<<"Updating Lobby" << std::endl;
     map->update(dt);
     for(auto entity : entities)
     {
