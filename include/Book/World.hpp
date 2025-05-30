@@ -9,7 +9,6 @@ protected:
     std::vector<Entity*> objects ; 
 public : 
     World();
-    World(const World& other); // Copy constructor
     ~World();
     TileMap*map ; 
     

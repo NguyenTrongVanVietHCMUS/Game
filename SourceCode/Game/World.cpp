@@ -7,10 +7,6 @@ World::World() {
 World::~World() {
     // Destructor implementation
 }
-World::World(const World& other) {
-    // Copy constructor implementation
-    entities = other.entities;
-}
 
 void World::draw(sf::RenderTarget& target, sf::RenderStates states)const
 {

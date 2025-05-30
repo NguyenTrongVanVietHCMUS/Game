@@ -9,11 +9,13 @@ TileMap::TileMap()
 TileMap::TileMap(const TileMap& map)
 {
     this->File = File ; 
-    this->loadFromFile(map.File) ; 
+    this->tilesets = map.tilesets ;
+    this->layers = map.layers ; 
 }
 
 TileMap::~TileMap() 
-{
+{    
+    layers.clear(); 
     // Destructor
 }  
 bool TileMap::loadFromFile(const std::string& jsonFile) {
@@ -39,9 +41,10 @@ bool TileMap::loadFromFile(const std::string& jsonFile) {
 
         // Load the tileset texture from the resolved path
         if (!tileset.texture.loadFromFile(resolvedImagePath.string())) {
+            std::cerr << "Failed to load tileset texture from: " << resolvedImagePath.string() << std::endl;
             return false;
         }
-        
+        tileset.File = resolvedImagePath.string() ;
         tileset.firstGid = tilesetData["firstgid"];
         tileset.tileWidth = tilesetData["tilewidth"];
         tileset.tileHeight = tilesetData["tileheight"]; 
@@ -99,7 +102,7 @@ bool TileMap::loadFromFile(const std::string& jsonFile) {
             {
                 int tileId = layerData["data"][i];
                 if(tileId == 0) continue ; // Skip empty tiles
-                int tilesetIndex = 0 ; 
+                size_t tilesetIndex = 0 ; 
                 for(size_t j=0;j<tilesets.size();j++)
                 {
                     if(tileId >= tilesets[j].firstGid && tileId < tilesets[j].firstGid + tilesets[j].tileCount)
@@ -109,12 +112,12 @@ bool TileMap::loadFromFile(const std::string& jsonFile) {
                     }
                 }
                 int localTileId = tileId - tilesets[tilesetIndex].firstGid ;
-                int tileX = (localTileId % tilesets[tilesetIndex].columns) * tilesets[tilesetIndex].tileWidth;
-                int tileY = (localTileId / tilesets[tilesetIndex].columns) * tilesets[tilesetIndex].tileHeight;
+                float tileX = (localTileId % tilesets[tilesetIndex].columns) * tilesets[tilesetIndex].tileWidth*1.0f;
+                float tileY = (localTileId / tilesets[tilesetIndex].columns) * tilesets[tilesetIndex].tileHeight*1.0f;
                 
                 // Calculate the position of the tile in the layer
-                int x = (i % layer->width) * tilesets[tilesetIndex].tileWidth;
-                int y = (i / layer->width) * tilesets[tilesetIndex].tileHeight;
+                float x = (i % layer->width) * tilesets[tilesetIndex].tileWidth*1.0f;
+                float y = (i / layer->width) * tilesets[tilesetIndex].tileHeight*1.0f;
 
                 // Define the vertices for the tile
                 sf::Vertex* quad = &layer->vertices[tilesetIndex][i * 4];
@@ -130,9 +133,75 @@ bool TileMap::loadFromFile(const std::string& jsonFile) {
                 quad[3].texCoords = sf::Vector2f(tileX, tileY + tilesets[tilesetIndex].tileHeight);
             }
         }
-        else if(layerData["type"] == "objectlayer")
+        else if(layerData["type"] == "objectgroup")
         {
-
+            layers.push_back(new ObjectLayer());
+            auto layer = static_cast<ObjectLayer*>(layers.back());
+            layer->type = Layer::ObjectGroup;
+            layer->name = layerData["name"];
+            layer->visible = layerData["visible"];
+            layer->setPosition(layerData["x"], layerData["y"]);
+            // Load objects
+            for(auto& objectData : layerData["objects"]) 
+            {
+                if (objectData["type"] == "Object") 
+                {
+                    int gid = objectData["gid"];
+                    size_t tilesetIndex = 0;
+                    for (size_t j = 0; j < tilesets.size(); ++j) 
+                    {
+                        if (gid == tilesets[j].firstGid ) 
+                        {
+                            tilesetIndex = j;
+                            break;
+                        }
+                    }
+                    layer->ObjectsTextures.push_back(new sf::Texture());
+                    if(!layer->ObjectsTextures.back()->loadFromFile(tilesets[tilesetIndex].File))
+                    {
+                        std::cerr << "Error loading texture from file: " << tilesets[tilesetIndex].File << std::endl;
+                        return false;
+                    }
+                    // Use the texture from the tileset
+                    layer->ObjectsSprite.push_back(new sf::Sprite());
+                    layer->ObjectsSprite.back()->setTexture(*layer->ObjectsTextures.back());
+                    layer->ObjectsSprite.back()->setPosition(objectData["x"], float(objectData["y"]) - float(objectData["height"]));
+                    layer->ObjectsSprite.back()->scale(
+                        float(objectData["width"]) / tilesets[tilesetIndex].tileWidth,
+                        float(objectData["height"]) / tilesets[tilesetIndex].tileHeight
+                    );
+                    int hitboxId = -1;
+                    for (const auto& prop : objectData["properties"]) {
+                        if (prop["name"] == "hitbox" && prop["type"] == "object") {
+                            hitboxId = prop["value"];
+                            break;
+                        }
+                    }
+                    for(auto& objectHitbox:layerData["objects"])
+                    {
+                        if(objectHitbox["id"]==hitboxId) 
+                        {
+                            std::cout<< objectHitbox["x"] << " " << objectHitbox["y"] << " " << objectHitbox["width"] << " " << objectHitbox["height"] << std::endl;
+                            layer->hitboxes.push_back(new Hitbox(sf::FloatRect(objectHitbox["x"], objectHitbox["y"], objectHitbox["width"], objectHitbox["height"])));
+                            break; 
+                        }
+                    }
+                } 
+                else if(objectData["type"] == "Collider") 
+                {
+                    // Handle colliders 
+                    layer->colliders.push_back(new Hitbox(sf::FloatRect(objectData["x"], objectData["y"], objectData["width"], objectData["height"])));
+                } 
+                else if(objectData["type"] == "hitbox")
+                {
+                    continue ; 
+                }
+                else 
+                {
+                    std::cerr<<"something is wrong with the objectgroup layer"<<std::endl; 
+                    abort() ;   
+                }
+            }
         }
     }
     return true;
@@ -147,7 +216,8 @@ void TileMap::setLayerVisible(size_t layerIndex, bool visible)
 
 bool TileMap::isLayerVisible(size_t layerIndex) const 
 {
-    return (layerIndex < layers.size()) ? layers[layerIndex]->visible : false;
+    return 1  ;
+    // return (layerIndex < layers.size()) ? layers[layerIndex].visible : false;
 }
 
 void TileMap::draw(sf::RenderTarget& target, sf::RenderStates states)const
@@ -160,7 +230,6 @@ void TileMap::draw(sf::RenderTarget& target, sf::RenderStates states)const
             x->draw(target,states) ; 
         }
     }
-    // You may want to draw tile layers here as well
 }
 bool TileMap::handleEvent(const sf::Event& event) 
 {

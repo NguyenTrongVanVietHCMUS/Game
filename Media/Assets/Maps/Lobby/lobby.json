@@ -3,6 +3,7 @@
  "infinite":false,
  "layers":[
         {
+         "class":"Floor",
          "id":2,
          "image":"LobbyFloor.png",
          "imageheight":672,
@@ -49,14 +50,14 @@
         {
          "draworder":"topdown",
          "id":8,
-         "name":"Hitbox",
+         "name":"Objects",
          "objects":[
                 {
                  "height":319.5,
                  "id":49,
-                 "name":"",
+                 "name":"Wall",
                  "rotation":0,
-                 "type":"",
+                 "type":"Collider",
                  "visible":true,
                  "width":31,
                  "x":1,
@@ -65,20 +66,20 @@
                 {
                  "height":222,
                  "id":50,
-                 "name":"",
+                 "name":"Wall",
                  "rotation":0,
-                 "type":"",
+                 "type":"Collider",
                  "visible":true,
                  "width":32.5,
-                 "x":0,
-                 "y":451
+                 "x":-0.5,
+                 "y":449
                 }, 
                 {
                  "height":149,
                  "id":51,
-                 "name":"",
+                 "name":"Wall",
                  "rotation":0,
-                 "type":"",
+                 "type":"Collider",
                  "visible":true,
                  "width":31,
                  "x":1185,
@@ -87,9 +88,9 @@
                 {
                  "height":222,
                  "id":52,
-                 "name":"",
+                 "name":"Wall",
                  "rotation":0,
-                 "type":"",
+                 "type":"Collider",
                  "visible":true,
                  "width":32,
                  "x":1185,
@@ -98,13 +99,71 @@
                 {
                  "height":170.666666666667,
                  "id":56,
-                 "name":"",
+                 "name":"Wall",
                  "rotation":0,
-                 "type":"",
+                 "type":"Collider",
                  "visible":true,
                  "width":1185.33333333333,
                  "x":30.6666666666667,
                  "y":0
+                }, 
+                {
+                 "gid":20,
+                 "height":109,
+                 "id":112,
+                 "name":"taskboard",
+                 "properties":[
+                        {
+                         "name":"hitbox",
+                         "type":"object",
+                         "value":114
+                        }],
+                 "rotation":0,
+                 "type":"Object",
+                 "visible":true,
+                 "width":134.333333333333,
+                 "x":178.666666666667,
+                 "y":187
+                }, 
+                {
+                 "height":36,
+                 "id":114,
+                 "name":"",
+                 "rotation":0,
+                 "type":"hitbox",
+                 "visible":true,
+                 "width":134.666666666667,
+                 "x":178.666666666667,
+                 "y":149.333333333333
+                }, 
+                {
+                 "gid":21,
+                 "height":201.666666666667,
+                 "id":115,
+                 "name":"fountain",
+                 "properties":[
+                        {
+                         "name":"hitbox",
+                         "type":"object",
+                         "value":119
+                        }],
+                 "rotation":0,
+                 "type":"Object",
+                 "visible":true,
+                 "width":161.666666666667,
+                 "x":524,
+                 "y":462
+                }, 
+                {
+                 "height":139,
+                 "id":119,
+                 "name":"",
+                 "rotation":0,
+                 "type":"hitbox",
+                 "visible":true,
+                 "width":152,
+                 "x":529,
+                 "y":319
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -112,8 +171,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":9,
- "nextobjectid":58,
+ "nextlayerid":10,
+ "nextobjectid":120,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",
@@ -159,152 +218,30 @@
          "tilewidth":32
         }, 
         {
-         "columns":16,
+         "columns":1,
          "firstgid":20,
-         "image":"..\/..\/TileSets\/tileset.png",
-         "imageheight":512,
-         "imagewidth":512,
+         "image":"TaskBoard.png",
+         "imageheight":245,
+         "imagewidth":345,
          "margin":0,
-         "name":"tileset",
+         "name":"TaskBoard",
          "spacing":0,
-         "tilecount":256,
-         "tileheight":32,
-         "tilewidth":32,
-         "wangsets":[
-                {
-                 "colors":[
-                        {
-                         "color":"#ff0000",
-                         "name":"",
-                         "probability":1,
-                         "tile":-1
-                        }, 
-                        {
-                         "color":"#00ff00",
-                         "name":"",
-                         "probability":1,
-                         "tile":-1
-                        }, 
-                        {
-                         "color":"#0000ff",
-                         "name":"",
-                         "probability":1,
-                         "tile":-1
-                        }],
-                 "name":"Unnamed Set",
-                 "tile":-1,
-                 "type":"corner",
-                 "wangtiles":[
-                        {
-                         "tileid":26,
-                         "wangid":[0, 0, 0, 1, 0, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":27,
-                         "wangid":[0, 0, 0, 0, 0, 1, 0, 0]
-                        }, 
-                        {
-                         "tileid":28,
-                         "wangid":[0, 0, 0, 1, 0, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":29,
-                         "wangid":[0, 0, 0, 0, 0, 1, 0, 0]
-                        }, 
-                        {
-                         "tileid":42,
-                         "wangid":[0, 1, 0, 0, 0, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":43,
-                         "wangid":[0, 0, 0, 0, 0, 0, 0, 1]
-                        }, 
-                        {
-                         "tileid":44,
-                         "wangid":[0, 1, 0, 0, 0, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":45,
-                         "wangid":[0, 0, 0, 0, 0, 0, 0, 1]
-                        }, 
-                        {
-                         "tileid":60,
-                         "wangid":[0, 0, 0, 2, 0, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":61,
-                         "wangid":[0, 0, 0, 0, 0, 2, 0, 0]
-                        }, 
-                        {
-                         "tileid":62,
-                         "wangid":[0, 0, 0, 2, 0, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":63,
-                         "wangid":[0, 0, 0, 0, 0, 2, 0, 0]
-                        }, 
-                        {
-                         "tileid":76,
-                         "wangid":[0, 2, 0, 0, 0, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":77,
-                         "wangid":[0, 0, 0, 0, 0, 0, 0, 2]
-                        }, 
-                        {
-                         "tileid":78,
-                         "wangid":[0, 2, 0, 0, 0, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":79,
-                         "wangid":[0, 0, 0, 0, 0, 0, 0, 2]
-                        }]
-                }, 
-                {
-                 "colors":[
-                        {
-                         "color":"#ff0000",
-                         "name":"",
-                         "probability":1,
-                         "tile":-1
-                        }],
-                 "name":"Unnamed Set",
-                 "tile":-1,
-                 "type":"edge",
-                 "wangtiles":[
-                        {
-                         "tileid":28,
-                         "wangid":[0, 0, 1, 0, 1, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":29,
-                         "wangid":[0, 0, 0, 0, 1, 0, 1, 0]
-                        }, 
-                        {
-                         "tileid":30,
-                         "wangid":[0, 0, 1, 0, 1, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":31,
-                         "wangid":[0, 0, 0, 0, 1, 0, 1, 0]
-                        }, 
-                        {
-                         "tileid":44,
-                         "wangid":[1, 0, 1, 0, 0, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":45,
-                         "wangid":[1, 0, 0, 0, 0, 0, 1, 0]
-                        }, 
-                        {
-                         "tileid":46,
-                         "wangid":[1, 0, 1, 0, 0, 0, 0, 0]
-                        }, 
-                        {
-                         "tileid":47,
-                         "wangid":[1, 0, 0, 0, 0, 0, 1, 0]
-                        }]
-                }]
+         "tilecount":1,
+         "tileheight":245,
+         "tilewidth":345
+        }, 
+        {
+         "columns":1,
+         "firstgid":21,
+         "image":"Fountain.png",
+         "imageheight":295,
+         "imagewidth":215,
+         "margin":0,
+         "name":"Fountain",
+         "spacing":0,
+         "tilecount":1,
+         "tileheight":295,
+         "tilewidth":215
         }],
  "tilewidth":32,
  "type":"map",

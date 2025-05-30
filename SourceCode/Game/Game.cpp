@@ -2,7 +2,7 @@
 // Constructor
 Game::Game()
 : 
-    window(sf::VideoMode(width, height), "SFML Game", sf::Style::Close | sf::Style::Titlebar|sf::Style::Resize),
+    window(sf::VideoMode(width, height), "Live Knight", sf::Style::Close | sf::Style::Titlebar|sf::Style::Resize),
 	textures(),
 	fonts(),
 	music(),
@@ -12,12 +12,16 @@ Game::Game()
 	maps.load(Map::ID::Title, "Media/Assets/Maps/Title/title.json");
 	maps.load(Map::ID::Lobby, "Media/Assets/Maps/Lobby/lobby.json");
 
-	// fonts.load(Fonts::ID::Title, "Media/Fonts/PressStart2P_Regular.ttf");
-	// fonts.load(Fonts::ID::Main, "Media/Fonts/Sansation.ttf");
-
-
-	registerStates();
+	textures.load(Textures::ID::Knight, "Media/Assets/Characters/Knight/MovingKnightLeftRight.png");
+	fonts.load(Fonts::ID::Title, "Media/Fonts/PressStart2P_Regular.ttf");
+	fonts.load(Fonts::ID::Main, "Media/Fonts/Sansation.ttf");
+	registerStates();	
 	stateStack.pushState(States::Title);
+
+	// Set the frame rate limit 
+	window.setFramerateLimit(60); // Limit to 60 FPS
+	window.setVerticalSyncEnabled(true); // Enable vertical sync
+
 }   
 
 // Destructor
