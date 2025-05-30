@@ -15,11 +15,11 @@ StateStack::StateStack(State::Context context)
 void StateStack::update(sf::Time dt)
 {
 	// Iterate from top to bottom, stop as soon as update() returns false
-	// for (auto itr = mStack.rbegin(); itr != mStack.rend(); ++itr)
-	// {
-	// 	if (!(*itr)->update(dt))
-	// 		break;
-	// }
+	for (auto itr = mStack.rbegin(); itr != mStack.rend(); ++itr)
+	{
+		if (!(*itr)->update(dt))
+			break;
+	}
 
 	applyPendingChanges();
 }

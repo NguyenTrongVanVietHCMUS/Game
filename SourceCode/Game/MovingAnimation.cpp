@@ -1,6 +1,7 @@
 #include"Book/MovingAnimation.hpp"
 
-MovingAnimation::MovingAnimation(sf::Texture&texture , sf::Vector2u imageCount,float switchTime):texture(texture), imageCount(imageCount), switchTime(switchTime)
+MovingAnimation::MovingAnimation() {}
+MovingAnimation::MovingAnimation(sf::Texture& texture  , sf::Vector2u imageCount,float switchTime):texture(texture),imageCount(imageCount), switchTime(switchTime) 
 {
     totalTime = 0; // total time for MovingAnimation
     switchTime = 0.3f; // time to switch frames
@@ -10,7 +11,7 @@ MovingAnimation::MovingAnimation(sf::Texture&texture , sf::Vector2u imageCount,f
     uvRect.top = 0; // top of the sprite sheet
     uvRect.left = 0; // left of the sprite sheet
     currentImage.x = 0 ; 
-
+    sprite.setTexture(texture); // set the texture for the sprite
     current_position = sf::Vector2f(300.0f,300.0f);
     final_position = current_position;
     speed = 800.0f; 
@@ -22,8 +23,9 @@ MovingAnimation::~MovingAnimation()
 {
     // Destructor
 }
-void MovingAnimation::PollEvents(sf::Event event)
+void MovingAnimation::handleEvent(sf::Event event)
 {
+    std::cout<<"Handling event in MovingAnimation" << std::endl;
     if(event.type==sf::Event::MouseButtonPressed)
     {
         if(event.mouseButton.button==sf::Mouse::Right)
@@ -41,11 +43,12 @@ void MovingAnimation::PollEvents(sf::Event event)
     direction /= distance;
     // Set the velocity based on speed and direction
     velocity = direction * speed;
+    std::cout<<"Current Position: " << current_position.x << ", " << current_position.y << std::endl;
+    std::cout<<"Final Position: " << final_position.x << ", " << final_position.y << std::endl;
     // Update the sprite's position
 }
-void MovingAnimation::Update(sf::Time deltaTime)
+void MovingAnimation::update(sf::Time deltaTime)
 {
-
     // Update the Character position based on velocity
     sf::Vector2f last_position = current_position;
     current_position += velocity * deltaTime.asSeconds();
@@ -82,11 +85,7 @@ void MovingAnimation::Update(sf::Time deltaTime)
     uvRect.top = currentImage.y * uvRect.height; // set the top position of the sprite sheet
     sprite.setPosition(current_position); // set the position of the sprite
     sprite.setOrigin(uvRect.width / 2, float(uvRect.height)); // set the origin of the sprite to the center
-}
-void MovingAnimation::Render(sf::RenderWindow& window)
-{
-     // set the texture of the sprite
-    sprite.setTexture(texture);
     sprite.setTextureRect(uvRect); // set the texture rectangle of the sprite
-    window.draw(sprite); // draw the sprite on the window
-}   
+    // std::cout<<current_position.x << " " << current_position.y << std::endl;
+    // std::cout<<final_position.x << " " << final_position.y << std::endl;
+}

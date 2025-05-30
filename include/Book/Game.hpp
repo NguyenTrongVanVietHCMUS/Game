@@ -17,7 +17,7 @@
 #include<Book/TileMap.hpp> 
 const int width = 1216;
 const int height = 672;
-class Game
+class Game 
 {
 public:
     Game();
@@ -30,10 +30,8 @@ private:
     void PollEvents();
     void Update(sf::Time);
     void Render();
-
     void registerStates();
 private :
-    
     sf::RenderWindow window;
     
     TextureHolder textures;
@@ -41,6 +39,5 @@ private :
     MusicPlayer music ; 
     SoundPlayer sounds ; 
     MapHolder maps;
-
     StateStack stateStack;
 };

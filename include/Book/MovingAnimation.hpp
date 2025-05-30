@@ -1,16 +1,23 @@
 #pragma once
 #include<Book/Utility.hpp>
-class MovingAnimation 
+class MovingAnimation : public sf::Drawable  
 {
 
 public : 
     MovingAnimation(sf::Texture& texture , sf::Vector2u imageCount, float switchTime);
-    MovingAnimation() = default; // Default constructor
+    MovingAnimation(); // Default constructor
     ~MovingAnimation();
-    void Update(sf::Time deltaTime);
-    void PollEvents(sf::Event event) ;
-    void Render(sf::RenderWindow& window) ; 
-private : 
+    virtual void update(sf::Time deltaTime);
+    virtual void handleEvent(sf::Event event);
+    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override
+    {
+        // std::cout<< "Drawing MovingAnimation" << std::endl;
+        states.texture = &texture; // Set the texture for the sprite
+        target.draw(sprite, states); // Draw the sprite to the target
+        // std::cout<<uvRect.left << " " << uvRect.top << std::endl;
+    }
+    sf::Sprite sprite;
+public : 
     enum Direction
     {
         LEFT,
@@ -19,7 +26,6 @@ private :
         DOWN
     };
     sf::Texture texture;
-    sf::Sprite sprite ; 
     sf::IntRect uvRect;
     sf::Vector2u imageCount; 
     sf::Vector2u currentImage; 

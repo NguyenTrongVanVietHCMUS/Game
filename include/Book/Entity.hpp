@@ -2,15 +2,16 @@
 #include <Book/Utility.hpp>
 #include<Control/Hitbox.hpp>
 
-class Entity :public sf::Drawable
+class Entity:public sf::Drawable
 {
-    public :
+public :
     Entity(); // Constructor with default position
-    ~Entity();
+    virtual ~Entity();
+public :
     std::string name ; 
     sf::Vector2f position; // Position of the entity
     Hitbox hitbox ; 
     virtual bool handleEvent(const sf::Event& event); // Handle events
     virtual bool update(sf::Time dt); // Update the entity
-    virtual void draw(sf::RenderTarget& target, sf::RenderStates states); // Draw the entity
+    virtual void draw(sf::RenderTarget& target, sf::RenderStates states)const ; // Draw the entity
 };
