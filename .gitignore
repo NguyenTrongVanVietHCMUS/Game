@@ -1,3 +1,4 @@
 out/
 .vs/
-buid/
+build/
+build2/
