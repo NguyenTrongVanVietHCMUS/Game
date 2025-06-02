@@ -6,7 +6,8 @@
 #include <future>
 #include <Book/Skill.hpp>
 #include <Book/Entity.hpp>
-
+class Skill;
+class Entity;
 
 class SkillManager
 {
