@@ -1,6 +1,7 @@
 #pragma once
 #include<Book/Utility.hpp> 
 #include<Book/Entity.hpp>
+#include<Object/Skills/TestSkill.hpp>
 #include<Book/MovingAnimation.hpp>
 class Character : public Entity
 {
@@ -22,6 +23,7 @@ public :
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override
     {
         movingAnimation.draw(target, states);
+        skillManager.draw(target, states); // Draw the skill manager
     }
     // Draw the Character
 };

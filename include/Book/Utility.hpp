@@ -11,3 +11,10 @@
 #include<SFML/Network.hpp>
 
 #define VV std::cout<<"RUN OK"<<std::endl; 
+
+enum EntityType
+{
+    EntityType_Ally,
+    EntityType_Enemy,
+    EntityType_Neutral
+};

@@ -26,6 +26,7 @@ public :
 public :
 	void update(const sf::Time& dt);
 	void handleEvent(const sf::Event& event);
+	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
 protected :
 	void asyncExecuteSkill();

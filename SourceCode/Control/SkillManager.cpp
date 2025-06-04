@@ -67,11 +67,16 @@ void SkillManager::update(const sf::Time& deltaTime) {
 		if(_isRunning && isCompleted()) {
 			_isRunning = false; // Reset running state when skill execution is complete
 		}
+		if(_SelectedSkill->isTriggered()) {
+		 // Trigger cooldown if the skill was used
+			_SelectedSkill->resetTriggered();
+			UseSkill();
+		}
 	}
 }
 
 void SkillManager::handleEvent(const sf::Event& event) {
-	if (_SelectedSkill && _isRunning)
+	if (_SelectedSkill)
 	{
 		_SelectedSkill->handleEvent(event);
 	}
@@ -82,3 +87,7 @@ void SkillManager::handleEvent(const sf::Event& event) {
 		}
 	}
 }	
+
+void SkillManager::draw(sf::RenderTarget& target, sf::RenderStates states) const {
+	_SelectedSkill->draw(target, states);
+}

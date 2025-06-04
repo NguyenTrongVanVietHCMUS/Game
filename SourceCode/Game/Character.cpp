@@ -36,8 +36,9 @@ bool Character::handleEvent(const sf::Event& event)
 }
 bool Character::update(sf::Time deltaTime)
 {
-    //std::cout<<"updating Character" << std::endl;
+    //std::cout<<"updating Character " << position.x << ", " << position.y << std::endl;
 	skillManager.update(deltaTime); // Update the skill manager
     movingAnimation.update(deltaTime); // Update the animation
+    position = movingAnimation.getPosition(); // Update the character's position based on the animation
     return false ; 
 }
