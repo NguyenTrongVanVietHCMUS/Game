@@ -19,5 +19,4 @@ public :
     virtual bool handleEvent(const sf::Event& event) ;
     virtual bool update(sf::Time dt) ;
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states)const ;
-
 }; 

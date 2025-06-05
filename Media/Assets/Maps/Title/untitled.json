@@ -89,9 +89,32 @@
          "width":38,
          "x":0,
          "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":3,
+         "name":"Object Layer 1",
+         "objects":[
+                {
+                 "gid":257,
+                 "height":155,
+                 "id":1,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":118,
+                 "x":574,
+                 "y":547
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
         }],
- "nextlayerid":3,
- "nextobjectid":1,
+ "nextlayerid":4,
+ "nextobjectid":2,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",
@@ -244,6 +267,19 @@
                          "wangid":[1, 0, 0, 0, 0, 0, 1, 0]
                         }]
                 }]
+        }, 
+        {
+         "columns":1,
+         "firstgid":257,
+         "image":"..\/Lobby\/Fountain.png",
+         "imageheight":295,
+         "imagewidth":215,
+         "margin":0,
+         "name":"Fountain",
+         "spacing":0,
+         "tilecount":1,
+         "tileheight":295,
+         "tilewidth":215
         }],
  "tilewidth":32,
  "type":"map",

@@ -24,13 +24,11 @@ public:
     virtual ~Layer(){}
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states)const
     {
-        // This function should be overridden in derived classes
         throw std::runtime_error("Draw function not implemented for this layer type.");
     }
     std::string name ; 
     Type type;
     bool visible;
-    // Position of the layer
 }; 
 struct Tileset {
     std::string File ; 
@@ -132,7 +130,6 @@ public:
             // assert(ObjectsTextures.size() == ObjectsSprite.size() && ObjectsTextures.size() ==2 ); // Ensure we have at most 2 textures and sprites
             for(auto & collider : colliders) 
             {
-                // std::cout<< "Drawing collider at position: " << collider->hitbox.left << ", " << collider->hitbox.top << std::endl;
                 sf::RectangleShape shape(sf::Vector2f(collider->hitbox.width, collider->hitbox.height));
                 shape.setPosition(collider->hitbox.left, collider->hitbox.top);
                 shape.setFillColor(sf::Color(255, 0, 0, 128)); // semi-transparent red for visibility
@@ -154,6 +151,7 @@ public:
         }
     }
 };
+
 class TileMap : public sf::Drawable {
 private:
 

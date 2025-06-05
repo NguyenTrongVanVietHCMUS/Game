@@ -137,33 +137,120 @@
                  "y":149.333333333333
                 }, 
                 {
-                 "gid":21,
-                 "height":201.666666666667,
-                 "id":115,
-                 "name":"fountain",
+                 "gid":22,
+                 "height":39,
+                 "id":120,
+                 "name":"chest",
                  "properties":[
                         {
                          "name":"hitbox",
                          "type":"object",
-                         "value":119
+                         "value":133
                         }],
                  "rotation":0,
                  "type":"Object",
                  "visible":true,
-                 "width":161.666666666667,
-                 "x":524,
-                 "y":462
+                 "width":45.5,
+                 "x":427.833333333333,
+                 "y":191.166666666667
                 }, 
                 {
-                 "height":139,
-                 "id":119,
+                 "gid":23,
+                 "height":66.3333333333334,
+                 "id":122,
+                 "name":"bookpile",
+                 "properties":[
+                        {
+                         "name":"hitbox",
+                         "type":"object",
+                         "value":129
+                        }],
+                 "rotation":0,
+                 "type":"Object",
+                 "visible":true,
+                 "width":53.3333333333333,
+                 "x":349,
+                 "y":652.666666666667
+                }, 
+                {
+                 "gid":24,
+                 "height":58,
+                 "id":123,
+                 "name":"trashcan",
+                 "properties":[
+                        {
+                         "name":"hitbox",
+                         "type":"object",
+                         "value":131
+                        }],
+                 "rotation":0,
+                 "type":"Object",
+                 "visible":true,
+                 "width":38,
+                 "x":44.8181818181818,
+                 "y":655.818181818182
+                }, 
+                {
+                 "gid":25,
+                 "height":82,
+                 "id":127,
+                 "name":"fishtank",
+                 "properties":[
+                        {
+                         "name":"hitbox",
+                         "type":"object",
+                         "value":130
+                        }],
+                 "rotation":0,
+                 "type":"Object",
+                 "visible":true,
+                 "width":154,
+                 "x":1031.66666666667,
+                 "y":672.666666666667
+                }, 
+                {
+                 "height":69.3333333333334,
+                 "id":129,
                  "name":"",
                  "rotation":0,
                  "type":"hitbox",
                  "visible":true,
-                 "width":152,
-                 "x":529,
-                 "y":319
+                 "width":55.3333333333334,
+                 "x":347.166666666667,
+                 "y":584.666666666667
+                }, 
+                {
+                 "height":40.6666666666667,
+                 "id":130,
+                 "name":"",
+                 "rotation":0,
+                 "type":"hitbox",
+                 "visible":true,
+                 "width":155.333333333333,
+                 "x":1030,
+                 "y":633.333333333333
+                }, 
+                {
+                 "height":21.4545454545454,
+                 "id":131,
+                 "name":"",
+                 "rotation":0,
+                 "type":"hitbox",
+                 "visible":true,
+                 "width":38,
+                 "x":44.7272727272727,
+                 "y":634.545454545455
+                }, 
+                {
+                 "height":21.5,
+                 "id":133,
+                 "name":"",
+                 "rotation":0,
+                 "type":"hitbox",
+                 "visible":true,
+                 "width":43,
+                 "x":429,
+                 "y":169.5
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -172,7 +259,7 @@
          "y":0
         }],
  "nextlayerid":10,
- "nextobjectid":120,
+ "nextobjectid":134,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",
@@ -242,6 +329,58 @@
          "tilecount":1,
          "tileheight":295,
          "tilewidth":215
+        }, 
+        {
+         "columns":1,
+         "firstgid":22,
+         "image":"Chest.png",
+         "imageheight":178,
+         "imagewidth":170,
+         "margin":0,
+         "name":"Chest",
+         "spacing":0,
+         "tilecount":1,
+         "tileheight":178,
+         "tilewidth":170
+        }, 
+        {
+         "columns":1,
+         "firstgid":23,
+         "image":"Book_Pile.png",
+         "imageheight":145,
+         "imagewidth":109,
+         "margin":0,
+         "name":"Book_Pile",
+         "spacing":0,
+         "tilecount":1,
+         "tileheight":145,
+         "tilewidth":109
+        }, 
+        {
+         "columns":1,
+         "firstgid":24,
+         "image":"TrashCan.png",
+         "imageheight":100,
+         "imagewidth":74,
+         "margin":0,
+         "name":"TrashCan",
+         "spacing":0,
+         "tilecount":1,
+         "tileheight":100,
+         "tilewidth":74
+        }, 
+        {
+         "columns":1,
+         "firstgid":25,
+         "image":"Fish_Tank.png",
+         "imageheight":372,
+         "imagewidth":468,
+         "margin":0,
+         "name":"Fish_Tank",
+         "spacing":0,
+         "tilecount":1,
+         "tileheight":372,
+         "tilewidth":468
         }],
  "tilewidth":32,
  "type":"map",
