@@ -2,21 +2,19 @@
 #include<Book/Utility.hpp> 
 #include<Book/Entity.hpp>
 #include<Book/MovingAnimation.hpp>
-class Character : public Entity 
+class Character : public Entity
 {
 private :
-    
-    std::string name ; 
     MovingAnimation movingAnimation ; 
-
 public : 
-// Constructor and Destructor   
-    Character(){} 
-    Character(std::string name , std::string directory,sf::Vector2u imageCount, float switchTime);
+    Character();
+    Character(std::string name , sf::Texture& texture,sf::Vector2u imageCount, float switchTime);
     ~Character(); 
 public : 
-// Functions
-    void PollEvents(sf::Event event) ; 
-    void Update(sf::Time deltaTime) ; 
-    void Render(sf::RenderWindow& window) ; 
+    bool handleEvent(const sf::Event& event) ; 
+    bool update(sf::Time deltaTime) ; 
+    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override
+    {
+        movingAnimation.draw(target, states);
+    }
 };

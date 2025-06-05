@@ -1,4 +1,5 @@
 #include "Book/TileMap.hpp"
+#include<Control/Foreach.hpp>
 #include <fstream>
 
 TileMap::TileMap()
@@ -8,9 +9,15 @@ TileMap::TileMap()
 TileMap::TileMap(const TileMap& map)
 {
     this->File = File ; 
-    this->loadFromFile(map.File) ; 
+    this->tilesets = map.tilesets ;
+    this->layers = map.layers ; 
 }
 
+TileMap::~TileMap() 
+{    
+    layers.clear(); 
+    // Destructor
+}  
 bool TileMap::loadFromFile(const std::string& jsonFile) {
     File = jsonFile ; 
     // Load JSON file
@@ -23,7 +30,8 @@ bool TileMap::loadFromFile(const std::string& jsonFile) {
     file >> mapData;
     
     // Load tilesetsf
-    for (auto& tilesetData : mapData["tilesets"]) {
+    for (auto& tilesetData : mapData["tilesets"]) 
+    {
         Tileset tileset;
         std::string imagePath = tilesetData["image"];
         // Resolve imagePath relative to the JSON file's directory
@@ -33,9 +41,10 @@ bool TileMap::loadFromFile(const std::string& jsonFile) {
 
         // Load the tileset texture from the resolved path
         if (!tileset.texture.loadFromFile(resolvedImagePath.string())) {
+            std::cerr << "Failed to load tileset texture from: " << resolvedImagePath.string() << std::endl;
             return false;
         }
-        
+        tileset.File = resolvedImagePath.string() ;
         tileset.firstGid = tilesetData["firstgid"];
         tileset.tileWidth = tilesetData["tilewidth"];
         tileset.tileHeight = tilesetData["tileheight"]; 
@@ -45,57 +54,188 @@ bool TileMap::loadFromFile(const std::string& jsonFile) {
     }
     
     // Load layers
-    for (auto& layerData : mapData["layers"]) {
+    for (auto& layerData : mapData["layers"]) 
+    {
         if (layerData["type"] == "imagelayer") 
         {
             std::string imagePath = layerData["image"];
-            // Resolve imagePath relative to the JSON file's directory
             std::filesystem::path jsonPath(jsonFile);
             std::filesystem::path jsonDir = jsonPath.parent_path();
             std::filesystem::path resolvedImagePath = jsonDir / imagePath;
+            // Resolve imagePath relative to the JSON file's directory
             
             // Load the background texture
             sf::Texture backgroundTexture;
+            std::cout<< "Loading background texture from: " << resolvedImagePath.string() << std::endl;
+
             if (!backgroundTexture.loadFromFile(resolvedImagePath.string())) {
                 return false;
             }
-            sf::Sprite backgroundSprite(backgroundTexture);
-
-            backgroundSprite.setPosition(layerData["x"], layerData["y"]);
-            backgroundSprites.push_back(backgroundSprite);
+            // backgroundTexture.loadFromFile("Media/Assets/Maps/Title/background.png");
+            layers.push_back(new ImageLayer());
+            auto layer = static_cast<ImageLayer*>(layers.back());
+            layer->type = Layer::ImageLayer ; 
+            layer->name = layerData["name"];
+            layer->visible = layerData["visible"];
+            layer->texture.loadFromFile(resolvedImagePath.string()) ; 
+            layer->sprite.setTexture(layer->texture);
+            layer->sprite.setPosition(layerData["x"], layerData["y"]);
         }
-        else if(layerData["type"] == "objectlayer")
+        else if(layerData["type"] == "tilelayer")
         {
-            
+            layers.push_back(new TileLayer());
+            auto layer = static_cast<TileLayer*>(layers.back()) ; 
+            layer->type = Layer::TileLayer;
+            layer->name = layerData["name"];
+            layer->visible = layerData["visible"];
+            layer->width = layerData["width"];
+            layer->height = layerData["height"];
+            layer->setPosition(layerData["x"], layerData["y"]);
+            // Load tile data
+            layer->vertices.resize(tilesets.size());
+            for (size_t i = 0; i < tilesets.size(); ++i) {
+                layer->vertices[i].setPrimitiveType(sf::Quads);
+                layer->vertices[i].resize(layerData["data"].size() * 4);
+            }
+            layer->tilesets = tilesets;
+            for(int i=0;i<layerData["data"].size();i++)
+            {
+                int tileId = layerData["data"][i];
+                if(tileId == 0) continue ; // Skip empty tiles
+                size_t tilesetIndex = 0 ; 
+                for(size_t j=0;j<tilesets.size();j++)
+                {
+                    if(tileId >= tilesets[j].firstGid && tileId < tilesets[j].firstGid + tilesets[j].tileCount)
+                    {
+                        tilesetIndex = j ; 
+                        break ; 
+                    }
+                }
+                int localTileId = tileId - tilesets[tilesetIndex].firstGid ;
+                float tileX = (localTileId % tilesets[tilesetIndex].columns) * tilesets[tilesetIndex].tileWidth*1.0f;
+                float tileY = (localTileId / tilesets[tilesetIndex].columns) * tilesets[tilesetIndex].tileHeight*1.0f;
+                
+                // Calculate the position of the tile in the layer
+                float x = (i % layer->width) * tilesets[tilesetIndex].tileWidth*1.0f;
+                float y = (i / layer->width) * tilesets[tilesetIndex].tileHeight*1.0f;
+
+                // Define the vertices for the tile
+                sf::Vertex* quad = &layer->vertices[tilesetIndex][i * 4];
+                quad[0].position = sf::Vector2f(x, y);
+                quad[1].position = sf::Vector2f(x + tilesets[tilesetIndex].tileWidth, y);
+                quad[2].position = sf::Vector2f(x + tilesets[tilesetIndex].tileWidth, y + tilesets[tilesetIndex].tileHeight);
+                quad[3].position = sf::Vector2f(x, y + tilesets[tilesetIndex].tileHeight);
+
+                // Set the texture coordinates
+                quad[0].texCoords = sf::Vector2f(tileX, tileY);
+                quad[1].texCoords = sf::Vector2f(tileX + tilesets[tilesetIndex].tileWidth, tileY);
+                quad[2].texCoords = sf::Vector2f(tileX + tilesets[tilesetIndex].tileWidth, tileY + tilesets[tilesetIndex].tileHeight);
+                quad[3].texCoords = sf::Vector2f(tileX, tileY + tilesets[tilesetIndex].tileHeight);
+            }
+        }
+        else if(layerData["type"] == "objectgroup")
+        {
+            layers.push_back(new ObjectLayer());
+            auto layer = static_cast<ObjectLayer*>(layers.back());
+            layer->type = Layer::ObjectGroup;
+            layer->name = layerData["name"];
+            layer->visible = layerData["visible"];
+            layer->setPosition(layerData["x"], layerData["y"]);
+            // Load objects
+            for(auto& objectData : layerData["objects"]) 
+            {
+                if (objectData["type"] == "Object") 
+                {
+                    int gid = objectData["gid"];
+                    size_t tilesetIndex = 0;
+                    for (size_t j = 0; j < tilesets.size(); ++j) 
+                    {
+                        if (gid == tilesets[j].firstGid ) 
+                        {
+                            tilesetIndex = j;
+                            break;
+                        }
+                    }
+                    layer->ObjectsTextures.push_back(new sf::Texture());
+                    if(!layer->ObjectsTextures.back()->loadFromFile(tilesets[tilesetIndex].File))
+                    {
+                        std::cerr << "Error loading texture from file: " << tilesets[tilesetIndex].File << std::endl;
+                        return false;
+                    }
+                    // Use the texture from the tileset
+                    layer->ObjectsSprite.push_back(new sf::Sprite());
+                    layer->ObjectsSprite.back()->setTexture(*layer->ObjectsTextures.back());
+                    layer->ObjectsSprite.back()->setPosition(objectData["x"], float(objectData["y"]) - float(objectData["height"]));
+                    layer->ObjectsSprite.back()->scale(
+                        float(objectData["width"]) / tilesets[tilesetIndex].tileWidth,
+                        float(objectData["height"]) / tilesets[tilesetIndex].tileHeight
+                    );
+                    int hitboxId = -1;
+                    for (const auto& prop : objectData["properties"]) {
+                        if (prop["name"] == "hitbox" && prop["type"] == "object") {
+                            hitboxId = prop["value"];
+                            break;
+                        }
+                    }
+                    for(auto& objectHitbox:layerData["objects"])
+                    {
+                        if(objectHitbox["id"]==hitboxId) 
+                        {
+                            std::cout<< objectHitbox["x"] << " " << objectHitbox["y"] << " " << objectHitbox["width"] << " " << objectHitbox["height"] << std::endl;
+                            layer->hitboxes.push_back(new Hitbox(sf::FloatRect(objectHitbox["x"], objectHitbox["y"], objectHitbox["width"], objectHitbox["height"])));
+                            break; 
+                        }
+                    }
+                } 
+                else if(objectData["type"] == "Collider") 
+                {
+                    // Handle colliders 
+                    layer->colliders.push_back(new Hitbox(sf::FloatRect(objectData["x"], objectData["y"], objectData["width"], objectData["height"])));
+                } 
+                else if(objectData["type"] == "hitbox")
+                {
+                    continue ; 
+                }
+                else 
+                {
+                    std::cerr<<"something is wrong with the objectgroup layer"<<std::endl; 
+                    abort() ;   
+                }
+            }
         }
     }
     return true;
 }
 
-TileMap::~TileMap() {
-    // Destructor
-}  
-void TileMap::setLayerVisible(size_t layerIndex, bool visible) {
+void TileMap::setLayerVisible(size_t layerIndex, bool visible) 
+{
     if (layerIndex < layers.size()) {
-        layers[layerIndex].visible = visible;
+        layers[layerIndex]->visible = visible;
     }
 }
 
-bool TileMap::isLayerVisible(size_t layerIndex) const {
-    return (layerIndex < layers.size()) ? layers[layerIndex].visible : false;
+bool TileMap::isLayerVisible(size_t layerIndex) const 
+{
+    return 1  ;
+    // return (layerIndex < layers.size()) ? layers[layerIndex].visible : false;
 }
 
-void TileMap::draw(sf::RenderTarget& target, sf::RenderStates states) const {
-    for (const auto& sprite : backgroundSprites) {
-        target.draw(sprite, states);
+void TileMap::draw(sf::RenderTarget& target, sf::RenderStates states)const
+{
+    // std::cout<< "Drawing TileMap from file: " << File << std::endl;
+    for(auto x : layers)
+    {
+        if(x->visible)
+        {
+            x->draw(target,states) ; 
+        }
     }
-    // You may want to draw tile layers here as well
 }
 bool TileMap::handleEvent(const sf::Event& event) 
 {
-    return 0 ;
+    return 0 ; 
 }
 bool TileMap::update(sf::Time dt)
 {
-    return 0 ;  
+    return  0 ; 
 }

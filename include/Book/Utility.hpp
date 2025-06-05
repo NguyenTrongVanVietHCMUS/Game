@@ -11,3 +11,4 @@
 #include<SFML/Network.hpp>
 
 #define VV std::cout<<"RUN OK"<<std::endl; 
+#define boom exit(1); 

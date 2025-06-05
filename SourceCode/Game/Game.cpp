@@ -1,9 +1,8 @@
 #include "Book/Game.hpp"
-#include "Control/State.hpp"
 // Constructor
 Game::Game()
 : 
-    window(sf::VideoMode(width, height), "SFML Game", sf::Style::Close | sf::Style::Titlebar|sf::Style::Resize),
+    window(sf::VideoMode(width, height), "Live Knight", sf::Style::Close | sf::Style::Titlebar|sf::Style::Resize),
 	textures(),
 	fonts(),
 	music(),
@@ -11,14 +10,18 @@ Game::Game()
     stateStack(State::Context(window, textures, fonts, music, sounds, maps))
 {
 	maps.load(Map::ID::Title, "Media/Assets/Maps/Title/title.json");
-	// maps.load(Map::ID::Lobby, "Media/Assets/Lobby/lobby.json");
+	maps.load(Map::ID::Lobby, "Media/Assets/Maps/Lobby/lobby.json");
 
+	textures.load(Textures::ID::Knight, "Media/Assets/Characters/Knight/MovingKnightLeftRight.png");
 	fonts.load(Fonts::ID::Title, "Media/Fonts/PressStart2P_Regular.ttf");
 	fonts.load(Fonts::ID::Main, "Media/Fonts/Sansation.ttf");
-
-
-	registerStates();
+	registerStates();	
 	stateStack.pushState(States::Title);
+
+	// Set the frame rate limit 
+	window.setFramerateLimit(60); // Limit to 60 FPS
+	window.setVerticalSyncEnabled(true); // Enable vertical sync
+
 }   
 
 // Destructor
@@ -34,6 +37,7 @@ void Game::Run()
     while (window.isOpen())
     {       
         timeSinceLastUpdate += clock.restart();
+		Update(sf::Time::Zero); // Initial update to set up the game state
         while (timeSinceLastUpdate > TimePerFrame)
         {
             timeSinceLastUpdate -= TimePerFrame;
@@ -51,7 +55,7 @@ void Game::PollEvents()
     sf::Event event;
     while (window.pollEvent(event))
     {
-        // stateStack.handleEvent(event);
+        stateStack.handleEvent(event);
         if (event.type == sf::Event::Closed)
             window.close() ; 
     }
@@ -65,12 +69,7 @@ void Game::Update(sf::Time dt)
 void Game::Render()
 {
     window.clear();
-
 	stateStack.draw();
-	// window.draw(maps.get(Map::ID::Title));
-
-	// mWindow.setView(mWindow.getDefaultView());
-
 	window.display();
 }
 void Game::registerStates()

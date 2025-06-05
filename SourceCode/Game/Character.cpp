@@ -1,37 +1,30 @@
-#include "Book/Character.hpp"
+#include <Book/Character.hpp>
 Character::Character(
     std::string name , 
-    std::string directory,
+    sf::Texture& texture,
     sf::Vector2u imageCount, 
     float switchTime
-)
-    :name(name)
+):movingAnimation(texture,imageCount,switchTime)
 {
-    //constructor for movingAnimation
-    sf::Texture texture;
-    if (!texture.loadFromFile(directory))
-    {
-        // Handle error
-        std::cerr << "Error loading texture from file: " << directory << std::endl;
-    }
-    movingAnimation = MovingAnimation(texture, imageCount, switchTime);    
+    this->name = name ; 
 }
-
+Character::Character()
+{
+    // Initialize default values if needed
+}
 Character::~Character()
 {
     // Destructor logic if needed
 }
 
-void Character::PollEvents(sf::Event event)    
-{  
-    movingAnimation.PollEvents(event) ;     
+bool Character::handleEvent(const sf::Event& event)
+{
+    movingAnimation.handleEvent(event);  
+    return false ;  
 }
-void Character::Update(sf::Time deltaTime)
+bool Character::update(sf::Time deltaTime)
 {
-    movingAnimation.Update(deltaTime); // Update the animation
-}   
-void Character::Render(sf::RenderWindow& window)
-{
-    // Draw the Character sprite
-    movingAnimation.Render(window); 
+    std::cout<<"updating Character" << std::endl;
+    movingAnimation.update(deltaTime); // Update the animation
+    return false ; 
 }

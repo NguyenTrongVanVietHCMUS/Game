@@ -4,17 +4,14 @@
 World::World() {
     // Constructor implementation
 }
-World::~World() {
+World::~World() {   
     // Destructor implementation
 }
-World::World(const World& other) {
-    // Copy constructor implementation
-    entities = other.entities;
-}
 
-void World::draw(sf::RenderTarget& target, sf::RenderStates states) const {
+void World::draw(sf::RenderTarget& target, sf::RenderStates states)const
+{
     // Draw implementation
-    map.draw(target, states); // Assuming map is a member of World
+    map->draw(target, states); // Assuming map is a member of World
 }
 bool World::handleEvent(const sf::Event& event) {
     // Handle event implementation

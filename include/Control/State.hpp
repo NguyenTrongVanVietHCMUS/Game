@@ -4,7 +4,7 @@
 #include "Control/ResourceIdentifiers.hpp"
 #include <SFML/System/Time.hpp>
 #include <SFML/Window/Event.hpp>
-
+#include <Control/State.hpp>
 #include <memory>
 
 
@@ -44,9 +44,9 @@ class State
 							State(StateStack& stack, Context context);
 		virtual				~State();
 
-		virtual void		draw() = 0;
-		virtual bool		update(sf::Time dt) = 0;
-		virtual bool		handleEvent(const sf::Event& event) = 0;
+		virtual void		draw(){return;};
+		virtual bool		update(sf::Time dt){return 0 ; };
+		virtual bool		handleEvent(const sf::Event& event){return false ;}
 
 
 	protected:
@@ -56,7 +56,7 @@ class State
 
 		Context				getContext() const;
 
-	private:
+	protected :
 		StateStack*			mStack;
 		Context				mContext;
 };

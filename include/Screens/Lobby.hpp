@@ -9,11 +9,13 @@
 #include"Book/World.hpp"
 class Lobby : public State , public World
 {
+private : 
+ 
 public:
     Lobby(StateStack&stack ,Context context);
     ~Lobby(); 
-
-    virtual void draw(); 
+    // Implement pure virtual functions from State
+    virtual void draw();
     virtual bool update(sf::Time dt);
-    virtual bool handleEvent(const sf::Event& event) ; 
+    virtual bool handleEvent(const sf::Event& event);
 };  
