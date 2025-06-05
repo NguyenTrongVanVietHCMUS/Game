@@ -12,6 +12,12 @@
 
 #define VV std::cout<<"RUN OK"<<std::endl; 
 
+enum WeaponType
+{
+    WeaponType_Gun,
+    WeaponType_Sword
+};
+
 enum EntityType
 {
     EntityType_Ally,
