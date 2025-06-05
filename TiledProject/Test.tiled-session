@@ -3,14 +3,98 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "",
+    "activeFile": "D:/HCMUS/3Semester/Project/Game/Media/Assets/Maps/Lobby/lobby.json",
     "expandedProjectPaths": [
+        "."
     ],
+    "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
+        "": {
+            "scaleInDock": 1
+        },
+        "#Map Tileset": {
+            "scaleInDock": 1
+        },
+        "D:/HCMUS/3Semester/Project/Game/Media/Assets/Maps/Lobby/big.tmj": {
+            "scale": 16.03125,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 15.968810916179333,
+                "y": -57.38791423001949
+            }
+        },
+        "D:/HCMUS/3Semester/Project/Game/Media/Assets/Maps/Lobby/big.tmj#tileset": {
+            "scaleInDock": 1
+        },
+        "D:/HCMUS/3Semester/Project/Game/Media/Assets/Maps/Lobby/lo.json": {
+            "scale": 0.421875,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 606.8148148148148,
+                "y": 47.40740740740739
+            }
+        },
+        "D:/HCMUS/3Semester/Project/Game/Media/Assets/Maps/Lobby/lobby.json": {
+            "scale": 1,
+            "selectedLayer": -1,
+            "viewCenter": {
+                "x": 509,
+                "y": 370
+            }
+        },
+        "D:/HCMUS/3Semester/Project/Game/Media/Assets/Maps/Lobby/lobby.json#BackgroundWall": {
+            "scaleInDock": 1
+        },
+        "D:/HCMUS/3Semester/Project/Game/Media/Assets/Maps/Lobby/lobby.json#Fountain": {
+            "scaleInDock": 1
+        },
+        "D:/HCMUS/3Semester/Project/Game/Media/Assets/Maps/Lobby/lobby.json#LowerWall": {
+            "scaleInDock": 1
+        },
+        "D:/HCMUS/3Semester/Project/Game/Media/Assets/Maps/Lobby/lobby.json#TaskBoard": {
+            "scaleInDock": 1
+        },
+        "D:/HCMUS/3Semester/Project/Game/Media/Assets/Maps/Lobby/lobby.json#Wallset": {
+            "scaleInDock": 1
+        },
+        "D:/HCMUS/3Semester/Project/Game/Media/Assets/Maps/Title/title.json": {
+            "scale": 0.421875,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 606.8148148148148,
+                "y": 336.59259259259255
+            }
+        },
+        "D:/HCMUS/3Semester/Project/Game/Media/Assets/Maps/Title/untitled.json": {
+            "scale": 0.4204918032786885,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 606.4327485380117,
+                "y": 511.30604288499023
+            }
+        },
+        "D:/HCMUS/3Semester/Project/Game/Media/Assets/Maps/Title/untitled.json#tileset": {
+            "scaleInDock": 1
+        },
+        "Map Tileset.tsx": {
+            "scaleInDock": 0.5,
+            "scaleInEditor": 1
+        }
     },
+    "last.imagePath": "D:/HCMUS/3Semester/Project/Game/Media/Assets/TileSets",
     "openFiles": [
+        "Map Tileset.tsx",
+        "D:/HCMUS/3Semester/Project/Game/Media/Assets/Maps/Lobby/lobby.json"
     ],
     "project": "Test.tiled-project",
+    "property.type": "object",
     "recentFiles": [
-    ]
+        "Map Tileset.tsx",
+        "D:/HCMUS/3Semester/Project/Game/Media/Assets/Maps/Lobby/lobby.json",
+        "D:/HCMUS/3Semester/Project/Game/Media/Assets/Maps/Lobby/lo.json",
+        "D:/HCMUS/3Semester/Project/Game/Media/Assets/Maps/Title/title.json",
+        "D:/HCMUS/3Semester/Project/Game/Media/Assets/Maps/Lobby/big.tmj",
+        "D:/HCMUS/3Semester/Project/Game/Media/Assets/Maps/Title/untitled.json"
+    ],
+    "tileset.lastUsedFormat": "tsx"
 }

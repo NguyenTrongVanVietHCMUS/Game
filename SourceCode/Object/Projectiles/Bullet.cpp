@@ -33,6 +33,9 @@ void Bullet::update(sf::Time dt)
 
     // Update the sprite's rotation based on the direction
     float angle = std::atan2(velocity.y, velocity.x) * 180 / 3.14159f; // Convert radians to degrees
+    // Rotate 180 degrees to match the sprite's default orientation
+    angle += 180.0f; // Adjust the angle to match the sprite's orientation
+    
     sprite.setRotation(angle);
 
     // Check if the bullet has exceeded its lifetime
