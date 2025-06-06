@@ -10,8 +10,8 @@ Character::Character(
 }
 Character::Character()
 {
-	skillManager.setEntity(this); // Set the entity for the skill manager
-    skillManager.setSkill(new TestSkill(sf::seconds(1)));
+	skillHolder.setEntity(this); // Set the entity for the skill holder
+    skillHolder.setSkill(new TestSkill(sf::seconds(1)));
     // Initialize default values if needed
 }
 Character::~Character()
@@ -30,14 +30,14 @@ void Character::operator=(const Character& other)
 
 bool Character::handleEvent(const sf::Event& event)
 {
-	skillManager.handleEvent(event); // Handle events for the skill manager
+	skillHolder.handleEvent(event); // Handle events for the skill holder
     movingAnimation.handleEvent(event);  
     return false ;  
 }
 bool Character::update(sf::Time deltaTime)
 {
     //std::cout<<"updating Character " << position.x << ", " << position.y << std::endl;
-	skillManager.update(deltaTime); // Update the skill manager
+	skillHolder.update(deltaTime); // Update the skill holder
     movingAnimation.update(deltaTime); // Update the animation
     position = movingAnimation.getPosition(); // Update the character's position based on the animation
     return false ; 

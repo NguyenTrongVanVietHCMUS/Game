@@ -9,7 +9,7 @@
 class Skill;
 class Entity;
 
-class SkillManager
+class SkillHolder
 {
 public :
 

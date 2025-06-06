@@ -26,6 +26,13 @@ public :
         UP,
         DOWN
     };
+
+    enum State
+    {
+        IDLE,
+        MOVING,
+        DEATH
+    };
     sf::Texture texture;
     sf::IntRect uvRect;
     sf::Vector2u imageCount; 
@@ -38,5 +45,6 @@ public :
     float totalTime; 
     float switchTime; 
     int row; 
+    int state;
     
 };

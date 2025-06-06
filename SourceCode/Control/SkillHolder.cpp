@@ -1,11 +1,11 @@
-#include "Control/SkillManager.hpp"
+#include "Control/SkillHolder.hpp"
 
 
-void SkillManager::setEntity(Entity* entity) {
+void SkillHolder::setEntity(Entity* entity) {
 	this->_entity = entity;
 }
 
-void SkillManager::setSkill(Skill* skill) {
+void SkillHolder::setSkill(Skill* skill) {
 	if(_skillFuture.valid()) {
 		_skillFuture.wait(); // Wait for the previous skill to finish
 	}
@@ -14,7 +14,7 @@ void SkillManager::setSkill(Skill* skill) {
 	}
 }
 
-void SkillManager::UseSkill() {
+void SkillHolder::UseSkill() {
 	if(!_SelectedSkill || !_entity) {
 		return; // No skill or entity set
 	}
@@ -26,7 +26,7 @@ void SkillManager::UseSkill() {
 	asyncExecuteSkill();
 }
 
-void SkillManager::asyncExecuteSkill() {
+void SkillHolder::asyncExecuteSkill() {
 	_skillFuture = std::async(std::launch::async, [this]() {
 		if (_entity) {
 			_SelectedSkill->execute(_entity);
@@ -35,12 +35,12 @@ void SkillManager::asyncExecuteSkill() {
 	});
 }
 
-void SkillManager::SetRunSkill(Skill* skill) {
+void SkillHolder::SetRunSkill(Skill* skill) {
 	setSkill(skill);
 	UseSkill();
 }
 
-void SkillManager::SetRunSkill(Skill* skill, Entity* entity) {
+void SkillHolder::SetRunSkill(Skill* skill, Entity* entity) {
 	if (entity) {
 		setEntity(entity);
 	}
@@ -48,7 +48,7 @@ void SkillManager::SetRunSkill(Skill* skill, Entity* entity) {
 	UseSkill();
 }
 
-bool SkillManager::isCompleted() const {
+bool SkillHolder::isCompleted() const {
 	if(!_isRunning) {
 		return true; // Skill execution is complete
 	}
@@ -59,7 +59,7 @@ bool SkillManager::isCompleted() const {
 }
 
 
-void SkillManager::update(const sf::Time& deltaTime) {
+void SkillHolder::update(const sf::Time& deltaTime) {
 	if (_SelectedSkill)
 	{
 		_SelectedSkill->update(deltaTime);
@@ -75,7 +75,7 @@ void SkillManager::update(const sf::Time& deltaTime) {
 	}
 }
 
-void SkillManager::handleEvent(const sf::Event& event) {
+void SkillHolder::handleEvent(const sf::Event& event) {
 	if (_SelectedSkill)
 	{
 		_SelectedSkill->handleEvent(event);
@@ -88,6 +88,6 @@ void SkillManager::handleEvent(const sf::Event& event) {
 	}
 }	
 
-void SkillManager::draw(sf::RenderTarget& target, sf::RenderStates states) const {
+void SkillHolder::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 	_SelectedSkill->draw(target, states);
 }

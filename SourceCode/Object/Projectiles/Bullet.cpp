@@ -4,7 +4,7 @@ Bullet::Bullet(const sf::Vector2f& position, const sf::Vector2f& direction)
     :Projectile(position, direction, 1000.0f, 10.0f, 5.0f, EntityType::EntityType_Ally)
 {
     // Load the texture and set the sprite
-    if (!texture.loadFromFile("Media/Assets/Projectiles/DebugBullet.png")) {
+    if (!texture.loadFromFile("Media/Assets/Projectiles/PurpleBullet.png")) {
         throw std::runtime_error("Failed to load bullet texture");
     }
     // Scaling texture to size of 64x64 pixels
@@ -17,7 +17,7 @@ Bullet::Bullet(const sf::Vector2f& position, const sf::Vector2f& direction)
     sprite.setPosition(position);
     
     sprite.setOrigin(texture.getSize().x / 2.0f, texture.getSize().y / 2.0f); // Set origin to center of the sprite
-    sprite.setScale(0.5f, 0.5f); // Scale the sprite to half its size
+    //sprite.setScale(0.5f, 0.5f); // Scale the sprite to half its size
 }
 
 void Bullet::update(sf::Time dt)

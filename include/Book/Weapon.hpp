@@ -4,33 +4,31 @@
 #include <Book/Entity.hpp>
 #include <Book/Utility.hpp>
 #include <Control/ProjectileHolder.hpp>
+#include <Control/SkillHolder.hpp>
 
 class Weapon
 {
 public:
     virtual ~Weapon() = default;
-
+    Weapon(WeaponType type, EntityType entityType, const std::string& name)
+        : type(type), entityType(entityType), name(name) {}
     // Get the name of the weapon
     virtual std::string getName() const = 0;
 
-    // Get the damage dealt by the weapon
-    virtual int getDamage() const = 0;
-
-    // Get the range of the weapon
-    virtual float getRange() const = 0;
-
     // Get the type of the weapon
-    virtual WeaponType getType() const = 0;
+    WeaponType getType();
 
     // update draw and handle event
     virtual void update(sf::Time deltaTime) = 0;
     virtual void draw(sf::RenderWindow& window, sf::RenderStates states) = 0;
     virtual void handleEvent(const sf::Event& event) = 0;
-protected :
+private :
     WeaponType type;
+    SkillHolder skillHolder; // Skill holder for the weapon
     EntityType entityType;
-    ProjectileHolder projectileHolder;
     sf::Texture texture;
     sf::Sprite sprite;
+    sf::Vector2f position; // Position of the weapon
+    std::string name; // Name of the weapon
 };
 
