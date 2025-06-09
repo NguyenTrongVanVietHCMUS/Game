@@ -1,27 +1,29 @@
 #include<Book/Entity.hpp>
 
-Entity::Entity()
+Entity::Entity(std::string name , sf::Vector2f position) : name(name) , position(position)
 {
-    // Constructor logic
+
 }
 Entity::~Entity()
 {
     // Destructor logic if needed
 }   
-bool Entity::handleEvent(const sf::Event& event)
+bool Entity::handleEvent(const sf::Event& event,sf::RenderWindow* window)
 {
-    // Handle events
-    return false; // Default implementation, can be overridden
+
+    return false; 
 }
 bool Entity::update(sf::Time dt)
 {
-    // Update the entity
-    return false; // Default implementation, can be overridden
+    return false;
 }
 void Entity::draw(sf::RenderTarget& target, sf::RenderStates states)const 
 {
-    // Draw the entity
-    // This function should be overridden in derived classes to provide specific drawing logic
+    
+}
+sf::Vector2f Entity::getPosition() 
+{
+    return position; 
 }
 
 bool Entity::isAlive() const

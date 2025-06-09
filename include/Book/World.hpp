@@ -7,6 +7,7 @@ class World : public sf::Drawable
 protected:
     std::vector<Entity*> entities ;  
     std::vector<Entity*> objects ; 
+    
 public : 
     World();
     ~World();

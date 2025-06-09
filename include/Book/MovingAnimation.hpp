@@ -3,12 +3,11 @@
 class MovingAnimation : public sf::Drawable  
 {
 
-public : 
-    MovingAnimation(sf::Texture& texture , sf::Vector2u imageCount, float switchTime);
-    MovingAnimation(); // Default constructor
+public :
+    MovingAnimation(sf::Texture& texture , sf::Vector2u imageCount, float switchTime,sf::Vector2f& position); // Constructor with parameters
     ~MovingAnimation();
     virtual void update(sf::Time deltaTime);
-    virtual void handleEvent(sf::Event event);
+    virtual void handleEvent(sf::Event event,sf::RenderWindow* window );
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override
     {
         // std::cout<< "Drawing MovingAnimation" << std::endl;
@@ -37,7 +36,7 @@ public :
     sf::IntRect uvRect;
     sf::Vector2u imageCount; 
     sf::Vector2u currentImage; 
-    sf::Vector2f current_position; 
+    sf::Vector2f& current_position; 
     sf::Vector2f final_position;
     float speed ; 
     

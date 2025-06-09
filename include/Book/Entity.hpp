@@ -29,8 +29,7 @@ public :
     std::string name ; 
     sf::Vector2f position; // Position of the entity
     Hitbox hitbox ;  
-  
-    virtual bool handleEvent(const sf::Event& event); // Handle events
+    virtual bool handleEvent(const sf::Event& event,sf::RenderWindow* window);
     virtual bool update(sf::Time dt); // Update the entity
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states)const ; // Draw the entity
 

@@ -1,20 +1,18 @@
 #include"Book/MovingAnimation.hpp"
 
-MovingAnimation::MovingAnimation() {}
-MovingAnimation::MovingAnimation(sf::Texture& texture  , sf::Vector2u imageCount,float switchTime):texture(texture),imageCount(imageCount), switchTime(switchTime) 
+MovingAnimation::MovingAnimation(sf::Texture& texture  , sf::Vector2u imageCount,float switchTime,sf::Vector2f& position):texture(texture),imageCount(imageCount), switchTime(switchTime) , current_position(position)
 {
-    totalTime = 0; // total time for MovingAnimation
-    switchTime = 0.3f; // time to switch frames
-    row = 0; // row of the sprite sheet
-    uvRect.width = int(texture.getSize().x / float(imageCount.x)); // width of each frame
-    uvRect.height = int(texture.getSize().y / float(imageCount.y)); // height of each frame
+    totalTime = 0; 
+    row = 0; 
     uvRect.top = 0; // top of the sprite sheet
     uvRect.left = 0; // left of the sprite sheet
     currentImage.x = 0 ; 
+    uvRect.width = int(texture.getSize().x / float(imageCount.x)); // width of each frame
+    uvRect.height = int(texture.getSize().y / float(imageCount.y)); // height of each frame
     sprite.setTexture(texture); // set the texture for the sprite
-    current_position = sf::Vector2f(300.0f,300.0f);
-    final_position = current_position;
-    speed = 400.0f; 
+
+    speed = 800.0f; 
+    final_position = current_position; 
     velocity = sf::Vector2f(0.0f, 0.0f);
     
 };  
@@ -23,7 +21,7 @@ MovingAnimation::~MovingAnimation()
 {
     // Destructor
 }
-void MovingAnimation::handleEvent(sf::Event event)
+void MovingAnimation::handleEvent(sf::Event event, sf::RenderWindow* window)
 {
     //std::cout<<"Handling event in MovingAnimation" << std::endl;
     if(event.type==sf::Event::MouseButtonPressed)
@@ -31,7 +29,14 @@ void MovingAnimation::handleEvent(sf::Event event)
         if(event.mouseButton.button==sf::Mouse::Right)
         {
             // Get the mouse position in the window
-            final_position = sf::Vector2f(static_cast<float>(event.mouseButton.x), static_cast<float>(event.mouseButton.y));
+            // final_position = sf::Vector2f(static_cast<float>(event.mouseButton.x), static_cast<float>(event.mouseButton.y));
+            // get the current mouse position in the window
+            // sf::Vector2i pixelPos = ;
+
+            // convert it to world coordinates
+            final_position = window->mapPixelToCoords(sf::Mouse::getPosition(*window));
+            // sf::Vector2i mousePixel = sf::Mouse::getPosition(window);
+            // sf::Vector2f worldPos = window.mapPixelToCoords(mousePixel, gameView);
         }
     }
     // Calculate the direction vector
@@ -95,8 +100,9 @@ void MovingAnimation::update(sf::Time deltaTime)
     uvRect.left = currentImage.x * uvRect.width; // set the left position of the sprite sheet
     uvRect.top = currentImage.y * uvRect.height; // set the top position of the sprite sheet
     sprite.setPosition(current_position); // set the position of the sprite
-    sprite.setOrigin(uvRect.width / 2, float(uvRect.height)); // set the origin of the sprite to the center
+    sprite.setOrigin(uvRect.width / 2.0f, float(uvRect.height)); // set the origin of the sprite to the center
     sprite.setTextureRect(uvRect); // set the texture rectangle of the sprite
+    sprite.setScale(2.5f, 2.5f); // scale the sprite to 4 times its original size; 
     // std::cout<<current_position.x << " " << current_position.y << std::endl;
     // std::cout<<final_position.x << " " << final_position.y << std::endl;
 }

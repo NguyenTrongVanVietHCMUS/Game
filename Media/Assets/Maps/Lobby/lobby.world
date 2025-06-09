@@ -1,18 +1,18 @@
 {
     "maps": [
         {
-            "fileName": "untitled.json",
+            "fileName": "garden.json",
             "height": 1024,
             "width": 1216,
-            "x": 3296,
-            "y": -384
+            "x": 0,
+            "y": -160
         },
         {
-            "fileName": "../Lobby/lobby.json",
+            "fileName": "lobby.json",
             "height": 672,
             "width": 1216,
-            "x": 4480,
-            "y": -192
+            "x": 1216,
+            "y": 0
         }
     ],
     "onlyShowAdjacentMaps": false,

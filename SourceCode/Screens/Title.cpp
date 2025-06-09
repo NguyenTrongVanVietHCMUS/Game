@@ -2,7 +2,7 @@
 #include<iostream> 
 Title::Title(StateStack& stack,Context context):
     State(stack,context)
-{       
+{     
     map = new TileMap(context.maps->get(Map::ID::Title)); // Assuming Map::ID::Title is defined in your MapHolder
 }
 Title::~Title()

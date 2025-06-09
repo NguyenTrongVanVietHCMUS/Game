@@ -3,23 +3,34 @@ Character::Character(
     std::string name , 
     sf::Texture& texture,
     sf::Vector2u imageCount, 
-    float switchTime
-):movingAnimation(texture,imageCount,switchTime)
+    float switchTime, 
+    sf::Vector2f position
+):Entity(name,position),movingAnimation(texture,imageCount,switchTime,this->position)
 {
-    this->name = name ; 
-}
 Character::Character()
 {
 	skillHolder.setEntity(this); // Set the entity for the skill holder
-    skillHolder.setSkill(new TestSkill(sf::seconds(1)));
+  skillHolder.setSkill(new TestSkill(sf::seconds(1)));
     // Initialize default values if needed
 }
+// Character::Character(const Character& character)
+// : Entity(character.name, this->position = character.position), 
+//   movingAnimation(character.movingAnimation)
+// {
+//     // Copy constructor logic if needed
+// }
 Character::~Character()
 {
     // Destructor logic if needed
 }
 
-void Character::operator=(const Character& other)
+bool Character::handleEvent(const sf::Event& event,sf::RenderWindow*window)
+{
+    movingAnimation.handleEvent(event,window);
+    movingAnimation.handleEvent(event);  
+    return false; 
+}
+  void Character::operator=(const Character& other)
 {
     if (this != &other) {
         name = other.name;
@@ -27,18 +38,10 @@ void Character::operator=(const Character& other)
         //skillManager = other.skillManager; // Copy the skill manager if needed
     }
 }
-
-bool Character::handleEvent(const sf::Event& event)
-{
-	skillHolder.handleEvent(event); // Handle events for the skill holder
-    movingAnimation.handleEvent(event);  
-    return false ;  
-}
 bool Character::update(sf::Time deltaTime)
 {
     //std::cout<<"updating Character " << position.x << ", " << position.y << std::endl;
-	skillHolder.update(deltaTime); // Update the skill holder
+    skillHolder.update(deltaTime); // Update the skill holder
     movingAnimation.update(deltaTime); // Update the animation
-    position = movingAnimation.getPosition(); // Update the character's position based on the animation
-    return false ; 
+    return false;
 }
