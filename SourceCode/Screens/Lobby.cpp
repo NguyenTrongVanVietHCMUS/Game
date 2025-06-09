@@ -3,7 +3,6 @@ Lobby::Lobby(StateStack& stack,Context context):
     State(stack,context) 
 {         
     map = new TileMap(context.maps->get(Map::ID::Lobby));
-
     entities.push_back(new Character("Knight",context.textures->get(Textures::ID::Knight),sf::Vector2u(8,3),0.05f,map->startingPoint)) ; 
 }
 
@@ -11,6 +10,7 @@ Lobby::~Lobby()
 {
     delete map;
 }
+
 void Lobby::draw() 
 {
     sf::View view(entities[0]->getPosition(),sf::Vector2f(1216,672)); 
@@ -23,6 +23,7 @@ void Lobby::draw()
         getContext().window->draw(*entity);
     }
 }
+
 bool Lobby::update(sf::Time dt)
 {
     map->update(dt);

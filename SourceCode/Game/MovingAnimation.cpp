@@ -10,6 +10,7 @@ MovingAnimation::MovingAnimation(sf::Texture& texture  , sf::Vector2u imageCount
     uvRect.width = int(texture.getSize().x / float(imageCount.x)); // width of each frame
     uvRect.height = int(texture.getSize().y / float(imageCount.y)); // height of each frame
     sprite.setTexture(texture); // set the texture for the sprite
+
     speed = 800.0f; 
     final_position = current_position; 
     velocity = sf::Vector2f(0.0f, 0.0f);
@@ -22,7 +23,7 @@ MovingAnimation::~MovingAnimation()
 }
 void MovingAnimation::handleEvent(sf::Event event, sf::RenderWindow* window)
 {
-    std::cout<<"Handling event in MovingAnimation" << std::endl;
+    //std::cout<<"Handling event in MovingAnimation" << std::endl;
     if(event.type==sf::Event::MouseButtonPressed)
     {
         if(event.mouseButton.button==sf::Mouse::Right)
@@ -60,6 +61,10 @@ void MovingAnimation::update(sf::Time deltaTime)
     sf::Vector2f to_current = current_position - last_position;
     float to_final_len = std::sqrt(to_final.x * to_final.x + to_final.y * to_final.y);
     float to_current_len = std::sqrt(to_current.x * to_current.x + to_current.y * to_current.y);
+    state = MOVING; // Set the state to MOVING
+    if (abs(to_final_len - to_current_len) < 0.01f) {
+        state = IDLE; // If we are close to the final position, set the state to IDLE
+    }
     if (to_current_len > to_final_len) {
         current_position = final_position;
         velocity = sf::Vector2f(0.0f, 0.0f);
@@ -74,7 +79,14 @@ void MovingAnimation::update(sf::Time deltaTime)
         row = RIGHT ; 
     }
  // Update the animation
-    currentImage.y = row; // set the row of the sprite sheet
+    // Flip the sprite based on the direction
+    if (row == LEFT) {
+        sprite.setScale(-3.0f, 3.0f); // Flip the sprite horizontally
+    } else {
+        sprite.setScale(3.0f, 3.0f); // Reset the scale to normal
+    }
+    // Set the animation base on State
+    currentImage.y = state; // Set the current row based on the direction
     totalTime += deltaTime.asSeconds(); // update the total time
     if (totalTime >= switchTime) // if the total time is greater than the switch time
     {
