@@ -12,3 +12,16 @@
 
 #define VV std::cout<<"RUN OK"<<std::endl; 
 #define boom exit(1); 
+
+enum WeaponType
+{
+    WeaponType_Gun,
+    WeaponType_Sword
+};
+
+enum EntityType
+{
+    EntityType_Ally,
+    EntityType_Enemy,
+    EntityType_Neutral
+};

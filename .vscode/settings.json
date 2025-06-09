@@ -79,6 +79,20 @@
         "shared_mutex": "cpp",
         "span": "cpp",
         "typeindex": "cpp",
-        "variant": "cpp"
+        "variant": "cpp",
+        "slist": "cpp",
+        "strstream": "cpp",
+        "barrier": "cpp",
+        "expected": "cpp",
+        "source_location": "cpp",
+        "rope": "cpp",
+        "format": "cpp",
+        "latch": "cpp",
+        "semaphore": "cpp",
+        "spanstream": "cpp",
+        "stacktrace": "cpp",
+        "stdfloat": "cpp",
+        "syncstream": "cpp",
+        "xutility": "cpp"
     }
 }

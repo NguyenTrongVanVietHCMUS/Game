@@ -5,7 +5,7 @@ Lobby::Lobby(StateStack& stack,Context context):
     map = new TileMap(context.maps->get(Map::ID::Lobby));
     entities.push_back(new Character()) ; 
     auto knight = static_cast<Character*>(entities.back());  
-    *knight = Character("Knight",context.textures->get(Textures::ID::Knight),sf::Vector2u(8,2),0.05f); // Add the map to the entities vector
+    *knight = Character("Knight",context.textures->get(Textures::ID::Knight),sf::Vector2u(8,3),0.05f); // Add the map to the entities vector
 }
 
 Lobby::~Lobby()
@@ -29,7 +29,7 @@ void Lobby::draw()
 }
 bool Lobby::update(sf::Time dt)
 {
-    std::cout<<"Updating Lobby" << std::endl;
+    //std::cout<<"Updating Lobby" << std::endl;
     map->update(dt);
     for(auto entity : entities)
     {
