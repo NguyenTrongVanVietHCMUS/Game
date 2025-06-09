@@ -3,28 +3,32 @@ Character::Character(
     std::string name , 
     sf::Texture& texture,
     sf::Vector2u imageCount, 
-    float switchTime
-):movingAnimation(texture,imageCount,switchTime)
+    float switchTime, 
+    sf::Vector2f position
+):Entity(name,position),movingAnimation(texture,imageCount,switchTime,this->position)
 {
-    this->name = name ; 
+    std::cout<<"Character()"<<std::endl;
 }
-Character::Character()
-{
-    // Initialize default values if needed
-}
+// Character::Character(const Character& character)
+// : Entity(character.name, this->position = character.position), 
+//   movingAnimation(character.movingAnimation)
+// {
+//     // Copy constructor logic if needed
+// }
 Character::~Character()
 {
     // Destructor logic if needed
 }
 
-bool Character::handleEvent(const sf::Event& event)
+bool Character::handleEvent(const sf::Event& event,sf::RenderWindow*window)
 {
-    movingAnimation.handleEvent(event);  
-    return false ;  
+    movingAnimation.handleEvent(event,window);
+    return false;
 }
 bool Character::update(sf::Time deltaTime)
 {
     std::cout<<"updating Character" << std::endl;
     movingAnimation.update(deltaTime); // Update the animation
-    return false ; 
+    position = movingAnimation.current_position;
+    return false;
 }

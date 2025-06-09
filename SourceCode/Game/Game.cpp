@@ -9,10 +9,10 @@ Game::Game()
 	sounds(),
     stateStack(State::Context(window, textures, fonts, music, sounds, maps))
 {
-	maps.load(Map::ID::Title, "Media/Assets/Maps/Title/title.json");
-	maps.load(Map::ID::Lobby, "Media/Assets/Maps/Lobby/lobby.json");
+	maps.load(Map::ID::Title, "Media/Assets/Maps/Title/title.world");
+	maps.load(Map::ID::Lobby, "Media/Assets/Maps/Lobby/lobby.world");
 
-	textures.load(Textures::ID::Knight, "Media/Assets/Characters/Knight/MovingKnightLeftRight.png");
+	textures.load(Textures::ID::Knight, "Media/Assets/Characters/Knight/knight_0.png");
 	fonts.load(Fonts::ID::Title, "Media/Fonts/PressStart2P_Regular.ttf");
 	fonts.load(Fonts::ID::Main, "Media/Fonts/Sansation.ttf");
 	registerStates();	

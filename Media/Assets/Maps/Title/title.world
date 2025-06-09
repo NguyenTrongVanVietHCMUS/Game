@@ -1,0 +1,13 @@
+{
+    "maps": [
+        {
+            "fileName": "title.json",
+            "height": 672,
+            "width": 1216,
+            "x": 0,
+            "y": 0
+        }
+    ],
+    "onlyShowAdjacentMaps": false,
+    "type": "world"
+}

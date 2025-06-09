@@ -94,19 +94,7 @@
          "draworder":"topdown",
          "id":3,
          "name":"Object Layer 1",
-         "objects":[
-                {
-                 "gid":257,
-                 "height":155,
-                 "id":1,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":118,
-                 "x":574,
-                 "y":547
-                }],
+         "objects":[],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -146,8 +134,7 @@
                          "name":"",
                          "probability":1,
                          "tile":-1
-                        }, 
-                        {
+                        },                        {
                          "color":"#0000ff",
                          "name":"",
                          "probability":1,
@@ -271,7 +258,7 @@
         {
          "columns":1,
          "firstgid":257,
-         "image":"..\/Lobby\/Fountain.png",
+         "image":"Fountain.png",
          "imageheight":295,
          "imagewidth":215,
          "margin":0,

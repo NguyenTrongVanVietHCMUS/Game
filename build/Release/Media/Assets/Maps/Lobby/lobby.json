@@ -50,7 +50,7 @@
         {
          "draworder":"topdown",
          "id":8,
-         "name":"Objects",
+         "name":"objects",
          "objects":[
                 {
                  "height":319.5,
@@ -137,7 +137,7 @@
                  "y":149.333333333333
                 }, 
                 {
-                 "gid":22,
+                 "gid":21,
                  "height":39,
                  "id":120,
                  "name":"chest",
@@ -155,7 +155,7 @@
                  "y":191.166666666667
                 }, 
                 {
-                 "gid":23,
+                 "gid":22,
                  "height":66.3333333333334,
                  "id":122,
                  "name":"bookpile",
@@ -173,7 +173,7 @@
                  "y":652.666666666667
                 }, 
                 {
-                 "gid":24,
+                 "gid":23,
                  "height":58,
                  "id":123,
                  "name":"trashcan",
@@ -191,7 +191,7 @@
                  "y":655.818181818182
                 }, 
                 {
-                 "gid":25,
+                 "gid":24,
                  "height":82,
                  "id":127,
                  "name":"fishtank",
@@ -259,7 +259,7 @@
          "y":0
         }],
  "nextlayerid":10,
- "nextobjectid":134,
+ "nextobjectid":138,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",
@@ -320,19 +320,6 @@
         {
          "columns":1,
          "firstgid":21,
-         "image":"Fountain.png",
-         "imageheight":295,
-         "imagewidth":215,
-         "margin":0,
-         "name":"Fountain",
-         "spacing":0,
-         "tilecount":1,
-         "tileheight":295,
-         "tilewidth":215
-        }, 
-        {
-         "columns":1,
-         "firstgid":22,
          "image":"Chest.png",
          "imageheight":178,
          "imagewidth":170,
@@ -345,7 +332,7 @@
         }, 
         {
          "columns":1,
-         "firstgid":23,
+         "firstgid":22,
          "image":"Book_Pile.png",
          "imageheight":145,
          "imagewidth":109,
@@ -358,7 +345,7 @@
         }, 
         {
          "columns":1,
-         "firstgid":24,
+         "firstgid":23,
          "image":"TrashCan.png",
          "imageheight":100,
          "imagewidth":74,
@@ -371,7 +358,7 @@
         }, 
         {
          "columns":1,
-         "firstgid":25,
+         "firstgid":24,
          "image":"Fish_Tank.png",
          "imageheight":372,
          "imagewidth":468,

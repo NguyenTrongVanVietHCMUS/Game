@@ -4,14 +4,17 @@
 
 class Entity:public sf::Drawable
 {
-public :
-    Entity(); // Constructor with default position
-    virtual ~Entity();
-public :
+protected: 
+    sf::Vector2f position; // Position of the entity ; 
     std::string name ; 
-    sf::Vector2f position; // Position of the entity
+
+public :
+    Entity(std::string name , sf::Vector2f position) ; 
+    ~Entity() ;
+public :
     Hitbox hitbox ; 
-    virtual bool handleEvent(const sf::Event& event); // Handle events
+    virtual bool handleEvent(const sf::Event& event,sf::RenderWindow* window); // Handle events
     virtual bool update(sf::Time dt); // Update the entity
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states)const ; // Draw the entity
+    sf::Vector2f getPosition() ; 
 };

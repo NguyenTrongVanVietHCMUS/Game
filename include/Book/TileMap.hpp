@@ -154,16 +154,15 @@ public:
 
 class TileMap : public sf::Drawable {
 private:
-
-std::vector<Tileset> tilesets;
+    std::vector<std::vector<Tileset>> tilesets;
 public:
+    sf::Vector2f startingPoint; 
     std::string File;
     std::vector<Layer*> layers;
     TileMap();
-    TileMap(const TileMap& map) ;
     ~TileMap() ; 
     bool loadFromFile(const std::string& jsonFile);
-    
+    bool load(const std::string& jsonFile, int x, int y);
     void setLayerVisible(size_t layerIndex, bool visible);
     bool isLayerVisible(size_t layerIndex) const;
 
