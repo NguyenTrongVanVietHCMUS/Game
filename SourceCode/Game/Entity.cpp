@@ -21,10 +21,6 @@ void Entity::draw(sf::RenderTarget& target, sf::RenderStates states)const
 {
     
 }
-sf::Vector2f Entity::getPosition() 
-{
-    return position; 
-}
 
 bool Entity::isAlive() const
 {

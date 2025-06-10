@@ -81,9 +81,9 @@ void MovingAnimation::update(sf::Time deltaTime)
  // Update the animation
     // Flip the sprite based on the direction
     if (row == LEFT) {
-        sprite.setScale(-3.0f, 3.0f); // Flip the sprite horizontally
+        sprite.setScale(-2.5f, 2.5f); // Flip the sprite horizontally
     } else {
-        sprite.setScale(3.0f, 3.0f); // Reset the scale to normal
+        sprite.setScale(2.5f, 2.5f); // Reset the scale to normal
     }
     // Set the animation base on State
     currentImage.y = state; // Set the current row based on the direction
@@ -102,7 +102,7 @@ void MovingAnimation::update(sf::Time deltaTime)
     sprite.setPosition(current_position); // set the position of the sprite
     sprite.setOrigin(uvRect.width / 2.0f, float(uvRect.height)); // set the origin of the sprite to the center
     sprite.setTextureRect(uvRect); // set the texture rectangle of the sprite
-    sprite.setScale(2.5f, 2.5f); // scale the sprite to 4 times its original size; 
+    // sprite.setScale(2.5f, 2.5f); // scale the sprite to 4 times its original size; 
     // std::cout<<current_position.x << " " << current_position.y << std::endl;
     // std::cout<<final_position.x << " " << final_position.y << std::endl;
 }

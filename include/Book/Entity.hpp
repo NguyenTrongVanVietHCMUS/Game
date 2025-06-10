@@ -20,7 +20,7 @@ public :
 
     enum class type { Ally, Enemy };
 
-    Entity(); // Constructor with default position
+    Entity(std::string name , sf::Vector2f position); // Constructor with default position
     virtual ~Entity();
 
 public :
