@@ -22,6 +22,8 @@ public:
     virtual void update(sf::Time deltaTime) = 0;
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) = 0;
     virtual void handleEvent(const sf::Event& event, sf::RenderWindow* window) = 0;
+
+    void UpdateAngle(const sf::Event& event, sf::RenderWindow* window);
 protected :
     Entity* holder; // Entity that owns the weapon
     WeaponType type;
@@ -30,6 +32,7 @@ protected :
     sf::Texture texture;
     sf::Sprite sprite;
     sf::Vector2f position; // Position of the weapon
+    float angle = 0.f; // Angle of the weapon
     std::string name; // Name of the weapon
 };
 

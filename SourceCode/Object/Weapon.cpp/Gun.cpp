@@ -22,14 +22,23 @@ Gun::~Gun()
 void Gun::draw(sf::RenderTarget& target, sf::RenderStates states)
 {
     // Draw the gun sprite
-    states.transform.translate(position);
-    skillHolder.draw(target, states); // Draw the skill holder
+    // holder has get position method
+    sf::Vector2f holderPosition = holder->getPosition();
+    // Offset holder position to align the gun sprite
+    holderPosition.x -= 20.f; // Adjust the x position as needed
+    holderPosition.y -= 20.f; // Adjust the y position as needed
+    sprite.setRotation(angle); // Set the rotation based on the calculated angle
+    sprite.setPosition(holderPosition);
+    position = holderPosition; // Update the position of the gun
+    target.draw(sprite, states);
+    skillHolder.draw(target, states);
 }
 
 void Gun::handleEvent(const sf::Event& event, sf::RenderWindow* window)
 {
     // Handle events for the gun
     skillHolder.handleEvent(event, window); // Handle events for the skill holder
+    UpdateAngle(event, window); // Update the angle of the gun based on mouse movement
 }
 
 void Gun::update(sf::Time deltaTime)
