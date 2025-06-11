@@ -20,6 +20,7 @@ Character::~Character()
 bool Character::handleEvent(const sf::Event& event,sf::RenderWindow*window)
 {
     movingAnimation.handleEvent(event,window);
+    skillHolder.handleEvent(event, window);
     return false; 
 }
 void Character::operator=(const Character& other)
