@@ -99,7 +99,10 @@ void MovingAnimation::update(sf::Time deltaTime)
     }
     uvRect.left = currentImage.x * uvRect.width; // set the left position of the sprite sheet
     uvRect.top = currentImage.y * uvRect.height; // set the top position of the sprite sheet
-    sprite.setPosition(current_position); // set the position of the sprite
+    
+    if(row == LEFT) {
+        sprite.setPosition(current_position.x + uvRect.width / 2.0f, current_position.y + uvRect.height); // set the position of the sprite
+     } else sprite.setPosition(current_position.x - uvRect.width / 2.0f, current_position.y + uvRect.height); // set the position of the sprite
     sprite.setOrigin(uvRect.width / 2.0f, float(uvRect.height)); // set the origin of the sprite to the center
     sprite.setTextureRect(uvRect); // set the texture rectangle of the sprite
     // sprite.setScale(2.5f, 2.5f); // scale the sprite to 4 times its original size; 
