@@ -1,4 +1,5 @@
 #include <Book/Character.hpp>
+
 Character::Character(
     std::string name , 
     sf::Texture& texture,
@@ -8,8 +9,8 @@ Character::Character(
 ):Entity(name,position),movingAnimation(texture,imageCount,switchTime,this->position)
 {
     skillHolder.setEntity(this); // Set the entity for the skill holder
-    skillHolder.setSkill(new TestSkill(sf::seconds(1)));
-
+    skillHolder.setSkill(SkillLoader::loadSkills("Test Skill", 1.0f)); // Load a skill for the character
+    weaponHolder.addWeapon(new Gun(this, 1.0f)); // Add a gun to the weapon holder
 }
 
 Character::~Character()
@@ -20,6 +21,8 @@ Character::~Character()
 bool Character::handleEvent(const sf::Event& event,sf::RenderWindow*window)
 {
     movingAnimation.handleEvent(event,window);
+    //skillHolder.handleEvent(event, window);
+    weaponHolder.handleEvent(event, window); // Handle events for the weapon holder
     return false; 
 }
 void Character::operator=(const Character& other)
@@ -36,5 +39,6 @@ bool Character::update(sf::Time deltaTime)
     //std::cout<<"updating Character " << position.x << ", " << position.y << std::endl;
     skillHolder.update(deltaTime); // Update the skill holder
     movingAnimation.update(deltaTime); // Update the animation
+    weaponHolder.update(deltaTime); // Update the weapon holder
     return false;
 }

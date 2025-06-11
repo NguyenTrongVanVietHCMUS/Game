@@ -75,10 +75,10 @@ void SkillHolder::update(const sf::Time& deltaTime) {
 	}
 }
 
-void SkillHolder::handleEvent(const sf::Event& event) {
+void SkillHolder::handleEvent(const sf::Event& event, sf::RenderWindow* window) {
 	if (_SelectedSkill)
 	{
-		_SelectedSkill->handleEvent(event);
+		_SelectedSkill->handleEvent(event, window);
 	}
 
 	if(event.type == sf::Event::KeyPressed) {

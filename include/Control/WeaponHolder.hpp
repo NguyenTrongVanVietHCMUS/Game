@@ -23,9 +23,9 @@ public:
     // update the current weapon based on the index
     void update(sf::Time deltaTime);
     // Draw the current weapon
-    void draw(sf::RenderWindow& window, sf::RenderStates states) const;
+    void draw(sf::RenderTarget& target, sf::RenderStates states) const;
     // Handle events for the current weapon
-    void handleEvent(const sf::Event& event);
+    void handleEvent(const sf::Event& event, sf::RenderWindow* window);
     
     // Switch to the next weapon in the holder
     void switchToNextWeapon();

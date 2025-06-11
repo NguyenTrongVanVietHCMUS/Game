@@ -600,6 +600,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="V:\Game\SourceCode\Control\MusicPlayer.cpp" />
     <ClCompile Include="V:\Game\SourceCode\Control\ProjectileHolder.cpp" />
     <ClCompile Include="V:\Game\SourceCode\Control\SkillHolder.cpp" />
+    <ClCompile Include="V:\Game\SourceCode\Control\SkillLoader.cpp" />
     <ClCompile Include="V:\Game\SourceCode\Control\SoundPlayer.cpp" />
     <ClCompile Include="V:\Game\SourceCode\Control\State.cpp" />
     <ClCompile Include="V:\Game\SourceCode\Control\StateStack.cpp" />
@@ -611,9 +612,11 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="V:\Game\SourceCode\Game\Projectile.cpp" />
     <ClCompile Include="V:\Game\SourceCode\Game\Skill.cpp" />
     <ClCompile Include="V:\Game\SourceCode\Game\TileMap.cpp" />
+    <ClCompile Include="V:\Game\SourceCode\Game\Weapon.cpp" />
     <ClCompile Include="V:\Game\SourceCode\Game\World.cpp" />
     <ClCompile Include="V:\Game\SourceCode\Object\Projectiles\Bullet.cpp" />
     <ClCompile Include="V:\Game\SourceCode\Object\Skills\TestSkill.cpp" />
+    <ClCompile Include="V:\Game\SourceCode\Object\Weapon.cpp\Gun.cpp" />
     <ClCompile Include="V:\Game\SourceCode\Screens\Dungeon\Jungle.cpp" />
     <ClCompile Include="V:\Game\SourceCode\Screens\Lobby.cpp" />
     <ClCompile Include="V:\Game\SourceCode\Screens\Title.cpp" />

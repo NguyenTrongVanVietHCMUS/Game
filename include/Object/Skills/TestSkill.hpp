@@ -39,8 +39,8 @@ public:
 			_cooldownRemaining -= dt;
 		}
 		_projectileHolder.updateProjectiles(dt);
-	} 
-	void handleEvent(const sf::Event& event) override
+	}
+	void handleEvent(const sf::Event& event, sf::RenderWindow* window) override
 	{
 		// Handle events related to the skill here
 		_projectileHolder.handleEvents(event);
@@ -50,9 +50,15 @@ public:
 		if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
 		
 			// Get the mouse position in world coordinates
-			_MousePosition = sf::Vector2f(event.mouseButton.x, event.mouseButton.y);
+			_MousePosition = window->mapPixelToCoords(sf::Mouse::getPosition(*window));
+			std::cerr << "Mouse Position: " << _MousePosition.x << ", " << _MousePosition.y << std::endl;
 			triggerSkill();
 		}
+	}
+
+	Skill* clone() override
+	{
+		return new TestSkill(_cooldownTime); // Create a new instance of TestSkill
 	}
 
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override

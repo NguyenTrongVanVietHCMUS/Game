@@ -4,6 +4,9 @@
 #include<Object/Skills/TestSkill.hpp>
 #include<Book/MovingAnimation.hpp>
 #include<Control/State.hpp>
+#include<Control/SkillLoader.hpp>
+#include<Control/WeaponHolder.hpp>
+#include<Object/Weapon/Gun.hpp>
 class Character : public Entity
 {
 private :
@@ -13,6 +16,8 @@ public :
     ~Character(); 
 public : 
     SkillHolder skillHolder;
+    WeaponHolder weaponHolder;
+
     bool handleEvent(const sf::Event& event,sf::RenderWindow* window) ;  
     void operator=(const Character& other); // Disable assignment operator
     bool update(sf::Time deltaTime) ; 
@@ -20,5 +25,6 @@ public :
     {
         movingAnimation.draw(target, states);
         skillHolder.draw(target, states); // Draw the skill holder
+        weaponHolder.draw(target, states); // Draw the weapon holder
     }
 };

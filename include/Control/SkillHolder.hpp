@@ -25,7 +25,7 @@ public :
 
 public :
 	void update(const sf::Time& dt);
-	void handleEvent(const sf::Event& event);
+	void handleEvent(const sf::Event& event, sf::RenderWindow* window);
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
 protected :
