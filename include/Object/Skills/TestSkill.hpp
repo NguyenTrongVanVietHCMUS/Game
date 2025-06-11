@@ -51,8 +51,14 @@ public:
 		
 			// Get the mouse position in world coordinates
 			_MousePosition = window->mapPixelToCoords(sf::Mouse::getPosition(*window));
+			std::cerr << "Mouse Position: " << _MousePosition.x << ", " << _MousePosition.y << std::endl;
 			triggerSkill();
 		}
+	}
+
+	Skill* clone() override
+	{
+		return new TestSkill(_cooldownTime); // Create a new instance of TestSkill
 	}
 
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override

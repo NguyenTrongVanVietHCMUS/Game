@@ -10,19 +10,20 @@ class Weapon
 {
 public:
     virtual ~Weapon() = default;
-    Weapon(WeaponType type, EntityType entityType, const std::string& name)
-        : type(type), entityType(entityType), name(name) {}
+    Weapon(Entity *Holder, WeaponType type, EntityType entityType, const std::string& name)
+        : holder(Holder), type(type), entityType(entityType), name(name) {}
     // Get the name of the weapon
-    virtual std::string getName() const = 0;
+    virtual std::string getName() {return "No Name";}
 
     // Get the type of the weapon
     WeaponType getType();
 
     // update draw and handle event
     virtual void update(sf::Time deltaTime) = 0;
-    virtual void draw(sf::RenderWindow& window, sf::RenderStates states) = 0;
-    virtual void handleEvent(const sf::Event& event) = 0;
-private :
+    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) = 0;
+    virtual void handleEvent(const sf::Event& event, sf::RenderWindow* window) = 0;
+protected :
+    Entity* holder; // Entity that owns the weapon
     WeaponType type;
     SkillHolder skillHolder; // Skill holder for the weapon
     EntityType entityType;

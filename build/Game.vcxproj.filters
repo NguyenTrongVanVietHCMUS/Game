@@ -13,6 +13,9 @@
     <ClCompile Include="D:\HCMUS\3Semester\Project\Game\SourceCode\Control\SkillHolder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="D:\HCMUS\3Semester\Project\Game\SourceCode\Control\SkillLoader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="D:\HCMUS\3Semester\Project\Game\SourceCode\Control\SoundPlayer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -53,6 +56,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="D:\HCMUS\3Semester\Project\Game\SourceCode\Object\Skills\TestSkill.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\HCMUS\3Semester\Project\Game\SourceCode\Object\Weapon.cpp\Gun.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="D:\HCMUS\3Semester\Project\Game\SourceCode\Screens\Lobby.cpp">

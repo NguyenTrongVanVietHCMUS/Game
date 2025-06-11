@@ -47,15 +47,16 @@ void WeaponHolder::update(sf::Time deltaTime) {
     }
 }
 
-void WeaponHolder::draw(sf::RenderWindow& window, sf::RenderStates states) const {
+void WeaponHolder::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     if(currentWeapon) {
-        currentWeapon->draw(window, states);
+        currentWeapon->draw(target, states);
     }
 }
 
-void WeaponHolder::handleEvent(const sf::Event& event) {
+void WeaponHolder::handleEvent(const sf::Event& event, sf::RenderWindow* window) {
+    if (!window || !currentWeapon) return; // Ensure window and current weapon are valid
     if (currentWeapon) {
-        currentWeapon->handleEvent(event);
+        currentWeapon->handleEvent(event, window);
     }
 }
 void WeaponHolder::switchToNextWeapon() {
