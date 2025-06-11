@@ -22,15 +22,15 @@ bool Title::handleEvent(const sf::Event& event)
 {
     if (event.type == sf::Event::KeyPressed)
     {
-        if (event.key.code == sf::Event::Closed)
-        {
-            requestStackPop();
-        }
-        else if(event.key.code == sf::Keyboard::Enter)
+        if(event.key.code == sf::Keyboard::Enter)
         {
             requestStackPop();
             requestStackPush(States::Lobby);
         }
+    }   
+    if(event.type == sf::Event::Closed)
+    {
+        requestStackPop();
     }
     return 0;
 }
