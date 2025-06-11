@@ -94,19 +94,7 @@
          "draworder":"topdown",
          "id":3,
          "name":"Object Layer 1",
-         "objects":[
-                {
-                 "gid":257,
-                 "height":153.666666666667,
-                 "id":2,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":129.666666666667,
-                 "x":561,
-                 "y":593.333333333333
-                }],
+         "objects":[],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,

@@ -61,7 +61,7 @@
     <ClCompile Include="V:\Game\SourceCode\Object\Skills\TestSkill.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="V:\Game\SourceCode\Object\Weapon.cpp\Gun.cpp">
+    <ClCompile Include="V:\Game\SourceCode\Object\Weapons\Gun\Gun.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="V:\Game\SourceCode\Screens\Dungeon\Jungle.cpp">

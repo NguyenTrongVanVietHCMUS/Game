@@ -4,7 +4,7 @@ Jungle::Jungle(StateStack& stack, Context context)
 : State(stack, context)
 {
     map = new TileMap(context.maps->get(Map::ID::Jungle));
-    entities.push_back(new Character("Knight", context.textures->get(Textures::ID::Knight), sf::Vector2u(8, 3), 0.05f, map->startingPoint));
+    // entities.push_back(new Character("Knight", context.textures->get(Textures::ID::Knight), sf::Vector2u(8, 3), 0.05f, map->startingPoint));
 }
 Jungle::~Jungle()
 {

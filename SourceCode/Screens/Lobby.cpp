@@ -37,8 +37,7 @@ bool Lobby::handleEvent(const sf::Event& event)
 {
     for(auto entity : entities)
     {
-        // if(static_cast<Character*>(entity) != nullptr)
-        //     static_cast<Character*>(entity)->handleEvent(event,getContext().window);
+
         entity->handleEvent(event,getContext().window); 
     }  
     if (event.type == sf::Event::KeyPressed)

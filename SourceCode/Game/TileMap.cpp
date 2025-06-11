@@ -201,7 +201,6 @@ bool TileMap::load(const std::string& jsonFile,int x , int y ) {
                 } 
                 else if(objectData["type"] == "Collider") 
                 {
-                    // Handle colliders 
                     layer->colliders.push_back(new Hitbox(sf::FloatRect(objectData["x"]+x, objectData["y"]+y, objectData["width"], objectData["height"])));
                 } 
                 else if(objectData["type"] == "hitbox")
@@ -217,7 +216,7 @@ bool TileMap::load(const std::string& jsonFile,int x , int y ) {
                 }
                 else 
                 {
-                    std::cerr<<"something is wrong with the objectgroup layer"<<std::endl; 
+                    std::cerr<<File<<std::endl; 
                     abort() ;   
                 }
             }

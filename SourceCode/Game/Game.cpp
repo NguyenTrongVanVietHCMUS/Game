@@ -12,7 +12,8 @@ Game::Game()
 {
 	maps.load(Map::ID::Title, "Media/Assets/Maps/Title/title.world");
 	maps.load(Map::ID::Lobby, "Media/Assets/Maps/Lobby/lobby.world");
-	maps.load(Map::ID::Jungle, "Media/Assets/Maps/Jungle/jungle.world");
+	// maps.load(Map::ID::Jungle, "Media/Assets/Maps/Dungeon/jungle.world");
+
 	textures.load(Textures::ID::Knight, "Media/Assets/Characters/Knight/knight_0.png");
 	fonts.load(Fonts::ID::Title, "Media/Fonts/PressStart2P_Regular.ttf");
 	fonts.load(Fonts::ID::Main, "Media/Fonts/Sansation.ttf");
@@ -81,6 +82,7 @@ void Game::registerStates()
 {
 	stateStack.registerState<Title>(States::Title);
 	stateStack.registerState<Lobby>(States::Lobby);
+	stateStack.registerState<Jungle>(States::Jungle);
 	// stateStack.registerState<PauseState>(States::Pause);
 	// stateStack.registerState<SettingsState>(States::Settings);
 	// stateStack.registerState<ChessGame1PlayerState>(States::ChessGame1Player);

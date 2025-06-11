@@ -37,7 +37,7 @@ public :
     sf::Vector2u imageCount; 
     sf::Vector2u currentImage; 
     sf::Vector2f& position ; 
-    sf::Vector2f nextPosition; // Final position after movement
+    sf::Vector2f nextPosition; 
     float speed ; 
     float totalTime; 
     float switchTime; 
