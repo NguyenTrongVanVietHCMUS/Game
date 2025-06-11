@@ -27,9 +27,9 @@ public:
 			bulletDirection = user->getDirection(); // Use the user's direction if mouse position is not set
 		}
 		// Create 2 bullets, one for each side of the user, No need to normalize
-		Bullet *bullet = new Bullet(user->getPosition(), bulletDirection);
+		Bullet *bullet = new Bullet("Bullet",user->getPosition(), bulletDirection);
 		_projectileHolder.addProjectile(std::unique_ptr<Bullet>(bullet));
-		Bullet *bullet2 = new Bullet(user->getPosition(), bulletDirection + sf::Vector2f(50.f, 50.0f)); // Slightly offset the second bullet
+		Bullet *bullet2 = new Bullet("Bullet2",user->getPosition(), bulletDirection + sf::Vector2f(50.f, 50.0f)); // Slightly offset the second bullet
 		_projectileHolder.addProjectile(std::unique_ptr<Bullet>(bullet2));
 	}
 	void update(sf::Time dt) override
@@ -43,7 +43,7 @@ public:
 	void handleEvent(const sf::Event& event, sf::RenderWindow* window) override
 	{
 		// Handle events related to the skill here
-		_projectileHolder.handleEvents(event);
+		_projectileHolder.handleEvents(event, window);
 
 		// Left click to trigger the skill
 		

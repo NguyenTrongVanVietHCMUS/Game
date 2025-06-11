@@ -42,10 +42,10 @@ void ProjectileHolder::drawProjectiles(sf::RenderTarget& target, sf::RenderState
     }
 }
 
-void ProjectileHolder::handleEvents(const sf::Event& event)
+void ProjectileHolder::handleEvents(const sf::Event& event, sf::RenderWindow* window)
 {
     for (auto& projectile : projectiles)
     {
-        projectile->handleEvent(event);
+        projectile->handleEvent(event, window);
     }
 }
