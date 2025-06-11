@@ -13,9 +13,9 @@ public :
     ~World();
     TileMap*map ; 
     
-    bool loadFromFile(const std::string& jsonFile);
-    void setLayerVisible(size_t layerIndex, bool visible);
-    bool isLayerVisible(size_t layerIndex) const;
+    // bool loadFromFile(const std::string& jsonFile);
+    // void setLayerVisible(size_t layerIndex, bool visible);
+    // bool isLayerVisible(size_t layerIndex) const;
 
     virtual bool handleEvent(const sf::Event& event) ;
     virtual bool update(sf::Time dt) ;

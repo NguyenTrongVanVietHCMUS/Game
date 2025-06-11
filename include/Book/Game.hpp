@@ -1,23 +1,22 @@
 #pragma once 
 
 // Class for game engine where combines all game components 
-#include "Utility.hpp"
-#include"Book/TileMap.hpp"
-#include"Book/Character.hpp"   
-#include"Control/StateStack.hpp"  
-#include"Control/StateIdentifiers.hpp"
+#include<Book/Utility.hpp>
+#include<Book/TileMap.hpp>
+#include<Book/Character.hpp>
+#include<Control/StateStack.hpp>
+#include<Control/StateIdentifiers.hpp>
 
-#include"Control/ResourceHolder.hpp" 
-#include"Control/ResourceIdentifiers.hpp"
+#include<Control/ResourceHolder.hpp>
+#include<Control/ResourceIdentifiers.hpp>
 
-#include"Control/SoundPlayer.hpp"
-#include"Control/MusicPlayer.hpp"
-#include "Screens/Lobby.hpp"
-#include "Screens/Title.hpp"
-#include<Book/TileMap.hpp> 
-const int width = 1216;
-const int height = 672;
-class Game 
+#include<Control/SoundPlayer.hpp>
+#include<Control/MusicPlayer.hpp>
+#include<Screens/Lobby.hpp>
+#include<Screens/Title.hpp>
+#include<Screens/Dungeon/Jungle.hpp>
+#include<Book/TileMap.hpp>
+class Game : public sf::NonCopyable
 {
 public:
     Game();

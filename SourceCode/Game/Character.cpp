@@ -29,6 +29,7 @@ void Character::operator=(const Character& other)
 {
     if (this != &other) {
         name = other.name;
+
         // movingAnimation = other.movingAnimation;
         //skillManager = other.skillManager; // Copy the skill manager if needed
     }

@@ -1,6 +1,6 @@
 #include"Book/MovingAnimation.hpp"
 
-MovingAnimation::MovingAnimation(sf::Texture& texture  , sf::Vector2u imageCount,float switchTime,sf::Vector2f& position):texture(texture),imageCount(imageCount), switchTime(switchTime) , current_position(position)
+MovingAnimation::MovingAnimation(sf::Texture& texture  , sf::Vector2u imageCount,float switchTime,sf::Vector2f& position):texture(texture),imageCount(imageCount), switchTime(switchTime) , position(position)
 {
     totalTime = 0; 
     row = 0; 
@@ -10,11 +10,7 @@ MovingAnimation::MovingAnimation(sf::Texture& texture  , sf::Vector2u imageCount
     uvRect.width = int(texture.getSize().x / float(imageCount.x)); // width of each frame
     uvRect.height = int(texture.getSize().y / float(imageCount.y)); // height of each frame
     sprite.setTexture(texture); // set the texture for the sprite
-
     speed = 800.0f; 
-    final_position = current_position; 
-    velocity = sf::Vector2f(0.0f, 0.0f);
-    
 };  
 
 MovingAnimation::~MovingAnimation()
@@ -22,72 +18,83 @@ MovingAnimation::~MovingAnimation()
     // Destructor
 }
 void MovingAnimation::handleEvent(sf::Event event, sf::RenderWindow* window)
-{
-    //std::cout<<"Handling event in MovingAnimation" << std::endl;
-    if(event.type==sf::Event::MouseButtonPressed)
+{    
+    if(event.type==sf::Event::KeyPressed)
     {
-        if(event.mouseButton.button==sf::Mouse::Right)
+        if(event.key.code==sf::Keyboard::W)
         {
-            // Get the mouse position in the window
-            // final_position = sf::Vector2f(static_cast<float>(event.mouseButton.x), static_cast<float>(event.mouseButton.y));
-            // get the current mouse position in the window
-            // sf::Vector2i pixelPos = ;
-
-            // convert it to world coordinates
-            final_position = window->mapPixelToCoords(sf::Mouse::getPosition(*window));
-            // sf::Vector2i mousePixel = sf::Mouse::getPosition(window);
-            // sf::Vector2f worldPos = window.mapPixelToCoords(mousePixel, gameView);
+            mask = BIT_SET(mask, UP); 
+        }
+        if(event.key.code==sf::Keyboard::S)
+        {
+            mask = BIT_SET(mask,DOWN) ; 
+        }
+        if(event.key.code==sf::Keyboard::A)
+        {
+            mask = BIT_SET(mask,LEFT) ; 
+        }
+        if(event.key.code==sf::Keyboard::D)
+        {
+            mask = BIT_SET(mask,RIGHT) ; 
         }
     }
-    // Calculate the direction vector
-    sf::Vector2f direction = final_position - current_position;
-    float distance = std::sqrt(direction.x * direction.x + direction.y * direction.y);
-    if(distance==0.0f)
-        return; // Avoid division by zero
-    // Normalize the direction vector
-    direction /= distance;
-    // Set the velocity based on speed and direction
-    velocity = direction * speed;
-    std::cout<<"Current Position: " << current_position.x << ", " << current_position.y << std::endl;
-    std::cout<<"Final Position: " << final_position.x << ", " << final_position.y << std::endl;
-    // Update the sprite's position
+    if(event.type==sf::Event::KeyReleased)
+    {
+        if(event.key.code==sf::Keyboard::W)
+        {
+            mask = BIT_CLEAR(mask, UP); 
+        }
+        if(event.key.code==sf::Keyboard::S)
+        {
+            mask = BIT_CLEAR(mask,DOWN) ; 
+        }
+        if(event.key.code==sf::Keyboard::A)
+        {
+            mask = BIT_CLEAR(mask,LEFT) ; 
+        }
+        if(event.key.code==sf::Keyboard::D)
+        {
+            mask = BIT_CLEAR(mask,RIGHT) ; 
+        }
+    }
+    // std::cout<<"Mask: " << mask << std::endl ;// Debugging output to check the mask vadslue
 }
 void MovingAnimation::update(sf::Time deltaTime)
 {
     // Update the Character position based on velocity
-    sf::Vector2f last_position = current_position;
-    current_position += velocity * deltaTime.asSeconds();
-    sf::Vector2f to_final = final_position - last_position;
-    sf::Vector2f to_current = current_position - last_position;
-    float to_final_len = std::sqrt(to_final.x * to_final.x + to_final.y * to_final.y);
-    float to_current_len = std::sqrt(to_current.x * to_current.x + to_current.y * to_current.y);
-    state = MOVING; // Set the state to MOVING
-    if (abs(to_final_len - to_current_len) < 0.01f) {
-        state = IDLE; // If we are close to the final position, set the state to IDLE
-    }
-    if (to_current_len > to_final_len) {
-        current_position = final_position;
-        velocity = sf::Vector2f(0.0f, 0.0f);
-    }
-    // sprite.setPosition(current_position);
-    if(final_position.x<current_position.x)
+    nextPosition = position ; 
+    if(BIT(mask,UP))
     {
-        row = LEFT ; 
+        nextPosition.y -= speed * deltaTime.asSeconds(); // Move up
     }
-    else if(final_position.x>current_position.x)
+    if(BIT(mask,DOWN))
     {
-        row = RIGHT ; 
+        nextPosition.y += speed * deltaTime.asSeconds(); // Move down
     }
- // Update the animation
-    // Flip the sprite based on the direction
-    if (row == LEFT) {
-        sprite.setScale(-2.5f, 2.5f); // Flip the sprite horizontally
+    if(BIT(mask,LEFT))
+    {
+        nextPosition.x -= speed * deltaTime.asSeconds(); // Move left
+    }
+    if(BIT(mask,RIGHT))
+    {
+        nextPosition.x += speed * deltaTime.asSeconds(); // Move right
+    }
+    if(nextPosition == position) {
+        state = IDLE; // If the final position is the same as the current position, set the state to IDLE
+    }
+    else 
+    {
+        state = MOVING; // Set the state to MOVING
+    }
+    if (BIT(mask,LEFT)) {
+        sprite.setScale(-2.55f, 2.55f); // Flip the sprite horizontally
     } else {
-        sprite.setScale(2.5f, 2.5f); // Reset the scale to normal
+        sprite.setScale(2.55f, 2.55f); // Reset the scale to normal
     }
     // Set the animation base on State
     currentImage.y = state; // Set the current row based on the direction
     totalTime += deltaTime.asSeconds(); // update the total time
+    
     if (totalTime >= switchTime) // if the total time is greater than the switch time
     {
         totalTime -= switchTime; // reset the total time
@@ -99,13 +106,11 @@ void MovingAnimation::update(sf::Time deltaTime)
     }
     uvRect.left = currentImage.x * uvRect.width; // set the left position of the sprite sheet
     uvRect.top = currentImage.y * uvRect.height; // set the top position of the sprite sheet
-    
-    if(row == LEFT) {
-        sprite.setPosition(current_position.x + uvRect.width / 2.0f, current_position.y + uvRect.height); // set the position of the sprite
-     } else sprite.setPosition(current_position.x - uvRect.width / 2.0f, current_position.y + uvRect.height); // set the position of the sprite
+    sprite.setPosition(nextPosition); // set the position of the sprite
     sprite.setOrigin(uvRect.width / 2.0f, float(uvRect.height)); // set the origin of the sprite to the center
     sprite.setTextureRect(uvRect); // set the texture rectangle of the sprite
     // sprite.setScale(2.5f, 2.5f); // scale the sprite to 4 times its original size; 
     // std::cout<<current_position.x << " " << current_position.y << std::endl;
-    // std::cout<<final_position.x << " " << final_position.y << std::endl;
+    // std::cout<<nextPosition.x << " " << nextPosition.y << std::endl;
+    position = nextPosition ; 
 }
