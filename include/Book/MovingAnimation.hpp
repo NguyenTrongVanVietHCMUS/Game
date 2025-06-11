@@ -15,7 +15,7 @@ public :
         target.draw(sprite, states); // Draw the sprite to the target
         // std::cout<<uvRect.left << " " << uvRect.top << std::endl;
     }
-    sf::Vector2f getPosition() const { return sprite.getPosition(); } // Get the current position of the animation
+    // sf::Vector2f getPosition() const { return sprite.getPosition(); } // Get the current position of the animation
     sf::Sprite sprite;
 public : 
     enum Direction
@@ -25,7 +25,7 @@ public :
         UP,
         DOWN
     };
-
+    int mask ; 
     enum State
     {
         IDLE,
@@ -36,11 +36,9 @@ public :
     sf::IntRect uvRect;
     sf::Vector2u imageCount; 
     sf::Vector2u currentImage; 
-    sf::Vector2f& current_position; 
-    sf::Vector2f final_position;
+    sf::Vector2f& position ; 
+    sf::Vector2f nextPosition; // Final position after movement
     float speed ; 
-    
-    sf::Vector2f velocity;
     float totalTime; 
     float switchTime; 
     int row; 

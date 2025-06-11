@@ -208,6 +208,13 @@ bool TileMap::load(const std::string& jsonFile,int x , int y ) {
                 {
                     continue ; 
                 }
+                else if(objectData["type"]=="Point")
+                {
+                    if(objectData["name"]=="startingpoint")
+                    {
+                        startingPoint = sf::Vector2f(objectData["x"]+x, objectData["y"]+y);
+                    }
+                }
                 else 
                 {
                     std::cerr<<"something is wrong with the objectgroup layer"<<std::endl; 
@@ -217,19 +224,6 @@ bool TileMap::load(const std::string& jsonFile,int x , int y ) {
         }
     }
     return true;
-}
-
-void TileMap::setLayerVisible(size_t layerIndex, bool visible) 
-{
-    if (layerIndex < layers.size()) {
-        layers[layerIndex]->visible = visible;
-    }
-}
-
-bool TileMap::isLayerVisible(size_t layerIndex) const 
-{
-    return 1  ;
-    // return (layerIndex < layers.size()) ? layers[layerIndex].visible : false;
 }
 
 void TileMap::draw(sf::RenderTarget& target, sf::RenderStates states)const

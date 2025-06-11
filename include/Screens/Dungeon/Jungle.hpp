@@ -7,13 +7,13 @@
 #include "Control/ResourceIdentifiers.hpp"
 #include "Control/StateIdentifiers.hpp"
 #include"Book/World.hpp"
-class Lobby : public State , public World
+class Jungle : public State , public World
 {
 private : 
  
 public:
-    Lobby(StateStack&stack ,Context context);
-    ~Lobby(); 
+    Jungle(StateStack&stack ,Context context);
+    ~Jungle(); 
     // Implement pure virtual functions from State
     virtual void draw();
     virtual bool update(sf::Time dt);

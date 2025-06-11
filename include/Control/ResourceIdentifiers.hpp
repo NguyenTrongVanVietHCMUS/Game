@@ -110,6 +110,7 @@ namespace Map
 	{
 		Title,
 		Lobby, 
+		Jungle,
 	};
 }
 

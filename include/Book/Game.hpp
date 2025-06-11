@@ -15,8 +15,6 @@
 #include "Screens/Lobby.hpp"
 #include "Screens/Title.hpp"
 #include<Book/TileMap.hpp> 
-const int width = 1216;
-const int height = 672;
 class Game 
 {
 public:
