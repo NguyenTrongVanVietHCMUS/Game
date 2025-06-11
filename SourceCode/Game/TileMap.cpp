@@ -79,8 +79,6 @@ bool TileMap::load(const std::string& jsonFile,int x , int y ) {
             
             // Load the background texture
             sf::Texture backgroundTexture;
-            std::cout<< "Loading background texture from: " << resolvedImagePath.string() << std::endl;
-
             if (!backgroundTexture.loadFromFile(resolvedImagePath.string())) {
                 return false;
             }
@@ -217,7 +215,7 @@ bool TileMap::load(const std::string& jsonFile,int x , int y ) {
                 else 
                 {
                     std::cerr<<File<<std::endl; 
-                    abort() ;   
+                    return false ; 
                 }
             }
         }

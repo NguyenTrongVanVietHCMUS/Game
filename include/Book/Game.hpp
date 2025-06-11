@@ -12,10 +12,12 @@
 
 #include<Control/SoundPlayer.hpp>
 #include<Control/MusicPlayer.hpp>
+
+#include<Book/TileMap.hpp>
+
 #include<Screens/Lobby.hpp>
 #include<Screens/Title.hpp>
 #include<Screens/Dungeon/Jungle.hpp>
-#include<Book/TileMap.hpp>
 class Game : public sf::NonCopyable
 {
 public:

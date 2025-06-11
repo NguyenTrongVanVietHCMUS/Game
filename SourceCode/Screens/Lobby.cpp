@@ -37,15 +37,19 @@ bool Lobby::handleEvent(const sf::Event& event)
 {
     for(auto entity : entities)
     {
-
         entity->handleEvent(event,getContext().window); 
     }  
     if (event.type == sf::Event::KeyPressed)
     {
-         if (event.key.code == sf::Keyboard::Escape)
+        if (event.key.code == sf::Keyboard::Escape)
         {
             requestStackPop(); 
             requestStackPush(States::Title); // Push the Title state when Escape is pressed
+        }
+        if(event.key.code==sf::Keyboard::Enter)
+        {
+            requestStackPop() ; 
+            requestStackPush(States::Jungle) ; 
         }
     }
     if (event.type == sf::Event::Closed)
