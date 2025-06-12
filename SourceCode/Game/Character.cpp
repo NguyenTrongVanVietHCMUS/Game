@@ -2,7 +2,7 @@
 
 Character::Character(
     std::string name , 
-    sf::Texture& texture,
+    sf::Texture* texture,
     sf::Vector2u imageCount, 
     float switchTime, 
     sf::Vector2f position
@@ -21,8 +21,8 @@ Character::~Character()
 bool Character::handleEvent(const sf::Event& event,sf::RenderWindow*window)
 {
     movingAnimation.handleEvent(event,window);
-    //skillHolder.handleEvent(event, window);
-    weaponHolder.handleEvent(event, window); // Handle events for the weapon holder
+    skillHolder.handleEvent(event, window);
+    weaponHolder.handleEvent(event,window); // Handle events for the weapon holder
     return false; 
 }
 void Character::operator=(const Character& other)
@@ -34,11 +34,11 @@ void Character::operator=(const Character& other)
         //skillManager = other.skillManager; // Copy the skill manager if needed
     }
 }
-bool Character::update(sf::Time deltaTime)
+bool Character::update(const sf::Time& deltaTime)
 {
     //std::cout<<"updating Character " << position.x << ", " << position.y << std::endl;
-    skillHolder.update(deltaTime); // Update the skill holder
     movingAnimation.update(deltaTime); // Update the animation
+    skillHolder.update(deltaTime); // Update the skill holder
     weaponHolder.update(deltaTime); // Update the weapon holder
     return false;
 }

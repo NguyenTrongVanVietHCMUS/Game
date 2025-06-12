@@ -6,16 +6,14 @@
 #include "Control/ResourceHolder.hpp"
 #include "Control/ResourceIdentifiers.hpp"
 #include "Control/StateIdentifiers.hpp"
-#include"Book/World.hpp"
-class Jungle : public State , public World
+class Jungle : public State 
 {
 private : 
  
 public:
     Jungle(StateStack&stack ,Context context);
     ~Jungle(); 
-    // Implement pure virtual functions from State
     virtual void draw();
-    virtual bool update(sf::Time dt);
+    virtual bool update(const sf::Time& dt);
     virtual bool handleEvent(const sf::Event& event);
 };  

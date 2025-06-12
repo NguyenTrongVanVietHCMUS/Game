@@ -1,10 +1,13 @@
 #pragma once 
-
+#include <Book/Utility.hpp>
 #include "Control/StateIdentifiers.hpp"
 #include "Control/ResourceIdentifiers.hpp"
 #include <SFML/System/Time.hpp>
 #include <SFML/Window/Event.hpp>
 #include <Control/State.hpp>
+#include<Book/Utility.hpp>
+#include<Book/Entity.hpp>
+#include<Book/TileMap.hpp>
 #include <memory>
 
 
@@ -12,7 +15,6 @@ namespace sf
 {
 	class RenderWindow;
 }
-
 class StateStack;
 class MusicPlayer;
 class SoundPlayer;
@@ -45,7 +47,7 @@ class State
 		virtual				~State();
 
 		virtual void		draw(){return;};
-		virtual bool		update(sf::Time dt){return 0 ; };
+		virtual bool		update(const sf::Time& dt){return 0 ; };
 		virtual bool		handleEvent(const sf::Event& event){return false ;}
 
 
@@ -59,5 +61,9 @@ class State
 	protected :
 		StateStack*			mStack;
 		Context				mContext;
+
+		std::vector<Entity*> entities ;  
+		std::vector<Entity*> objects ; 
+		TileMap*map ; 
 };
 

@@ -2,7 +2,7 @@
 
 Entity::Entity(std::string name , sf::Vector2f position) : name(name) , position(position)
 {
-
+    
 }
 Entity::~Entity()
 {
@@ -10,11 +10,11 @@ Entity::~Entity()
 }   
 bool Entity::handleEvent(const sf::Event& event,sf::RenderWindow* window)
 {
-
     return false; 
 }
-bool Entity::update(sf::Time dt)
+bool Entity::update(const sf::Time& dt)
 {
+    std::cout<<"Entity updating"<<std::endl;
     return false;
 }
 void Entity::draw(sf::RenderTarget& target, sf::RenderStates states)const 

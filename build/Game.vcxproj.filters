@@ -52,9 +52,6 @@
     <ClCompile Include="V:\Game\SourceCode\Game\Weapon.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="V:\Game\SourceCode\Game\World.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="V:\Game\SourceCode\Object\Projectiles\Bullet.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

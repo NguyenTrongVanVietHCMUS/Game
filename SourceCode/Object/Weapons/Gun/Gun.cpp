@@ -52,7 +52,7 @@ void Gun::handleEvent(const sf::Event& event, sf::RenderWindow* window)
     UpdateAngle(event, window); // Update the angle of the gun based on mouse movement
 }
 
-void Gun::update(sf::Time deltaTime)
+void Gun::update(const sf::Time& deltaTime)
 {
     // Update the gun's state
     skillHolder.update(deltaTime); // Update the skill holder

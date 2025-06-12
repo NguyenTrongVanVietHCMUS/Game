@@ -3,8 +3,7 @@ Jungle::Jungle(StateStack& stack,Context context):
     State(stack,context) 
 {         
     map = new TileMap(context.maps->get(Map::ID::Jungle));
-    entities.push_back(new Character("Knight",context.textures->get(Textures::ID::Knight),sf::Vector2u(8,3),0.05f,map->startingPoint)) ; 
-    std::cout<<map->startingPoint.x<<" "<<map->startingPoint.y<<std::endl ; 
+    entities.push_back(new Character("Knight",&context.textures->get(Textures::ID::Knight),sf::Vector2u(8,3),0.05f,map->startingPoint)) ; 
 }
 
 Jungle::~Jungle()
@@ -15,7 +14,6 @@ Jungle::~Jungle()
 void Jungle::draw() 
 {
     sf::View view(entities[0]->getPosition(),sf::Vector2f(1216,672)); 
-    // view.setViewport(sf::FloatRect({0.5f, 0.5}, {1.0f, 1.0f}));
     getContext().window->setView(view); // Set the view for the window
     getContext().window->draw(*map);
 
@@ -25,7 +23,7 @@ void Jungle::draw()
     }
 }
 
-bool Jungle::update(sf::Time dt)
+bool Jungle::update(const sf::Time& dt)
 {
     map->update(dt);
     for(auto entity : entities)
@@ -36,9 +34,10 @@ bool Jungle::update(sf::Time dt)
 }
 bool Jungle::handleEvent(const sf::Event& event)
 {
+    sf::RenderWindow* window = getContext().window ; 
     for(auto entity : entities)
     {
-        entity->handleEvent(event,getContext().window); 
+        entity->handleEvent(event,window); 
     }  
     if (event.type == sf::Event::KeyPressed)
     {
@@ -50,7 +49,7 @@ bool Jungle::handleEvent(const sf::Event& event)
         if(event.key.code==sf::Keyboard::Enter)
         {
             requestStackPop() ; 
-            requestStackPush(States::Jungle) ; 
+            requestStackPush(States::Lobby) ; 
         }
     }
     if (event.type == sf::Event::Closed)

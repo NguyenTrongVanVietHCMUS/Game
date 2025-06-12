@@ -29,7 +29,7 @@ public:
 private:
     const sf::Time TimePerFrame = sf::seconds(1.0f/ 60.f); // 60 FPS   
     void PollEvents();
-    void Update(sf::Time);
+    void Update(const sf::Time& dt);
     void Render();
     void registerStates();
 private :

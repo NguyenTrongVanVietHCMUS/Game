@@ -3,7 +3,7 @@ Lobby::Lobby(StateStack& stack,Context context):
     State(stack,context) 
 {         
     map = new TileMap(context.maps->get(Map::ID::Lobby));
-    entities.push_back(new Character("Knight",context.textures->get(Textures::ID::Knight),sf::Vector2u(8,3),0.05f,map->startingPoint)) ; 
+    entities.push_back(new Character("Knight",&context.textures->get(Textures::ID::Knight),sf::Vector2u(8,3),0.05f,map->startingPoint)) ; 
 }
 
 Lobby::~Lobby()
@@ -14,18 +14,17 @@ Lobby::~Lobby()
 void Lobby::draw() 
 {
     sf::View view(entities[0]->getPosition(),sf::Vector2f(1216,672)); 
-    // view.setViewport(sf::FloatRect({0.5f, 0.5}, {1.0f, 1.0f}));
     getContext().window->setView(view); // Set the view for the window
     getContext().window->draw(*map);
-
     for(auto&entity: entities)
     {
         getContext().window->draw(*entity);
     }
 }
 
-bool Lobby::update(sf::Time dt)
+bool Lobby::update(const sf::Time& dt)
 {
+    std::cout<<"lobby update"<<std::endl;
     map->update(dt);
     for(auto entity : entities)
     {
@@ -35,9 +34,10 @@ bool Lobby::update(sf::Time dt)
 }
 bool Lobby::handleEvent(const sf::Event& event)
 {
+    sf::RenderWindow*window = getContext().window;
     for(auto entity : entities)
     {
-        entity->handleEvent(event,getContext().window); 
+        entity->handleEvent(event,window); 
     }  
     if (event.type == sf::Event::KeyPressed)
     {

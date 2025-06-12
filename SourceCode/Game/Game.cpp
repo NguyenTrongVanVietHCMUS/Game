@@ -70,8 +70,9 @@ void Game::PollEvents()
 
 }
 
-void Game::Update(sf::Time dt)
+void Game::Update(const sf::Time& dt)
 {
+	std::cout<<"game update"<<std::endl;
     stateStack.update(dt) ; 
 }
 

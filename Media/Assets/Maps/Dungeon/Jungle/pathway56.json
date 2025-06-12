@@ -3,13 +3,13 @@
  "infinite":false,
  "layers":[
         {
-         "data":[6, 6, 5, 7, 9, 10, 9, 4, 4, 4, 6, 10, 5, 4, 6,
+         "data":[7, 5, 9, 6, 7, 4, 6, 10, 4, 5, 10, 9, 5, 5, 10,
             3, 2, 1, 2, 1, 3, 1, 1, 3, 3, 1, 3, 3, 2, 3,
             3, 3, 2, 3, 2, 1, 3, 1, 2, 2, 1, 3, 3, 1, 3,
             2, 2, 3, 3, 1, 1, 1, 2, 3, 1, 3, 1, 2, 1, 1,
             3, 3, 3, 2, 2, 1, 2, 1, 2, 1, 2, 1, 3, 3, 3,
             2, 3, 2, 2, 3, 1, 1, 1, 1, 2, 2, 1, 2, 3, 1,
-            8, 6, 7, 9, 7, 9, 4, 9, 8, 10, 6, 9, 6, 4, 5],
+            6, 7, 10, 9, 10, 9, 4, 5, 8, 7, 10, 6, 7, 8, 4],
          "height":7,
          "id":1,
          "name":"Tile Layer 1",
@@ -19,9 +19,42 @@
          "width":15,
          "x":0,
          "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":2,
+         "name":"Objec Layer 1",
+         "objects":[
+                {
+                 "height":33,
+                 "id":2,
+                 "name":"",
+                 "rotation":0,
+                 "type":"Collider",
+                 "visible":true,
+                 "width":476,
+                 "x":3,
+                 "y":-1
+                }, 
+                {
+                 "height":30.6666666666667,
+                 "id":3,
+                 "name":"",
+                 "rotation":0,
+                 "type":"Collider",
+                 "visible":true,
+                 "width":481.333333333333,
+                 "x":0,
+                 "y":192.666666666667
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
         }],
- "nextlayerid":2,
- "nextobjectid":1,
+ "nextlayerid":3,
+ "nextobjectid":4,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",

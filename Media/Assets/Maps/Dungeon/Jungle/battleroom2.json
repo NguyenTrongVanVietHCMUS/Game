@@ -33,9 +33,86 @@
          "width":21,
          "x":0,
          "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":2,
+         "name":"Object Layer 1",
+         "objects":[
+                {
+                 "height":28,
+                 "id":1,
+                 "name":"",
+                 "rotation":0,
+                 "type":"Collider",
+                 "visible":true,
+                 "width":670,
+                 "x":0,
+                 "y":2
+                }, 
+                {
+                 "height":258,
+                 "id":2,
+                 "name":"",
+                 "rotation":0,
+                 "type":"Collider",
+                 "visible":true,
+                 "width":36,
+                 "x":-2,
+                 "y":30
+                }, 
+                {
+                 "height":226,
+                 "id":3,
+                 "name":"",
+                 "rotation":0,
+                 "type":"Collider",
+                 "visible":true,
+                 "width":30,
+                 "x":2,
+                 "y":444
+                }, 
+                {
+                 "height":644,
+                 "id":4,
+                 "name":"",
+                 "rotation":0,
+                 "type":"Collider",
+                 "visible":true,
+                 "width":36,
+                 "x":640,
+                 "y":30
+                }, 
+                {
+                 "height":28,
+                 "id":5,
+                 "name":"",
+                 "rotation":0,
+                 "type":"Collider",
+                 "visible":true,
+                 "width":222,
+                 "x":32,
+                 "y":642
+                }, 
+                {
+                 "height":30,
+                 "id":6,
+                 "name":"",
+                 "rotation":0,
+                 "type":"Collider",
+                 "visible":true,
+                 "width":226,
+                 "x":414,
+                 "y":640
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
         }],
- "nextlayerid":2,
- "nextobjectid":1,
+ "nextlayerid":3,
+ "nextobjectid":7,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",
