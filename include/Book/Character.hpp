@@ -7,6 +7,7 @@
 #include<Control/SkillLoader.hpp>
 #include<Control/WeaponHolder.hpp>
 #include<Object/Weapon/Gun.hpp>
+#include<Control/WeaponLoader.hpp>
 class Character : public Entity
 {
 private :

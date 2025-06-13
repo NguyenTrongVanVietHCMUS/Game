@@ -11,7 +11,9 @@ Gun::Gun(Entity* holder, float cooldownTime)
     sprite.setTexture(texture);
     sprite.setOrigin(texture.getSize().x / 2.f, texture.getSize().y / 2.f);
     skillHolder.setEntity(holder); // Set the entity for the skill holder
-    skillHolder.setSkill(SkillLoader::loadSkills("Test Skill", cooldownTime)); // Load and set the skill for the gun
+    SkillName = "Test Skill"; // Set the skill name for the gun
+    this->cooldownTime = cooldownTime; // Set the cooldown time for the gun
+    skillHolder.setSkill(SkillLoader::loadSkills(SkillName, cooldownTime)); // Load and set the skill for the gun
 }
 
 Gun::~Gun()
@@ -58,4 +60,8 @@ void Gun::update(const sf::Time& deltaTime)
     // Update the gun's state
     skillHolder.update(deltaTime); // Update the skill holder
     // Additional update logic for the gun can be added here
+}
+
+void Weapon::setCooldownTime(float cooldownTime) {
+    skillHolder.setSkill(SkillLoader::loadSkills(SkillName, cooldownTime));
 }

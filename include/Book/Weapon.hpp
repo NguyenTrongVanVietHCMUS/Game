@@ -10,6 +10,7 @@ class Weapon
 {
 public:
     virtual ~Weapon() = default;
+    //Weapon(const Weapon&) = default; // Copy constructor
     Weapon(Entity *Holder, WeaponType type, EntityType entityType, const std::string& name)
         : holder(Holder), type(type), entityType(entityType), name(name) {}
     // Get the name of the weapon
@@ -22,8 +23,15 @@ public:
     virtual void update(const sf::Time& deltaTime) = 0;
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) = 0;
     virtual void handleEvent(const sf::Event& event,sf::RenderWindow* window) = 0;
+    virtual Weapon* clone() = 0; // Clone the weapon
+
+public:
+    void setCooldownTime(float cooldownTime);
+    void setHolder(Entity* holder);
     void UpdateAngle(const sf::Event& event,sf::RenderWindow* window);
 protected :
+    std::string SkillName;
+    float cooldownTime = 0.f; // Cooldown time for the weapon
     Entity* holder; // Entity that owns the weapon
     WeaponType type;
     SkillHolder skillHolder; // Skill holder for the weapon

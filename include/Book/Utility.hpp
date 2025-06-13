@@ -3,13 +3,14 @@
 #include<iostream>
 #include<fstream>
 #include<vector>
+#include<memory>
 #include<cmath> 
 #include<SFML/Graphics.hpp>
 #include<SFML/Window.hpp>
 #include<SFML/System.hpp>
 #include<SFML/Audio.hpp>
 #include<SFML/Network.hpp>
-
+#include <nlohmann/json.hpp>
 
 #define Mask(x) (1 << (x)) // Bitmask for setting bits
 #define BIT(x,y) ((x) & (1 << (y))) // Check if the y-th bit is set in x

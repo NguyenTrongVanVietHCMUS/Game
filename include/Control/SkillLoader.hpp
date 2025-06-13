@@ -1,7 +1,7 @@
 #pragma once
 #include <Object/SkillLibraryUtility.hpp>
 #include <unordered_map>
-
+// DO NOT CREATE THIS CLASS IN ANY SITUATION, IT IS A STATIC CLASS
 class SkillLoader
 {
 public:
