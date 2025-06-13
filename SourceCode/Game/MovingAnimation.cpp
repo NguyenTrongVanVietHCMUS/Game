@@ -110,7 +110,7 @@ void MovingAnimation::update(const sf::Time& deltaTime)
     uvRect.left = currentImage.x * uvRect.width;
     uvRect.top = currentImage.y * uvRect.height;
     sprite.setPosition(nextPosition);
-    sprite.setOrigin(uvRect.width / 2.0f, float(uvRect.height));
+    sprite.setOrigin(uvRect.width / 1.5f, float(uvRect.height));
     sprite.setTextureRect(uvRect); 
     position = nextPosition ; 
 }
