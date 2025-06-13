@@ -25,8 +25,8 @@ void Gun::draw(sf::RenderTarget& target, sf::RenderStates states)
     // holder has get position method
     sf::Vector2f holderPosition = holder->getPosition();
     // Offset holder position to align the gun sprite
-    holderPosition.x += 10.f; // Adjust the x position as needed
-    holderPosition.y += 20.f; // Adjust the y position as needed
+    holderPosition.x += 20.f; // Adjust the x position as needed
+    holderPosition.y += -20.f; // Adjust the y position as needed
     
     if(std::abs(angle) <= 90.f){
         sprite.setRotation(angle); // Set the rotation of the gun based on the angle
@@ -39,6 +39,7 @@ void Gun::draw(sf::RenderTarget& target, sf::RenderStates states)
        
 
     }
+    sprite.setOrigin(texture.getSize().x / 2.5f, texture.getSize().y / 2.f); // Set the origin to the center of the sprite
     sprite.setPosition(holderPosition);
     position = holderPosition; // Update the position of the gun
     target.draw(sprite, states);
