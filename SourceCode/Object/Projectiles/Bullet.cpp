@@ -20,7 +20,7 @@ Bullet::Bullet(std::string name, const sf::Vector2f& position, const sf::Vector2
     //sprite.setScale(0.5f, 0.5f); // Scale the sprite to half its size
 }
 
-bool Bullet::update(sf::Time dt)
+bool Bullet::update(const sf::Time &dt)
 {
     // Normalize the direction vector to speed up the bullet
     velocity = velocity / std::sqrt(velocity.x * velocity.x + velocity.y * velocity.y) * speed;
