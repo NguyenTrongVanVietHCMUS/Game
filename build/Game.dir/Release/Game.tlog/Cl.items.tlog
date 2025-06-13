@@ -15,7 +15,6 @@ V:\Game\SourceCode\Game\Projectile.cpp;V:\Game\build\Game.dir\Release\Projectile
 V:\Game\SourceCode\Game\Skill.cpp;V:\Game\build\Game.dir\Release\Skill.obj
 V:\Game\SourceCode\Game\TileMap.cpp;V:\Game\build\Game.dir\Release\TileMap.obj
 V:\Game\SourceCode\Game\Weapon.cpp;V:\Game\build\Game.dir\Release\Weapon.obj
-V:\Game\SourceCode\Game\World.cpp;V:\Game\build\Game.dir\Release\World.obj
 V:\Game\SourceCode\Object\Projectiles\Bullet.cpp;V:\Game\build\Game.dir\Release\Bullet.obj
 V:\Game\SourceCode\Object\Skills\TestSkill.cpp;V:\Game\build\Game.dir\Release\TestSkill.obj
 V:\Game\SourceCode\Object\Weapons\Gun\Gun.cpp;V:\Game\build\Game.dir\Release\Gun.obj

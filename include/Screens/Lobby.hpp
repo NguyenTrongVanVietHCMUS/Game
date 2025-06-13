@@ -6,16 +6,14 @@
 #include "Control/ResourceHolder.hpp"
 #include "Control/ResourceIdentifiers.hpp"
 #include "Control/StateIdentifiers.hpp"
-#include"Book/World.hpp"
-class Lobby : public State , public World
+class Lobby : public State 
 {
 private : 
  
 public:
     Lobby(StateStack&stack ,Context context);
     ~Lobby(); 
-    // Implement pure virtual functions from State
     virtual void draw();
-    virtual bool update(sf::Time dt);
+    virtual bool update(const sf::Time& dt);
     virtual bool handleEvent(const sf::Event& event);
 };  

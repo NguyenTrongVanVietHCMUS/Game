@@ -12,10 +12,12 @@
 
 #include<Control/SoundPlayer.hpp>
 #include<Control/MusicPlayer.hpp>
+
+#include<Book/TileMap.hpp>
+
 #include<Screens/Lobby.hpp>
 #include<Screens/Title.hpp>
 #include<Screens/Dungeon/Jungle.hpp>
-#include<Book/TileMap.hpp>
 class Game : public sf::NonCopyable
 {
 public:
@@ -27,7 +29,7 @@ public:
 private:
     const sf::Time TimePerFrame = sf::seconds(1.0f/ 60.f); // 60 FPS   
     void PollEvents();
-    void Update(sf::Time);
+    void Update(const sf::Time& dt);
     void Render();
     void registerStates();
 private :

@@ -10,15 +10,19 @@ Game::Game()
 	sounds(),
     stateStack(State::Context(window, textures, fonts, music, sounds, maps))
 {
-	maps.load(Map::ID::Title, "Media/Assets/Maps/Title/title.world");
-	maps.load(Map::ID::Lobby, "Media/Assets/Maps/Lobby/lobby.world");
-	// maps.load(Map::ID::Jungle, "Media/Assets/Maps/Dungeon/jungle.world");
-
-	textures.load(Textures::ID::Knight, "Media/Assets/Characters/Knight/knight_0.png");
-	fonts.load(Fonts::ID::Title, "Media/Fonts/PressStart2P_Regular.ttf");
-	fonts.load(Fonts::ID::Main, "Media/Fonts/Sansation.ttf");
-	registerStates();	
+	// loading resources 
+	{
+		maps.load(Map::ID::Title, "Media/Assets/Maps/Title/title.world");
+		maps.load(Map::ID::Lobby, "Media/Assets/Maps/Lobby/lobby.world");
+		maps.load(Map::ID::Jungle, "Media/Assets/Maps/Dungeon/Jungle/jungle.world");
 	
+		textures.load(Textures::ID::Knight, "Media/Assets/Characters/Knight/knight_0.png");
+		
+		fonts.load(Fonts::ID::Title, "Media/Fonts/PressStart2P_Regular.ttf");
+		fonts.load(Fonts::ID::Main, "Media/Fonts/Sansation.ttf");
+	
+	}
+	registerStates();	
 	stateStack.pushState(States::Title);
 
 	// Set the frame rate limit 
@@ -66,8 +70,9 @@ void Game::PollEvents()
 
 }
 
-void Game::Update(sf::Time dt)
+void Game::Update(const sf::Time& dt)
 {
+	std::cout<<"game update"<<std::endl;
     stateStack.update(dt) ; 
 }
 

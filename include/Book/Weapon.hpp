@@ -19,11 +19,10 @@ public:
     WeaponType getType();
 
     // update draw and handle event
-    virtual void update(sf::Time deltaTime) = 0;
+    virtual void update(const sf::Time& deltaTime) = 0;
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) = 0;
-    virtual void handleEvent(const sf::Event& event, sf::RenderWindow* window) = 0;
-
-    void UpdateAngle(const sf::Event& event, sf::RenderWindow* window);
+    virtual void handleEvent(const sf::Event& event,sf::RenderWindow* window) = 0;
+    void UpdateAngle(const sf::Event& event,sf::RenderWindow* window);
 protected :
     Entity* holder; // Entity that owns the weapon
     WeaponType type;

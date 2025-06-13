@@ -125,9 +125,8 @@ public:
     sf::Vector2f position;
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states)const override
     {
-        if (visible) 
+        // if (visible) 
         {
-            // assert(ObjectsTextures.size() == ObjectsSprite.size() && ObjectsTextures.size() ==2 ); // Ensure we have at most 2 textures and sprites
             for(auto & collider : colliders) 
             {
                 sf::RectangleShape shape(sf::Vector2f(collider->hitbox.width, collider->hitbox.height));
@@ -142,9 +141,8 @@ public:
             }
             for(auto & hitbox : hitboxes) 
             {
-                // std::cout<< "Drawing hitbox at position: " << hitbox->hitbox.left << ", " << hitbox->hitbox.top << std::endl;
                 sf::RectangleShape shape(sf::Vector2f(hitbox->hitbox.width, hitbox->hitbox.height));
-                shape.setPosition(hitbox->hitbox.left, hitbox->hitbox.top);
+                shape.setPosition(hitbox->hitbox.left, hitbox->hitbox.top); 
                 shape.setFillColor(sf::Color(0, 255, 0, 128)); // semi-transparent green for visibility
                 target.draw(shape, states); // Draw the hitbox
             }
@@ -152,20 +150,20 @@ public:
     }
 };
 
-class TileMap : public sf::Drawable {
+class TileMap : public sf::Drawable 
+{        
 private:
     std::vector<std::vector<Tileset>> tilesets;
 public:
+    TileMap();
+    ~TileMap() ; 
+    
     sf::Vector2f startingPoint; 
     std::string File;
     std::vector<Layer*> layers;
-    TileMap();
-    ~TileMap() ; 
+    
     bool loadFromFile(const std::string& jsonFile);
     bool load(const std::string& jsonFile, int x, int y);
-    void setLayerVisible(size_t layerIndex, bool visible);
-    bool isLayerVisible(size_t layerIndex) const;
-
     bool handleEvent(const sf::Event& event) ;
     bool update(sf::Time dt) ;
     void draw(sf::RenderTarget& target, sf::RenderStates states)const;

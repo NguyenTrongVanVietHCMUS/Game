@@ -11,6 +11,6 @@ public:
 
     // Override methods from Weapon interface
     void draw(sf::RenderTarget& target, sf::RenderStates states) override;
-    void handleEvent(const sf::Event& event, sf::RenderWindow* window) override;
-    void update(sf::Time deltaTime) override;
+    void handleEvent(const sf::Event& event,sf::RenderWindow* window) override;
+    void update(const sf::Time& deltaTime) override;
 };

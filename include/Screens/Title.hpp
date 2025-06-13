@@ -2,10 +2,8 @@
 #include<Book/Utility.hpp>
 #include"Control/State.hpp"
 #include"Book/Character.hpp"
-// #include"Book/TileMap.hpp"
-#include"Book/World.hpp"
 #include "Control/ResourceHolder.hpp"
-class Title :  public State, public World 
+class Title :  public State
 {
 public:
     Title(StateStack&stack ,Context context);
