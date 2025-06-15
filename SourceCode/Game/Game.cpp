@@ -67,13 +67,11 @@ void Game::PollEvents()
         if (event.type == sf::Event::Closed)
             window.close() ; 
     }
-
 }
 
 void Game::Update(const sf::Time& dt)
 {
-	std::cout<<"game update"<<std::endl;
-    stateStack.update(dt) ; 
+    stateStack.update(dt) ;
 }
 
 void Game::Render()

@@ -42,3 +42,8 @@ bool Character::update(const sf::Time& deltaTime)
     weaponHolder.update(deltaTime); // Update the weapon holder
     return false;
 }
+void Character::collide(Entity* other)
+{
+    // Handle collision logic specific to the character
+    movingAnimation.handleCollision(other); 
+}

@@ -9,7 +9,7 @@
 #include<Object/Weapon/Gun.hpp>
 class Character : public Entity
 {
-private :
+protected : 
     MovingAnimation movingAnimation ; 
 public : 
     Character(std::string name , sf::Texture* texture,sf::Vector2u imageCount, float switchTime,sf::Vector2f position);
@@ -17,10 +17,10 @@ public :
 public : 
     SkillHolder skillHolder;
     WeaponHolder weaponHolder;
-
-    bool handleEvent(const sf::Event& event,sf::RenderWindow* window) ;  
-    void operator=(const Character& other); // Disable assignment operator
-    bool update(const sf::Time& deltaTime) ; 
+    virtual void collide(Entity*other); 
+    virtual bool handleEvent(const sf::Event& event,sf::RenderWindow* window) ;  
+    virtual void operator=(const Character& other); // Disable assignment operator
+    virtual bool update(const sf::Time& deltaTime) ; 
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override
     {
         movingAnimation.draw(target, states);

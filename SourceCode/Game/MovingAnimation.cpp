@@ -10,7 +10,8 @@ MovingAnimation::MovingAnimation(sf::Texture* texture  , sf::Vector2u imageCount
     uvRect.width = int(texture->getSize().x / float(imageCount.x)); 
     uvRect.height = int(texture->getSize().y / float(imageCount.y)); 
     sprite.setTexture(*texture); 
-    speed = 800.0f; 
+    sprite.setScale(-2.15f, 2.15f);
+    speed = 400.0f; 
 };  
 MovingAnimation::~MovingAnimation()
 {
@@ -18,9 +19,9 @@ MovingAnimation::~MovingAnimation()
 }
 void MovingAnimation::draw(sf::RenderTarget& target,sf::RenderStates states)const
 {
-    std::cout<<sprite.getPosition().x<<" "<<sprite.getPosition().y<<std::endl;
     states.texture = texture; 
-    target.draw(sprite, states); 
+    target.draw(sprite, states);
+
 }
 void MovingAnimation::handleEvent(const sf::Event& event,sf::RenderWindow* window)
 {    
@@ -66,34 +67,38 @@ void MovingAnimation::handleEvent(const sf::Event& event,sf::RenderWindow* windo
 }
 void MovingAnimation::update(const sf::Time& deltaTime)
 {
-    nextPosition = position ; 
+    oldPosition = position ;  
     if(BIT(mask,UP))
     {
-        nextPosition.y -= speed * deltaTime.asSeconds();
+        position.y -= speed * deltaTime.asSeconds();
     }
     if(BIT(mask,DOWN))
     {
-        nextPosition.y += speed * deltaTime.asSeconds();
+        position.y += speed * deltaTime.asSeconds();
     }
     if(BIT(mask,LEFT))
     {
-        nextPosition.x -= speed * deltaTime.asSeconds();
+        position.x -= speed * deltaTime.asSeconds();
     }
     if(BIT(mask,RIGHT))
     {
-        nextPosition.x += speed * deltaTime.asSeconds();
+        position.x += speed * deltaTime.asSeconds();
     }
-    if(nextPosition == position) {
+
+    if(position == oldPosition) {
         state = IDLE;
     }
     else 
     {
         state = MOVING;
     }
-    if (BIT(mask,LEFT)) {
-        sprite.setScale(-2.55f, 2.55f);
-    } else {
-        sprite.setScale(2.55f, 2.55f);
+    if(state==MOVING)
+    {
+        if (BIT(mask,LEFT)) {
+            sprite.setScale(-2.15f, 2.15f);
+        } else {
+            sprite.setScale(2.15f, 2.15f);
+        }
     }
     currentImage.y = state;
     totalTime += deltaTime.asSeconds();
@@ -109,8 +114,12 @@ void MovingAnimation::update(const sf::Time& deltaTime)
     }
     uvRect.left = currentImage.x * uvRect.width;
     uvRect.top = currentImage.y * uvRect.height;
-    sprite.setPosition(nextPosition);
-    sprite.setOrigin(uvRect.width / 2.0f, float(uvRect.height));
-    sprite.setTextureRect(uvRect); 
-    position = nextPosition ; 
+    setSpritePosition(); 
+}
+void MovingAnimation::handleCollision(Entity* other)
+{
+    // Handle collision logic here
+    // This is a placeholder function and should be implemented with actual collision handling logic
+    position = oldPosition ; 
+    setSpritePosition(); 
 }

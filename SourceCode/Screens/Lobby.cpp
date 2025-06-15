@@ -1,9 +1,10 @@
 #include <Screens/Lobby.hpp>
+#include<Object/Character/Knight.hpp>
 Lobby::Lobby(StateStack& stack,Context context):
     State(stack,context) 
 {         
     map = new TileMap(context.maps->get(Map::ID::Lobby));
-    entities.push_back(new Character("Knight",&context.textures->get(Textures::ID::Knight),sf::Vector2u(8,3),0.05f,map->startingPoint)) ; 
+    entities.push_back(new Knight(&context.textures->get(Textures::ID::Knight),sf::Vector2u(8,3),0.05f,map->startingPoint)) ; 
 }
 
 Lobby::~Lobby()
@@ -24,7 +25,7 @@ void Lobby::draw()
 
 bool Lobby::update(const sf::Time& dt)
 {
-    std::cout<<"lobby update"<<std::endl;
+    // std::cout<<"lobby update"<<std::endl;
     map->update(dt);
     for(auto entity : entities)
     {

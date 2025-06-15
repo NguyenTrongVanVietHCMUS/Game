@@ -2,7 +2,6 @@
 #include <iostream>
 #include <Book/Utility.hpp>
 
-#pragma once
 // interface for a projectile class
 class Projectile
 {

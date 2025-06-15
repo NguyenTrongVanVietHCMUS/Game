@@ -2,7 +2,10 @@
 
 Entity::Entity(std::string name , sf::Vector2f position) : name(name) , position(position)
 {
-    
+    if(name=="knight")
+    {
+        hitbox = Hitbox(sf::FloatRect(position.x, position.y, 50.0f, 50.0f)); // Example hitbox size
+    }
 }
 Entity::~Entity()
 {
@@ -19,9 +22,12 @@ bool Entity::update(const sf::Time& dt)
 }
 void Entity::draw(sf::RenderTarget& target, sf::RenderStates states)const 
 {
-    
+    hitbox.draw(target,states) ;  
 }
-
+Hitbox Entity::getHitbox() const
+{
+    return hitbox ;
+}
 bool Entity::isAlive() const
 {
 	return HP > 0; // Check if the entity is alive based on its HP
@@ -50,4 +56,10 @@ void Entity::restoreHealth(int amount)
     {
         HP = maxHP;
     }
+}
+void Entity::collide(const Entity* other)
+{
+    // Handle collision logic here
+    // This is a placeholder function and should be implemented in derived classes
+    std::cout << "Collided with entity: " << other->name << std::endl;
 }

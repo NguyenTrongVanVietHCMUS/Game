@@ -1,7 +1,8 @@
 #include "Book/TileMap.hpp"
 #include<Control/Foreach.hpp>
 #include <fstream>
-
+#include<Book/Wall.hpp>
+#include<Book/Character.hpp>
 TileMap::TileMap()
 {
 
@@ -152,7 +153,7 @@ bool TileMap::load(const std::string& jsonFile,int x , int y ) {
             layer->name = layerData["name"];
             layer->visible = layerData["visible"];
             layer->setPosition(layerData["x"]+x, layerData["y"]+y);
-            // Load objects
+            // Load object
             for(auto& objectData : layerData["objects"]) 
             {
                 if (objectData["type"] == "Object") 
@@ -167,40 +168,100 @@ bool TileMap::load(const std::string& jsonFile,int x , int y ) {
                             break;
                         }
                     }
-                    layer->ObjectsTextures.push_back(new sf::Texture());
-                    if(!layer->ObjectsTextures.back()->loadFromFile(tilesets.back()[tilesetIndex].File))
+                    // layer->ObjectsTextures.push_back(new sf::Texture());
+                    // if(!layer->ObjectsTextures.back()->loadFromFile(tilesets.back()[tilesetIndex].File))
+                    // {
+                    //     std::cerr << "Error loading texture from file: " << tilesets.back()[tilesetIndex].File << std::endl;
+                    //     return false;
+                    // }
+                    // // Use the texture from the tileset
+                    // layer->ObjectsSprite.push_back(new sf::Sprite());
+                    // layer->ObjectsSprite.back()->setTexture(*layer->ObjectsTextures.back());
+                    // layer->ObjectsSprite.back()->setPosition(objectData["x"]+x, float(objectData["y"]+y) - float(objectData["height"]));
+                    // layer->ObjectsSprite.back()->scale(
+                    //     float(objectData["width"]) / tilesets.back()[tilesetIndex].tileWidth,
+                    //     float(objectData["height"]) / tilesets.back()[tilesetIndex].tileHeight
+                    // );
+                    auto getHitbox = [&]()->sf::FloatRect
                     {
-                        std::cerr << "Error loading texture from file: " << tilesets.back()[tilesetIndex].File << std::endl;
-                        return false;
-                    }
-                    // Use the texture from the tileset
-                    layer->ObjectsSprite.push_back(new sf::Sprite());
-                    layer->ObjectsSprite.back()->setTexture(*layer->ObjectsTextures.back());
-                    layer->ObjectsSprite.back()->setPosition(objectData["x"]+x, float(objectData["y"]+y) - float(objectData["height"]));
-                    layer->ObjectsSprite.back()->scale(
-                        float(objectData["width"]) / tilesets.back()[tilesetIndex].tileWidth,
-                        float(objectData["height"]) / tilesets.back()[tilesetIndex].tileHeight
-                    );
-                    int hitboxId = -1;
-                    for (const auto& prop : objectData["properties"]) {
-                        if (prop["name"] == "hitbox" && prop["type"] == "object") {
-                            hitboxId = prop["value"];
-                            break;
+                        int hitboxId = -1;
+                        for (const auto& prop : objectData["properties"]) {
+                            if (prop["name"] == "hitbox" && prop["type"] == "object") {
+                                hitboxId = prop["value"];
+                                break;
+                            }
                         }
-                    }
-                    for(auto& objectHitbox:layerData["objects"])
-                    {
-                        if(objectHitbox["id"]==hitboxId) 
+                        for(auto& objectHitbox:layerData["objects"])
                         {
-                            layer->hitboxes.push_back(new Hitbox(sf::FloatRect(objectHitbox["x"]+x, objectHitbox["y"]+y, objectHitbox["width"], objectHitbox["height"])));
-                            break; 
+                            if(objectHitbox["id"]==hitboxId) 
+                            {
+                                return sf::FloatRect(objectHitbox["x"]+x, objectHitbox["y"]+y, objectHitbox["width"], objectHitbox["height"]) ; 
+                            }
                         }
+                    };
+                    if(layerData["name"] == "taskboard")
+                    {
+
+                    }   
+                    else
+                    {
+                        layer->entities.push_back(new Object(
+                            objectData["name"],
+                            tilesets.back()[tilesetIndex].File,
+                            sf::Vector2f(objectData["x"]+x, objectData["y"]+y - float(objectData["height"])),
+                            getHitbox(),
+                            float(objectData["width"]) / tilesets.back()[tilesetIndex].tileWidth,
+                            float(objectData["height"]) / tilesets.back()[tilesetIndex].tileHeight
+                        ));
                     }
                 } 
                 else if(objectData["type"] == "Collider") 
                 {
-                    layer->colliders.push_back(new Hitbox(sf::FloatRect(objectData["x"]+x, objectData["y"]+y, objectData["width"], objectData["height"])));
+                    layer->entities.push_back(new Entity(
+                        "Collider",
+                        sf::Vector2f(objectData["x"]+x, objectData["y"]+y),
+                        sf::FloatRect(objectData["x"]+x,
+                        objectData["y"]+y,
+                        objectData["width"],
+                        objectData["height"])
+                    ));
                 } 
+                else if(objectData["type"]=="Wall")
+                {
+                    int gid = objectData["gid"];
+                    size_t tilesetIndex = 0;
+                    for (size_t j = 0; j < tilesets.back().size(); ++j) 
+                    {
+                        if (gid == tilesets.back()[j].firstGid ) 
+                        {
+                            tilesetIndex = j;
+                            break;
+                        }
+                    }
+                    // layer->ObjectsTextures.push_back(new sf::Texture());    
+                    // if(!layer->ObjectsTextures.back()->loadFromFile(tilesets.back()[tilesetIndex].File))
+                    // {
+                    //     std::cerr << "Error loading texture from file: " << tilesets.back()[tilesetIndex].File << std::endl;
+                    //     return false;
+                    // }
+                    // // Use the texture from the tileset
+                    // layer->ObjectsSprite.push_back(new sf::Sprite());
+                    // layer->ObjectsSprite.back()->setTexture(*layer->ObjectsTextures.back());
+                    // layer->ObjectsSprite.back()->setPosition(objectData["x"]+x, float(objectData["y"])+ y - float(objectData["height"]));
+                    // layer->ObjectsSprite.back()->scale(
+                    //     float(objectData["width"]) / tilesets.back()[tilesetIndex].tileWidth,
+                    //     float(objectData["height"]) / tilesets.back()[tilesetIndex].tileHeight
+                    // );
+                    // layer->hitboxes.push_back(new Hitbox(sf::FloatRect(objectData["x"]+x, objectData["y"]+y-32,32.0f,32.0f)));
+                    layer->entities.push_back(new Wall(
+                        objectData["name"],
+                        tilesets.back()[tilesetIndex].File,
+                        sf::Vector2f(objectData["x"]+x, objectData["y"]+y- float(objectData["height"])),
+                        Hitbox(sf::FloatRect(objectData["x"]+x, objectData["y"]+y-32, 32.0f,32.0f)),
+                        float(objectData["width"]) / tilesets.back()[tilesetIndex].tileWidth,
+                        float(objectData["height"]) / tilesets.back()[tilesetIndex].tileHeight
+                    ));
+                }
                 else if(objectData["type"] == "hitbox")
                 {
                     continue ; 
@@ -230,15 +291,36 @@ void TileMap::draw(sf::RenderTarget& target, sf::RenderStates states)const
     {
         if(x->visible)
         {
-            x->draw(target,states) ; 
+            x->draw(target,states);
         }
     }
 }
 bool TileMap::handleEvent(const sf::Event& event) 
 {
-    return 0 ; 
+    return 0; 
 }
 bool TileMap::update(sf::Time dt)
 {
-    return  0 ; 
+    return 0; 
+}
+void TileMap::handleCollision()
+{
+    for(auto layer : layers)if(layer->type == Layer::ObjectGroup)
+    {
+        auto objectLayer = static_cast<ObjectLayer*>(layer);
+        for(auto entity : objectLayer->entities)
+        {
+            if(Character* character = dynamic_cast<Character*>(entity))
+            {
+                for(auto otherEntity : objectLayer->entities)
+                {
+                    if(character != otherEntity)
+                    {
+                        collision.handleCollision(character,otherEntity) ; 
+                    }
+                }
+            }
+        }
+    }
+    // do nothing for now 
 }
