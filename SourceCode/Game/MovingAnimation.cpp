@@ -13,7 +13,7 @@ MovingAnimation::MovingAnimation(sf::Texture* texture  , sf::Vector2u imageCount
     speed = 800.0f; 
 };  
 
-MovingAnimation::MovingAnimation(sf::Texture* texture  , sf::Vector2u imageCount,float switchTime,sf::Vector2f& position,Hitbox &hitbox):texture(texture),imageCount(imageCount), switchTime(switchTime) , position(position)
+MovingAnimation::MovingAnimation(sf::Texture* texture  , sf::Vector2u imageCount,float switchTime,sf::Vector2f& position,Hitbox &hitbox, float scale):texture(texture),imageCount(imageCount), switchTime(switchTime) , position(position), scale(scale)
 {
     totalTime = 0; 
     row = 0; 
@@ -24,7 +24,7 @@ MovingAnimation::MovingAnimation(sf::Texture* texture  , sf::Vector2u imageCount
     uvRect.height = int(texture->getSize().y / float(imageCount.y)); 
     sprite.setTexture(*texture); 
     speed = 800.0f; 
-    hitbox.hitbox = sf::FloatRect(position.x, position.y, uvRect.width, uvRect.height); 
+    hitbox.hitbox = sf::FloatRect(position.x, position.y, uvRect.width / 1.5f * scale, uvRect.height / 1.4f * scale); 
     
 };  
 
@@ -32,6 +32,7 @@ MovingAnimation::~MovingAnimation()
 {
 
 }
+
 void MovingAnimation::draw(sf::RenderTarget& target,sf::RenderStates states)const
 {
     std::cout<<sprite.getPosition().x<<" "<<sprite.getPosition().y<<std::endl;
@@ -107,9 +108,9 @@ void MovingAnimation::update(const sf::Time& deltaTime)
         state = MOVING;
     }
     if (BIT(mask,LEFT)) {
-        sprite.setScale(-2.55f, 2.55f);
+        sprite.setScale(-scale, scale);
     } else {
-        sprite.setScale(2.55f, 2.55f);
+        sprite.setScale(scale, scale);
     }
     currentImage.y = state;
     totalTime += deltaTime.asSeconds();

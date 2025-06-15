@@ -37,9 +37,10 @@ void Character::operator=(const Character& other)
 bool Character::update(const sf::Time& deltaTime)
 {
     //std::cout<<"updating Character " << position.x << ", " << position.y << std::endl;
-    updateHitboxOnPosition(deltaTime); // Update the hitbox position based on the entity's current position
+    
     movingAnimation.update(deltaTime); // Update the animation
     skillHolder.update(deltaTime); // Update the skill holder
     weaponHolder.update(deltaTime); // Update the weapon holder
+    updateHitboxOnPosition(deltaTime); // Update the hitbox position based on the entity's current position
     return false;
 }
