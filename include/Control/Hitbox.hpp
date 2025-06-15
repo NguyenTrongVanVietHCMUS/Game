@@ -10,5 +10,6 @@ public:
     ~Hitbox();
     sf::FloatRect hitbox; // Hitbox of the entity
     bool isColliding(const Hitbox& other) const;
+    void draw(sf::RenderTarget& target, sf::RenderStates states) const; // Draw the hitbo
     void update(sf::Time dt);
 };

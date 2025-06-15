@@ -24,7 +24,7 @@ void Lobby::draw()
 
 bool Lobby::update(const sf::Time& dt)
 {
-    std::cout<<"lobby update"<<std::endl;
+    //std::cout<<"lobby update"<<std::endl;
     map->update(dt);
     for(auto entity : entities)
     {

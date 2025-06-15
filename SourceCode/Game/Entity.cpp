@@ -51,3 +51,11 @@ void Entity::restoreHealth(int amount)
         HP = maxHP;
     }
 }
+
+void Entity::updateHitboxOnPosition(sf::Time deltaTime)
+{
+    hitbox.hitbox = sf::FloatRect(position.x, position.y, hitbox.hitbox.width, hitbox.hitbox.height);
+    // Update the hitbox position based on the entity's current position
+    std::cerr << "Updating hitbox position to: " << position.x << ", " << position.y << std::endl;
+}
+

@@ -24,6 +24,7 @@ public :
     bool update(const sf::Time& deltaTime) ; 
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override
     {
+        hitbox.draw(target, states); // Draw the hitbox
         movingAnimation.draw(target, states);
         skillHolder.draw(target, states); // Draw the skill holder
         weaponHolder.draw(target, states); // Draw the weapon holder

@@ -1,15 +1,16 @@
 #pragma once
 #include<Book/Utility.hpp>
+#include<Control/Hitbox.hpp>
 class MovingAnimation : public sf::Drawable  
 {
 
 public :
     MovingAnimation(sf::Texture* texture , sf::Vector2u imageCount, float switchTime,sf::Vector2f& position); // Constructor with parameters
+    MovingAnimation(sf::Texture* texture , sf::Vector2u imageCount, float switchTime,sf::Vector2f& position,Hitbox &hitbox); // Constructor with parameters
     ~MovingAnimation();
     virtual void update(const sf::Time& deltaTime);
     virtual void handleEvent(const sf::Event& event,sf::RenderWindow* window);
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states)const;
-    // sf::Vector2f getPosition() const { return sprite.getPosition(); } // Get the current position of the animation
     sf::Sprite sprite;
 public : 
     enum Direction
