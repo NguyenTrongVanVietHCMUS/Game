@@ -44,12 +44,14 @@ bool Bullet::update(const sf::Time &dt)
         // Mark the bullet for removal
         selfDestruct();
     }
+    hitbox.update(sprite); // Update the hitbox based on the sprite's position and size
     return true;
 }
 
 void Bullet::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     // Debug position
+    hitbox.draw(target, states); // Draw the hitbox for debugging purposes
     target.draw(sprite, states);
 }
 
