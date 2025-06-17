@@ -16,7 +16,7 @@ public :
     Character(std::string name , sf::Texture* texture,sf::Vector2u imageCount, float switchTime,sf::Vector2f position);
     ~Character(); 
 public : 
-    SkillHolder skillHolder;
+    //SkillHolder skillHolder;
     WeaponHolder weaponHolder;
 
     bool handleEvent(const sf::Event& event,sf::RenderWindow* window) ;  
@@ -26,7 +26,7 @@ public :
     {
         hitbox.draw(target, states); // Draw the hitbox
         movingAnimation.draw(target, states);
-        skillHolder.draw(target, states); // Draw the skill holder
+        //skillHolder.draw(target, states); // Draw the skill holder
         weaponHolder.draw(target, states); // Draw the weapon holder
     }
 };

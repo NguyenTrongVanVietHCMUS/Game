@@ -4,6 +4,7 @@
 #include <Object/WeaponUtility.hpp>
 #include <Book/Entity.hpp>
 #include <stdexcept>
+
 class WeaponLoader
 {
 private:

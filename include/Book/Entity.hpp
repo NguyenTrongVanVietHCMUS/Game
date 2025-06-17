@@ -42,6 +42,6 @@ public :
     void updateHitboxOnPosition(sf::Time deltaTime);
 public : 
     // Getters and Setters
-    sf::Vector2f getPosition() const { std::cerr << "Get position : " << position.x << ", " << position.y << std::endl; return position; }
+    sf::Vector2f getPosition() const { return position; }
     sf::Vector2f getDirection() const { return sf::Vector2f(0.45f, 0.45f); } // Placeholder for direction
 };

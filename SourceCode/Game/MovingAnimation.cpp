@@ -35,7 +35,7 @@ MovingAnimation::~MovingAnimation()
 
 void MovingAnimation::draw(sf::RenderTarget& target,sf::RenderStates states)const
 {
-    std::cout<<sprite.getPosition().x<<" "<<sprite.getPosition().y<<std::endl;
+    //std::cout<<sprite.getPosition().x<<" "<<sprite.getPosition().y<<std::endl;
     states.texture = texture; 
     target.draw(sprite, states); 
 }

@@ -1,0 +1,23 @@
+[
+    {
+        "name": "Pistol",
+        "type": "Gun",
+        "cooldownTime": 0.5,
+        "damage": 10.0,
+        "speed": 800.0
+    },
+    {
+        "name": "Sniper",
+        "type": "Gun",
+        "cooldownTime": 1.5,
+        "damage": 50.0,
+        "speed": 1200.0
+    },
+    {
+        "name": "RapidGun",
+        "type": "Gun",
+        "cooldownTime": 0.1,
+        "damage": 5.0,
+        "speed": 700.0
+    }
+]

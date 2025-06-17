@@ -12,7 +12,7 @@ public :
 	// Default constructor
 	Skill() : _cooldownTime(sf::Time::Zero), _cooldownRemaining(sf::Time::Zero) {}
 	Skill(sf::Time cooldownTime) :_cooldownTime(cooldownTime) {}
-	void setCooldownTime(sf::Time cooldownTime) { this->_cooldownTime = cooldownTime; }
+	void setCooldownTime(sf::Time cooldownTime) { std::cerr << "Setting cooldown time: " << cooldownTime.asSeconds() << std::endl; this->_cooldownTime = cooldownTime; }
 	bool isReady() const { std::cerr << "Checking if skill is ready: " << _cooldownTime.asSeconds() << std::endl; return _cooldownRemaining <= sf::Time::Zero; }
 	bool isTriggered() const { return _isTriggered; } // Check if the skill has been triggered
 	void resetTriggered() { _isTriggered = false; } // Reset the triggered state
@@ -30,5 +30,5 @@ protected :
 	sf::Time _cooldownTime;
 	sf::Time _cooldownRemaining;
 	bool _isTriggered = false; // Flag to indicate if the skill has been triggered
-
+	sf::RenderWindow* window = nullptr; // Pointer to the window for event handling
 };
