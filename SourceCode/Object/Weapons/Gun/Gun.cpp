@@ -13,7 +13,10 @@ Gun::Gun(Entity* holder, float cooldownTime, float damage, float speed)
     skillHolder.setEntity(holder); // Set the entity for the skill holder
     SkillName = "Test Skill"; // Set the skill name for the gun
     this->cooldownTime = cooldownTime; // Set the cooldown time for the gun
-    skillHolder.setSkill(SkillLoader::loadSkills(SkillName, cooldownTime)); // Load and set the skill for the gun
+    Skill *TargetSkill = SkillLoader::loadSkills(SkillName, cooldownTime); // Load the skill from the skill loader
+    TargetSkill->setProjectileSpeed(speed); // Set the projectile speed for the skill
+    skillHolder.setSkill(TargetSkill); // Load and set the skill for the gun
+
 }
 
 Gun::~Gun()

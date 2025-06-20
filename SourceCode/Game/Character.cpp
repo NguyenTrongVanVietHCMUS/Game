@@ -10,7 +10,7 @@ Character::Character(
 {
     //skillHolder.setEntity(this); // Set the entity for the skill holder
     //skillHolder.setSkill(SkillLoader::loadSkills("Test Skill", 1.0f)); // Load a skill for the character
-    weaponHolder.addWeapon(WeaponLoader::Instance().GetWeapon("RapidGun", this)); // Add a gun to the weapon holder
+    weaponHolder.addWeapon(WeaponLoader::Instance().GetWeapon("Sniper", this)); // Add a gun to the weapon holder
 }
 
 Character::~Character()

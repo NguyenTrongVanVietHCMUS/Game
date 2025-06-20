@@ -8,11 +8,13 @@
 class TestSkill : public Skill
 {
 private:
+	
 	ProjectileHolder _projectileHolder; // Holder for projectiles
 	sf::Vector2f _MousePosition; // Direction of the skill, not used in this case but can be useful for future skills
 
 public:
 	TestSkill(sf::Time SkillCD) : Skill(SkillCD) {}
+	
 	void execute(Entity* user) override;
 	void update(sf::Time dt) override;
 	void handleEvent(const sf::Event& event, sf::RenderWindow* window) override;

@@ -14,10 +14,8 @@ void TestSkill::execute(Entity* user)
         bulletDirection = user->getDirection(); // Use the user's direction if mouse position is not set
     }
     // Create 2 bullets, one for each side of the user, No need to normalize
-    Bullet *bullet = new Bullet("Bullet",user->getPosition(), bulletDirection);
+    Bullet *bullet = new Bullet("Bullet",user->getPosition(), bulletDirection, ProjectileSpeed , 20.0f);
     _projectileHolder.addProjectile(std::unique_ptr<Bullet>(bullet));
-    Bullet *bullet2 = new Bullet("Bullet2",user->getPosition(), bulletDirection + sf::Vector2f(50.f, 50.0f)); // Slightly offset the second bullet
-    _projectileHolder.addProjectile(std::unique_ptr<Bullet>(bullet2));
 }
 
 void TestSkill::update(sf::Time dt) 
@@ -52,6 +50,7 @@ void TestSkill::handleEvent(const sf::Event& event, sf::RenderWindow* window)
         resetTriggered();
     }
 }
+
 
 Skill* TestSkill::clone() 
 {
