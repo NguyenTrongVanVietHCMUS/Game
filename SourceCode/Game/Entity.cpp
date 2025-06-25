@@ -2,10 +2,6 @@
 
 Entity::Entity(std::string name , sf::Vector2f position) : name(name) , position(position)
 {
-    if(name=="knight")
-    {
-        hitbox = Hitbox(sf::FloatRect(position.x, position.y, 50.0f, 50.0f)); // Example hitbox size
-    }
 }
 Entity::~Entity()
 {
@@ -17,7 +13,7 @@ bool Entity::handleEvent(const sf::Event& event,sf::RenderWindow* window)
 }
 bool Entity::update(const sf::Time& dt)
 {
-    std::cout<<"Entity updating"<<std::endl;
+    // std::cout<<"Entity updating"<<std::endl;
     return false;
 }
 void Entity::draw(sf::RenderTarget& target, sf::RenderStates states)const 

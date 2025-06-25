@@ -647,6 +647,18 @@
                  "width":32,
                  "x":320,
                  "y":480
+                }, 
+                {
+                 "height":0,
+                 "id":339,
+                 "name":"startingpoint",
+                 "point":true,
+                 "rotation":0,
+                 "type":"Point",
+                 "visible":true,
+                 "width":0,
+                 "x":242.666666666667,
+                 "y":224
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -655,7 +667,7 @@
          "y":0
         }],
  "nextlayerid":4,
- "nextobjectid":338,
+ "nextobjectid":340,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",

@@ -3,8 +3,8 @@
 Lobby::Lobby(StateStack& stack,Context context):
     State(stack,context) 
 {         
-    map = new TileMap(context.maps->get(Map::ID::Lobby));
-    entities.push_back(new Knight(&context.textures->get(Textures::ID::Knight),sf::Vector2u(8,3),0.05f,map->startingPoint)) ; 
+    map = new TileMap(context.maps->get(Map::ID::Lobby)); 
+    map->entities.push_back(new Knight(&context.textures->get(Textures::ID::Knight),sf::Vector2u(8,3),0.1f,map->startingPoint)); // Assuming Texture::ID::Knight is defined in your TextureHolder
 }
 
 Lobby::~Lobby()
@@ -14,32 +14,18 @@ Lobby::~Lobby()
 
 void Lobby::draw() 
 {
-    sf::View view(entities[0]->getPosition(),sf::Vector2f(1216,672)); 
-    getContext().window->setView(view); // Set the view for the window
     getContext().window->draw(*map);
-    for(auto&entity: entities)
-    {
-        getContext().window->draw(*entity);
-    }
 }
 
 bool Lobby::update(const sf::Time& dt)
 {
-    // std::cout<<"lobby update"<<std::endl;
     map->update(dt);
-    for(auto entity : entities)
-    {
-        entity->update(dt); 
-    }
     return 0; 
 }
 bool Lobby::handleEvent(const sf::Event& event)
 {
     sf::RenderWindow*window = getContext().window;
-    for(auto entity : entities)
-    {
-        entity->handleEvent(event,window); 
-    }  
+    map->handleEvent(event, window); // Handle events for the map and entities
     if (event.type == sf::Event::KeyPressed)
     {
         if (event.key.code == sf::Keyboard::Escape)

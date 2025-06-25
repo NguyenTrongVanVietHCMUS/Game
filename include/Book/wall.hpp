@@ -22,6 +22,7 @@ public:
     {
         states.texture = texture; 
         target.draw(*sprite, states);
+        hitbox.draw(target, states); // Draw the hitbox for debugging
     }
     ~Wall()
     {

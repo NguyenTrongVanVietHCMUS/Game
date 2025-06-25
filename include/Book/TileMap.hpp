@@ -134,18 +134,17 @@ private:
     std::vector<std::vector<Tileset>> tilesets;
 public:
     TileMap();
-    ~TileMap() ; 
-    
+    ~TileMap();     
+    std::vector<Entity*> entities; 
     sf::Vector2f startingPoint; 
     std::string File;
     std::vector<Layer*> layers;
-    Collision collision ; // Assuming Collision is a class that handles collision detection
+    Collision collision; // Assuming Collision is a class that handles collision detection
     bool loadFromFile(const std::string& jsonFile);
     bool load(const std::string& jsonFile, int x, int y);
-    bool handleEvent(const sf::Event& event) ;
-    bool update(sf::Time dt) ;
+    bool handleEvent(const sf::Event& event, sf::RenderWindow* window);
+    bool update(const sf::Time& dt);
     void draw(sf::RenderTarget& target, sf::RenderStates states)const;
-
 
     void handleCollision();
 };

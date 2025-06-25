@@ -168,20 +168,6 @@ bool TileMap::load(const std::string& jsonFile,int x , int y ) {
                             break;
                         }
                     }
-                    // layer->ObjectsTextures.push_back(new sf::Texture());
-                    // if(!layer->ObjectsTextures.back()->loadFromFile(tilesets.back()[tilesetIndex].File))
-                    // {
-                    //     std::cerr << "Error loading texture from file: " << tilesets.back()[tilesetIndex].File << std::endl;
-                    //     return false;
-                    // }
-                    // // Use the texture from the tileset
-                    // layer->ObjectsSprite.push_back(new sf::Sprite());
-                    // layer->ObjectsSprite.back()->setTexture(*layer->ObjectsTextures.back());
-                    // layer->ObjectsSprite.back()->setPosition(objectData["x"]+x, float(objectData["y"]+y) - float(objectData["height"]));
-                    // layer->ObjectsSprite.back()->scale(
-                    //     float(objectData["width"]) / tilesets.back()[tilesetIndex].tileWidth,
-                    //     float(objectData["height"]) / tilesets.back()[tilesetIndex].tileHeight
-                    // );
                     auto getHitbox = [&]()->sf::FloatRect
                     {
                         int hitboxId = -1;
@@ -201,7 +187,7 @@ bool TileMap::load(const std::string& jsonFile,int x , int y ) {
                     };
                     if(layerData["name"] == "taskboard")
                     {
-
+                        
                     }   
                     else
                     {
@@ -238,21 +224,6 @@ bool TileMap::load(const std::string& jsonFile,int x , int y ) {
                             break;
                         }
                     }
-                    // layer->ObjectsTextures.push_back(new sf::Texture());    
-                    // if(!layer->ObjectsTextures.back()->loadFromFile(tilesets.back()[tilesetIndex].File))
-                    // {
-                    //     std::cerr << "Error loading texture from file: " << tilesets.back()[tilesetIndex].File << std::endl;
-                    //     return false;
-                    // }
-                    // // Use the texture from the tileset
-                    // layer->ObjectsSprite.push_back(new sf::Sprite());
-                    // layer->ObjectsSprite.back()->setTexture(*layer->ObjectsTextures.back());
-                    // layer->ObjectsSprite.back()->setPosition(objectData["x"]+x, float(objectData["y"])+ y - float(objectData["height"]));
-                    // layer->ObjectsSprite.back()->scale(
-                    //     float(objectData["width"]) / tilesets.back()[tilesetIndex].tileWidth,
-                    //     float(objectData["height"]) / tilesets.back()[tilesetIndex].tileHeight
-                    // );
-                    // layer->hitboxes.push_back(new Hitbox(sf::FloatRect(objectData["x"]+x, objectData["y"]+y-32,32.0f,32.0f)));
                     layer->entities.push_back(new Wall(
                         objectData["name"],
                         tilesets.back()[tilesetIndex].File,
@@ -286,23 +257,100 @@ bool TileMap::load(const std::string& jsonFile,int x , int y ) {
 
 void TileMap::draw(sf::RenderTarget& target, sf::RenderStates states)const
 {
-    // std::cout<< "Drawing TileMap from file: " << File << std::endl;
+    target.setView(target.getDefaultView()); // Reset the view to the default view
+    for(auto  x :entities)
+    {
+        if(auto character = dynamic_cast<Character*>(x))
+        {
+            sf::View view (character->getPosition(), sf::Vector2f(1216, 672));
+            target.setView(view); // Set the view to the character's position
+        }
+    }
     for(auto x : layers)
     {
-        if(x->visible)
+        if(x->type==Layer::ObjectGroup)
+        {
+            auto objectLayer = static_cast<ObjectLayer*>(x);
+            int i = 0 , j = 0 ;
+            while(i<objectLayer->entities.size() && j<entities.size())
+            {
+                if(*objectLayer->entities[i] < *entities[j])
+                {
+                    objectLayer->entities[i]->draw(target,states) ; 
+                    i++ ; 
+                }
+                else
+                {
+                    entities[j]->draw(target,states) ; 
+                    j++ ; 
+                }
+            }
+            while(i<objectLayer->entities.size())
+            {
+                objectLayer->entities[i]->draw(target,states) ; 
+                i++ ; 
+            }
+            while(j<entities.size())
+            {
+                entities[j]->draw(target,states) ; 
+                j++ ; 
+            }
+        }
+        else if(x->visible)
         {
             x->draw(target,states);
         }
     }
 }
-bool TileMap::handleEvent(const sf::Event& event) 
+bool TileMap::handleEvent(const sf::Event& event,sf::RenderWindow* window) 
 {
+    for(auto&x : entities)
+    {
+        x->handleEvent(event,window) ; 
+    }
     return 0; 
 }
-bool TileMap::update(sf::Time dt)
+bool TileMap::update(const sf::Time& dt)
 {
+    for(auto&x : entities)
+    {
+        x->update(dt) ; 
+    }
+    for(auto &x :layers)
+    {
+        if(x->type == Layer::ObjectGroup)
+        {
+            auto objectLayer = static_cast<ObjectLayer*>(x);
+            for(auto&entities : objectLayer->entities)
+            {
+                entities->update(dt) ;  
+            }
+        }
+    }
+    
+    auto drawingOrder = [](const Entity* a, const Entity* b)
+    {
+        return (a->getHitbox().hitbox.top + a->getHitbox().hitbox.height < b->getHitbox().hitbox.top + b->getHitbox().hitbox.height) ||
+        (a->getHitbox().hitbox.top + a->getHitbox().hitbox.height == b->getHitbox().hitbox.top + b->getHitbox().hitbox.height &&
+        a->getHitbox().hitbox.left + a->getHitbox().hitbox.width < b->getHitbox().hitbox.left + b->getHitbox().hitbox.width);
+    };
+
+    //sort according to render order 
+    sort(entities.begin(),entities.end(),drawingOrder);
+    
+    for(auto &x :layers)
+    {
+        if(x->type == Layer::ObjectGroup)
+        {
+            auto objectLayer = static_cast<ObjectLayer*>(x);
+            sort(objectLayer->entities.begin(),objectLayer->entities.end(),drawingOrder);
+        }
+    }
+
     return 0; 
 }
+
+
 void TileMap::handleCollision()
 {
     for(auto layer : layers)if(layer->type == Layer::ObjectGroup)
