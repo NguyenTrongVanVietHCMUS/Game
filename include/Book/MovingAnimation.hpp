@@ -3,7 +3,17 @@
 #include<Book/Entity.hpp>
 class MovingAnimation : public sf::Drawable  
 {
-
+private : 
+    int BIT_SET(int mask, int bit) {
+        return mask | (1 << bit);
+    }
+    int BIT_CLEAR(int mask, int bit) {
+        return mask & ~(1 << bit);
+    }
+    bool BIT(int mask, int bit) {
+        return (mask & (1 << bit)) != 0;
+    }
+    
 public :
     MovingAnimation(sf::Texture* texture , sf::Vector2u imageCount, float switchTime,sf::Vector2f& position); // Constructor with parameters
     ~MovingAnimation();

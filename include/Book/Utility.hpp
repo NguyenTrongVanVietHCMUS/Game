@@ -11,12 +11,6 @@
 #include<SFML/Audio.hpp>
 #include<SFML/Network.hpp>
 
-
-#define Mask(x) (1 << (x)) // Bitmask for setting bits
-#define BIT(x,y) ((x) & (1 << (y))) // Check if the y-th bit is set in x
-#define BIT_SET(x,y) ((x) |= (1 << (y))) // Set the y-th bit in x
-#define BIT_CLEAR(x,y) ((x) &= ~(1 << (y))) // Clear the y-th bit in x
-
 const int width = 1216; // Width of the game window
 const int height = 672; // Height of the game window
 

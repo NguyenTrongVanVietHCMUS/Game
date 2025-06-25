@@ -12,6 +12,7 @@ MovingAnimation::MovingAnimation(sf::Texture* texture  , sf::Vector2u imageCount
     sprite.setTexture(*texture); 
     sprite.setScale(-2.15f, 2.15f);
     speed = 400.0f; 
+    mask = 0 ; 
 };  
 MovingAnimation::~MovingAnimation()
 {
@@ -21,7 +22,6 @@ void MovingAnimation::draw(sf::RenderTarget& target,sf::RenderStates states)cons
 {
     states.texture = texture; 
     target.draw(sprite, states);
-
 }
 void MovingAnimation::handleEvent(const sf::Event& event,sf::RenderWindow* window)
 {    
@@ -35,10 +35,13 @@ void MovingAnimation::handleEvent(const sf::Event& event,sf::RenderWindow* windo
         {
             mask = BIT_SET(mask,DOWN) ; 
         }
+       
         if(event.key.code==sf::Keyboard::A)
         {
             mask = BIT_SET(mask,LEFT) ; 
         }
+       
+
         if(event.key.code==sf::Keyboard::D)
         {
             mask = BIT_SET(mask,RIGHT) ; 
@@ -54,6 +57,7 @@ void MovingAnimation::handleEvent(const sf::Event& event,sf::RenderWindow* windo
         {
             mask = BIT_CLEAR(mask,DOWN) ; 
         }
+       
         if(event.key.code==sf::Keyboard::A)
         {
             mask = BIT_CLEAR(mask,LEFT) ; 
@@ -63,7 +67,6 @@ void MovingAnimation::handleEvent(const sf::Event& event,sf::RenderWindow* windo
             mask = BIT_CLEAR(mask,RIGHT) ; 
         }
     }
-    // std::cout<<"Mask: " << mask << std::endl ;// Debugging output to check the mask vadslue
 }
 void MovingAnimation::update(const sf::Time& deltaTime)
 {

@@ -20,18 +20,6 @@ void Jungle::draw()
 bool Jungle::update(const sf::Time& dt)
 {
     map->update(dt);
-    // for(auto &x : map->layers)
-    // {
-    //     if(x->type == Layer::ObjectGroup)
-    //     {
-    //         auto objectLayer = static_cast<ObjectLayer*>(x);
-    //         for(auto x : objectLayer->entities)
-    //         {
-    //             std::cout<<x->getHitbox().hitbox.top+x->getHitbox().hitbox.height<<std::endl; // Debugging output to check entity positions
-    //         }
-    //     }
-
-    // }
     return 0; 
 }
 bool Jungle::handleEvent(const sf::Event& event)
