@@ -1,91 +1,98 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="V:\Game\SourceCode\Control\Hitbox.cpp">
+    <ClCompile Include="D:\HCMUS\3Semester\Project\Game\SourceCode\Control\Hitbox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="V:\Game\SourceCode\Control\MusicPlayer.cpp">
+    <ClCompile Include="D:\HCMUS\3Semester\Project\Game\SourceCode\Control\MusicPlayer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="V:\Game\SourceCode\Control\ProjectileHolder.cpp">
+    <ClCompile Include="D:\HCMUS\3Semester\Project\Game\SourceCode\Control\ProjectileHolder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="V:\Game\SourceCode\Control\SkillHolder.cpp">
+    <ClCompile Include="D:\HCMUS\3Semester\Project\Game\SourceCode\Control\SkillHolder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="V:\Game\SourceCode\Control\SkillLoader.cpp">
+    <ClCompile Include="D:\HCMUS\3Semester\Project\Game\SourceCode\Control\SkillLoader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="V:\Game\SourceCode\Control\SoundPlayer.cpp">
+    <ClCompile Include="D:\HCMUS\3Semester\Project\Game\SourceCode\Control\SoundPlayer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="V:\Game\SourceCode\Control\State.cpp">
+    <ClCompile Include="D:\HCMUS\3Semester\Project\Game\SourceCode\Control\State.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="V:\Game\SourceCode\Control\StateStack.cpp">
+    <ClCompile Include="D:\HCMUS\3Semester\Project\Game\SourceCode\Control\StateStack.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="V:\Game\SourceCode\Control\WeaponHolder.cpp">
+    <ClCompile Include="D:\HCMUS\3Semester\Project\Game\SourceCode\Control\WeaponHolder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="V:\Game\SourceCode\Game\Character.cpp">
+    <ClCompile Include="D:\HCMUS\3Semester\Project\Game\SourceCode\Control\WeaponLoader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="V:\Game\SourceCode\Game\Collision.cpp">
+
+
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="V:\Game\SourceCode\Game\Entity.cpp">
+    <ClCompile Include="D:\HCMUS\3Semester\Project\Game\SourceCode\Game\Entity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="V:\Game\SourceCode\Game\Game.cpp">
+    <ClCompile Include="D:\HCMUS\3Semester\Project\Game\SourceCode\Game\Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="V:\Game\SourceCode\Game\MovingAnimation.cpp">
+    <ClCompile Include="D:\HCMUS\3Semester\Project\Game\SourceCode\Game\MovingAnimation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="V:\Game\SourceCode\Game\Projectile.cpp">
+    <ClCompile Include="D:\HCMUS\3Semester\Project\Game\SourceCode\Game\Projectile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="V:\Game\SourceCode\Game\Skill.cpp">
+    <ClCompile Include="D:\HCMUS\3Semester\Project\Game\SourceCode\Game\Skill.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="V:\Game\SourceCode\Game\TileMap.cpp">
+    <ClCompile Include="D:\HCMUS\3Semester\Project\Game\SourceCode\Game\TileMap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="V:\Game\SourceCode\Game\Weapon.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="V:\Game\SourceCode\Game\World.cpp">
+  <ClCompile Include="V:\Game\SourceCode\Game\World.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="V:\Game\SourceCode\Object\Projectiles\Bullet.cpp">
+
+    <ClCompile Include="D:\HCMUS\3Semester\Project\Game\SourceCode\Game\Weapon.cpp">
+
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="V:\Game\SourceCode\Object\Skills\TestSkill.cpp">
+    <ClCompile Include="D:\HCMUS\3Semester\Project\Game\SourceCode\Game\World.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="V:\Game\SourceCode\Object\Weapons\Gun\Gun.cpp">
+    <ClCompile Include="D:\HCMUS\3Semester\Project\Game\SourceCode\Object\Projectiles\Bullet.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="V:\Game\SourceCode\Screens\Dungeon\Jungle.cpp">
+    <ClCompile Include="D:\HCMUS\3Semester\Project\Game\SourceCode\Object\Skills\TestSkill.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="V:\Game\SourceCode\Screens\Lobby.cpp">
+    <ClCompile Include="D:\HCMUS\3Semester\Project\Game\SourceCode\Object\Weapons\Gun\Gun.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="V:\Game\SourceCode\Screens\Title.cpp">
+    <ClCompile Include="D:\HCMUS\3Semester\Project\Game\SourceCode\Screens\Dungeon\Jungle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="V:\Game\SourceCode\main.cpp">
+    <ClCompile Include="D:\HCMUS\3Semester\Project\Game\SourceCode\Screens\Lobby.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\HCMUS\3Semester\Project\Game\SourceCode\Screens\Title.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\HCMUS\3Semester\Project\Game\SourceCode\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="V:\Game\CMakeLists.txt" />
+    <CustomBuild Include="D:\HCMUS\3Semester\Project\Game\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{3A18CDD1-272F-34D3-A366-7336451E226B}</UniqueIdentifier>
+      <UniqueIdentifier>{F6BA6FD8-66AE-39B7-9B25-143288709452}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

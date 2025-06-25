@@ -3,13 +3,20 @@
 #include<iostream>
 #include<fstream>
 #include<vector>
+
 #include<algorithm>
+
+#include<memory>
+
 #include<cmath> 
 #include<SFML/Graphics.hpp>
 #include<SFML/Window.hpp>
 #include<SFML/System.hpp>
 #include<SFML/Audio.hpp>
 #include<SFML/Network.hpp>
+
+#include <nlohmann/json.hpp>
+
 
 const int width = 1216; // Width of the game window
 const int height = 672; // Height of the game window

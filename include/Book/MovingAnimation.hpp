@@ -1,6 +1,9 @@
 #pragma once
 #include<Book/Utility.hpp>
+
 #include<Book/Entity.hpp>
+#include<Control/Hitbox.hpp>
+
 class MovingAnimation : public sf::Drawable  
 {
 private : 
@@ -16,10 +19,12 @@ private :
     
 public :
     MovingAnimation(sf::Texture* texture , sf::Vector2u imageCount, float switchTime,sf::Vector2f& position); // Constructor with parameters
+    MovingAnimation(sf::Texture* texture , sf::Vector2u imageCount, float switchTime,sf::Vector2f& position,Hitbox &hitbox, float scale = 2.55f); // Constructor with parameters
     ~MovingAnimation();
     virtual void update(const sf::Time& deltaTime);
     virtual void handleEvent(const sf::Event& event,sf::RenderWindow* window);
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states)const;
+
     virtual void handleCollision(Entity* other);
     // sf::Vector2f getPosition() const { return sprite.getPosition(); } // Get the current position of the animation
     sf::Sprite sprite;
@@ -47,6 +52,8 @@ public :
     float speed ; 
     float totalTime; 
     float switchTime; 
+    float scale;
+    
     int row; 
     int state;
     sf::Vector2f middlePosition; // Center
@@ -57,4 +64,5 @@ private :
         sprite.setOrigin(middlePosition.x*uvRect.width, middlePosition.y*uvRect.height);
         sprite.setTextureRect(uvRect); 
     }
+
 };

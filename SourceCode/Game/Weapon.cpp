@@ -18,3 +18,9 @@ void Weapon::UpdateAngle(const sf::Event& event, sf::RenderWindow* window) {
         angle = std::atan2(direction.y, direction.x) * 180 / 3.14159f; // Convert radians to degrees
     }
 }
+
+
+void Weapon::setHolder(Entity* holder) {
+    this->holder = holder; // Set the holder entity for the weapon
+    skillHolder.setEntity(holder); // Set the entity for the skill holder
+}

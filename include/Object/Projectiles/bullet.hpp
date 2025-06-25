@@ -4,9 +4,9 @@
 class Bullet : public Projectile
 {
 public:
-    Bullet(const sf::Vector2f& position, const sf::Vector2f& direction);
-    void update(sf::Time dt) override;
+    Bullet(std::string name, const sf::Vector2f& position, const sf::Vector2f& direction);
+    bool update(const sf::Time& dt) override;
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
-    void handleEvent(const sf::Event& event) override;
+    bool handleEvent(const sf::Event& event, sf::RenderWindow* window) override;
 
 };

@@ -1,7 +1,7 @@
 #include "Object/Projectiles/Bullet.hpp"
 
-Bullet::Bullet(const sf::Vector2f& position, const sf::Vector2f& direction)
-    :Projectile(position, direction, 1000.0f, 10.0f, 5.0f, EntityType::EntityType_Ally)
+Bullet::Bullet(std::string name, const sf::Vector2f& position, const sf::Vector2f& direction)
+    :Projectile(name, position, direction, 1000.0f, 10.0f, 5.0f, EntityType::EntityType_Ally)
 {
     // Load the texture and set the sprite
     if (!texture.loadFromFile("Media/Assets/Projectiles/PurpleBullet.png")) {
@@ -20,7 +20,7 @@ Bullet::Bullet(const sf::Vector2f& position, const sf::Vector2f& direction)
     //sprite.setScale(0.5f, 0.5f); // Scale the sprite to half its size
 }
 
-void Bullet::update(sf::Time dt)
+bool Bullet::update(const sf::Time &dt)
 {
     // Normalize the direction vector to speed up the bullet
     velocity = velocity / std::sqrt(velocity.x * velocity.x + velocity.y * velocity.y) * speed;
@@ -44,6 +44,7 @@ void Bullet::update(sf::Time dt)
         // Mark the bullet for removal
         selfDestruct();
     }
+    return true;
 }
 
 void Bullet::draw(sf::RenderTarget& target, sf::RenderStates states) const
@@ -52,7 +53,8 @@ void Bullet::draw(sf::RenderTarget& target, sf::RenderStates states) const
     target.draw(sprite, states);
 }
 
-void Bullet::handleEvent(const sf::Event& event)
+bool Bullet::handleEvent(const sf::Event& event, sf::RenderWindow* window)
 {
     // Handle events specific to the bullet
+    return true;
 }

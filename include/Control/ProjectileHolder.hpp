@@ -11,7 +11,7 @@ public:
     void removeProjectile(Projectile* projectile);
     void updateProjectiles(sf::Time dt);
     void drawProjectiles(sf::RenderTarget& target, sf::RenderStates states) const;
-    void handleEvents(const sf::Event& event);
+    void handleEvents(const sf::Event& event, sf::RenderWindow* window);
 
 private:
     std::vector<std::unique_ptr<Projectile>> projectiles;
