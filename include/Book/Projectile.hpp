@@ -3,7 +3,6 @@
 #include <Book/Utility.hpp>
 #include <Book/Entity.hpp>
 
-#pragma once
 // interface for a projectile class
 class Projectile : public Entity
 {

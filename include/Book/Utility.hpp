@@ -4,6 +4,7 @@
 #include<fstream>
 #include<vector>
 #include<memory>
+#include<algorithm>
 #include<cmath> 
 #include<SFML/Graphics.hpp>
 #include<SFML/Window.hpp>

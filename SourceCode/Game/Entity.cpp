@@ -2,7 +2,6 @@
 
 Entity::Entity(std::string name , sf::Vector2f position) : name(name) , position(position)
 {
-    
 }
 Entity::~Entity()
 {
@@ -14,14 +13,17 @@ bool Entity::handleEvent(const sf::Event& event,sf::RenderWindow* window)
 }
 bool Entity::update(const sf::Time& dt)
 {
-    std::cout<<"Entity updating"<<std::endl;
+    // std::cout<<"Entity updating"<<std::endl;
     return false;
 }
 void Entity::draw(sf::RenderTarget& target, sf::RenderStates states)const 
 {
-    
+    hitbox.draw(target,states) ;  
 }
-
+Hitbox Entity::getHitbox() const
+{
+    return hitbox ;
+}
 bool Entity::isAlive() const
 {
 	return HP > 0; // Check if the entity is alive based on its HP
@@ -59,3 +61,10 @@ void Entity::updateHitboxOnPosition(sf::Time deltaTime)
     std::cerr << "Updating hitbox position to: " << position.x << ", " << position.y << std::endl;
 }
 
+
+void Entity::collide(const Entity* other)
+{
+    // Handle collision logic here
+    // This is a placeholder function and should be implemented in derived classes
+    std::cout << "Collided with entity: " << other->name << std::endl;
+}

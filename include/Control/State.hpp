@@ -49,21 +49,18 @@ class State
 		virtual void		draw(){return;};
 		virtual bool		update(const sf::Time& dt){return 0 ; };
 		virtual bool		handleEvent(const sf::Event& event){return false ;}
+		virtual void		handleCollision();
 
 
 	protected:
 		void				requestStackPush(States::ID stateID);
 		void				requestStackPop();
 		void				requestStateClear();
-
 		Context				getContext() const;
 
 	protected :
 		StateStack*			mStack;
 		Context				mContext;
-
-		std::vector<Entity*> entities ;  
-		std::vector<Entity*> objects ; 
-		TileMap*map ; 
+		TileMap* map ; 
 };
 
