@@ -1,9 +1,10 @@
 #include <Screens/Dungeon/Jungle.hpp>
+#include<Object/Character/Knight.hpp>
 Jungle::Jungle(StateStack& stack,Context context):
     State(stack,context) 
 {         
     map = new TileMap(context.maps->get(Map::ID::Jungle));
-    entities.push_back(new Character("Knight",&context.textures->get(Textures::ID::Knight),sf::Vector2u(8,3),0.05f,map->startingPoint)) ; 
+    map->entities.push_back(new Knight(&context.textures->get(Textures::ID::Knight),sf::Vector2u(8,3),0.1f,map->startingPoint)); // Assuming Texture::ID::Knight is defined in your TextureHolder
 }
 
 Jungle::~Jungle()
@@ -13,32 +14,30 @@ Jungle::~Jungle()
 
 void Jungle::draw() 
 {
-    sf::View view(entities[0]->getPosition(),sf::Vector2f(1216,672)); 
-    getContext().window->setView(view); // Set the view for the window
     getContext().window->draw(*map);
-
-    for(auto&entity: entities)
-    {
-        getContext().window->draw(*entity);
-    }
 }
 
 bool Jungle::update(const sf::Time& dt)
 {
     map->update(dt);
-    for(auto entity : entities)
-    {
-        entity->update(dt); 
-    }
+    // for(auto &x : map->layers)
+    // {
+    //     if(x->type == Layer::ObjectGroup)
+    //     {
+    //         auto objectLayer = static_cast<ObjectLayer*>(x);
+    //         for(auto x : objectLayer->entities)
+    //         {
+    //             std::cout<<x->getHitbox().hitbox.top+x->getHitbox().hitbox.height<<std::endl; // Debugging output to check entity positions
+    //         }
+    //     }
+
+    // }
     return 0; 
 }
 bool Jungle::handleEvent(const sf::Event& event)
 {
-    sf::RenderWindow* window = getContext().window ; 
-    for(auto entity : entities)
-    {
-        entity->handleEvent(event,window); 
-    }  
+    sf::RenderWindow*window = getContext().window;
+    map->handleEvent(event, window); // Handle events for the map and entities
     if (event.type == sf::Event::KeyPressed)
     {
         if (event.key.code == sf::Keyboard::Escape)

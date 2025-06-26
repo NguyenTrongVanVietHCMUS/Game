@@ -41,3 +41,9 @@ State::Context State::getContext() const
 {
 	return mContext;
 }
+void State::handleCollision()
+{
+	// Handle collision logic here
+	// This is a placeholder function and should be implemented in derived classes
+	map->handleCollision() ; 
+} 

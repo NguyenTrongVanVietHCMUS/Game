@@ -44,3 +44,8 @@ bool Character::update(const sf::Time& deltaTime)
     updateHitboxOnPosition(deltaTime); // Update the hitbox position based on the entity's current position
     return false;
 }
+void Character::collide(Entity* other)
+{
+    // Handle collision logic specific to the character
+    movingAnimation.handleCollision(other); 
+}

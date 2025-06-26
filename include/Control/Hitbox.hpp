@@ -1,8 +1,7 @@
 #pragma once 
 #include <Book/Utility.hpp>
 
-
-class Hitbox
+class Hitbox:public sf::Drawable
 {
 public:
     Hitbox(); // Constructor with default position
@@ -14,4 +13,6 @@ public:
     void draw(sf::RenderTarget& target, sf::RenderStates states) const; // Draw the hitbo
     void update(sf::Time dt);
     void update(const sf::Sprite & sprite); // Set the size of the hitbox based on the sprite
+    //bool isColliding(Hitbox& other);
+    void draw(sf::RenderTarget& target, sf::RenderStates states) const ; // Draw the hitbox
 };

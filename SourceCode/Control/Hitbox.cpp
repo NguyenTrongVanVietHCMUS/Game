@@ -9,21 +9,18 @@ Hitbox::~Hitbox()
 {
     // Destructor implementation
 }
-bool Hitbox::isColliding(const Hitbox& other) const
+bool Hitbox::isColliding(Hitbox& other) 
 {
-    // Check for collision using SFML's FloatRect::intersects method
     return hitbox.intersects(other.hitbox);
 }
-
-void Hitbox::draw(sf::RenderTarget& target, sf::RenderStates states) const
+void Hitbox::draw(sf::RenderTarget& target, sf::RenderStates states) const 
 {
-    // Draw the hitbox as a rectangle (for debugging purposes)
-    sf::RectangleShape rectangle(sf::Vector2f(hitbox.width, hitbox.height));
-    rectangle.setPosition(hitbox.left, hitbox.top);
-    rectangle.setFillColor(sf::Color(255, 0, 0, 100)); // Semi-transparent red color
-    target.draw(rectangle, states);
+    // Draw the hitbox as a rectangle shape for visualization
+    sf::RectangleShape shape(sf::Vector2f(hitbox.width, hitbox.height));
+    shape.setPosition(hitbox.left, hitbox.top);
+    shape.setFillColor(sf::Color(255, 0, 0, 128)); // semi-transparent red for visibility
+    target.draw(shape, states); // Draw the hitbox shape
 }
-
 // Note: The velocity member variable should be defined in the Entity class
 
 void Hitbox::update(sf::Sprite const & sprite)

@@ -8,8 +8,6 @@
 #include "Control/StateIdentifiers.hpp"
 class Jungle : public State 
 {
-private : 
- 
 public:
     Jungle(StateStack&stack ,Context context);
     ~Jungle(); 
