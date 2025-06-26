@@ -97,11 +97,16 @@ void MovingAnimation::update(const sf::Time& deltaTime)
     {
         state = MOVING;
     }
-    if (BIT(mask,LEFT)) {
-        sprite.setScale(-scale, scale);
-    } else {
-        sprite.setScale(scale, scale);
+    if(mask)
+    {
+        if (BIT(mask,LEFT)) 
+        {
+            sprite.setScale(-scale, scale);
+        } else {
+            sprite.setScale(scale, scale);
+        }
     }
+    
     currentImage.y = state;
 
     totalTime += deltaTime.asSeconds();
