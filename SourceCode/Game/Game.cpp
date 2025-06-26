@@ -71,9 +71,7 @@ void Game::PollEvents()
 
 void Game::Update(const sf::Time& dt)
 {
-
     stateStack.update(dt) ;
-
 }
 
 void Game::Render()

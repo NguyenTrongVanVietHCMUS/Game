@@ -1,4 +1,4 @@
-#include"Book/MovingAnimation.hpp"
+#include<Book/MovingAnimation.hpp>
 
 MovingAnimation::MovingAnimation(sf::Texture* texture  , sf::Vector2u imageCount,float switchTime,sf::Vector2f& position):texture(texture),imageCount(imageCount), switchTime(switchTime) , position(position)
 {
@@ -10,25 +10,11 @@ MovingAnimation::MovingAnimation(sf::Texture* texture  , sf::Vector2u imageCount
     uvRect.width = int(texture->getSize().x / float(imageCount.x)); 
     uvRect.height = int(texture->getSize().y / float(imageCount.y)); 
     sprite.setTexture(*texture); 
-    sprite.setScale(-2.15f, 2.15f);
-    speed = 400.0f; 
+    scale = 2.15f ; 
+    sprite.setScale(-scale, scale);
+    speed = 650.0f; 
     mask = 0 ; 
-};  
-
-MovingAnimation::MovingAnimation(sf::Texture* texture  , sf::Vector2u imageCount,float switchTime,sf::Vector2f& position,Hitbox &hitbox, float scale):texture(texture),imageCount(imageCount), switchTime(switchTime) , position(position), scale(scale)
-{
-    totalTime = 0; 
-    row = 0; 
-    uvRect.top = 0; 
-    uvRect.left = 0; 
-    currentImage.x = 0 ; 
-    uvRect.width = int(texture->getSize().x / float(imageCount.x)); 
-    uvRect.height = int(texture->getSize().y / float(imageCount.y)); 
-    sprite.setTexture(*texture); 
-    speed = 800.0f; 
-    hitbox.hitbox = sf::FloatRect(position.x, position.y, uvRect.width / 1.5f * scale, uvRect.height / 1.4f * scale); 
-    
-};  
+}
 
 MovingAnimation::~MovingAnimation()
 {
@@ -111,13 +97,13 @@ void MovingAnimation::update(const sf::Time& deltaTime)
     {
         state = MOVING;
     }
-
     if (BIT(mask,LEFT)) {
         sprite.setScale(-scale, scale);
     } else {
         sprite.setScale(scale, scale);
     }
     currentImage.y = state;
+
     totalTime += deltaTime.asSeconds();
     
     if (totalTime >= switchTime)
@@ -131,9 +117,7 @@ void MovingAnimation::update(const sf::Time& deltaTime)
     }
     uvRect.left = currentImage.x * uvRect.width;
     uvRect.top = currentImage.y * uvRect.height;
-
     setSpritePosition(); 
-
 }
 void MovingAnimation::handleCollision(Entity* other)
 {

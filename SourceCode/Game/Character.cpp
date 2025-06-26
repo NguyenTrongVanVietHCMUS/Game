@@ -6,7 +6,7 @@ Character::Character(
     sf::Vector2u imageCount, 
     float switchTime, 
     sf::Vector2f position
-):Entity(name,position),movingAnimation(texture,imageCount,switchTime,this->position,hitbox)
+):Entity(name,position),movingAnimation(texture,imageCount,switchTime,this->position)
 {
     skillHolder.setEntity(this); // Set the entity for the skill holder
     skillHolder.setSkill(SkillLoader::loadSkills("Test Skill", 1.0f)); // Load a skill for the character

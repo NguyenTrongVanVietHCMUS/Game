@@ -53,12 +53,6 @@ void Entity::restoreHealth(int amount)
         HP = maxHP;
     }
 }
-void Entity::collide(const Entity* other)
-{
-    // Handle collision logic here
-    // This is a placeholder function and should be implemented in derived classes
-    std::cout << "Collided with entity: " << other->name << std::endl;
-}
 
 void Entity::updateHitboxOnPosition(sf::Time deltaTime)
 {
@@ -67,3 +61,10 @@ void Entity::updateHitboxOnPosition(sf::Time deltaTime)
     std::cerr << "Updating hitbox position to: " << position.x << ", " << position.y << std::endl;
 }
 
+
+void Entity::collide(const Entity* other)
+{
+    // Handle collision logic here
+    // This is a placeholder function and should be implemented in derived classes
+    std::cout << "Collided with entity: " << other->name << std::endl;
+}

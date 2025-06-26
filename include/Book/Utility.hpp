@@ -3,11 +3,8 @@
 #include<iostream>
 #include<fstream>
 #include<vector>
-
-#include<algorithm>
-
 #include<memory>
-
+#include<algorithm>
 #include<cmath> 
 #include<SFML/Graphics.hpp>
 #include<SFML/Window.hpp>

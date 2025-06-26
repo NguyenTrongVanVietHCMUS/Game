@@ -13,7 +13,6 @@ bool Hitbox::isColliding(Hitbox& other)
 {
     return hitbox.intersects(other.hitbox);
 }
-
 void Hitbox::draw(sf::RenderTarget& target, sf::RenderStates states) const 
 {
     // Draw the hitbox as a rectangle shape for visualization
@@ -25,3 +24,4 @@ void Hitbox::draw(sf::RenderTarget& target, sf::RenderStates states) const
 
 
 // Note: The velocity member variable should be defined in the Entity class
+
