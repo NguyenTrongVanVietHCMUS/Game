@@ -10,9 +10,12 @@ MovingAnimation::MovingAnimation(sf::Texture* texture  , sf::Vector2u imageCount
     uvRect.width = int(texture->getSize().x / float(imageCount.x)); 
     uvRect.height = int(texture->getSize().y / float(imageCount.y)); 
     sprite.setTexture(*texture); 
-    sprite.setScale(-2.15f, 2.15f);
-    speed = 400.0f; 
-};  
+    scale = 2.15f ; 
+    sprite.setScale(-scale, scale);
+    speed = 650.0f; 
+    mask = 0 ; 
+}
+
 MovingAnimation::~MovingAnimation()
 {
 
@@ -99,6 +102,7 @@ void MovingAnimation::update(const sf::Time& deltaTime)
         sprite.setScale(scale, scale);
     }
     currentImage.y = state;
+
     totalTime += deltaTime.asSeconds();
     
     if (totalTime >= switchTime)

@@ -7,6 +7,7 @@ V:\Game\SourceCode\Control\SoundPlayer.cpp;V:\Game\build\Game.dir\Release\SoundP
 V:\Game\SourceCode\Control\State.cpp;V:\Game\build\Game.dir\Release\State.obj
 V:\Game\SourceCode\Control\StateStack.cpp;V:\Game\build\Game.dir\Release\StateStack.obj
 V:\Game\SourceCode\Control\WeaponHolder.cpp;V:\Game\build\Game.dir\Release\WeaponHolder.obj
+V:\Game\SourceCode\Control\WeaponLoader.cpp;V:\Game\build\Game.dir\Release\WeaponLoader.obj
 V:\Game\SourceCode\Game\Character.cpp;V:\Game\build\Game.dir\Release\Character.obj
 V:\Game\SourceCode\Game\Collision.cpp;V:\Game\build\Game.dir\Release\Collision.obj
 V:\Game\SourceCode\Game\Entity.cpp;V:\Game\build\Game.dir\Release\Entity.obj
