@@ -5,6 +5,7 @@
 #include <Book/Entity.hpp>
 #include <Book/Object.hpp>
 #include <Book/Collision.hpp>
+#include<Control/Hitbox.hpp>
 using json = nlohmann::json;
 
 class Layer:public sf::Drawable 
@@ -32,6 +33,8 @@ public:
     std::string name ; 
     Type type;
     bool visible;
+    Hitbox area;// Area of the layer, if applicable
+
 }; 
 struct Tileset {
     std::string File ; 
@@ -141,7 +144,7 @@ public:
     std::vector<Layer*> layers;
     Collision collision; // Assuming Collision is a class that handles collision detection
     bool loadFromFile(const std::string& jsonFile);
-    bool load(const std::string& jsonFile, int x, int y);
+    bool load(const std::string& jsonFile, int x, int y,int height, int width);
     bool handleEvent(const sf::Event& event, sf::RenderWindow* window);
     bool update(const sf::Time& dt);
     void draw(sf::RenderTarget& target, sf::RenderStates states)const;

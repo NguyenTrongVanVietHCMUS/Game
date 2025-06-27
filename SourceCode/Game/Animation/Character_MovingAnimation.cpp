@@ -1,32 +1,16 @@
 #include<Book/MovingAnimation.hpp>
 
-MovingAnimation::MovingAnimation(sf::Texture* texture  , sf::Vector2u imageCount,float switchTime,sf::Vector2f& position):texture(texture),imageCount(imageCount), switchTime(switchTime) , position(position)
+Character_MovingAnimation::Character_MovingAnimation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f& position, float scale, sf::Vector2f middlePosition)
+    :MovingAnimation(texture, imageCount, switchTime, position, scale, middlePosition)
 {
-    totalTime = 0; 
-    row = 0; 
-    uvRect.top = 0; 
-    uvRect.left = 0; 
-    currentImage.x = 0 ; 
-    uvRect.width = int(texture->getSize().x / float(imageCount.x)); 
-    uvRect.height = int(texture->getSize().y / float(imageCount.y)); 
-    sprite.setTexture(*texture); 
-    scale = 2.15f ; 
-    sprite.setScale(-scale, scale);
-    speed = 650.0f; 
-    mask = 0 ; 
+    
 }
 
-MovingAnimation::~MovingAnimation()
+Character_MovingAnimation::~Character_MovingAnimation()
 {
 
 }
-
-void MovingAnimation::draw(sf::RenderTarget& target,sf::RenderStates states)const
-{
-    states.texture = texture; 
-    target.draw(sprite, states);
-}
-void MovingAnimation::handleEvent(const sf::Event& event,sf::RenderWindow* window)
+void Character_MovingAnimation::handleEvent(const sf::Event& event,sf::RenderWindow* window)
 {    
     if(event.type==sf::Event::KeyPressed)
     {
@@ -59,7 +43,6 @@ void MovingAnimation::handleEvent(const sf::Event& event,sf::RenderWindow* windo
         {
             mask = BIT_CLEAR(mask,DOWN) ; 
         }
-       
         if(event.key.code==sf::Keyboard::A)
         {
             mask = BIT_CLEAR(mask,LEFT) ; 
@@ -70,7 +53,7 @@ void MovingAnimation::handleEvent(const sf::Event& event,sf::RenderWindow* windo
         }
     }
 }
-void MovingAnimation::update(const sf::Time& deltaTime)
+void Character_MovingAnimation::update(const sf::Time& deltaTime)
 {
     oldPosition = position ;  
     if(BIT(mask,UP))
@@ -102,7 +85,9 @@ void MovingAnimation::update(const sf::Time& deltaTime)
         if (BIT(mask,LEFT)) 
         {
             sprite.setScale(-scale, scale);
-        } else {
+        } 
+        else if(BIT(mask,RIGHT))
+        {
             sprite.setScale(scale, scale);
         }
     }
@@ -124,10 +109,11 @@ void MovingAnimation::update(const sf::Time& deltaTime)
     uvRect.top = currentImage.y * uvRect.height;
     setSpritePosition(); 
 }
-void MovingAnimation::handleCollision(Entity* other)
+void Character_MovingAnimation::handleCollision(const Entity* other)
 {
     // Handle collision logic here
     // This is a placeholder function and should be implemented with actual collision handling logic
-    position = oldPosition ; 
+    position = oldPosition ;    
+    std::cout<<oldPosition.x<<" "<<oldPosition.y<<" collided with "<<other->name<<std::endl;
     setSpritePosition(); 
 }

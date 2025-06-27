@@ -66,5 +66,5 @@ void Entity::collide(const Entity* other)
 {
     // Handle collision logic here
     // This is a placeholder function and should be implemented in derived classes
-    std::cout << "Collided with entity: " << other->name << std::endl;
+    //std::cout << "Collided with entity: " << other->name << std::endl;
 }

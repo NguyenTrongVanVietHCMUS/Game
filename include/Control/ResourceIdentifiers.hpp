@@ -13,6 +13,7 @@ namespace Textures
 	enum ID
 	{
 		Knight,
+		Boar,
 		TitleScreen,
 		Buttons,
 		ExtraButtons,

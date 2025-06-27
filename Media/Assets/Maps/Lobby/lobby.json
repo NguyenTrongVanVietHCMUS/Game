@@ -255,7 +255,7 @@
                 {
                  "height":0,
                  "id":140,
-                 "name":"startingpoint",
+                 "name":"StartingPoint",
                  "point":true,
                  "rotation":0,
                  "type":"Point",
