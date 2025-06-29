@@ -14,5 +14,5 @@ public:
     void update(sf::Time dt);
     void update(const sf::Sprite & sprite); // Set the size of the hitbox based on the sprite
     //bool isColliding(Hitbox& other);
-    void draw(sf::RenderTarget& target, sf::RenderStates states) const ; // Draw the hitbox
+    //void draw(sf::RenderTarget& target, sf::RenderStates states) const ; // Draw the hitbox
 };

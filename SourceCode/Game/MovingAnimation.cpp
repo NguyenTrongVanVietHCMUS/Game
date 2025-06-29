@@ -13,6 +13,22 @@ MovingAnimation::MovingAnimation(sf::Texture* texture  , sf::Vector2u imageCount
     sprite.setScale(-2.15f, 2.15f);
     speed = 400.0f; 
 };  
+
+MovingAnimation::MovingAnimation(sf::Texture* texture  , sf::Vector2u imageCount,float switchTime,sf::Vector2f& position,Hitbox &hitbox, float scale):texture(texture),imageCount(imageCount), switchTime(switchTime) , position(position)
+{
+    totalTime = 0; 
+    row = 0; 
+    uvRect.top = 0; 
+    uvRect.left = 0; 
+    currentImage.x = 0 ; 
+    uvRect.width = int(texture->getSize().x / float(imageCount.x)); 
+    uvRect.height = int(texture->getSize().y / float(imageCount.y)); 
+    sprite.setTexture(*texture); 
+    sprite.setScale(-scale, scale);
+    this->scale = scale;
+    speed = 400.0f; 
+}
+
 MovingAnimation::~MovingAnimation()
 {
 

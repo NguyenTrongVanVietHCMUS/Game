@@ -24,7 +24,7 @@ public:
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override
     {
         movingAnimation.draw(target, states);
-        skillHolder.draw(target, states); // Draw the skill holder
+        //skillHolder.draw(target, states); // Draw the skill holder
         weaponHolder.draw(target, states); // Draw the weapon holder
 
 
