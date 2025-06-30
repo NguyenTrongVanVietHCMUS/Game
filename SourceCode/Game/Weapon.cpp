@@ -14,6 +14,7 @@ void Weapon::UpdateAngle(const sf::Event& event, sf::RenderWindow* window) {
         sf::Vector2f direction = worldPosition - position;
        
         angle = std::atan2(direction.y, direction.x) * 180 / 3.14159f; // Convert radians to degrees
+        // std::cerr << "Get angle: " << angle << std::endl;
     }
     else if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Right) {
         // If the right mouse button is pressed, update the angle to face the mouse position

@@ -4,10 +4,38 @@
             "fileName": "room1.json",
             "height": 480,
             "width": 480,
-            "x": 0,
-            "y": 0
+            "x": -960,
+            "y": 1568
+        },
+        {
+            "fileName": "../../Lobby/startingroom.json",
+            "height": 736,
+            "width": 736,
+            "x": 544,
+            "y": -64
+        },
+        {
+            "fileName": "../../Lobby/pathway1.json",
+            "height": 224,
+            "width": 736,
+            "x": -192,
+            "y": 192
+        },
+        {
+            "fileName": "../../Lobby/battleroom1.json",
+            "height": 1120,
+            "width": 1120,
+            "x": -1312,
+            "y": -256
+        },
+        {
+            "fileName": "../../Lobby/pathway2.json",
+            "height": 704,
+            "width": 224,
+            "x": -832,
+            "y": 864
         }
-    ],  
+    ],
     "onlyShowAdjacentMaps": false,
     "type": "world"
 }

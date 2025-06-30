@@ -3,6 +3,7 @@
 #include <fstream>
 #include<Book/Wall.hpp>
 #include<Book/Character.hpp>
+#include<Object/Character/Knight.hpp>
 TileMap::TileMap()
 {
 
@@ -29,11 +30,12 @@ bool TileMap::loadFromFile(const std::string& jsonFile)
         std::filesystem::path jsonPath(jsonFile);
         std::filesystem::path jsonDir = jsonPath.parent_path();
         std::filesystem::path resolvedPath = jsonDir / path;
-        if(!load(resolvedPath.string(),x,y))return false ;  
+        if(!load(resolvedPath.string(),x,y,data["height"],data["width"]))return false;
     }
     return true ; 
 }
-bool TileMap::load(const std::string& jsonFile,int x , int y ) {
+bool TileMap::load(const std::string& jsonFile,int x , int y,int height, int width ) 
+{
 
     File = jsonFile ; 
     // Load JSON file
@@ -68,16 +70,16 @@ bool TileMap::load(const std::string& jsonFile,int x , int y ) {
     }
     
     // Load layers
-    for (auto& layerData : mapData["layers"]) 
+    for (auto& layerData : mapData["layers"])
     {
-        if (layerData["type"] == "imagelayer") 
+        if (layerData["type"] == "imagelayer")
         {
             std::string imagePath = layerData["image"];
             std::filesystem::path jsonPath(jsonFile);
             std::filesystem::path jsonDir = jsonPath.parent_path();
             std::filesystem::path resolvedImagePath = jsonDir / imagePath;
             // Resolve imagePath relative to the JSON file's directory
-            
+
             // Load the background texture
             sf::Texture backgroundTexture;
             if (!backgroundTexture.loadFromFile(resolvedImagePath.string())) {
@@ -86,23 +88,23 @@ bool TileMap::load(const std::string& jsonFile,int x , int y ) {
             // backgroundTexture.loadFromFile("Media/Assets/Maps/Title/background.png");
             layers.push_back(new ImageLayer());
             auto layer = static_cast<ImageLayer*>(layers.back());
-            layer->type = Layer::ImageLayer ; 
+            layer->type = Layer::ImageLayer;
             layer->name = layerData["name"];
             layer->visible = layerData["visible"];
-            layer->texture.loadFromFile(resolvedImagePath.string()) ; 
+            layer->texture.loadFromFile(resolvedImagePath.string());
             layer->sprite.setTexture(layer->texture);
-            layer->sprite.setPosition(layerData["x"]+x, layerData["y"]+y);
+            layer->sprite.setPosition(layerData["x"] + x, layerData["y"] + y);
         }
-        else if(layerData["type"] == "tilelayer")
+        else if (layerData["type"] == "tilelayer")
         {
             layers.push_back(new TileLayer());
-            auto layer = static_cast<TileLayer*>(layers.back()) ; 
+            auto layer = static_cast<TileLayer*>(layers.back());
             layer->type = Layer::TileLayer;
             layer->name = layerData["name"];
             layer->visible = layerData["visible"];
             layer->width = layerData["width"];
             layer->height = layerData["height"];
-            layer->setPosition(layerData["x"]+x, layerData["y"]+y);
+            layer->setPosition(layerData["x"] + x, layerData["y"] + y);
             // Load tile data
             layer->vertices.resize(tilesets.back().size());
             for (size_t i = 0; i < tilesets.back().size(); ++i) {
@@ -110,26 +112,26 @@ bool TileMap::load(const std::string& jsonFile,int x , int y ) {
                 layer->vertices[i].resize(layerData["data"].size() * 4);
             }
             layer->tilesets = tilesets.back();
-            for(int i=0;i<layerData["data"].size();i++)
+            for (int i = 0; i < layerData["data"].size(); i++)
             {
                 int tileId = layerData["data"][i];
-                if(tileId == 0) continue ; // Skip empty tiles
-                size_t tilesetIndex = 0 ; 
-                for(size_t j=0;j<tilesets.back().size();j++)
+                if (tileId == 0) continue; // Skip empty tiles
+                size_t tilesetIndex = 0;
+                for (size_t j = 0; j < tilesets.back().size(); j++)
                 {
-                    if(tileId >= tilesets.back()[j].firstGid && tileId < tilesets.back()[j].firstGid + tilesets.back()[j].tileCount)
+                    if (tileId >= tilesets.back()[j].firstGid && tileId < tilesets.back()[j].firstGid + tilesets.back()[j].tileCount)
                     {
-                        tilesetIndex = j ; 
-                        break ; 
+                        tilesetIndex = j;
+                        break;
                     }
                 }
-                int localTileId = tileId - tilesets.back()[tilesetIndex].firstGid ;
-                float tileX = (localTileId % tilesets.back()[tilesetIndex].columns) * tilesets.back()[tilesetIndex].tileWidth*1.0f;
-                float tileY = (localTileId / tilesets.back()[tilesetIndex].columns) * tilesets.back()[tilesetIndex].tileHeight*1.0f;
-                
+                int localTileId = tileId - tilesets.back()[tilesetIndex].firstGid;
+                float tileX = (localTileId % tilesets.back()[tilesetIndex].columns) * tilesets.back()[tilesetIndex].tileWidth * 1.0f;
+                float tileY = (localTileId / tilesets.back()[tilesetIndex].columns) * tilesets.back()[tilesetIndex].tileHeight * 1.0f;
+
                 // Calculate the position of the tile in the layer
-                float X = (i % layer->width) * tilesets.back()[tilesetIndex].tileWidth*1.0f;
-                float Y = (i / layer->width) * tilesets.back()[tilesetIndex].tileHeight*1.0f;
+                float X = (i % layer->width) * tilesets.back()[tilesetIndex].tileWidth * 1.0f;
+                float Y = (i / layer->width) * tilesets.back()[tilesetIndex].tileHeight * 1.0f;
 
                 // Define the vertices for the tile
                 sf::Vertex* quad = &layer->vertices[tilesetIndex][i * 4];
@@ -145,80 +147,80 @@ bool TileMap::load(const std::string& jsonFile,int x , int y ) {
                 quad[3].texCoords = sf::Vector2f(tileX, tileY + tilesets.back()[tilesetIndex].tileHeight);
             }
         }
-        else if(layerData["type"] == "objectgroup")
+        else if (layerData["type"] == "objectgroup")
         {
             layers.push_back(new ObjectLayer());
             auto layer = static_cast<ObjectLayer*>(layers.back());
             layer->type = Layer::ObjectGroup;
             layer->name = layerData["name"];
             layer->visible = layerData["visible"];
-            layer->setPosition(layerData["x"]+x, layerData["y"]+y);
+            layer->setPosition(layerData["x"] + x, layerData["y"] + y);
             // Load object
-            for(auto& objectData : layerData["objects"]) 
+            for (auto& objectData : layerData["objects"])
             {
-                if (objectData["type"] == "Object") 
+                if (objectData["type"] == "Object")
                 {
                     int gid = objectData["gid"];
                     size_t tilesetIndex = 0;
-                    for (size_t j = 0; j < tilesets.back().size(); ++j) 
+                    for (size_t j = 0; j < tilesets.back().size(); ++j)
                     {
-                        if (gid == tilesets.back()[j].firstGid ) 
+                        if (gid == tilesets.back()[j].firstGid)
                         {
                             tilesetIndex = j;
                             break;
                         }
                     }
                     auto getHitbox = [&]()->sf::FloatRect
-                    {
-                        int hitboxId = -1;
-                        for (const auto& prop : objectData["properties"]) {
-                            if (prop["name"] == "hitbox" && prop["type"] == "object") {
-                                hitboxId = prop["value"];
-                                break;
-                            }
-                        }
-                        for(auto& objectHitbox:layerData["objects"])
                         {
-                            if(objectHitbox["id"]==hitboxId) 
-                            {
-                                return sf::FloatRect(objectHitbox["x"]+x, objectHitbox["y"]+y, objectHitbox["width"], objectHitbox["height"]) ; 
+                            int hitboxId = -1;
+                            for (const auto& prop : objectData["properties"]) {
+                                if (prop["name"] == "hitbox" && prop["type"] == "object") {
+                                    hitboxId = prop["value"];
+                                    break;
+                                }
                             }
-                        }
-                    };
-                    if(layerData["name"] == "taskboard")
+                            for (auto& objectHitbox : layerData["objects"])
+                            {
+                                if (objectHitbox["id"] == hitboxId)
+                                {
+                                    return sf::FloatRect(objectHitbox["x"] + x, objectHitbox["y"] + y, objectHitbox["width"], objectHitbox["height"]);
+                                }
+                            }
+                        };
+                    if (layerData["name"] == "taskboard")
                     {
-                        
-                    }   
+
+                    }
                     else
                     {
                         layer->entities.push_back(new Object(
                             objectData["name"],
                             tilesets.back()[tilesetIndex].File,
-                            sf::Vector2f(objectData["x"]+x, objectData["y"]+y - float(objectData["height"])),
+                            sf::Vector2f(objectData["x"] + x, objectData["y"] + y - float(objectData["height"])),
                             getHitbox(),
                             float(objectData["width"]) / tilesets.back()[tilesetIndex].tileWidth,
                             float(objectData["height"]) / tilesets.back()[tilesetIndex].tileHeight
                         ));
                     }
-                } 
-                else if(objectData["type"] == "Collider") 
+                }
+                else if (objectData["type"] == "Collider")
                 {
                     layer->entities.push_back(new Entity(
                         "Collider",
-                        sf::Vector2f(objectData["x"]+x, objectData["y"]+y),
-                        sf::FloatRect(objectData["x"]+x,
-                        objectData["y"]+y,
-                        objectData["width"],
-                        objectData["height"])
+                        sf::Vector2f(objectData["x"] + x, objectData["y"] + y),
+                        sf::FloatRect(objectData["x"] + x,
+                            objectData["y"] + y,
+                            objectData["width"],
+                            objectData["height"])
                     ));
-                } 
-                else if(objectData["type"]=="Wall")
+                }
+                else if (objectData["type"] == "Wall")
                 {
                     int gid = objectData["gid"];
                     size_t tilesetIndex = 0;
-                    for (size_t j = 0; j < tilesets.back().size(); ++j) 
+                    for (size_t j = 0; j < tilesets.back().size(); ++j)
                     {
-                        if (gid == tilesets.back()[j].firstGid ) 
+                        if (gid == tilesets.back()[j].firstGid)
                         {
                             tilesetIndex = j;
                             break;
@@ -227,31 +229,33 @@ bool TileMap::load(const std::string& jsonFile,int x , int y ) {
                     layer->entities.push_back(new Wall(
                         objectData["name"],
                         tilesets.back()[tilesetIndex].File,
-                        sf::Vector2f(objectData["x"]+x, objectData["y"]+y- float(objectData["height"])),
-                        Hitbox(sf::FloatRect(objectData["x"]+x, objectData["y"]+y-32, 32.0f,32.0f)),
+                        sf::Vector2f(objectData["x"] + x, objectData["y"] + y - float(objectData["height"])),
+                        Hitbox(sf::FloatRect(objectData["x"] + x, objectData["y"] + y - 32, 32.0f, 32.0f)),
                         float(objectData["width"]) / tilesets.back()[tilesetIndex].tileWidth,
                         float(objectData["height"]) / tilesets.back()[tilesetIndex].tileHeight
                     ));
                 }
-                else if(objectData["type"] == "hitbox")
+                else if (objectData["type"] == "hitbox")
                 {
-                    continue ; 
+                    continue;
                 }
-                else if(objectData["type"]=="Point")
+                else if (objectData["type"] == "Point")
                 {
-                    if(objectData["name"]=="startingpoint")
+                    if (objectData["name"] == "StartingPoint")
                     {
-                        startingPoint = sf::Vector2f(objectData["x"]+x, objectData["y"]+y);
+                        startingPoint = sf::Vector2f(objectData["x"] + x, objectData["y"] + y);
                     }
                 }
-                else 
+                else
                 {
-                    std::cerr<<File<<std::endl; 
-                    return false ; 
+                    std::cerr << File << std::endl;
+                    return false;
                 }
             }
         }
+        layers.back()->area = Hitbox(sf::FloatRect (x, y, width, height));
     }
+    sort(layers.begin(), layers.end(), [](const Layer* x, const Layer* y) {return x->area < y->area; });
     return true;
 }
 
@@ -260,7 +264,7 @@ void TileMap::draw(sf::RenderTarget& target, sf::RenderStates states)const
     target.setView(target.getDefaultView()); // Reset the view to the default view
     for(auto  x :entities)
     {
-        if(auto character = dynamic_cast<Character*>(x))
+        if(auto character = dynamic_cast<Knight*>(x))
         {
             sf::View view (character->getPosition(), sf::Vector2f(1216, 672));
             target.setView(view); // Set the view to the character's position
@@ -312,10 +316,6 @@ bool TileMap::handleEvent(const sf::Event& event,sf::RenderWindow* window)
 }
 bool TileMap::update(const sf::Time& dt)
 {
-    for(auto&x : entities)
-    {
-        x->update(dt) ; 
-    }
     for(auto &x :layers)
     {
         if(x->type == Layer::ObjectGroup)
@@ -327,7 +327,11 @@ bool TileMap::update(const sf::Time& dt)
             }
         }
     }
-    
+    for(auto&x : entities)
+    {
+        x->update(dt) ; 
+    }
+    handleCollision();
     auto drawingOrder = [](const Entity* a, const Entity* b)
     {
         return (a->getHitbox().hitbox.top + a->getHitbox().hitbox.height < b->getHitbox().hitbox.top + b->getHitbox().hitbox.height) ||
@@ -346,26 +350,37 @@ bool TileMap::update(const sf::Time& dt)
             sort(objectLayer->entities.begin(),objectLayer->entities.end(),drawingOrder);
         }
     }
-
     return 0; 
 }
 
 
 void TileMap::handleCollision()
 {
-    for(auto layer : layers)if(layer->type == Layer::ObjectGroup)
+    //// entities intersect with entities 
+    //for(int i=0;i<entities.size();i++)
+    //{
+    //    for(int j=i+1;j<entities.size();j++)
+    //    {
+    //        if(entities[i]->getHitbox().hitbox.intersects(entities[j]->getHitbox().hitbox))
+    //        {
+    //            entities[i]->collide(entities[j]) ; 
+    //            entities[j]->collide(entities[i]) ; 
+    //        }
+    //    }
+    //}
+
+    // entities interesect with layers entities
+    for(auto x : entities)
     {
-        auto objectLayer = static_cast<ObjectLayer*>(layer);
-        for(auto entity : objectLayer->entities)
+        for(auto layer : layers)if(layer->type == Layer::ObjectGroup)
         {
-            if(Character* character = dynamic_cast<Character*>(entity))
+            auto objectLayer = static_cast<ObjectLayer*>(layer);
+            for(auto entity : objectLayer->entities)
             {
-                for(auto otherEntity : objectLayer->entities)
+                if(entity->getHitbox().hitbox.intersects(x->getHitbox().hitbox))
                 {
-                    if(character != otherEntity)
-                    {
-                        collision.handleCollision(character,otherEntity) ; 
-                    }
+                    x->collide(entity);
+                    entity->collide(x); 
                 }
             }
         }

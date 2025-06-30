@@ -1,10 +1,17 @@
 #include <Screens/Dungeon/Jungle.hpp>
 #include<Object/Character/Knight.hpp>
+#include<Object/Mob/Boar.hpp> 
+
 Jungle::Jungle(StateStack& stack,Context context):
     State(stack,context) 
 {         
     map = new TileMap(context.maps->get(Map::ID::Jungle));
-    map->entities.push_back(new Knight(&context.textures->get(Textures::ID::Knight),sf::Vector2u(8,3),0.1f,map->startingPoint, this)); // Assuming Texture::ID::Knight is defined in your TextureHolder
+    map->entities.push_back(new Knight(&context.textures->get(Textures::ID::Knight),map->startingPoint)); // Assuming Texture::ID::Knight is defined in your TextureHolder
+    for (int i = 1; i <= 50; i++)
+    {
+        map->entities.push_back(new Boar(&context.textures->get(Textures::ID::Boar), map->startingPoint)); // Add a Boar entity to the map
+    }
+
 }
 
 Jungle::~Jungle()
@@ -20,18 +27,6 @@ void Jungle::draw()
 bool Jungle::update(const sf::Time& dt)
 {
     map->update(dt);
-    // for(auto &x : map->layers)
-    // {
-    //     if(x->type == Layer::ObjectGroup)
-    //     {
-    //         auto objectLayer = static_cast<ObjectLayer*>(x);
-    //         for(auto x : objectLayer->entities)
-    //         {
-    //             std::cout<<x->getHitbox().hitbox.top+x->getHitbox().hitbox.height<<std::endl; // Debugging output to check entity positions
-    //         }
-    //     }
-
-    // }
     return 0; 
 }
 bool Jungle::handleEvent(const sf::Event& event)

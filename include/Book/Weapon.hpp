@@ -46,6 +46,6 @@ protected:
     sf::Sprite sprite;
     sf::Vector2f position; // Position of the weapon
     float angle = 0.f; // Angle of the weapon
-    std::string name; // Name of the weapon
+    std::string name; // Name of the weapon     
 };
 

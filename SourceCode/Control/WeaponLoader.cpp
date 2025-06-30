@@ -25,6 +25,7 @@ WeaponLoader::WeaponLoader()
     // Register default weapons here
     std::cerr << "Registering default weapons..." << std::endl;
     RegisterWeapon("Gun", std::make_unique<Gun>(nullptr, 1.0f)->clone());
+	RegisterWeapon("AK_47", std::make_unique<AK_47>(nullptr, 1.0f)->clone());
     // Add more weapons as needed
     // using nlohmann::json; to load from a JSON file and create weapons base on default weapons
     std::cerr << "Default weapons registered." << std::endl;

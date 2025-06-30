@@ -15,4 +15,12 @@ public:
     void update(const sf::Sprite & sprite); // Set the size of the hitbox based on the sprite
     //bool isColliding(Hitbox& other);
     //void draw(sf::RenderTarget& target, sf::RenderStates states) const ; // Draw the hitbox
+    void draw(sf::RenderTarget& target, sf::RenderStates states) const ; // Draw the hitbox
+    bool operator<(const Hitbox& other)const
+    {
+        return hitbox.top + hitbox.height < other.hitbox.top + other.hitbox.height || (
+            hitbox.top + hitbox.height == other.hitbox.top + other.hitbox.height &&
+            hitbox.left + hitbox.width < other.hitbox.left + other.hitbox.width
+			);
+    }
 };
