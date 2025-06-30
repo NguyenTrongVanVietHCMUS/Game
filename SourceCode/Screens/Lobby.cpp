@@ -4,7 +4,7 @@ Lobby::Lobby(StateStack& stack,Context context):
     State(stack,context) 
 {         
     map = new TileMap(context.maps->get(Map::ID::Lobby)); 
-    map->entities.push_back(new Knight(&context.textures->get(Textures::ID::Knight),sf::Vector2u(8,3),0.1f,map->startingPoint)); // Assuming Texture::ID::Knight is defined in your TextureHolder
+    map->entities.push_back(new Knight(&context.textures->get(Textures::ID::Knight),sf::Vector2u(8,3),0.1f,map->startingPoint, this)); // Assuming Texture::ID::Knight is defined in your TextureHolder
 }
 
 Lobby::~Lobby()

@@ -14,6 +14,7 @@ protected :
     MovingAnimation movingAnimation ; 
 public : 
     Character(std::string name , sf::Texture* texture,sf::Vector2u imageCount, float switchTime,sf::Vector2f position);
+    Character(std::string name , sf::Texture* texture,sf::Vector2u imageCount, float switchTime,sf::Vector2f position, State* map);
     ~Character(); 
 public : 
     //SkillHolder skillHolder;

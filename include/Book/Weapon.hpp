@@ -22,6 +22,7 @@ public:
     virtual void update(const sf::Time& deltaTime) = 0;
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) = 0;
     virtual void handleEvent(const sf::Event& event,sf::RenderWindow* window) = 0;
+    virtual void setCurrentMap(State* map) { skillHolder.setCurrentMap(map); } // Set the map for the weapon
     virtual Weapon* clone() = 0; // Clone the weapon
 
 public:
@@ -30,6 +31,7 @@ public:
     void setSpeed(float speed);
     void setHolder(Entity* holder);
     void UpdateAngle(const sf::Event& event,sf::RenderWindow* window);
+
 
 protected:
     std::string SkillName;

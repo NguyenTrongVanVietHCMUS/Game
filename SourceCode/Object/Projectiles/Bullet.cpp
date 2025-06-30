@@ -43,7 +43,7 @@ bool Bullet::update(const sf::Time &dt)
     if (elapsedTime >= lifetime)
     {
         // Mark the bullet for removal
-        std::cerr << elapsedTime << ' ' << lifetime << " Check the life time of projectile\n";
+        //std::cerr << elapsedTime << ' ' << lifetime << " Check the life time of projectile\n";
         selfDestruct();
     }
     hitbox.update(sprite); // Update the hitbox based on the sprite's position and size

@@ -6,6 +6,8 @@
 #include <future>
 #include <Book/Skill.hpp>
 #include <Book/Entity.hpp>
+
+class State;
 class Skill;
 class Entity;
 
@@ -27,7 +29,7 @@ public :
 	void update(const sf::Time& dt);
 	void handleEvent(const sf::Event& event, sf::RenderWindow* window);
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
-
+	void setCurrentMap(State* map);
 protected :
 	void asyncExecuteSkill();
 

@@ -11,7 +11,24 @@ Character::Character(
     //skillHolder.setEntity(this); // Set the entity for the skill holder
     //skillHolder.setSkill(SkillLoader::loadSkills("Test Skill", 1.0f)); // Load a skill for the character
     weaponHolder.addWeapon(WeaponLoader::Instance().GetWeapon("Sniper", this)); // Add a gun to the weapon holder
+
 }
+
+Character::Character(
+    std::string name , 
+    sf::Texture* texture,
+    sf::Vector2u imageCount, 
+    float switchTime, 
+    sf::Vector2f position,
+    State* map
+):Entity(name,position),movingAnimation(texture,imageCount,switchTime,this->position,hitbox)
+{
+    //skillHolder.setEntity(this); // Set the entity for the skill holder
+    //skillHolder.setSkill(SkillLoader::loadSkills("Test Skill", 1.0f)); // Load a skill for the character
+    weaponHolder.addWeapon(WeaponLoader::Instance().GetWeapon("Sniper", this)); // Add a gun to the weapon holder
+    weaponHolder.setCurrentMap(map); // Set the current map for the weapon holder
+}
+
 
 Character::~Character()
 {

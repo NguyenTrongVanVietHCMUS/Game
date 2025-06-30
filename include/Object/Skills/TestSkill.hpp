@@ -18,6 +18,7 @@ public:
 	void execute(Entity* user) override;
 	void update(sf::Time dt) override;
 	void handleEvent(const sf::Event& event, sf::RenderWindow* window) override;
+	void setCurrentMap(State* map) override { _projectileHolder.setCurrentMap(map); _map = map;} // Set the map for the skill
 	Skill* clone() override;
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 };

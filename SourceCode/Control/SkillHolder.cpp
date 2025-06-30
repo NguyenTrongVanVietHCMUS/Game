@@ -95,3 +95,7 @@ void SkillHolder::handleEvent(const sf::Event& event, sf::RenderWindow* window) 
 void SkillHolder::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 	_SelectedSkill->draw(target, states);
 }
+
+void SkillHolder::setCurrentMap(State* map) {
+	 if (_SelectedSkill) _SelectedSkill->setCurrentMap(map);	
+ } // Set the map for the skill

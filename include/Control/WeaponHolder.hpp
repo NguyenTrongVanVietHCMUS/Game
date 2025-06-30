@@ -20,6 +20,8 @@ public:
     Weapon* getCurrentWeapon() const;
     // Set the current weapon
     void setCurrentWeapon(Weapon* weapon);
+    // set Current map
+    void setCurrentMap(State* map) { if (currentWeapon) currentWeapon->setCurrentMap(map); }
     // update the current weapon based on the index
     void update(const sf::Time& deltaTime);
     // Draw the current weapon

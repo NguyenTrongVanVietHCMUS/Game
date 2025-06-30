@@ -1,7 +1,12 @@
 #include "Control/ProjectileHolder.hpp"
+#include <Control/State.hpp>
 void ProjectileHolder::addProjectile(Projectile * projectile)
 {
     projectiles.push_back(projectile);
+    if(CurrentMap)
+    {
+        CurrentMap->pushEntity(projectile);
+    }
 }
 
 void ProjectileHolder::removeProjectile(Projectile* projectile)
@@ -16,6 +21,9 @@ void ProjectileHolder::removeProjectile(Projectile* projectile)
 
 void ProjectileHolder::updateProjectiles(sf::Time dt)
 {
+
+    if(CurrentMap)
+        return; // if map set , use map's update function instead
     for (auto& projectile : projectiles)
     {
         if (projectile->isFlagDestruct())
@@ -33,7 +41,8 @@ void ProjectileHolder::updateProjectiles(sf::Time dt)
 
 void ProjectileHolder::drawProjectiles(sf::RenderTarget& target, sf::RenderStates states) const
 {
-
+    if(CurrentMap)
+        return; // if map set , use map's draw function instead
     for (const auto& projectile : projectiles)
     {
         
@@ -44,6 +53,8 @@ void ProjectileHolder::drawProjectiles(sf::RenderTarget& target, sf::RenderState
 
 void ProjectileHolder::handleEvents(const sf::Event& event, sf::RenderWindow* window)
 {
+    if(CurrentMap)
+        return; // if map set , use map's handleEvent function instead
     for (auto& projectile : projectiles)
     {
         projectile->handleEvent(event, window);

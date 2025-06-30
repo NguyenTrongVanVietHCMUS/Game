@@ -2,7 +2,7 @@
 #include<Book/Entity.hpp>
 
 #include<Control/Hitbox.hpp>
-
+class Entity;
 class Object : public Entity 
 {
 public : 
