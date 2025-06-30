@@ -13,7 +13,7 @@ public:
     //Weapon(const Weapon&) = default; // Copy constructor
     Weapon(Entity *Holder, WeaponType type, EntityType entityType, const std::string& name)
         : holder(Holder), type(type), entityType(entityType), name(name) {}
-    // Get the name of the weapon
+    // Get the name of the weapon       
     virtual std::string getName() {return "No Name";}
 
     // Get the type of the weapon
@@ -40,6 +40,6 @@ protected :
     sf::Sprite sprite;
     sf::Vector2f position; // Position of the weapon
     float angle = 0.f; // Angle of the weapon
-    std::string name; // Name of the weapon
+    std::string name; // Name of the weapon     
 };
 

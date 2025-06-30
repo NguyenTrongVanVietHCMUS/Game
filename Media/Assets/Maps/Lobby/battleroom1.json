@@ -1575,7 +1575,7 @@
          "y":0
         }],
  "nextlayerid":3,
- "nextobjectid":135,
+ "nextobjectid":136,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",
@@ -1619,6 +1619,19 @@
          "tilecount":3,
          "tileheight":32,
          "tilewidth":32
+        }, 
+        {
+         "columns":1,
+         "firstgid":6,
+         "image":"..\/Dungeon\/Jungle\/Fountain.png",
+         "imageheight":295,
+         "imagewidth":215,
+         "margin":0,
+         "name":"Fountain",
+         "spacing":0,
+         "tilecount":1,
+         "tileheight":295,
+         "tilewidth":215
         }],
  "tilewidth":32,
  "type":"map",

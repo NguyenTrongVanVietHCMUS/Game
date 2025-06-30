@@ -90,7 +90,12 @@ public :
 
 class Character_MovingAnimation : public MovingAnimation 
 {
-
+    enum Direction
+    {
+        LEFT,
+        RIGHT
+    }; 
+    Direction direction; 
 public :
     Character_MovingAnimation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f& position, float scale, sf::Vector2f middlePosition = sf::Vector2f(0.5f, 1)); // Constructor with parameters
     ~Character_MovingAnimation();

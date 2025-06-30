@@ -4,16 +4,16 @@
 #include<Book/Character.hpp>
 
 
-class Boar : public Character
+class GoblinShooter : public Character
 {
 public:
-    Boar(sf::Texture* texture, sf::Vector2f position) : Character("Boar", position)
+    GoblinShooter(sf::Texture* texture, sf::Vector2f position) : Character("GoblinShooter", position)
     {
-	    movingAnimation = std::make_unique<ShortRangeMob_MovingAnimation>(texture, sf::Vector2u(8, 3), 0.1f, this->position,2.5f);
-		movingAnimation->speed = 300.0f; // Set the speed of the boar
+        movingAnimation = std::make_unique<ShortRangeMob_MovingAnimation>(texture, sf::Vector2u(8, 3), 0.1f, this->position, 2.5f);
+        movingAnimation->speed = 300.0f; // Set the speed of the boar
     }
 
-    ~Boar() override = default; // Default destructor    
+    ~GoblinShooter() override = default; // Default destructor    
     Hitbox getHitbox() const
     {
         sf::Vector2f position = this->getPosition() - sf::Vector2f(22.0f, 12.0f);

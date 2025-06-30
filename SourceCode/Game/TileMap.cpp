@@ -316,10 +316,6 @@ bool TileMap::handleEvent(const sf::Event& event,sf::RenderWindow* window)
 }
 bool TileMap::update(const sf::Time& dt)
 {
-    for(auto&x : entities)
-    {
-        x->update(dt) ; 
-    }
     for(auto &x :layers)
     {
         if(x->type == Layer::ObjectGroup)
@@ -330,6 +326,10 @@ bool TileMap::update(const sf::Time& dt)
                 entities->update(dt) ;  
             }
         }
+    }
+    for(auto&x : entities)
+    {
+        x->update(dt) ; 
     }
     handleCollision();
     auto drawingOrder = [](const Entity* a, const Entity* b)

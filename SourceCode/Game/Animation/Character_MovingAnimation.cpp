@@ -3,7 +3,7 @@
 Character_MovingAnimation::Character_MovingAnimation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f& position, float scale, sf::Vector2f middlePosition)
     :MovingAnimation(texture, imageCount, switchTime, position, scale, middlePosition)
 {
-    
+	direction = rand() % 2 == 0 ? LEFT : RIGHT; // Randomly set the initial direction
 }
 
 Character_MovingAnimation::~Character_MovingAnimation()
@@ -52,6 +52,20 @@ void Character_MovingAnimation::handleEvent(const sf::Event& event,sf::RenderWin
             mask = BIT_CLEAR(mask,RIGHT) ; 
         }
     }
+    sf::Vector2i mousePixel = sf::Mouse::getPosition(*window);
+    sf::Vector2f worldPos = window->mapPixelToCoords(mousePixel, window->getView());
+    if (worldPos.x < position.x)
+    {
+		direction = LEFT;
+    }
+    else if (worldPos.x > position.x)
+    {
+        direction = RIGHT;
+    }
+    else
+    {
+        // stay the same 
+    }
 }
 void Character_MovingAnimation::update(const sf::Time& deltaTime)
 {
@@ -72,25 +86,24 @@ void Character_MovingAnimation::update(const sf::Time& deltaTime)
     {
         position.x += speed * deltaTime.asSeconds();
     }
-
-    if(position == oldPosition) {
+    if(position == oldPosition) 
+    {
         state = IDLE;
     }
     else 
     {
         state = MOVING;
     }
-    if(mask)
-    {
-        if (BIT(mask,LEFT)) 
+    // update the rotation base on position of mouse 
+
+        if (direction == LEFT)
         {
             sprite.setScale(-scale, scale);
         } 
-        else if(BIT(mask,RIGHT))
+        else
         {
             sprite.setScale(scale, scale);
         }
-    }
     
     currentImage.y = state;
 
