@@ -8,13 +8,6 @@
 
 class Entity:public sf::Drawable
 {
-protected :
-    int HP = 6; // Health Points
-    int maxHP = 6; // Maximum Health Points
-    int Energy = 3; // Energy Points
-    int maxEnergy = 3; // Maximum Energy Points
-    int shield = 2; // Shield Points
-    int maxShield = 2; // Maximum Shield Points
 
 public :
 
@@ -34,11 +27,6 @@ public :
     virtual bool update(const sf::Time& dt)  ;
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states)const ; // Draw the entity
     virtual Hitbox getHitbox()const ; // Get the hitbox of the entity
-
-public :
-	bool isAlive() const; // Check if the entity is alive
-	void takeDamage(int damage); // Apply damage to the entity
-	void restoreHealth(int amount); // Restore health points
 public :
     // utility functions
     void updateHitboxOnPosition(sf::Time deltaTime);
