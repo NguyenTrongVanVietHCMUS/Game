@@ -15,7 +15,7 @@ void TestSkill::execute(Entity* user)
     }
     // Create 2 bullets, one for each side of the user, No need to normalize
     Bullet *bullet = new Bullet("Bullet",user->getPosition(), bulletDirection, ProjectileSpeed , 20.0f);
-    _projectileHolder.addProjectile(std::unique_ptr<Bullet>(bullet));
+    _projectileHolder.addProjectile(bullet);
 }
 
 void TestSkill::update(sf::Time dt) 

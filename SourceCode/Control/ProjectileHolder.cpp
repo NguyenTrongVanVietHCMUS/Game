@@ -1,13 +1,13 @@
 #include "Control/ProjectileHolder.hpp"
-void ProjectileHolder::addProjectile(std::unique_ptr<Projectile> projectile)
+void ProjectileHolder::addProjectile(Projectile * projectile)
 {
-    projectiles.push_back(std::move(projectile));
+    projectiles.push_back(projectile);
 }
 
 void ProjectileHolder::removeProjectile(Projectile* projectile)
 {
     auto it = std::remove_if(projectiles.begin(), projectiles.end(),
-                             [projectile](const std::unique_ptr<Projectile>& p) { return p.get() == projectile; });
+                             [projectile](const Projectile* p) { return p == projectile; });
     if (it != projectiles.end())
     {
         projectiles.erase(it, projectiles.end());
@@ -21,7 +21,7 @@ void ProjectileHolder::updateProjectiles(sf::Time dt)
         if (projectile->isFlagDestruct())
         {
             std::cerr << "Projectile is marked for removal" << std::endl;
-            removeProjectile(projectile.get());
+            removeProjectile(projectile);
             updateProjectiles(dt); // Recurse to handle the next projectile after removal
             return; // Skip updating this projectile since it's marked for removal
         }
