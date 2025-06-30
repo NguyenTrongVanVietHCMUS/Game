@@ -7,6 +7,7 @@ class MovingAnimation : public sf::Drawable
 public :
     // MovingAnimation(sf::Texture* texture , sf::Vector2u imageCount, float switchTime,sf::Vector2f& position); // Constructor with parameters
     MovingAnimation(sf::Texture* texture , sf::Vector2u imageCount, float switchTime,sf::Vector2f& position); // Constructor with parameters
+    MovingAnimation(sf::Texture* texture  , sf::Vector2u imageCount,float switchTime,sf::Vector2f& position,Hitbox &hitbox, float scale = 2.15f); // Constructor with parameters and hitbox
     ~MovingAnimation();
     virtual void update(const sf::Time& deltaTime);
     virtual void handleEvent(const sf::Event& event,sf::RenderWindow* window);
