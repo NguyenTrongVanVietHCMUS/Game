@@ -16,7 +16,7 @@ Game::Game()
 		maps.load(Map::ID::Lobby, "Media/Assets/Maps/Lobby/lobby.world");
 		maps.load(Map::ID::Jungle, "Media/Assets/Maps/Dungeon/Jungle/jungle.world");
 
-		textures.load(Textures::ID::Knight, "Media/Assets/Characters/Knight/knight_0.png");
+		textures.load(Textures::ID::Knight, "Media/Assets/Characters/Knight/knight_1.png");
 		textures.load(Textures::ID::Boar, "Media/Assets/Mobs/Boar/M_Boar_Support.png");
 		
 		fonts.load(Fonts::ID::Title, "Media/Fonts/PressStart2P_Regular.ttf");
