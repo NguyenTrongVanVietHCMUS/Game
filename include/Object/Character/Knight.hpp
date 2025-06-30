@@ -12,6 +12,12 @@ public:
         movingAnimation.middlePosition = sf::Vector2f(2.0f/3, 1.0f); // Set the middle position for the knight
         // Initialize the knight-specific properties here if needed
     }   
+
+    Knight(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f position, State* map): Character("Knight", texture, imageCount, switchTime, position, map)
+    {
+        movingAnimation.middlePosition = sf::Vector2f(2.0f/3, 1.0f); // Set the middle position for the knight
+        // Initialize the knight-specific properties here if needed
+    }   
     
     ~Knight() override = default; // Default destructor    
     Hitbox getHitbox() const
@@ -24,7 +30,7 @@ public:
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override
     {
         movingAnimation.draw(target, states);
-        skillHolder.draw(target, states); // Draw the skill holder
+        //skillHolder.draw(target, states); // Draw the skill holder
         weaponHolder.draw(target, states); // Draw the weapon holder
 
 

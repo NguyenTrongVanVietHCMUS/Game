@@ -8,6 +8,11 @@ public:
     Hitbox(sf::FloatRect rect) : hitbox(rect) {} // Constructor with a rectangle
     ~Hitbox();
     sf::FloatRect hitbox; // Hitbox of the entity
-    bool isColliding(Hitbox& other);
-    void draw(sf::RenderTarget& target, sf::RenderStates states) const ; // Draw the hitbox
+
+    bool isColliding(const Hitbox& other) const;
+    void draw(sf::RenderTarget& target, sf::RenderStates states) const; // Draw the hitbo
+    void update(sf::Time dt);
+    void update(const sf::Sprite & sprite); // Set the size of the hitbox based on the sprite
+    //bool isColliding(Hitbox& other);
+    //void draw(sf::RenderTarget& target, sf::RenderStates states) const ; // Draw the hitbox
 };

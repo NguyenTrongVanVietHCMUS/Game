@@ -50,6 +50,8 @@ class State
 		virtual bool		update(const sf::Time& dt){return 0 ; };
 		virtual bool		handleEvent(const sf::Event& event){return false ;}
 		virtual void		handleCollision();
+		virtual void 	    pushEntity(Entity* entity) { map->entities.push_back(entity); }
+		virtual void 	    popEntity(Entity* entity) {}
 
 
 	protected:

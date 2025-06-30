@@ -6,7 +6,7 @@
 class Gun : public Weapon
 {
 public:
-    Gun(Entity* holder, float cooldownTime = 0.0f);
+    Gun(Entity* holder, float cooldownTime = 0.0f, float damage = 10.0f, float speed = 100.0f);
     //Gun(const Gun& other) = default; // Copy constructor
     ~Gun();
 
@@ -16,6 +16,7 @@ public:
     void update(const sf::Time& deltaTime) override;
 
     Weapon* clone() override{
-        return new Gun(holder, cooldownTime); // Create a new instance of Gun
+        std::cerr << "Cloning Gun with cooldown : " << cooldownTime << std::endl;
+        return new Gun(holder, cooldownTime, damage, speed); // Create a new instance of Gun
     };
 };

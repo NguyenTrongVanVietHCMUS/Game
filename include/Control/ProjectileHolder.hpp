@@ -2,17 +2,20 @@
 #include <memory>
 #include <Book/Projectile.hpp>
 
-#pragma once
+class State;
 
+#pragma once
+class Entity;
 class ProjectileHolder
 {
 public:
-    void addProjectile(std::unique_ptr<Projectile> projectile);
+    void addProjectile(Projectile * projectile);
     void removeProjectile(Projectile* projectile);
     void updateProjectiles(sf::Time dt);
     void drawProjectiles(sf::RenderTarget& target, sf::RenderStates states) const;
     void handleEvents(const sf::Event& event, sf::RenderWindow* window);
-
+    void setCurrentMap(State* map) { CurrentMap = map; }
 private:
-    std::vector<std::unique_ptr<Projectile>> projectiles;
+    std::vector<Projectile *> projectiles;
+    State* CurrentMap = nullptr;
 };

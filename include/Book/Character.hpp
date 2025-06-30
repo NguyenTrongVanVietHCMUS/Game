@@ -14,9 +14,10 @@ protected :
     MovingAnimation movingAnimation ; 
 public : 
     Character(std::string name , sf::Texture* texture,sf::Vector2u imageCount, float switchTime,sf::Vector2f position);
+    Character(std::string name , sf::Texture* texture,sf::Vector2u imageCount, float switchTime,sf::Vector2f position, State* map);
     ~Character(); 
 public : 
-    SkillHolder skillHolder;
+    //SkillHolder skillHolder;
     WeaponHolder weaponHolder;
     virtual void collide(Entity*other); 
     virtual bool handleEvent(const sf::Event& event,sf::RenderWindow* window) ;  
@@ -26,7 +27,7 @@ public :
     {
         hitbox.draw(target, states); // Draw the hitbox
         movingAnimation.draw(target, states);
-        skillHolder.draw(target, states); // Draw the skill holder
+        //skillHolder.draw(target, states); // Draw the skill holder
         weaponHolder.draw(target, states); // Draw the weapon holder
     }
 };

@@ -1,7 +1,7 @@
 #include <Object/Weapon/Gun.hpp>
 
-Gun::Gun(Entity* holder, float cooldownTime)
-    : Weapon(holder, WeaponType::WeaponType_Gun, EntityType::EntityType_Ally, "Gun")
+Gun::Gun(Entity* holder, float cooldownTime, float damage, float speed)
+    : Weapon(holder, WeaponType::WeaponType_Gun, EntityType::EntityType_Ally, "Gun", damage, speed)
 {
     // Load the texture for the gun
     if (!texture.loadFromFile("Media/Assets/Weapons/Gun/gun.png"))
@@ -13,7 +13,10 @@ Gun::Gun(Entity* holder, float cooldownTime)
     skillHolder.setEntity(holder); // Set the entity for the skill holder
     SkillName = "Test Skill"; // Set the skill name for the gun
     this->cooldownTime = cooldownTime; // Set the cooldown time for the gun
-    skillHolder.setSkill(SkillLoader::loadSkills(SkillName, cooldownTime)); // Load and set the skill for the gun
+    Skill *TargetSkill = SkillLoader::loadSkills(SkillName, cooldownTime); // Load the skill from the skill loader
+    TargetSkill->setProjectileSpeed(speed); // Set the projectile speed for the skill
+    skillHolder.setSkill(TargetSkill); // Load and set the skill for the gun
+
 }
 
 Gun::~Gun()
@@ -59,9 +62,7 @@ void Gun::update(const sf::Time& deltaTime)
 {
     // Update the gun's state
     skillHolder.update(deltaTime); // Update the skill holder
+    //std::cerr << "Gun cooldown time: " << cooldownTime << std::endl;
     // Additional update logic for the gun can be added here
 }
 
-void Weapon::setCooldownTime(float cooldownTime) {
-    skillHolder.setSkill(SkillLoader::loadSkills(SkillName, cooldownTime));
-}

@@ -9,7 +9,7 @@ Hitbox::~Hitbox()
 {
     // Destructor implementation
 }
-bool Hitbox::isColliding(Hitbox& other) 
+bool Hitbox::isColliding(const Hitbox& other) const
 {
     return hitbox.intersects(other.hitbox);
 }
@@ -23,3 +23,15 @@ void Hitbox::draw(sf::RenderTarget& target, sf::RenderStates states) const
 }
 // Note: The velocity member variable should be defined in the Entity class
 
+void Hitbox::update(sf::Sprite const & sprite)
+{
+    // Update the hitbox size based on the sprite's texture size
+    if (sprite.getTexture())
+    {
+        hitbox.width = static_cast<float>(sprite.getTexture()->getSize().x);
+        hitbox.height = static_cast<float>(sprite.getTexture()->getSize().y);
+    }
+    // Set the position of the hitbox to match the sprite's position
+    hitbox.left = sprite.getPosition().x - hitbox.width / 2;
+    hitbox.top = sprite.getPosition().y - hitbox.height / 2;
+}

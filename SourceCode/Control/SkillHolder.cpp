@@ -10,6 +10,9 @@ void SkillHolder::setSkill(Skill* skill) {
 		_skillFuture.wait(); // Wait for the previous skill to finish
 	}
 	if (skill) {
+		if(this->_SelectedSkill) {
+			delete this->_SelectedSkill; // Clean up the previous skill
+		}
 		this->_SelectedSkill = skill;
 	}
 }
@@ -33,6 +36,13 @@ void SkillHolder::asyncExecuteSkill() {
 		}
 		_isRunning = false;
 	});
+}
+
+void SkillHolder::setCooldownTime(float cooldownTime) {
+	if (_SelectedSkill) {
+		std::cerr << "Setting cooldown time: " << cooldownTime << std::endl;
+		_SelectedSkill->setCooldownTime(sf::seconds(cooldownTime)); // Set the cooldown time for the selected skill
+	}
 }
 
 void SkillHolder::SetRunSkill(Skill* skill) {
@@ -69,7 +79,7 @@ void SkillHolder::update(const sf::Time& deltaTime) {
 		}
 		if(_SelectedSkill->isTriggered()) {
 		 // Trigger cooldown if the skill was used
-			_SelectedSkill->resetTriggered();
+			//_SelectedSkill->resetTriggered();
 			UseSkill();
 		}
 	}
@@ -80,14 +90,12 @@ void SkillHolder::handleEvent(const sf::Event& event, sf::RenderWindow* window) 
 	{
 		_SelectedSkill->handleEvent(event, window);
 	}
-
-	if(event.type == sf::Event::KeyPressed) {
-		if(event.key.code == sf::Keyboard::E) { // Example key to trigger skill usage
-			UseSkill();
-		}
-	}
 }	
 
 void SkillHolder::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 	_SelectedSkill->draw(target, states);
 }
+
+void SkillHolder::setCurrentMap(State* map) {
+	 if (_SelectedSkill) _SelectedSkill->setCurrentMap(map);	
+ } // Set the map for the skill
