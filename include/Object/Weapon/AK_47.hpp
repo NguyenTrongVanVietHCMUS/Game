@@ -7,7 +7,7 @@ class AK_47 : public Weapon
 {
 public:
     AK_47(Entity* holder, float cooldownTime = 0.0f)
-        : Weapon(holder, WeaponType::WeaponType_Gun, EntityType::EntityType_Ally, "AK_47")
+        : Weapon(holder, WeaponType::WeaponType_Gun, EntityType::EntityType_Ally, "AK_47",3,120)
     {
         if (!texture.loadFromFile("Media/Assets/Weapons/Gun/AK_47.png"))
         {
@@ -19,6 +19,9 @@ public:
         SkillName = "Test Skill"; // Set the skill name for the AK_47
         this->cooldownTime = cooldownTime; // Set the cooldown time for the AK_47
         skillHolder.setSkill(SkillLoader::loadSkills(SkillName, cooldownTime)); // Load and set the skill for the AK_47
+        Skill* TargetSkill = SkillLoader::loadSkills(SkillName, cooldownTime); // Load the skill from the skill loader
+        TargetSkill->setProjectileSpeed(speed); // Set the projectile speed for the skill
+        skillHolder.setSkill(TargetSkill); // Load and set the skill for the gun
     }
     //AK_47(const AK_47& other) = default; // Copy constructor
     ~AK_47()

@@ -12,10 +12,7 @@ public:
     bool isColliding(const Hitbox& other) const;
     void draw(sf::RenderTarget& target, sf::RenderStates states) const; // Draw the hitbo
     void update(sf::Time dt);
-    void update(const sf::Sprite & sprite); // Set the size of the hitbox based on the sprite
-    //bool isColliding(Hitbox& other);
-    //void draw(sf::RenderTarget& target, sf::RenderStates states) const ; // Draw the hitbox
-    void draw(sf::RenderTarget& target, sf::RenderStates states) const ; // Draw the hitbox
+    void update(const sf::Sprite & sprite); // Set the size of the hitbox based on 
     bool operator<(const Hitbox& other)const
     {
         return hitbox.top + hitbox.height < other.hitbox.top + other.hitbox.height || (

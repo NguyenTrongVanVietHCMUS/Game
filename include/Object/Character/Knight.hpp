@@ -7,17 +7,12 @@
 class Knight : public Character
 {
 public:
-    Knight(sf::Texture* texture,  sf::Vector2f position): Character("Knight", position)
+    Knight(sf::Texture* texture,  sf::Vector2f position,State* state): Character("Knight", position)
     {
         movingAnimation = std::make_unique<Character_MovingAnimation>(texture, sf::Vector2u(8, 3), 0.1f, this->position, 2.1f, sf::Vector2f(2.0f/3, 1)); 
         movingAnimation->speed = 500.0f; 
+        this->weaponHolder.setCurrentMap(state);
         // Initialize the knight-specific properties here 
-    }   
-
-    Knight(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f position, State* map): Character("Knight", texture, imageCount, switchTime, position, map)
-    {
-        movingAnimation.middlePosition = sf::Vector2f(2.0f/3, 1.0f); // Set the middle position for the knight
-        // Initialize the knight-specific properties here if needed
     }   
     
     ~Knight() override = default; // Default destructor    
@@ -31,7 +26,6 @@ public:
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override
     {
         movingAnimation->draw(target, states);
-        skillHolder.draw(target, states); // Draw the skill holder
         weaponHolder.draw(target, states); // Draw 
         sf::RectangleShape hitboxshape(sf::Vector2f(getHitbox().hitbox.width, getHitbox().hitbox.height));
         hitboxshape.setPosition(sf::Vector2f(getHitbox().hitbox.left, getHitbox().hitbox.top));
