@@ -22,14 +22,18 @@ void ProjectileHolder::removeProjectile(Projectile* projectile)
 void ProjectileHolder::updateProjectiles(sf::Time dt)
 {
 
-    if(CurrentMap)
-        return; // if map set , use map's update function instead
+
     for (auto& projectile : projectiles)
     {
         if (projectile->isFlagDestruct())
         {
             std::cerr << "Projectile is marked for removal" << std::endl;
+            if (CurrentMap)
+            {
+                CurrentMap->popEntity(projectile); // Remove from the map's entity list
+            }
             removeProjectile(projectile);
+            
             updateProjectiles(dt); // Recurse to handle the next projectile after removal
             return; // Skip updating this projectile since it's marked for removal
         }

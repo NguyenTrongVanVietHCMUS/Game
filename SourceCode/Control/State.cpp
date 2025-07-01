@@ -47,3 +47,23 @@ void State::handleCollision()
 	// This is a placeholder function and should be implemented in derived classes
 	map->handleCollision() ; 
 } 
+
+void State::pushEntity(Entity* entity)
+{
+	if (map)
+	{
+		map->entities.push_back(entity);
+	}
+}
+
+void State::popEntity(Entity* entity)
+{
+	if (map)
+	{
+		auto it = std::remove(map->entities.begin(), map->entities.end(), entity);
+		if (it != map->entities.end())
+		{
+			map->entities.erase(it, map->entities.end());
+		}
+	}
+}

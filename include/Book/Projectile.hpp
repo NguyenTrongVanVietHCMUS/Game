@@ -23,7 +23,12 @@ protected:
     sf::Sprite sprite; // Sprite representing the projectile
     sf::Texture texture; // Texture for the projectile sprite
     virtual void selfDestruct() { isSelfDestructed = true; } // virtual function to handle self-destruction logic
-
+    void collide(const Entity* other) override
+    {
+        // Handle collision logic specific to the projectile
+        std::cout << "Projectile " << name << " collided with " << other->name << std::endl;
+        selfDestruct(); // Mark the projectile for self-destruction on collision
+    }
 private:
     bool isSelfDestructed = false; // Flag to indicate if the projectile is marked for self-destruction
 };
