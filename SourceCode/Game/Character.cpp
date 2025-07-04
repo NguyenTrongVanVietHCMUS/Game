@@ -5,10 +5,8 @@ Character::Character(
     sf::Vector2f position
 ):Entity(name,position)
 {
-    //skillHolder.setEntity(this); // Set the entity for the skill holder
-    //skillHolder.setSkill(SkillLoader::loadSkills("Test Skill", 1.0f)); // Load a skill for the character
-    weaponHolder.addWeapon(WeaponLoader::Instance().GetWeapon("Sniper", this)); // Add a gun to the weapon holder
-
+	type = Entity::Type::Entity; // Set the type of the entity
+    weaponHolder.addWeapon(WeaponLoader::Instance().GetWeapon("RapidGun", this)); // Add a gun to the weapon holder
 }
 
 
@@ -35,7 +33,6 @@ bool Character::update(const sf::Time& deltaTime)
 }
 void Character::collide(const Entity* other)
 {
-    // Handle collision logic specific to the character
-    std::cout << "Character " << name << " collided with " << other->name << std::endl;
+    
     movingAnimation->handleCollision(other); 
 }

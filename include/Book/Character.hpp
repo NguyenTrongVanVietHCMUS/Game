@@ -26,6 +26,11 @@ public :
     {
         movingAnimation->draw(target, states);
         weaponHolder.draw(target, states); // Draw the weapon 
-        hitbox.draw(target, states); // Draw the hitbox
+        hitbox.draw(target, states); // Draw the 
     }
 };
+// rikka 
+// sayori dark 
+//ryuko dark
+// rory mercury 
+// rymuru tempest 

@@ -16,6 +16,6 @@ public:
     void handleEvents(const sf::Event& event, sf::RenderWindow* window);
     void setCurrentMap(State* map) { CurrentMap = map; }
 private:
-    std::vector<Projectile *> projectiles;
+    std::vector<Projectile*> projectiles;
     State* CurrentMap = nullptr;
 };

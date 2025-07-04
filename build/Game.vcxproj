@@ -606,11 +606,12 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="V:\Game\SourceCode\Control\StateStack.cpp" />
     <ClCompile Include="V:\Game\SourceCode\Control\WeaponHolder.cpp" />
     <ClCompile Include="V:\Game\SourceCode\Control\WeaponLoader.cpp" />
+    <ClCompile Include="V:\Game\SourceCode\Game\Animation\Character_MovingAnimation.cpp" />
+    <ClCompile Include="V:\Game\SourceCode\Game\Animation\ShortRangeMob_MovingAnimation.cpp" />
     <ClCompile Include="V:\Game\SourceCode\Game\Character.cpp" />
     <ClCompile Include="V:\Game\SourceCode\Game\Collision.cpp" />
     <ClCompile Include="V:\Game\SourceCode\Game\Entity.cpp" />
     <ClCompile Include="V:\Game\SourceCode\Game\Game.cpp" />
-    <ClCompile Include="V:\Game\SourceCode\Game\MovingAnimation.cpp" />
     <ClCompile Include="V:\Game\SourceCode\Game\Projectile.cpp" />
     <ClCompile Include="V:\Game\SourceCode\Game\Skill.cpp" />
     <ClCompile Include="V:\Game\SourceCode\Game\TileMap.cpp" />

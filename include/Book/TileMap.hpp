@@ -4,8 +4,7 @@
 #include <nlohmann/json.hpp>
 #include <Book/Entity.hpp>
 #include <Book/Object.hpp>
-#include <Book/Collision.hpp>
-#include<Control/Hitbox.hpp>
+#include<set>
 using json = nlohmann::json;
 
 class Layer:public sf::Drawable 
@@ -135,20 +134,22 @@ class TileMap : public sf::Drawable
 {        
 private:
     std::vector<std::vector<Tileset>> tilesets;
+    bool load(const std::string& jsonFile, int x, int y, int height, int width); 
+    bool isCollide(Entity* entity1, Entity* entity2) const {
+        return entity1->getHitbox().hitbox.intersects(entity2->getHitbox().hitbox);
+	}
 public:
     TileMap();
     ~TileMap();     
+
     std::vector<Entity*> entities; 
     sf::Vector2f startingPoint; 
     std::string File;
     std::vector<Layer*> layers;
-    Collision collision; // Assuming Collision is a class that handles collision detection
-    bool loadFromFile(const std::string& jsonFile);
-    bool load(const std::string& jsonFile, int x, int y,int height, int width);
-    
+    bool loadFromFile(const std::string& jsonFile); 
     bool handleEvent(const sf::Event& event, sf::RenderWindow* window);
     bool update(const sf::Time& dt);
     void draw(sf::RenderTarget& target, sf::RenderStates states)const;
 
-    void handleCollision();
+    void handleCollision(); 
 };

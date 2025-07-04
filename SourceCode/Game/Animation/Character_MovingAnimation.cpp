@@ -122,11 +122,22 @@ void Character_MovingAnimation::update(const sf::Time& deltaTime)
     uvRect.top = currentImage.y * uvRect.height;
     setSpritePosition(); 
 }
+void Character_MovingAnimation::getshot(const Entity*other)
+{
+
+}   
 void Character_MovingAnimation::handleCollision(const Entity* other)
 {
     // Handle collision logic here
-    // This is a placeholder function and should be implemented with actual collision handling logic
-    position = oldPosition ;    
-    std::cout<<oldPosition.x<<" "<<oldPosition.y<<" collided with "<<other->name<<std::endl;
+    // This is a placeholder function and should be implemented with actual collision handling 
+    if(other->type==Entity::Type::EnemyProjectile)
+    {
+        getshot(other); 
+	}
+    if (other->type == Entity::Type::Object)
+    {
+        position = oldPosition; 
+    }
+    //std::cout << oldPosition.x << " " << oldPosition.y << " collided with " << other->name <<   std::endl;
     setSpritePosition(); 
 }

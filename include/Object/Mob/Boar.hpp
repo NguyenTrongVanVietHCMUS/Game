@@ -9,6 +9,7 @@ class Boar : public Character
 public:
     Boar(sf::Texture* texture, sf::Vector2f position) : Character("Boar", position)
     {
+		type = Entity::Type::Enemy; // Set the type of the entity
 	    movingAnimation = std::make_unique<ShortRangeMob_MovingAnimation>(texture, sf::Vector2u(8, 3), 0.1f, this->position,2.5f);
 		movingAnimation->speed = 300.0f; // Set the speed of the boar
     }

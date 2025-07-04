@@ -11,7 +11,7 @@ public:
     Projectile(std::string name, sf::Vector2f position, sf::Vector2f velocity, float speed, float damage, float lifetime, EntityType entityType)
         : Entity(name, position), velocity(velocity), speed(speed), damage(damage), lifetime(lifetime), elapsedTime(0.0f), entityType(entityType) {}
     virtual ~Projectile() = default;
-    bool isFlagDestruct();
+    bool isFlagDestruct(); 
 protected:
     Projectile() = default;
     sf::Vector2f velocity; // Velocity of the projectile

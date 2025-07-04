@@ -357,33 +357,40 @@ bool TileMap::update(const sf::Time& dt)
 void TileMap::handleCollision()
 {
     //// entities intersect with entities 
-    //for(int i=0;i<entities.size();i++)
-    //{
-    //    for(int j=i+1;j<entities.size();j++)
-    //    {
-    //        if(entities[i]->getHitbox().hitbox.intersects(entities[j]->getHitbox().hitbox))
-    //        {
-    //            entities[i]->collide(entities[j]) ; 
-    //            entities[j]->collide(entities[i]) ; 
-    //        }
-    //    }
-    //}
+	std::vector<std::pair<Entity*, Entity*>> collision; // To avoid checking the same pair twice
+    for(int i=0; i < entities.size(); ++i)
+    {
+        for(int j = i + 1; j < entities.size(); ++j)
+        {
+            if(isCollide(entities[i],entities[j]))
+            {
+				collision.emplace_back(std::minmax(entities[i], entities[j])); // Store the pair in sorted order
+            }
+        }
+	}
 
     // entities interesect with layers entities
-    for(auto x : entities)
+    for (auto& x : entities)
     {
-        for(auto layer : layers)if(layer->type == Layer::ObjectGroup)
+        for (auto& y : layers)
         {
-            auto objectLayer = static_cast<ObjectLayer*>(layer);
-            for(auto entity : objectLayer->entities)
+            if (y->type == Layer::ObjectGroup)
             {
-                if(entity->getHitbox().hitbox.intersects(x->getHitbox().hitbox))
+                auto objectLayer = static_cast<ObjectLayer*>(y);
+                for (auto& entity : objectLayer->entities)
                 {
-                    x->collide(entity);
-                    entity->collide(x); 
+                    if (isCollide(x, entity))
+                    {
+                        collision.emplace_back(std::minmax(x, entity)); // Store the pair in sorted order
+                    }
                 }
             }
         }
     }
-    // do nothing for now 
+    for (auto [x,y] : collision)
+    {
+        x->collide(y); // Handle collision for each pair
+        y->collide(x); // Handle collision for the reverse pair 
+    }
+    // Handle potential aftermath of collisions here
 }

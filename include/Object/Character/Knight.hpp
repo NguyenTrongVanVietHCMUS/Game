@@ -9,10 +9,11 @@ class Knight : public Character
 public:
     Knight(sf::Texture* texture,  sf::Vector2f position,State* state): Character("Knight", position)
     {
-        movingAnimation = std::make_unique<Character_MovingAnimation>(texture, sf::Vector2u(8, 3), 0.1f, this->position, 2.1f, sf::Vector2f(2.0f/3, 1)); 
+		type = Entity::Type::Ally; // Set the type of the entity
+        movingAnimation = std::make_unique<Character_MovingAnimation>(texture, sf::Vector2u(8, 3), 0.1f, this->position, 2.1f,sf::Vector2f(0.5,1)); 
         movingAnimation->speed = 500.0f; 
         this->weaponHolder.setCurrentMap(state);
-        // Initialize the knight-specific properties here 
+        weaponHolder.addWeapon(WeaponLoader::Instance().GetWeapon("RapidGun", this)); // Add a gun to the weapon 
     }   
     
     ~Knight() override = default; // Default destructor    
@@ -32,4 +33,8 @@ public:
         hitboxshape.setFillColor(sf::Color(255, 0, 0, 128)); // semi-transparent red for visibility
         target.draw(hitboxshape, states); // Draw the hitbox shape
     }
+    void collide(const Entity* other) override final 
+    {
+        movingAnimation->handleCollision(other); 
+	}
 };

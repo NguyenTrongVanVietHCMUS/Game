@@ -45,7 +45,7 @@ public :
         DEATH
     };
 
-public : 
+public:
     MovingAnimation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f& position, float scale, sf::Vector2f middlePosition)
         :texture(texture), imageCount(imageCount), switchTime(switchTime), position(position), scale(scale), middlePosition(middlePosition)
     {
@@ -60,7 +60,6 @@ public :
         sprite.setScale(-scale, scale);
         mask = 0; 
     }
-
     virtual ~MovingAnimation() 
     {
 		delete texture; // Assuming texture is dynamically allocated
@@ -73,35 +72,32 @@ public :
     {
         // do nothing ; 
     }
-
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states)const
     {
         states.texture = texture;
         target.draw(sprite, states);
     }
     virtual void handleCollision(const Entity* other) {} // Handle collision with another entity
+protected: 
+    Direction direction;
     void setSpritePosition()
     {
         sprite.setPosition(position);
         sprite.setOrigin(middlePosition.x * uvRect.width, middlePosition.y * uvRect.height);
         sprite.setTextureRect(uvRect);
     }
+    virtual void getshot(const Entity* other) = 0; 
 };
 
 class Character_MovingAnimation : public MovingAnimation 
 {
-    enum Direction
-    {
-        LEFT,
-        RIGHT
-    }; 
-    Direction direction; 
 public :
     Character_MovingAnimation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f& position, float scale, sf::Vector2f middlePosition = sf::Vector2f(0.5f, 1)); // Constructor with parameters
     ~Character_MovingAnimation();
     virtual void update(const sf::Time& deltaTime);
     virtual void handleEvent(const sf::Event& event,sf::RenderWindow* window);
-    virtual void handleCollision(const Entity* other);
+    virtual void handleCollision(const Entity* other); 
+    void getshot(const Entity* other) override final; 
 };
 
 class ShortRangeMob_MovingAnimation : public MovingAnimation
@@ -110,6 +106,6 @@ public:
     ShortRangeMob_MovingAnimation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f& position, float scale, sf::Vector2f middlePosition = sf::Vector2f(0.5f, 1));
     ~ShortRangeMob_MovingAnimation();
     virtual void update(const sf::Time& deltaTime); 
-    virtual void handleEvent(const sf::Event& event, sf::RenderWindow* window); 
     virtual void handleCollision(const Entity* other);
+    void getshot(const Entity* other) override final; 
 };

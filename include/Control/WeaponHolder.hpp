@@ -16,6 +16,7 @@ public:
     // Remove a weapon from the holder
     void removeWeapon(Weapon* weapon);
 
+
     // Get the current weapon
     Weapon* getCurrentWeapon() const;
     // Set the current weapon

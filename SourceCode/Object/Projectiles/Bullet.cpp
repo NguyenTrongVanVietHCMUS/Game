@@ -3,6 +3,7 @@
 Bullet::Bullet(std::string name, const sf::Vector2f& position, const sf::Vector2f& direction, float speed, float damage)
     :Projectile(name, position, direction, speed, damage, 5.0f, EntityType::EntityType_Ally)
 {
+	type = Entity::Type::AllyProjectile; // Set the type of the entity to Projectile
     std::cerr << "Get speed : " << this->speed << ' ' << speed << '\n';
     // Load the texture and set the sprite
     if (!texture.loadFromFile("Media/Assets/Projectiles/PurpleBullet.png")) {

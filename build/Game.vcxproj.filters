@@ -31,6 +31,12 @@
     <ClCompile Include="V:\Game\SourceCode\Control\WeaponLoader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="V:\Game\SourceCode\Game\Animation\Character_MovingAnimation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="V:\Game\SourceCode\Game\Animation\ShortRangeMob_MovingAnimation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="V:\Game\SourceCode\Game\Character.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -41,9 +47,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="V:\Game\SourceCode\Game\Game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="V:\Game\SourceCode\Game\MovingAnimation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="V:\Game\SourceCode\Game\Projectile.cpp">

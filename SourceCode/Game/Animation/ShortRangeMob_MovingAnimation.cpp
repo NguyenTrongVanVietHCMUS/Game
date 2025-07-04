@@ -10,10 +10,6 @@ ShortRangeMob_MovingAnimation::~ShortRangeMob_MovingAnimation()
 {
 
 }
-void ShortRangeMob_MovingAnimation::handleEvent(const sf::Event& event, sf::RenderWindow* window)
-{
-	mask = rand() % 16; // Randomly set the mask for movement
-}
 void ShortRangeMob_MovingAnimation::update(const sf::Time& deltaTime)
 {
     mask = rand() % 16; 
@@ -70,10 +66,24 @@ void ShortRangeMob_MovingAnimation::update(const sf::Time& deltaTime)
     uvRect.top = currentImage.y * uvRect.height;
     setSpritePosition();
 }
+void ShortRangeMob_MovingAnimation::getshot(const Entity* other)
+{
+    position.y -= 10;
+    setSpritePosition();
+}
 void ShortRangeMob_MovingAnimation::handleCollision(const Entity* other)
 {
     // Handle collision logic here
-    // This is a placeholder function and should be implemented with actual collision handling logic
-    position = oldPosition;
+    // This is a placeholder function and should be implemented with actual collision handling 
+    if(other->type==Entity::Type::AllyProjectile)
+    {
+        getshot(other); // Handle getting shot by ally projectile
+	}
+    if (other->type == Entity::Type::Object)
+    {
+        position = oldPosition; 
+    }
+
+    //std::cout << oldPosition.x << " " << oldPosition.y << " collided with " << other->name << std::endl;
     setSpritePosition();
 }
