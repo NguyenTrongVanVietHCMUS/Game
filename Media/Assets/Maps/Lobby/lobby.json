@@ -111,7 +111,7 @@
                  "gid":20,
                  "height":109,
                  "id":112,
-                 "name":"taskboard",
+                 "name":"TaskBoard",
                  "properties":[
                         {
                          "name":"hitbox",
@@ -140,7 +140,7 @@
                  "gid":21,
                  "height":39,
                  "id":120,
-                 "name":"chest",
+                 "name":"Chest",
                  "properties":[
                         {
                          "name":"hitbox",
@@ -158,7 +158,7 @@
                  "gid":22,
                  "height":66.3333333333334,
                  "id":122,
-                 "name":"bookpile",
+                 "name":"BookPile",
                  "properties":[
                         {
                          "name":"hitbox",
@@ -176,7 +176,7 @@
                  "gid":23,
                  "height":58,
                  "id":123,
-                 "name":"trashcan",
+                 "name":"TrashCan",
                  "properties":[
                         {
                          "name":"hitbox",
@@ -194,7 +194,7 @@
                  "gid":24,
                  "height":82,
                  "id":127,
-                 "name":"fishtank",
+                 "name":"FishTank",
                  "properties":[
                         {
                          "name":"hitbox",
