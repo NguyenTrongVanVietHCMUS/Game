@@ -10,8 +10,9 @@ Game::Game()
 	sounds(),
     stateStack(State::Context(window, textures, fonts, music, sounds, maps))
 {
-	// loading resources 
 	{
+		window.setVerticalSyncEnabled(true); // Enable vertical sync
+		window.setFramerateLimit(60); // Limit to 60 FPS
 		maps.load(Map::ID::Title, "Media/Assets/Maps/Title/title.world");
 		maps.load(Map::ID::Lobby, "Media/Assets/Maps/Lobby/lobby.world");
 		maps.load(Map::ID::Jungle, "Media/Assets/Maps/Dungeon/Jungle/jungle.world");
@@ -27,8 +28,6 @@ Game::Game()
 	stateStack.pushState(States::Title);
 
 	// Set the frame rate limit 
-	window.setFramerateLimit(60); // Limit to 60 FPS
-	window.setVerticalSyncEnabled(true); // Enable vertical sync
 
 }   
 

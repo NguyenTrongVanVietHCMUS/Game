@@ -11,6 +11,7 @@ TileMap::TileMap()
 TileMap::~TileMap() 
 {    
     layers.clear(); 
+    entities.clear(); 
     // Destructor
 }
 
@@ -250,7 +251,11 @@ bool TileMap::load(const std::string& jsonFile,int x , int y,int height, int wid
                 {
                     std::cerr << File << std::endl;
                     return false;
-                }
+                } 
+            }
+            for (auto&x : layer->entities)
+            {
+                entities.emplace_back(x); 
             }
         }
         layers.back()->area = Hitbox(sf::FloatRect (x, y, width, height));
@@ -261,7 +266,7 @@ bool TileMap::load(const std::string& jsonFile,int x , int y,int height, int wid
 
 void TileMap::draw(sf::RenderTarget& target, sf::RenderStates states)const
 {
-    target.setView(target.getDefaultView()); // Reset the view to the default view
+    //target.setView(target.getDefaultView()); // Reset the view to the default view
     for(auto  x :entities)
     {
         if(auto character = dynamic_cast<Knight*>(x))
@@ -270,127 +275,84 @@ void TileMap::draw(sf::RenderTarget& target, sf::RenderStates states)const
             target.setView(view); // Set the view to the character's position
         }
     }
-    for(auto x : layers)
+    for(auto& x : layers)
     {
-        if(x->type==Layer::ObjectGroup)
-        {
-            auto objectLayer = static_cast<ObjectLayer*>(x);
-            int i = 0 , j = 0 ;
-            while(i<objectLayer->entities.size() && j<entities.size())
-            {
-                if(*objectLayer->entities[i] < *entities[j])
-                {
-                    objectLayer->entities[i]->draw(target,states) ; 
-                    i++ ; 
-                }
-                else
-                {
-                    entities[j]->draw(target,states) ; 
-                    j++ ; 
-                }
-            }
-            while(i<objectLayer->entities.size())
-            {
-                objectLayer->entities[i]->draw(target,states) ; 
-                i++ ; 
-            }
-            while(j<entities.size())
-            {
-                entities[j]->draw(target,states) ; 
-                j++ ; 
-            }
-        }
-        else if(x->visible)
-        {
-            x->draw(target,states);
-        }
+        x->draw(target, states); // Draw each layer
+	}
+    for (auto& x : entities)
+    {
+		x->draw(target, states); // Draw each entity
     }
 }
 bool TileMap::handleEvent(const sf::Event& event,sf::RenderWindow* window) 
 {
     for(auto&x : entities)
     {
-        x->handleEvent(event,window) ; 
+        if (auto character = dynamic_cast<Knight*>(x))
+        {
+            character->handleEvent(event, window);
+        }
     }
     return 0; 
 }
 bool TileMap::update(const sf::Time& dt)
 {
-    for(auto &x :layers)
-    {
-        if(x->type == Layer::ObjectGroup)
-        {
-            auto objectLayer = static_cast<ObjectLayer*>(x);
-            for(auto&entities : objectLayer->entities)
-            {
-                entities->update(dt) ;  
-            }
-        }
-    }
-    for(auto&x : entities)
-    {
-        x->update(dt) ; 
-    }
+    for (auto& x : entities)x->update(dt); 
+    
     handleCollision();
+    
     auto drawingOrder = [](const Entity* a, const Entity* b)
     {
         return (a->getHitbox().hitbox.top + a->getHitbox().hitbox.height < b->getHitbox().hitbox.top + b->getHitbox().hitbox.height) ||
         (a->getHitbox().hitbox.top + a->getHitbox().hitbox.height == b->getHitbox().hitbox.top + b->getHitbox().hitbox.height &&
         a->getHitbox().hitbox.left + a->getHitbox().hitbox.width < b->getHitbox().hitbox.left + b->getHitbox().hitbox.width);
     };
-
-    //sort according to render order 
-    sort(entities.begin(),entities.end(),drawingOrder);
     
-    for(auto &x :layers)
-    {
-        if(x->type == Layer::ObjectGroup)
-        {
-            auto objectLayer = static_cast<ObjectLayer*>(x);
-            sort(objectLayer->entities.begin(),objectLayer->entities.end(),drawingOrder);
-        }
-    }
+    sort(entities.begin(),entities.end(),drawingOrder);
     return 0; 
 }
 
-
+ 
 void TileMap::handleCollision()
 {
     //// entities intersect with entities 
 	std::vector<std::pair<Entity*, Entity*>> collision; // To avoid checking the same pair twice
-    for(int i=0; i < entities.size(); ++i)
+    for(auto& entity : entities)if(entity->movable())
     {
-        for(int j = i + 1; j < entities.size(); ++j)
+        for (auto& other : entities)if(!other->movable())
         {
-            if(isCollide(entities[i],entities[j]))
+            if (isCollide(entity, other))
             {
-				collision.emplace_back(std::minmax(entities[i], entities[j])); // Store the pair in sorted order
+                other->collide(entity); 
+                entity->collide(other); 
             }
         }
 	}
-
-    // entities interesect with layers entities
-    for (auto& x : entities)
+	for (int i = 0; i < entities.size(); i++)if (entities[i]->movable())
     {
-        for (auto& y : layers)
+		for (int j = i + 1; j < entities.size(); j++)if (entities[j]->movable())
         {
-            if (y->type == Layer::ObjectGroup)
+            if(isCollide(entities[i],entities[j]))
             {
-                auto objectLayer = static_cast<ObjectLayer*>(y);
-                for (auto& entity : objectLayer->entities)
-                {
-                    if (isCollide(x, entity))
-                    {
-                        collision.emplace_back(std::minmax(x, entity)); // Store the pair in sorted order
-                    }
-                }
+				entities[i]->collide(entities[j]);
+                entities[j]->collide(entities[i]);
+            }
+		}
+    }
+
+
+    for (auto& entity : entities)if (entity->movable())
+    {
+        for (auto& other : entities)if (!other->movable())
+        {
+            if (isCollide(entity, other))
+            {
+                other->collide(entity);
+                entity->collide(other);
             }
         }
     }
-    for (auto [x,y] : collision)
-    {
-        x->collide(y); // Handle collision for each pair
-        y->collide(x); // Handle collision for the reverse pair 
-    }
+    
     // Handle potential aftermath of collisions here
 }
+ 

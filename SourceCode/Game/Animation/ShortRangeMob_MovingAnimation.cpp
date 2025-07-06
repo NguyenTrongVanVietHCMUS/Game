@@ -75,6 +75,7 @@ void ShortRangeMob_MovingAnimation::handleCollision(const Entity* other)
 {
     // Handle collision logic here
     // This is a placeholder function and should be implemented with actual collision handling 
+    if (other->type == Entity::Type::Enemy)return; 
     if(other->type==Entity::Type::AllyProjectile)
     {
         getshot(other); // Handle getting shot by ally projectile

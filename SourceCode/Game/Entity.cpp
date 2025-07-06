@@ -40,7 +40,10 @@ void Entity::updateHitboxOnPosition(sf::Time deltaTime)
 {
     hitbox.hitbox = sf::FloatRect(position.x - hitbox.hitbox.width / 2, position.y - hitbox.hitbox.height, hitbox.hitbox.width, hitbox.hitbox.height);
 }
-
+bool Entity::movable()const
+{
+	return type == Entity::Type::Ally || type == Entity::Type::Enemy || type == Entity::Type::AllyProjectile || type == Entity::Type::EnemyProjectile;
+}
 
 void Entity::collide(const Entity* other)
 {

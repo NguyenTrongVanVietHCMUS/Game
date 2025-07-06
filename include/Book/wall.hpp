@@ -9,6 +9,7 @@ public:
     sf::Sprite* sprite = new sf::Sprite();
     Wall(std::string name,std::string File,sf::Vector2f position,Hitbox hitbox,float scalex , float scaley):Entity(name,position,hitbox)
     {
+		Entity::type = Entity::Type::Object; // Set the type of the entity
         // std::cout<<"File"<<File<<std::endl;
         if(!texture->loadFromFile(File))
         {

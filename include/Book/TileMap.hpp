@@ -121,12 +121,7 @@ public:
     sf::Vector2f position;
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states)const override
     {
-        {
-            for(auto x : entities)
-            {
-                x->draw(target,states) ; 
-            }
-        }
+        // do nothing becauase having entities already ; 
     }
 };
 
@@ -138,18 +133,19 @@ private:
     bool isCollide(Entity* entity1, Entity* entity2) const {
         return entity1->getHitbox().hitbox.intersects(entity2->getHitbox().hitbox);
 	}
+    void handleCollision(); 
+private: 
+    std::string File;
+    std::vector<Layer*> layers;  
 public:
+
     TileMap();
     ~TileMap();     
 
     std::vector<Entity*> entities; 
     sf::Vector2f startingPoint; 
-    std::string File;
-    std::vector<Layer*> layers;
     bool loadFromFile(const std::string& jsonFile); 
     bool handleEvent(const sf::Event& event, sf::RenderWindow* window);
     bool update(const sf::Time& dt);
-    void draw(sf::RenderTarget& target, sf::RenderStates states)const;
-
-    void handleCollision(); 
+    void draw(sf::RenderTarget& target, sf::RenderStates states)const; 
 };
