@@ -1,0 +1,30 @@
+#pragma once
+#include <Book/Weapon2.hpp>
+#include <Book/Utility.hpp>
+
+class Inventory
+{
+private:
+    std::vector<std::shared_ptr<Weapon2>> weapons; // List of weapons in the inventory
+    std::vector<std::shared_ptr<Skill>> skills; // List of skills in the inventory
+    int CurrentWeaponIndex = 0; // Index of the currently active weapon
+    int CurrentSkillIndex = 0; // Index of the currently active skill
+    int MaxWeapon = 3; // Maximum index for weapons
+    int MaxSkill = 1; // Maximum index for skills
+
+public:
+    Inventory() = default;
+    ~Inventory() = default;
+
+    void addWeapon(std::shared_ptr<Weapon2> weapon);
+    void addSkill(std::shared_ptr<Skill> skill);
+
+    void removeWeapon(std::shared_ptr<Weapon2> weapon);
+    void removeSkill(std::shared_ptr<Skill> skill);
+
+    void activateWeapon(Entity* target);
+    void activateSkill(Entity* user);
+
+    void SwitchWeapon(); // Switch to the next weapon in the inventory
+    void SwitchSkill(); // Switch to the next skill in the inventory
+};

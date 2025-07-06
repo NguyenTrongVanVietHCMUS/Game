@@ -327,10 +327,15 @@ bool TileMap::update(const sf::Time& dt)
             }
         }
     }
+    //std::cerr << "Updating TileMap with " << entities.size() << " entities." << std::endl;
     for(auto&x : entities)
     {
-        x->update(dt) ; 
+        if(x){
+            //std::cerr << "Updating entity: " << x->name << std::endl;
+            x->update(dt) ;
+        } 
     }
+    //std::cerr << "TileMap update completed." << std::endl;
     handleCollision();
     auto drawingOrder = [](const Entity* a, const Entity* b)
     {

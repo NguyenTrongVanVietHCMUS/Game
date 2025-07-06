@@ -1,8 +1,9 @@
 #include<Book/MovingAnimation.hpp>
 
-Character_MovingAnimation::Character_MovingAnimation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f& position, float scale, sf::Vector2f middlePosition)
-    :MovingAnimation(texture, imageCount, switchTime, position, scale, middlePosition)
+Character_MovingAnimation::Character_MovingAnimation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f& position, float scale, std::shared_ptr<Inventory> inventory, Entity* target, sf::Vector2f middlePosition)
+    :MovingAnimation(texture, imageCount, switchTime, position, scale, middlePosition), inventoryPtr(inventory), target(target)
 {
+    inventoryPtr = inventory; // Initialize the inventory pointer
 	direction = rand() % 2 == 0 ? LEFT : RIGHT; // Randomly set the initial direction
 }
 
@@ -31,6 +32,14 @@ void Character_MovingAnimation::handleEvent(const sf::Event& event,sf::RenderWin
         if(event.key.code==sf::Keyboard::D)
         {
             mask = BIT_SET(mask,RIGHT) ; 
+        }
+        if(event.key.code==sf::Keyboard::Q)
+        {
+            // Handle space key press, e.g., attack or use an item
+            if(inventoryPtr)
+            {
+                inventoryPtr->activateWeapon(target); // Example function to use an item from the inventory
+            }
         }
     }
     if(event.type==sf::Event::KeyReleased)

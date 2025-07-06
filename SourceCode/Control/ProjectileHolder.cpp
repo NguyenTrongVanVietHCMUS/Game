@@ -16,6 +16,7 @@ void ProjectileHolder::removeProjectile(Projectile* projectile)
     if (it != projectiles.end())
     {
         projectiles.erase(it, projectiles.end());
+        delete projectile;
     }
 }
 
@@ -25,9 +26,8 @@ void ProjectileHolder::updateProjectiles(sf::Time dt)
 
     for (auto& projectile : projectiles)
     {
-        if (projectile->isFlagDestruct())
+        if (projectile && projectile->isFlagDestruct())
         {
-            std::cerr << "Projectile is marked for removal" << std::endl;
             if (CurrentMap)
             {
                 CurrentMap->popEntity(projectile); // Remove from the map's entity list
@@ -35,16 +35,18 @@ void ProjectileHolder::updateProjectiles(sf::Time dt)
             removeProjectile(projectile);
             
             updateProjectiles(dt); // Recurse to handle the next projectile after removal
-            return; // Skip updating this projectile since it's marked for removal
+            break; // Skip updating this projectile since it's marked for removal
+        } else if (projectile)
+        {
+            projectile->update(dt);
         }
-        // Update the projectile
-    
-        projectile->update(dt);
     }
 }
 
+
 void ProjectileHolder::drawProjectiles(sf::RenderTarget& target, sf::RenderStates states) const
 {
+
     if(CurrentMap)
         return; // if map set , use map's draw function instead
     for (const auto& projectile : projectiles)

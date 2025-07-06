@@ -60,10 +60,15 @@ void State::popEntity(Entity* entity)
 {
 	if (map)
 	{
-		auto it = std::remove(map->entities.begin(), map->entities.end(), entity);
-		if (it != map->entities.end())
+		auto it = std::find(map->entities.begin(), map->entities.end(), entity);
+		while (it != map->entities.end())
 		{
-			map->entities.erase(it, map->entities.end());
+			std::cerr << "Removing entity: " << entity->name << std::endl;
+			map->entities.erase(it); // Remove the entity from the map's entity list
+			it = std::find(map->entities.begin(), map->entities.end(), entity); // Find the next occurrence
 		}
+	} else
+	{
+		std::cerr << "Entity not found in map's entity list." << std::endl;
 	}
 }

@@ -2,14 +2,28 @@
 
 #include<Book/Utility.hpp>
 #include<Book/Character.hpp>
-
+#include<Book/Strategy/WeaponBehavior.hpp>
 
 class Knight : public Character
 {
 public:
     Knight(sf::Texture* texture,  sf::Vector2f position,State* state): Character("Knight", position)
     {
-        movingAnimation = std::make_unique<Character_MovingAnimation>(texture, sf::Vector2u(8, 3), 0.1f, this->position, 2.1f, sf::Vector2f(2.0f/3, 1)); 
+        movingAnimation = std::make_unique<Character_MovingAnimation>(
+            texture, 
+            sf::Vector2u(8, 3), 
+            0.1f,  // Switch time for the animation
+            this->position, 
+            2.1f, // Scale of the animation,
+            this->inventory,
+            this, 
+            sf::Vector2f(2.0f/3, 1)
+        );  
+        inventory->addWeapon(
+            std::make_shared<Weapon2>(
+                std::make_unique<RangedWeaponBehavior>(state, 500.0f) // Ranged weapon behavior with speed
+            )
+        );
         movingAnimation->speed = 500.0f; 
         this->weaponHolder.setCurrentMap(state);
         // Initialize the knight-specific properties here 

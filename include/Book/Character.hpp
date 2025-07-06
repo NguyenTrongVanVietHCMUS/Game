@@ -9,10 +9,12 @@
 #include<Control/WeaponHolder.hpp>
 #include<Object/Weapon/Gun.hpp>
 #include<Control/WeaponLoader.hpp>
+#include<Book/Inventory.hpp>
 class Character : public Entity
 {
 protected : 
     std::unique_ptr<MovingAnimation> movingAnimation ; 
+    std::shared_ptr<Inventory> inventory;
 public : 
     Character(std::string name , sf::Vector2f position);
     ~Character(); 
