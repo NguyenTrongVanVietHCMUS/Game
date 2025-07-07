@@ -12,7 +12,7 @@ struct IMovement
 
 struct ICollision
 {
-    virtual void collide(Projectile2& projectile, const sf::Vector2f& collisionPoint) = 0;
+    virtual void collide(Entity& projectile,const Entity *other) = 0;
     virtual std::unique_ptr<ICollision> clone() const = 0;
     virtual ~ICollision() = default;
 };

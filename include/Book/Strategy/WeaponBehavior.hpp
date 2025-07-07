@@ -3,7 +3,10 @@
 #include <Book/StrategyClass.hpp>
 #include <Book/Entity.hpp>
 #include <Book/Strategy/ProjectileBehavior.hpp>
+#include <Book/Strategy/CollisionBehavior.hpp>
 #include <Control/State.hpp>
+
+
 struct RangedWeaponBehavior : public IBehavior
 {
     float projectileSpeed;
@@ -16,9 +19,9 @@ struct RangedWeaponBehavior : public IBehavior
             "RangedProjectile",
             target->getPosition(),
             std::make_unique<StraightMovement>(projectileSpeed, projectileSpeed),
-            nullptr
+            std::make_unique<ProjectileCollisionBehavior>()
         );
-        std::cerr << "Ranged Weapon Activated" << std::endl;
+    
         Worldmap->pushEntity(proj);
     }
 };

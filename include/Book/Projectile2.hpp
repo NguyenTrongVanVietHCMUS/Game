@@ -7,14 +7,27 @@ private:
     std::unique_ptr<IMovement> movementStrategy; // Strategy for movement
     std::unique_ptr<ICollision> collisionStrategy; // Strategy for collision handling
     std::vector<std::unique_ptr<IEffect>> trailStrategies; // Strategies for visual trails
+    sf::Sprite sprite; // Sprite representing the projectile
+    sf::Texture texture; // Texture for the projectile sprite
 public:
     Projectile2(std::string name, sf::Vector2f position, std::unique_ptr<IMovement> movement = nullptr, std::unique_ptr<ICollision> collision = nullptr)
-        : Entity(name, position), movementStrategy(std::move(movement)), collisionStrategy(std::move(collision)) {}
+        : Entity(name, position), movementStrategy(std::move(movement)), collisionStrategy(std::move(collision)) {
+            // Load the projectile texture
+            if (!texture.loadFromFile("Media/Assets/Projectiles/PurpleBullet.png")) {
+                throw std::runtime_error("Failed to load projectile texture");
+            }
+            sprite.setTexture(texture);
+            // update hitbox size
+            hitbox.hitbox = sf::FloatRect(position.x, position.y, texture.getSize().x, texture.getSize().y);
+            // set origin hitbox to center of the sprite
+            sprite.setOrigin(texture.getSize().x / 2.f, texture.getSize().y);
+        }
     void setBehavior(std::unique_ptr<IMovement> movement, std::unique_ptr<ICollision> collision);
     void setMovement(std::unique_ptr<IMovement> movement);
     void setCollision(std::unique_ptr<ICollision> collision);
     void addTrailEffect(std::unique_ptr<IEffect> effect);
 
     bool update(const sf::Time& dt) override;
+    void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
     void collide(const Entity* other) override;
 };

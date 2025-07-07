@@ -7,6 +7,7 @@ class Weapon2
 private:
     std::unordered_map<std::string, float> stats;
     std::unique_ptr<IBehavior> behavior; // Strategy for weapon behavior
+
 public:
     Weapon2(std::unique_ptr<IBehavior> behavior = nullptr)
         : behavior(std::move(behavior)) {};
