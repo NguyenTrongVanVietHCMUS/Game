@@ -24,8 +24,12 @@ public:
                 std::make_unique<RangedWeaponBehavior>(state, 500.0f) // Ranged weapon behavior with speed
             )
         );
+        inventory->addWeapon(
+            std::make_shared<Weapon2>(
+                std::make_unique<RangedWeaponBehavior>(state, 2000.0f) // Ranged weapon behavior with speed
+            )
+        );
         movingAnimation->speed = 500.0f; 
-        this->weaponHolder.setCurrentMap(state);
         // Initialize the knight-specific properties here 
     }   
     
@@ -40,7 +44,6 @@ public:
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override
     {
         movingAnimation->draw(target, states);
-        weaponHolder.draw(target, states); // Draw 
         sf::RectangleShape hitboxshape(sf::Vector2f(getHitbox().hitbox.width, getHitbox().hitbox.height));
         hitboxshape.setPosition(sf::Vector2f(getHitbox().hitbox.left, getHitbox().hitbox.top));
         hitboxshape.setFillColor(sf::Color(255, 0, 0, 128)); // semi-transparent red for visibility

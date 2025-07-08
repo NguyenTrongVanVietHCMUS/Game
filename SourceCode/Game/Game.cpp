@@ -1,5 +1,4 @@
 #include "Book/Game.hpp"
-#include "Control/SkillLoader.hpp"
 // Constructor
 Game::Game()
 : 
@@ -42,7 +41,6 @@ void Game::Run()
 {
     sf::Clock clock;
     sf::Time timeSinceLastUpdate = sf::Time::Zero;
-	SkillLoader::initializeSkills();
     while (window.isOpen())
     {       
         timeSinceLastUpdate += clock.restart();

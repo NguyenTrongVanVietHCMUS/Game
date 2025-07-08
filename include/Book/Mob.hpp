@@ -1,14 +1,8 @@
 #pragma once
 #include<Book/Utility.hpp> 
 #include<Book/Entity.hpp>
-#include<Object/Skills/TestSkill.hpp>
 #include<Book/MovingAnimation.hpp>
 #include<Control/State.hpp>
-#include<Control/SkillHolder.hpp>
-#include<Control/SkillLoader.hpp>
-#include<Control/WeaponHolder.hpp>
-#include<Object/Weapon/Gun.hpp>
-#include<Control/WeaponLoader.hpp>
 class Mob : public Entity
 {
 protected:
@@ -17,8 +11,6 @@ public:
     Mob(std::string name, sf::Vector2f position);
     ~Mob();
 public:
-    SkillHolder skillHolder;
-    WeaponHolder weaponHolder;
     virtual void collide(const Entity* other);
     virtual bool handleEvent(const sf::Event& event, sf::RenderWindow* window);
     virtual bool update(const sf::Time& deltaTime);
@@ -26,7 +18,5 @@ public:
     {
         hitbox.draw(target, states); // Draw the hitbox
         movingAnimation->draw(target, states);
-        skillHolder.draw(target, states); // Draw the skill holder
-        weaponHolder.draw(target, states); // Draw the weapon 
     }
 };

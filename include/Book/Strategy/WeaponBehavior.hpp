@@ -24,11 +24,12 @@ struct RangedWeaponBehavior : public IBehavior
         //std::cerr << "Projectile speed X: " << projectileSpeedX << ", Y: " << projectileSpeedY << std::endl;
         auto proj = new Projectile2(
             "RangedProjectile",
+            0.5f, // as seconds
             target->getPosition(),
+            Worldmap,
             std::make_unique<StraightMovement>(projectileSpeedX, projectileSpeedY),
             std::make_unique<ProjectileCollisionBehavior>(Worldmap)
         );
-    
         Worldmap->pushEntity(proj);
     }
 };

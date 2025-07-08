@@ -41,6 +41,14 @@ void Character_MovingAnimation::handleEvent(const sf::Event& event,sf::RenderWin
                 inventoryPtr->activateWeapon(target); // Example function to use an item from the inventory
             }
         }
+        if(event.key.code==sf::Keyboard::E)
+        {
+            // Handle space key press, e.g., attack or use an item
+            if(inventoryPtr)
+            {
+                inventoryPtr->SwitchWeapon(); // Example function to switch weapon
+            }
+        }
     }
     if(event.type==sf::Event::KeyReleased)
     {

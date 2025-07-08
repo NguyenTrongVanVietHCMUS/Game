@@ -1,7 +1,4 @@
 #pragma once
-#include "Book/Weapon.hpp"
-#include <Object/SkillLibraryUtility.hpp>
-#include <Control/SkillHolder.hpp>
 #include <Control/SkillLoader.hpp>
 class AK_47 : public Weapon
 {

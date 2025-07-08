@@ -8,13 +8,7 @@ void Inventory::addWeapon(std::shared_ptr<Weapon2> weapon) {
     }
 }
 
-void Inventory::addSkill(std::shared_ptr<Skill> skill) {
-    if (skills.size() < MaxSkill) {
-        skills.push_back(skill);
-    } else {
-        std::cerr << "Inventory is full, cannot add more skills." << std::endl;
-    }
-}
+
 void Inventory::removeWeapon(std::shared_ptr<Weapon2> weapon) {
     auto it = std::find(weapons.begin(), weapons.end(), weapon);
     if (it != weapons.end()) {
@@ -25,15 +19,7 @@ void Inventory::removeWeapon(std::shared_ptr<Weapon2> weapon) {
     }
 }
 
-void Inventory::removeSkill(std::shared_ptr<Skill> skill) {
-    auto it = std::find(skills.begin(), skills.end(), skill);
-    if (it != skills.end()) {
-        skills.erase(it);
-        CurrentSkillIndex = std::max(0, CurrentSkillIndex - 1); // Adjust index if necessary
-    } else {
-        std::cerr << "Skill not found in inventory." << std::endl;
-    }
-}
+
 
 void Inventory::activateWeapon(Entity* target) {
     if (CurrentWeaponIndex < weapons.size()) {
@@ -54,15 +40,6 @@ void Inventory::SwitchWeapon() {
     }
     CurrentWeaponIndex = (CurrentWeaponIndex + 1) % weapons.size();
     std::cerr << "Switched to weapon at index: " << CurrentWeaponIndex << std::endl;
-}
-
-void Inventory::SwitchSkill() {
-    if (skills.empty()) {
-        std::cerr << "No skills in inventory to switch." << std::endl;
-        return;
-    }
-    CurrentSkillIndex = (CurrentSkillIndex + 1) % skills.size();
-    std::cerr << "Switched to skill at index: " << CurrentSkillIndex << std::endl;
 }
 
 std::shared_ptr<Weapon2> Inventory::getCurrentWeapon() const {

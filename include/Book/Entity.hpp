@@ -1,8 +1,6 @@
 #pragma once 
 #include <Book/Utility.hpp>
 #include<Control/Hitbox.hpp>
-#include<Control/SkillHolder.hpp>
-#include<Book/Skill.hpp>
 #include<memory>
 
 

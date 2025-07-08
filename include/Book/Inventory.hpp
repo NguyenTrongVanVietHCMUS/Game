@@ -6,7 +6,7 @@ class Inventory
 {
 private:
     std::vector<std::shared_ptr<Weapon2>> weapons; // List of weapons in the inventory
-    std::vector<std::shared_ptr<Skill>> skills; // List of skills in the inventory
+    //std::vector<std::shared_ptr<Skill>> skills; // List of skills in the inventory
     int CurrentWeaponIndex = 0; // Index of the currently active weapon
     int CurrentSkillIndex = 0; // Index of the currently active skill
     int MaxWeapon = 3; // Maximum index for weapons
@@ -17,10 +17,10 @@ public:
     ~Inventory() = default;
 
     void addWeapon(std::shared_ptr<Weapon2> weapon);
-    void addSkill(std::shared_ptr<Skill> skill);
+    //void addSkill(std::shared_ptr<Skill> skill);
 
     void removeWeapon(std::shared_ptr<Weapon2> weapon);
-    void removeSkill(std::shared_ptr<Skill> skill);
+    //void removeSkill(std::shared_ptr<Skill> skill);
 
     void activateWeapon(Entity* target);
     void activateSkill(Entity* user);

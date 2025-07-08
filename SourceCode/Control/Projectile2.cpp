@@ -31,8 +31,31 @@ void Projectile2::addTrailEffect(std::unique_ptr<IEffect> effect)
     }
 }
 
+void Projectile2::setAttribute(const std::string& attributeName, float value)
+{
+    attributes[attributeName] = value;
+}
+
+float Projectile2::getAttribute(const std::string& attributeName) const
+{
+    auto it = attributes.find(attributeName);
+    if (it != attributes.end()) {
+        return it->second;
+    }
+    return 0.0f; // Default value if attribute not found
+}
+
 bool Projectile2::update(const sf::Time& dt)
 {
+    float CurrentLifeTime = getAttribute("CurrentLifeTime");
+    CurrentLifeTime += dt.asSeconds(); // Increment the current lifetime by the delta time
+    float MaxLifeTime = getAttribute("MaxLifeTime");
+    if (CurrentLifeTime >= MaxLifeTime) {
+
+        // Projectile has reached its maximum lifetime, handle destruction
+        currentMap->popEntity(this); // Remove the projectile from the map
+        return true; // Indicate that the projectile should be removed
+    }
     if (movementStrategy) {
         movementStrategy->update(*this, dt);
     }
@@ -42,7 +65,7 @@ bool Projectile2::update(const sf::Time& dt)
     for (const auto& effect : trailStrategies) {
         effect->apply(*this);
     }
-    
+    setAttribute("CurrentLifeTime", CurrentLifeTime); // Update the current lifetime attribute
     updateHitboxOnPosition(dt);
     // Handle collision if a collision strategy is set
     return true;
