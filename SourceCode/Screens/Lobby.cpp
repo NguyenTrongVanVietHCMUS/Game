@@ -25,6 +25,7 @@ bool Lobby::update(const sf::Time& dt)
 }
 bool Lobby::handleEvent(const sf::Event& event)
 {
+    std::cerr << "Lobby::handleEvent called\n";
     sf::RenderWindow*window = getContext().window;
     map->handleEvent(event, window); // Handle events for the map and entities
     if (event.type == sf::Event::KeyPressed)
@@ -44,5 +45,6 @@ bool Lobby::handleEvent(const sf::Event& event)
     {
         requestStackPop(); // Pop the current state when the window is closed
     }
+    std::cerr << "Lobby::handleEvent finished\n";
     return 0;
 }

@@ -132,12 +132,18 @@ public:
 };
 
 class TileMap : public sf::Drawable 
-{        
+{       
+private:
+    void updateQueueEntities();    
+
 private:
     std::vector<std::vector<Tileset>> tilesets;
 public:
     TileMap();
     ~TileMap();     
+    std::vector<Entity*> PushQueueEntities; // Queue for entities to be pushed
+    std::vector<Entity*> PopQueueEntities; // Queue for entities to be popped
+    std::vector<Entity*> deletedEntities;
     std::vector<Entity*> entities; 
     sf::Vector2f startingPoint; 
     std::string File;

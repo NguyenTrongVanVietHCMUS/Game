@@ -308,14 +308,17 @@ void TileMap::draw(sf::RenderTarget& target, sf::RenderStates states)const
 }
 bool TileMap::handleEvent(const sf::Event& event,sf::RenderWindow* window) 
 {
+    std::cerr << "Handling event in TileMap with " << entities.size() << " entities." << std::endl;
     for(auto&x : entities)
     {
-        x->handleEvent(event,window) ; 
+        x->handleEvent(event, window);
     }
+    std::cerr << "TileMap event handling completed." << std::endl;
     return 0; 
 }
 bool TileMap::update(const sf::Time& dt)
 {
+    std::cerr << "Updating TileMap with " << entities.size() << " entities." << std::endl;
     for(auto &x :layers)
     {
         if(x->type == Layer::ObjectGroup)
@@ -327,15 +330,19 @@ bool TileMap::update(const sf::Time& dt)
             }
         }
     }
-    //std::cerr << "Updating TileMap with " << entities.size() << " entities." << std::endl;
+    
     for(auto&x : entities)
     {
         if(x){
             //std::cerr << "Updating entity: " << x->name << std::endl;
             x->update(dt) ;
+            if(std::find(deletedEntities.begin(), deletedEntities.end(), x) != deletedEntities.end())
+            {
+                throw std::runtime_error("Entity is deleted, cannot update.");
+            }
         } 
     }
-    //std::cerr << "TileMap update completed." << std::endl;
+    std::cerr << "TileMap update completed." << std::endl;
     handleCollision();
     auto drawingOrder = [](const Entity* a, const Entity* b)
     {
@@ -355,6 +362,7 @@ bool TileMap::update(const sf::Time& dt)
             sort(objectLayer->entities.begin(),objectLayer->entities.end(),drawingOrder);
         }
     }
+    updateQueueEntities();
     return 0; 
 }
 
@@ -391,4 +399,34 @@ void TileMap::handleCollision()
         }
     }
     // do nothing for now 
+}
+
+void TileMap::updateQueueEntities()
+{
+    // Process entities in the push queue
+    for (auto& entity : PushQueueEntities)
+    {
+        if (entity)
+        {
+            entities.push_back(entity);
+            std::cerr << "Entity " << entity->name << " added to the map's entity list." << std::endl;
+        }
+    }
+    PushQueueEntities.clear();
+
+    // Process entities in the pop queue
+    for (auto& entity : PopQueueEntities)
+    {
+        auto it = std::find(entities.begin(), entities.end(), entity);
+        if (it != entities.end())
+        {
+            entities.erase(it);
+            std::cerr << "Entity " << entity->name << " removed from the map's entity list." << std::endl;
+        }
+        else
+        {
+            std::cerr << "Entity " << entity->name << " not found in the map's entity list." << std::endl;
+        }
+    }
+    PopQueueEntities.clear();
 }

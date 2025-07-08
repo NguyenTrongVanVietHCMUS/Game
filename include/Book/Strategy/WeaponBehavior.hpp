@@ -19,7 +19,7 @@ struct RangedWeaponBehavior : public IBehavior
             "RangedProjectile",
             target->getPosition(),
             std::make_unique<StraightMovement>(projectileSpeed, projectileSpeed),
-            std::make_unique<ProjectileCollisionBehavior>()
+            std::make_unique<ProjectileCollisionBehavior>(Worldmap)
         );
     
         Worldmap->pushEntity(proj);
