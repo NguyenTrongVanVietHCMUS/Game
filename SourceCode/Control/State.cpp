@@ -60,6 +60,12 @@ void State::popEntity(Entity* entity)
 {
 	if (map)
 	{
-		map->PopQueueEntities.push_back(entity);
+		if (entity && std::find(map->PopQueueEntities.begin(), map->PopQueueEntities.end(), entity) == map->PopQueueEntities.end())
+		{
+			map->PopQueueEntities.push_back(entity);
+		} else 
+		{
+			std::cerr << "Entity already in PopQueueEntities or is null." << std::endl;
+		}
 	}
 }

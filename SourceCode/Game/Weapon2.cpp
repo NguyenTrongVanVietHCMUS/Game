@@ -12,6 +12,15 @@ void Weapon2::setStat(const std::string& statName, float value)
     stats[statName] = value;
 }
 
+float Weapon2::getStat(const std::string& statName) const
+{
+    auto it = stats.find(statName);
+    if (it != stats.end()) {
+        return it->second;
+    }
+    return 0.0f; // Default value if stat not found
+}
+
 void Weapon2::activate(Entity*target)
 {
     if (behavior) {

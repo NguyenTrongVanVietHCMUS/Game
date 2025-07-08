@@ -63,6 +63,14 @@ void Character_MovingAnimation::handleEvent(const sf::Event& event,sf::RenderWin
     }
     sf::Vector2i mousePixel = sf::Mouse::getPosition(*window);
     sf::Vector2f worldPos = window->mapPixelToCoords(mousePixel, window->getView());
+    auto weapon = inventoryPtr->getCurrentWeapon();
+    if (weapon)
+    {
+        weapon->setStat("positionX", position.x);
+        weapon->setStat("positionY", position.y);
+        weapon->setStat("MousePosX", worldPos.x);
+        weapon->setStat("MousePosY", worldPos.y);
+    }
     if (worldPos.x < position.x)
     {
 		direction = LEFT;

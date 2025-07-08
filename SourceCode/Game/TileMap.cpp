@@ -415,5 +415,14 @@ void TileMap::updateQueueEntities()
             entities.erase(it);
         }
     }
+ 
+    for (auto& entity : PopQueueEntities)
+    {
+        if (entity)
+        {
+            delete entity; // Clean up the entity if it was dynamically allocated
+        }
+    }
+
     PopQueueEntities.clear();
 }

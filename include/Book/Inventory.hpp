@@ -27,4 +27,6 @@ public:
 
     void SwitchWeapon(); // Switch to the next weapon in the inventory
     void SwitchSkill(); // Switch to the next skill in the inventory
+
+    std::shared_ptr<Weapon2> getCurrentWeapon() const;
 };
