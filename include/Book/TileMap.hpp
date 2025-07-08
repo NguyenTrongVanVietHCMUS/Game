@@ -143,7 +143,7 @@ public:
     ~TileMap();     
     std::vector<Entity*> PushQueueEntities; // Queue for entities to be pushed
     std::vector<Entity*> PopQueueEntities; // Queue for entities to be popped
-    std::vector<Entity*> deletedEntities;
+
     std::vector<Entity*> entities; 
     sf::Vector2f startingPoint; 
     std::string File;

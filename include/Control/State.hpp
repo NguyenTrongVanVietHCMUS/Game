@@ -64,5 +64,6 @@ class State
 		StateStack*			mStack;
 		Context				mContext;
 		TileMap* map ; 
+	
 };
 
