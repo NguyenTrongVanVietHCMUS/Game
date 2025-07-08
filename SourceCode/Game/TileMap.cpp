@@ -18,7 +18,7 @@ TileMap::~TileMap()
 bool TileMap::loadFromFile(const std::string& jsonFile) 
 {
     File = jsonFile ; 
-    std::ifstream file(jsonFile) ; 
+    std::ifstream file(jsonFile) ;  
     if(!file.is_open())return false ;
 
     json datafile ; 
@@ -49,25 +49,63 @@ bool TileMap::load(const std::string& jsonFile,int x , int y,int height, int wid
     tilesets.push_back(std::vector<Tileset>());
     for (auto& tilesetData : mapData["tilesets"]) 
     {
-        Tileset tileset;
-        std::string imagePath = tilesetData["image"];
-        // Resolve imagePath relative to the JSON file's directory
-        std::filesystem::path jsonPath(jsonFile);
-        std::filesystem::path jsonDir = jsonPath.parent_path();
-        std::filesystem::path resolvedImagePath = jsonDir / imagePath;
+        if (tilesetData.contains("image") == true)
+        {
+            Tileset tileset;
+            std::string imagePath = tilesetData["image"];
+            // Resolve imagePath relative to the JSON file's directory
+            std::filesystem::path jsonPath(jsonFile);
+            std::filesystem::path jsonDir = jsonPath.parent_path();
+            std::filesystem::path resolvedImagePath = jsonDir / imagePath;
 
-        // Load the tileset texture from the resolved path
-        if (!tileset.texture.loadFromFile(resolvedImagePath.string())) {
-            std::cerr << "Failed to load tileset texture from: " << resolvedImagePath.string() << std::endl;
-            return false;
+            // Load the tileset texture from the resolved path
+            if (!tileset.texture.loadFromFile(resolvedImagePath.string())) {
+                std::cerr << "Failed to load tileset texture from: " << resolvedImagePath.string() << std::endl;
+                return false;
+            }
+            tileset.File = resolvedImagePath.string();
+            tileset.firstGid = tilesetData["firstgid"];
+            tileset.tileWidth = tilesetData["tilewidth"];
+            tileset.tileHeight = tilesetData["tileheight"]; 
+            tileset.columns = tilesetData["columns"];
+            tileset.tileCount = tilesetData["tilecount"];
+            tilesets.back().push_back(tileset);
         }
-        tileset.File = resolvedImagePath.string() ;
-        tileset.firstGid = tilesetData["firstgid"];
-        tileset.tileWidth = tilesetData["tilewidth"];
-        tileset.tileHeight = tilesetData["tileheight"]; 
-        tileset.columns = tilesetData["columns"];
-        tileset.tileCount = tilesetData["tilecount"];
-        tilesets.back().push_back(tileset);
+        else
+        {
+            for (auto& tiles : tilesetData["tiles"])
+            {
+                if (!tiles.contains("objectgroup"))
+                {
+                    std::cerr << "WRONG " << std::endl;
+                }
+                else std::cerr << "RIGHT " << std::endl;
+                Tileset tileset;
+                std::string imagePath = tiles["image"];
+                // Resolve imagePath relative to the JSON file's directory
+                std::filesystem::path jsonPath(jsonFile);
+                std::filesystem::path jsonDir = jsonPath.parent_path();
+                std::filesystem::path resolvedImagePath = jsonDir / imagePath;
+
+                // Load the tileset texture from the resolved path
+                std::cerr << imagePath << std::endl;
+                if (!tileset.texture.loadFromFile(resolvedImagePath.string())) {
+                    std::cerr << "Failed to load tileset texture from: " << resolvedImagePath.string() << std::endl;
+                    return false;
+                }
+                tileset.File = resolvedImagePath.string();
+                tileset.firstGid = int(tilesetData["firstgid"]) + int(tiles["id"]);
+                tileset.tileWidth = tiles["imagewidth"];
+				tileset.type = tiles["type"];
+                tileset.tileHeight = tiles["imageheight"];
+                auto& temp = tiles["objectgroup"];
+                for(auto &info : temp["objects"]) // changed x to temp
+                {
+                    tileset.hitbox = Hitbox(sf::FloatRect(info["x"], info["y"] , info["width"], info["height"])); // changed x to info
+                }
+                tilesets.back().push_back(tileset);
+            }
+        }
     }
     
     // Load layers
@@ -159,52 +197,7 @@ bool TileMap::load(const std::string& jsonFile,int x , int y,int height, int wid
             // Load object
             for (auto& objectData : layerData["objects"])
             {
-                if (objectData["type"] == "Object")
-                {
-                    int gid = objectData["gid"];
-                    size_t tilesetIndex = 0;
-                    for (size_t j = 0; j < tilesets.back().size(); ++j)
-                    {
-                        if (gid == tilesets.back()[j].firstGid)
-                        {
-                            tilesetIndex = j;
-                            break;
-                        }
-                    }
-                    auto getHitbox = [&]()->sf::FloatRect
-                        {
-                            int hitboxId = -1;
-                            for (const auto& prop : objectData["properties"]) {
-                                if (prop["name"] == "hitbox" && prop["type"] == "object") {
-                                    hitboxId = prop["value"];
-                                    break;
-                                }
-                            }
-                            for (auto& objectHitbox : layerData["objects"])
-                            {
-                                if (objectHitbox["id"] == hitboxId)
-                                {
-                                    return sf::FloatRect(objectHitbox["x"] + x, objectHitbox["y"] + y, objectHitbox["width"], objectHitbox["height"]);
-                                }
-                            }
-                        };
-                    if (layerData["name"] == "taskboard")
-                    {
-
-                    }
-                    else
-                    {
-                        layer->entities.push_back(new Object(
-                            objectData["name"],
-                            tilesets.back()[tilesetIndex].File,
-                            sf::Vector2f(objectData["x"] + x, objectData["y"] + y - float(objectData["height"])),
-                            getHitbox(),
-                            float(objectData["width"]) / tilesets.back()[tilesetIndex].tileWidth,
-                            float(objectData["height"]) / tilesets.back()[tilesetIndex].tileHeight
-                        ));
-                    }
-                }
-                else if (objectData["type"] == "Collider")
+                if (objectData["type"] == "Collider")
                 {
                     layer->entities.push_back(new Entity(
                         "Collider",
@@ -215,10 +208,18 @@ bool TileMap::load(const std::string& jsonFile,int x , int y,int height, int wid
                             objectData["height"])
                     ));
                 }
-                else if (objectData["type"] == "Wall")
+                else if (objectData["type"] == "Point")
+                {
+                    if (objectData["name"] == "StartingPoint")
+                    {
+                        startingPoint = sf::Vector2f(objectData["x"] + x, objectData["y"] + y);
+                    }
+                }
+                else 
                 {
                     int gid = objectData["gid"];
-                    size_t tilesetIndex = 0;
+                    size_t tilesetIndex = 0; 
+
                     for (size_t j = 0; j < tilesets.back().size(); ++j)
                     {
                         if (gid == tilesets.back()[j].firstGid)
@@ -227,31 +228,29 @@ bool TileMap::load(const std::string& jsonFile,int x , int y,int height, int wid
                             break;
                         }
                     }
-                    layer->entities.push_back(new Wall(
-                        objectData["name"],
-                        tilesets.back()[tilesetIndex].File,
-                        sf::Vector2f(objectData["x"] + x, objectData["y"] + y - float(objectData["height"])),
-                        Hitbox(sf::FloatRect(objectData["x"] + x, objectData["y"] + y - 32, 32.0f, 32.0f)),
-                        float(objectData["width"]) / tilesets.back()[tilesetIndex].tileWidth,
-                        float(objectData["height"]) / tilesets.back()[tilesetIndex].tileHeight
-                    ));
-                }
-                else if (objectData["type"] == "hitbox")
-                {
-                    continue;
-                }
-                else if (objectData["type"] == "Point")
-                {
-                    if (objectData["name"] == "StartingPoint")
+					auto& tile = tilesets.back()[tilesetIndex];
+                    if (layerData["name"] == "taskboard")
                     {
-                        startingPoint = sf::Vector2f(objectData["x"] + x, objectData["y"] + y);
+
+                    }
+                    else
+                    {
+						float scalex = float(objectData["width"]) / tile.tileWidth;
+						float scaley = float(objectData["height"]) / tile.tileHeight;
+
+                        layer->entities.push_back(
+                            new Object
+                            (
+                                objectData["name"],
+                                tile.File,
+                                sf::Vector2f(objectData["x"] + x, objectData["y"] + y - float(objectData["height"])),
+                                sf::FloatRect(x+objectData["x"] + tile.hitbox.hitbox.left*scalex,y+ objectData["y"] - objectData["height"] + tile.hitbox.hitbox.top  * scaley, tile.hitbox.hitbox.width* scalex, tile.hitbox.hitbox.height* scaley),
+                                scalex,
+                                scaley
+                            )
+                        );
                     }
                 }
-                else
-                {
-                    std::cerr << File << std::endl;
-                    return false;
-                } 
             }
             for (auto&x : layer->entities)
             {

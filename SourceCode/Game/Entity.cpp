@@ -15,6 +15,10 @@ Entity::~Entity()
 {
     // Destructor logic if needed
 }   
+void Entity::attachChild(Ptr child)
+{
+    children.push_back(std::move(child)); // Attach a child entity
+}
 bool Entity::handleEvent(const sf::Event& event,sf::RenderWindow* window)
 {
     return false; 

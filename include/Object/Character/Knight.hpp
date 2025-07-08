@@ -10,8 +10,8 @@ public:
     Knight(sf::Texture* texture,  sf::Vector2f position,State* state): Character("Knight", position)
     {
 		type = Entity::Type::Ally; // Set the type of the entity
-        movingAnimation = std::make_unique<Character_MovingAnimation>(texture, sf::Vector2u(8, 3), 0.1f, this->position, 2.1f,sf::Vector2f(0.5,1)); 
-        movingAnimation->speed = 500.0f; 
+        movingAnimation = std::make_unique<Character_MovingAnimation>(texture, sf::Vector2u(8, 3), 0.08f, this->position, 2.1f,sf::Vector2f(0.5,1)); 
+        movingAnimation->speed = 285.0f; 
         this->weaponHolder.setCurrentMap(state);
         weaponHolder.addWeapon(WeaponLoader::Instance().GetWeapon("RapidGun", this)); // Add a gun to the weapon 
     }   
@@ -30,7 +30,7 @@ public:
         weaponHolder.draw(target, states); // Draw 
         sf::RectangleShape hitboxshape(sf::Vector2f(getHitbox().hitbox.width, getHitbox().hitbox.height));
         hitboxshape.setPosition(sf::Vector2f(getHitbox().hitbox.left, getHitbox().hitbox.top));
-        hitboxshape.setFillColor(sf::Color(255, 0, 0, 128)); // semi-transparent red for visibility
+        hitboxshape.setFillColor(sf::Color::Yellow); // semi-transparent red for visibility
         target.draw(hitboxshape, states); // Draw the hitbox shape
     }
     void collide(const Entity* other) override final 

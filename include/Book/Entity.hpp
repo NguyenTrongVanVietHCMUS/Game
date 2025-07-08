@@ -36,7 +36,7 @@ public :
     virtual bool handleEvent(const sf::Event& event,sf::RenderWindow*window) ;
     virtual bool update(const sf::Time& dt)  ;
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states)const ; // Draw the entity
-    void attachChild(Ptr child);  
+    void attachChild(Ptr child); 
     virtual Hitbox getHitbox()const ; // Get the hitbox of the entity
 public :
     // utility functions

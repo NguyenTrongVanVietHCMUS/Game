@@ -36,19 +36,24 @@ public:
 
 }; 
 struct Tileset {
+    std::string type = "Object";
     std::string File ; 
     sf::Texture texture;
     int firstGid;
     int tileWidth;
     int tileHeight;
     int columns;
-    int tileCount;
+    int tileCount;  
+    Hitbox hitbox; 
 };
 class TileLayer: public Layer  
 {
 public:
     TileLayer()
     {
+		type = Layer::TileLayer; // Set the type of the layer
+		name = "Tile Layer"; // Default name for the layer
+        width = height = 0; 
         visible = true ; 
     }
     ~TileLayer()

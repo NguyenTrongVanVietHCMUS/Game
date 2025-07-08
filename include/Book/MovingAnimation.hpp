@@ -4,7 +4,8 @@
 
 class MovingAnimation : public sf::Drawable
 {
-
+protected : 
+    bool jump = false; 
 public :
     sf::Sprite sprite; 
     sf::Texture* texture; 
@@ -18,7 +19,7 @@ public :
     sf::Vector2f oldPosition; 
 	sf::Vector2u currentImage;
     sf::Vector2f middlePosition;
-    int state;
+    int state; 
     float speed; 
     int mask; 
 
@@ -59,6 +60,7 @@ public:
         sprite.setTexture(*texture);
         sprite.setScale(-scale, scale);
         mask = 0; 
+		direction = rand() % 2 == 0 ? LEFT : RIGHT; // Randomly set the initial direction
     }
     virtual ~MovingAnimation() 
     {
@@ -82,7 +84,12 @@ protected:
     Direction direction;
     void setSpritePosition()
     {
-        sprite.setPosition(position);
+
+        sprite.setPosition(position); 
+        if (state == MOVING && jump)
+        {
+            sprite.setPosition(position.x, position.y - 10); // Adjust for jump effect
+        }
         sprite.setOrigin(middlePosition.x * uvRect.width, middlePosition.y * uvRect.height);
         sprite.setTextureRect(uvRect);
     }
@@ -91,6 +98,8 @@ protected:
 
 class Character_MovingAnimation : public MovingAnimation 
 {
+private: 
+    int distancefromground = 0; 
 public :
     Character_MovingAnimation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f& position, float scale, sf::Vector2f middlePosition = sf::Vector2f(0.5f, 1)); // Constructor with parameters
     ~Character_MovingAnimation();

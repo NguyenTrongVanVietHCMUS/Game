@@ -92,27 +92,27 @@ void Character_MovingAnimation::update(const sf::Time& deltaTime)
     }
     else 
     {
-        state = MOVING;
-    }
-    // update the rotation base on position of mouse 
+        state = MOVING; 
 
-        if (direction == LEFT)
-        {
-            sprite.setScale(-scale, scale);
-        } 
-        else
-        {
-            sprite.setScale(scale, scale);
-        }
+    }
+    // update the rotation base on position of 
+    if (direction == LEFT)
+    {
+        sprite.setScale(-scale, scale);
+    } 
+    else
+    {
+        sprite.setScale(scale, scale);
+    }
     
     currentImage.y = state;
 
     totalTime += deltaTime.asSeconds();
-    
+    if (state == IDLE || state == DEATH) jump = false; 
     if (totalTime >= switchTime)
     {
         totalTime -= switchTime;
-        currentImage.x++;
+        currentImage.x++; 
         if (currentImage.x >= imageCount.x)
         {
             currentImage.x = 0;
