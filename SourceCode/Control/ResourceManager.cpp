@@ -36,5 +36,9 @@ template <>
 sf::Font& ResourceManager::get<sf::Font, Fonts::ID>(Fonts::ID id) {
     return fonts.get(id);
 }
-
+template<> 
+TileMap& ResourceManager::get<TileMap, Map::ID>(Map::ID id)
+{
+    return maps.get(id); 
+}
 // ... similar specializations for other types

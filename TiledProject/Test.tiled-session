@@ -568,8 +568,7 @@
     "last.imagePath": "V:/Game/Media/Assets/TileSets/Deco",
     "last.worldFilePath": "V:/Game/Media/Assets/Maps/Dungeon/Jungle",
     "loadedWorlds": [
-        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/Jungle.world",
-        "V:/Game/Media/Assets/Maps/Lobby/lobby.world"
+        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/jungle.world"
     ],
     "map.fixedSize": false,
     "map.lastUsedFormat": "json",

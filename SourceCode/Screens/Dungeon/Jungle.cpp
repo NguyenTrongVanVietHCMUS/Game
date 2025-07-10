@@ -1,15 +1,19 @@
 #include <Screens/Dungeon/Jungle.hpp>
+#include<Control/ResourceManager.hpp>
 #include<Object/Character/Knight.hpp>
 #include<Object/Mob/Boar.hpp> 
 
 Jungle::Jungle(StateStack& stack,Context context):
     State(stack,context) 
 {         
-    map = new TileMap(context.maps->get(Map::ID::Jungle));
-    map->entities.push_back(new Knight(&context.textures->get(Textures::ID::Knight),map->startingPoint,this)); // Assuming Texture::ID::Knight is defined in your TextureHolder
+    map = new TileMap(ResourceManager::getInstance().get<TileMap>(Map::ID::Jungle)); 
+    map->entities.push_back(new Knight(&ResourceManager::getInstance().get<sf::Texture>(Textures::ID::Knight),map->startingPoint,this)); 
+    //map = new TileMap(context.maps->get(Map::ID::Jungle));
+    
+    //map->entities.push_back(new Knight(&context.textures->get(Textures::ID::Knight),map->startingPoint,this)); // Assuming Texture::ID::Knight is defined in your TextureHolder
     for (int i = 1; i <= 50; i++)
     {
-        map->entities.push_back(new Boar(&context.textures->get(Textures::ID::Boar), map->startingPoint)); // Add a Boar entity to the map
+        map->entities.push_back(new Boar(&ResourceManager::getInstance().get<sf::Texture>(Textures::ID::Boar), map->startingPoint)); // Add a Boar entity to the map
     }
 
 }

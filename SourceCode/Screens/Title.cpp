@@ -1,9 +1,10 @@
-#include"Screens/Title.hpp"
-#include<iostream> 
+#include<Screens/Title.hpp>
+#include<Control/ResourceManager.hpp>
 Title::Title(StateStack& stack,Context context):
     State(stack,context)
 {     
-    map = new TileMap(context.maps->get(Map::ID::Title)); // Assuming Map::ID::Title is defined in your MapHolder
+    map = new TileMap(ResourceManager::getInstance().get<TileMap>(Map::ID::Title)); 
+    //map = new TileMap(context.maps->get(Map::ID::Title)); // Assuming Map::ID::Title is defined in your MapHolder
 }
 Title::~Title()
 {
