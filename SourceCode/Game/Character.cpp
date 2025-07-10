@@ -26,7 +26,8 @@ bool Character::update(const sf::Time& deltaTime)
     //std::cout<<"updating Character " << position.x << ", " << position.y << std::endl;
     
     movingAnimation->update(deltaTime); // Update the animation
-    updateHitboxOnPosition(deltaTime); // Update the hitbox position based on the entity's current position
+    inventory->update(deltaTime); // Update the inventory
+    updateHitboxOnPosition(); // Update the hitbox position based on the entity's current position
     return false;
 }
 void Character::collide(const Entity* other)

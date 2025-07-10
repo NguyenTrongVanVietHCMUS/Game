@@ -27,7 +27,7 @@ public :
     virtual Hitbox getHitbox()const ; // Get the hitbox of the entity
 public :
     // utility functions
-    void updateHitboxOnPosition(sf::Time deltaTime);
+    void updateHitboxOnPosition();
 public : 
     // Getters and Setters
     sf::Vector2f getPosition() const { 

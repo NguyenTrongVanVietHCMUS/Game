@@ -16,6 +16,7 @@ void ShortRangeMob_MovingAnimation::handleEvent(const sf::Event& event, sf::Rend
 }
 void ShortRangeMob_MovingAnimation::update(const sf::Time& deltaTime)
 {
+    std::cerr << "Mask: " << mask << std::endl;
     mask = rand() % 16; 
     oldPosition = position;
     if (BIT(mask, UP))

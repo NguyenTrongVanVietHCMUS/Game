@@ -3,7 +3,7 @@
 #include<Book/Utility.hpp>
 #include<Book/Character.hpp>
 #include<Book/Strategy/WeaponBehavior.hpp>
-
+#include<Book/Strategy/WeaponAnimation.h>
 class Knight : public Character
 {
 public:
@@ -24,9 +24,23 @@ public:
                 std::make_unique<RangedWeaponBehavior>(state, 500.0f) // Ranged weapon behavior with speed
             )
         );
+        sf::Texture* swordTexture = new sf::Texture();
+        if (!swordTexture->loadFromFile("Media/Assets/Weapons/sword/Scythe.png")) {
+            std::cerr << "Failed to load sword texture\n";
+        }
         inventory->addWeapon(
             std::make_shared<Weapon2>(
-                std::make_unique<RangedWeaponBehavior>(state, 2000.0f) // Ranged weapon behavior with speed
+                std::make_unique<MeleeWeaponBehavior>(state), // Melee weapon behavior with speed
+                std::make_unique<SwordAnimation>(
+                    0.2f, // Total time for the animation
+                    -1.0f, // Scale of the animation
+                    swordTexture, // Texture for the sword animation
+                    this->position, // Position of the sword animation
+                    -90.0f, // Start angle of the sword animation
+                    90.0f, // End angle of the sword animation
+                    this, // Owner of the sword animation
+                    sf::Vector2f(0.1f, 0.1f) // Middle position for the sword animation
+                )
             )
         );
         movingAnimation->speed = 500.0f; 
@@ -44,9 +58,11 @@ public:
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override
     {
         movingAnimation->draw(target, states);
+        
         sf::RectangleShape hitboxshape(sf::Vector2f(getHitbox().hitbox.width, getHitbox().hitbox.height));
         hitboxshape.setPosition(sf::Vector2f(getHitbox().hitbox.left, getHitbox().hitbox.top));
         hitboxshape.setFillColor(sf::Color(255, 0, 0, 128)); // semi-transparent red for visibility
         target.draw(hitboxshape, states); // Draw the hitbox shape
+        inventory->draw(target, states); // Draw the inventory
     }
 };

@@ -31,6 +31,13 @@ void Projectile2::addTrailEffect(std::unique_ptr<IEffect> effect)
     }
 }
 
+void Projectile2::setMovingAnimation(std::unique_ptr<MovingAnimation> animation)
+{
+    if (animation) {
+        movingAnimation = std::move(animation);
+    }
+}
+
 void Projectile2::setAttribute(const std::string& attributeName, float value)
 {
     attributes[attributeName] = value;
@@ -66,7 +73,9 @@ bool Projectile2::update(const sf::Time& dt)
         effect->apply(*this);
     }
     setAttribute("CurrentLifeTime", CurrentLifeTime); // Update the current lifetime attribute
-    updateHitboxOnPosition(dt);
+    if (movingAnimation) {
+        movingAnimation->update(dt); // Update the moving animation if it exists
+    }
     // Handle collision if a collision strategy is set
     return true;
 }
@@ -81,6 +90,13 @@ void Projectile2::collide(const Entity* other)
 
 void Projectile2::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-    hitbox.draw(target, states); // Draw the hitbox for debugging purposes
-    target.draw(sprite, states);
+    if(movingAnimation) {
+        movingAnimation->draw(target, states); // Draw the moving animation if it exists
+        hitbox.draw(target, states); //Draw the hitbox for debugging purposes
+    } else {
+        hitbox.draw(target, states); // Draw the hitbox for debugging purposes
+        target.draw(sprite, states);  
+        
+    }
+     
 }

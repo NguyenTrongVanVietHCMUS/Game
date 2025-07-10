@@ -16,6 +16,7 @@ public:
         // Update the position of the projectile based on its speed and the elapsed time
         projectile.position.x += speedX * dt.asSeconds();
         projectile.position.y += speedY * dt.asSeconds();
+        projectile.updateHitboxOnPosition(); // Update the hitbox position based on the new position
     }
 
     std::unique_ptr<IMovement> clone() const override

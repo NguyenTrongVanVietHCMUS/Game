@@ -29,3 +29,28 @@ struct IBehavior
     virtual void activate(Weapon2& weapon, Entity* target) = 0;
     virtual ~IBehavior() = default;
 };
+
+class IWeaponAnimation
+{
+protected:
+    float scale = 1.0f; // Scale of the weapon animation
+    float TotalTime = 0.0f; // Total time for the animation
+    float CurrentTime = 0.0f; // Current time for the animation
+    sf::Vector2f position; // Position of the weapon animation
+    sf::Vector2f middlePosition; // Middle position of the weapon animation
+    sf::Texture* texture = nullptr; // Texture for the weapon animation
+    sf::Sprite sprite; // Sprite for the weapon animation
+public:
+    IWeaponAnimation(float TotalTime, float scale, sf::Texture* texture, 
+                    const sf::Vector2f& position, const sf::Vector2f& middlePosition = sf::Vector2f(0, 0));
+
+    void play(); // This will put CurrentTime to 0 and start the animation
+    
+public:
+    virtual void update(Weapon2& weapon, const sf::Time& dt) {};
+    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) {};
+    virtual void handleEvent(const sf::Event& event) {};
+    virtual ~IWeaponAnimation() = default;
+
+
+};

@@ -5,7 +5,7 @@
 #include <Book/Strategy/ProjectileBehavior.hpp>
 #include <Book/Strategy/CollisionBehavior.hpp>
 #include <Control/State.hpp>
-
+#include <Book/MovingAnimation.hpp>
 
 struct RangedWeaponBehavior : public IBehavior
 {
@@ -18,18 +18,71 @@ struct RangedWeaponBehavior : public IBehavior
         float posX = self.getStat("MousePosX");
         float posY = self.getStat("MousePosY");
         // normalize the direction vector
+    
         sf::Vector2f direction = sf::Vector2f(posX, posY) - target->getPosition();
         float projectileSpeedX = projectileSpeed * (direction.x / std::sqrt(direction.x * direction.x + direction.y * direction.y)),
                 projectileSpeedY = projectileSpeed * (direction.y / std::sqrt(direction.x * direction.x + direction.y * direction.y));
         //std::cerr << "Projectile speed X: " << projectileSpeedX << ", Y: " << projectileSpeedY << std::endl;
         auto proj = new Projectile2(
             "RangedProjectile",
-            0.5f, // as seconds
+            0.5f, // as seconds represent life time of the projectile
             target->getPosition(),
             Worldmap,
+            "Media/Assets/Projectiles/PurpleBullet.png", // Path to the projectile texture
             std::make_unique<StraightMovement>(projectileSpeedX, projectileSpeedY),
             std::make_unique<ProjectileCollisionBehavior>(Worldmap)
         );
+        
+        proj->update(sf::seconds(0)); // Initialize the projectile's animation
+        Worldmap->pushEntity(proj);
+    }
+};
+
+
+struct MeleeWeaponBehavior : public IBehavior
+{
+private:
+    State* Worldmap = nullptr;
+public:
+    MeleeWeaponBehavior(State* worldmap) : Worldmap(worldmap) {}
+
+    void activate(Weapon2& self, Entity* target) override {
+        sf::Texture* texture = new sf::Texture();
+        if(!texture->loadFromFile("Media/Assets/Projectiles/sword_slash.png")) {
+            throw std::runtime_error("Failed to load melee projectile texture");
+        }
+        float posX = self.getStat("MousePosX");
+        float posY = self.getStat("MousePosY");
+        // normalize the direction vector
+        sf::Vector2f direction = target->getPosition() - sf::Vector2f(posX, posY);
+        float Angle = std::atan2(direction.y, direction.x); // Calculate the angle of the melee attack
+        // Offset the position of the projectile to be in front of the target
+        sf::Vector2f offset(25.0f * std::cos(Angle), 25.0f * std::sin(Angle)); // Offset by 50 pixels in the direction of the attack
+
+        auto proj = new Projectile2(
+            "MeleeProjectile",
+            0.12f, // as seconds
+            target->getPosition(),
+            Worldmap,
+            "Media/Assets/Projectiles/sword_slash.png", // Path to the projectile texture
+            nullptr, // No movement for melee
+            nullptr,
+            nullptr
+        );
+        proj->position -= offset; // Set the position of the projectile to be in front of the target
+        std::unique_ptr<MovingAnimation> movingAnimation = std::make_unique<SlashProjectile_MovingAnimation>(
+            texture, 
+            sf::Vector2u(3, 1), 
+            0.04f, // Switch time for the animation
+            proj->position, 
+            5.0f, // Scale of the animation
+            Angle,
+            sf::Vector2f(0.5f, 0.5f) // Middle position for the animation
+        );
+
+        proj->updateHitboxOnPosition(); // Update the hitbox position based on the entity's current position
+        proj->setMovingAnimation(std::move(movingAnimation));
+        proj->update(sf::seconds(0)); // Initialize the projectile's animation
         Worldmap->pushEntity(proj);
     }
 };

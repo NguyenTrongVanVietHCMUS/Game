@@ -26,4 +26,23 @@ void Weapon2::activate(Entity*target)
     if (behavior) {
         behavior->activate(*this, target);
     }
+    if( animation) {
+        animation->play(); // Start the animation when the weapon is activated
+    }
+}
+
+void Weapon2::update(const sf::Time& dt)
+{
+    if( animation) {
+        animation->update(*this, dt);
+    }
+}
+
+void Weapon2::draw(sf::RenderTarget& target, sf::RenderStates states) const
+{
+    std::cerr << "Drawing Weapon2 with stats:\n";
+    if (animation) {
+        std::cerr << "Proccessing animation\n";
+        animation->draw(target, states);
+    }
 }
