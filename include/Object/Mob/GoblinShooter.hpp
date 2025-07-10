@@ -2,6 +2,7 @@
 
 #include<Book/Utility.hpp>
 #include<Book/Character.hpp>
+#include<Book/MovingAnimation.hpp>
 
 
 class GoblinShooter : public Character
@@ -10,7 +11,7 @@ public:
     GoblinShooter(sf::Texture* texture, sf::Vector2f position) : Character("GoblinShooter", position)
     {
         movingAnimation = std::make_unique<HighRangeMob_MovingAnimation>(texture, sf::Vector2u(8, 3), 0.1f, this->position, 2.5f);
-        movingAnimation->speed = 300.0f; // Set the speed of the boar
+        movingAnimation->speed   = 300.0f; // Set the speed of the boar
     }
 
     ~GoblinShooter() override = default; // Default destructor    
@@ -26,7 +27,7 @@ public:
         //movingAnimation->handleEvent(event, window);
         //skillHolder.handleEvent(event, window); // Handle events for the skill holder
         //weaponHolder.handleEvent(event, window); // Handle events for the weapon holder
-        return false;
+        return false;  
     }
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override
     {

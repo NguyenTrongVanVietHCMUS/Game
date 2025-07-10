@@ -10,6 +10,9 @@
 #include<Control/ResourceHolder.hpp>
 #include<Control/ResourceIdentifiers.hpp>
 
+#include<Control/ResourceManager.hpp>
+
+
 #include<Control/SoundPlayer.hpp>
 #include<Control/MusicPlayer.hpp>
 

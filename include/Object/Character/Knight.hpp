@@ -15,7 +15,6 @@ public:
         this->weaponHolder.setCurrentMap(state);
         weaponHolder.addWeapon(WeaponLoader::Instance().GetWeapon("RapidGun", this)); // Add a gun to the weapon 
     }   
-    
     ~Knight() override = default; // Default destructor    
     Hitbox getHitbox() const 
     {
@@ -30,7 +29,7 @@ public:
         weaponHolder.draw(target, states); // Draw 
         sf::RectangleShape hitboxshape(sf::Vector2f(getHitbox().hitbox.width, getHitbox().hitbox.height));
         hitboxshape.setPosition(sf::Vector2f(getHitbox().hitbox.left, getHitbox().hitbox.top));
-        hitboxshape.setFillColor(sf::Color::Yellow); // semi-transparent red for visibility
+		hitboxshape.setFillColor(sf::Color(255, 0, 0, 100)); // Semi-transparent red color for the hitbox
         target.draw(hitboxshape, states); // Draw the hitbox shape
     }
     void collide(const Entity* other) override final 

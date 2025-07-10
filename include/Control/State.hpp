@@ -1,12 +1,9 @@
 #pragma once 
 #include <Book/Utility.hpp>
-#include "Control/StateIdentifiers.hpp"
-#include "Control/ResourceIdentifiers.hpp"
+#include <Control/StateIdentifiers.hpp>
+#include <Control/ResourceIdentifiers.hpp>
 #include <SFML/System/Time.hpp>
 #include <SFML/Window/Event.hpp>
-#include <Control/State.hpp>
-#include<Book/Utility.hpp>
-#include<Book/Entity.hpp>
 #include<Book/TileMap.hpp>
 #include <memory>
 

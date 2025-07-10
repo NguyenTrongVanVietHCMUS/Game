@@ -45,6 +45,7 @@ struct Tileset {
     int columns;
     int tileCount;  
     Hitbox hitbox; 
+    Tileset() = default;
 };
 class TileLayer: public Layer  
 {

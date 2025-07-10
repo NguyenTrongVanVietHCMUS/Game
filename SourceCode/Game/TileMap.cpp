@@ -302,7 +302,7 @@ bool TileMap::update(const sf::Time& dt)
     
     auto drawingOrder = [](const Entity* a, const Entity* b)
     {
-        return (a->getHitbox().hitbox.top + a->getHitbox().hitbox.height < b->getHitbox().hitbox.top + b->getHitbox().hitbox.height) ||
+        return (a->getHitbox().hitbox.top + a->getHitbox().hitbox .height < b->getHitbox().hitbox.top + b->getHitbox().hitbox.height) ||
         (a->getHitbox().hitbox.top + a->getHitbox().hitbox.height == b->getHitbox().hitbox.top + b->getHitbox().hitbox.height &&
         a->getHitbox().hitbox.left + a->getHitbox().hitbox.width < b->getHitbox().hitbox.left + b->getHitbox().hitbox.width);
     };
@@ -351,7 +351,6 @@ void TileMap::handleCollision()
             }
         }
     }
-    
     // Handle potential aftermath of collisions here
 }
  

@@ -9,8 +9,6 @@ Character::Character(
     weaponHolder.addWeapon(WeaponLoader::Instance().GetWeapon("RapidGun", this)); // Add a gun to the weapon holder
 }
 
-
-
 Character::~Character()
 {
     // Destructor logic if needed
@@ -32,7 +30,6 @@ bool Character::update(const sf::Time& deltaTime)
     return false;
 }
 void Character::collide(const Entity* other)
-{
-    
+{    
     movingAnimation->handleCollision(other); 
 }

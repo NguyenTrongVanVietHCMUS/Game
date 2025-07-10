@@ -1,11 +1,12 @@
 #include <Screens/Lobby.hpp>
 #include<Object/Character/Knight.hpp>
 #include<Object/Mob/Boar.hpp> 
+#include<Control/ResourceManager.hpp> 
 Lobby::Lobby(StateStack& stack,Context context):
     State(stack,context) 
 {         
     map = new TileMap(context.maps->get(Map::ID::Lobby)); 
-    map->entities.push_back(new Knight(&context.textures->get(Textures::ID::Knight),map->startingPoint,this)); // Assuming Texture::ID::Knight is defined in your TextureHolder
+    map->entities.push_back(new Knight(&ResourceManager::getInstance().get<sf::Texture>(Textures::ID::Knight), map->startingPoint, this)); // Assuming Texture::ID::Knight is defined in your TextureHolder
 }
 
 Lobby::~Lobby()
