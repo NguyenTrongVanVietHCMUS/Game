@@ -8,6 +8,7 @@
 #include<Control/WeaponHolder.hpp>
 #include<Object/Weapon/Gun.hpp>
 #include<Control/WeaponLoader.hpp>
+#include<Control/ResourceManager.hpp>
 class Character : public Entity
 {
 protected:

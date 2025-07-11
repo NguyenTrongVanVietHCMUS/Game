@@ -5,9 +5,8 @@
 Lobby::Lobby(StateStack& stack,Context context):
     State(stack,context) 
 {         
-    //map = new TileMap(context.maps->get(Map::ID::Lobby)); 
     map = new TileMap(ResourceManager::getInstance().get<TileMap>(Map::ID::Lobby)); 
-    map->entities.push_back(new Knight(&ResourceManager::getInstance().get<sf::Texture>(Textures::ID::Knight), map->startingPoint, this)); // Assuming Texture::ID::Knight is defined in your TextureHolder
+    map->entities.push_back(new Knight(map->startingPoint, this)); // Adjusted to match the new Knight constructor
 }
 
 Lobby::~Lobby()

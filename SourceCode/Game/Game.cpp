@@ -19,13 +19,14 @@ Game::Game()
 			ResourceManager::getInstance().load<sf::Texture>(Textures::ID::Boar, "Media/Assets/Mobs/Boar/NormalBoar.png");
 
 		}
+
 		{
 			// load maps 
 			ResourceManager::getInstance().load<TileMap>(Map::ID::Title, "Media/Assets/Maps/Title/title.world");
 			ResourceManager::getInstance().load<TileMap>(Map::ID::Lobby, "Media/Assets/Maps/Lobby/lobby.world");
-			ResourceManager::getInstance().load<TileMap>(Map::ID::Jungle, "Media/Assets/Maps/Dungeon/Jungle/jungle.world"); 
+			ResourceManager::getInstance().load<TileMap>(Map::ID::Jungle, "Media/Assets/Maps/Dungeon/Jungle/jungle.world");
 		}
-		
+
 		{
 			// load fonts 
 			ResourceManager::getInstance().load<sf::Font>(Fonts::ID::Main, "Media/Fonts/Sansation.ttf");

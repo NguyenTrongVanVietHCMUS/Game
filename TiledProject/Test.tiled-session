@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "V:/Game/Media/Assets/Maps/Lobby/lobby.json",
+    "activeFile": "V:/Game/Media/Assets/Maps/Dungeon/Jungle/battleroom1.json",
     "expandedProjectPaths": [
         "."
     ],
@@ -11,7 +11,7 @@
     "fileStates": {
         "": {
             "dynamicWrapping": false,
-            "scaleInDock": 0.25,
+            "scaleInDock": 0.125,
             "scaleInEditor": 3
         },
         "#Map Tileset": {
@@ -86,11 +86,11 @@
             "expandedObjectLayers": [
                 2
             ],
-            "scale": 0.5,
+            "scale": 0.75,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 561,
-                "y": 559
+                "x": 665.3333333333333,
+                "y": 553.3333333333334
             }
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/battleroom1.json#GroundTiles": {
@@ -380,19 +380,19 @@
             "scale": 0.5,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 607,
-                "y": 511
+                "x": 606,
+                "y": 510
             }
         },
         "V:/Game/Media/Assets/Maps/Lobby/lobby.json": {
             "expandedObjectLayers": [
                 8
             ],
-            "scale": 1,
-            "selectedLayer": 0,
+            "scale": 0.5,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 730,
-                "y": 555
+                "x": 974,
+                "y": 566
             }
         },
         "V:/Game/Media/Assets/Maps/Lobby/lobby.json#BackgroundWall": {
@@ -583,10 +583,10 @@
     "property.type": "object",
     "recentFiles": [
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/startingroom.json",
-        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/battleroom1.json",
-        "V:/Game/Media/Assets/Maps/Lobby/garden.json",
-        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway1.json",
         "V:/Game/Media/Assets/Maps/Lobby/lobby.json",
+        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway1.json",
+        "V:/Game/Media/Assets/Maps/Lobby/garden.json",
+        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/battleroom1.json",
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/battleroom2.json",
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/battleroom3.json",
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/chestroom.json",

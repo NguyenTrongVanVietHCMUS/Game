@@ -7,10 +7,10 @@
 class Knight : public Character
 {
 public:
-    Knight(sf::Texture* texture,  sf::Vector2f position,State* state): Character("Knight", position)
-    {
-		type = Entity::Type::Ally; // Set the type of the entity
-        movingAnimation = std::make_unique<Character_MovingAnimation>(texture, sf::Vector2u(8, 3), 0.08f, this->position, 2.1f,sf::Vector2f(0.5,1)); 
+    Knight(sf::Vector2f position,State* state): Character("Knight", position)
+    {   
+		type = Entity::Type::Ally; 
+        movingAnimation = std::make_unique<Character_MovingAnimation>(&ResourceManager::getInstance().get<sf::Texture>(Textures::ID::Knight), sf::Vector2u(8, 3), 0.08f, this->position, 2.1f, sf::Vector2f(0.5, 1));
         movingAnimation->speed = 285.0f; 
         this->weaponHolder.setCurrentMap(state);
         weaponHolder.addWeapon(WeaponLoader::Instance().GetWeapon("RapidGun", this)); // Add a gun to the weapon 

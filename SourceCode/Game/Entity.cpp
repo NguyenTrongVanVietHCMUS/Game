@@ -33,7 +33,7 @@ bool Entity::update(const sf::Time& dt)
 }
 void Entity::draw(sf::RenderTarget& target, sf::RenderStates states)const 
 {
-    hitbox.draw(target,states) ;  
+    //hitbox.draw(target,states) ;  
 }
 Hitbox Entity::getHitbox() const
 {
