@@ -25,14 +25,18 @@ void GunAnimation::update(Weapon2& weapon, const sf::Time& dt) {
     std::cerr << "Original Angle: " << originalAngle << std::endl;
     float t = CurrentTime / TotalTime; // Normalized time [0, 1]
     float angleOffset = startAngle + t * (endAngle - startAngle); // Interpolate angle
+    
     if(abs(originalAngle) > 90.0f) {
         sprite.setScale(scale, -scale);
     } else sprite.setScale(scale, scale); 
     sprite.setRotation(originalAngle + angleOffset); // Set the rotation of the sprite
     
     // Set the position of the sprite based on the owner entity's position
-    float PositionX = owner->getPosition().x - recoilOffset * (1.0f - t); // Center the gun on the owner
-    float PositionY = owner->getPosition().y - recoilOffset * (1.0f - t) - 15; // Apply recoil effect
+    float OffsetX = recoilOffset * std::cos(originalAngle * 3.14159f / 180.0f); // Recoil offset in X direction
+    float OffsetY = recoilOffset * std::sin(originalAngle * 3.14159f / 180.0f); // Recoil offset in Y direction
+    std::cerr << "Offset X: " << OffsetX << ", Offset Y: " << OffsetY << std::endl;
+    float PositionX = owner->getPosition().x - OffsetX * (1-t); // Center the gun on the owner
+    float PositionY = owner->getPosition().y - OffsetY * (1-t) - 15; // Apply recoil effect
     sprite.setPosition(PositionX, PositionY);
 }
 

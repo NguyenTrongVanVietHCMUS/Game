@@ -35,7 +35,7 @@ public:
                     this->position, // Position of the gun animation
                     10.0f, // Start angle of the gun animation
                     0.0f, // End angle of the gun animation
-                    10.0f, // Recoil offset for the gun animation
+                    25.0f, // Recoil offset for the gun animation
                     this, // Owner of the gun animation
                     sf::Vector2f(0.5f, 0.5f) // Middle position for the gun animation
                 )
