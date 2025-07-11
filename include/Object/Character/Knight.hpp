@@ -19,9 +19,26 @@ public:
             this, 
             sf::Vector2f(2.0f/3, 1)
         );  
+
+        sf::Texture* gunTexture = new sf::Texture();
+        if (!gunTexture->loadFromFile("Media/Assets/Weapons/gun/AK_47.png")) {
+            std::cerr << "Failed to load gun texture\n";
+        }
+
         inventory->addWeapon(
             std::make_shared<Weapon2>(
-                std::make_unique<RangedWeaponBehavior>(state, 500.0f) // Ranged weapon behavior with speed
+                std::make_unique<RangedWeaponBehavior>(state, 500.0f), // Ranged weapon behavior with speed
+                std::make_unique<GunAnimation>(
+                    0.2f, // Total time for the animation
+                    0.4f, // Scale of the animation
+                    gunTexture, // Texture for the gun animation
+                    this->position, // Position of the gun animation
+                    10.0f, // Start angle of the gun animation
+                    0.0f, // End angle of the gun animation
+                    10.0f, // Recoil offset for the gun animation
+                    this, // Owner of the gun animation
+                    sf::Vector2f(0.5f, 0.5f) // Middle position for the gun animation
+                )
             )
         );
         sf::Texture* swordTexture = new sf::Texture();

@@ -19,7 +19,7 @@ public :
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override
     {
         movingAnimation->draw(target, states);
-        inventory->draw(target, states); // Draw the inventory
         hitbox.draw(target, states); // Draw the hitbox
+        inventory->draw(target, states); // Draw the inventory
     }
 };

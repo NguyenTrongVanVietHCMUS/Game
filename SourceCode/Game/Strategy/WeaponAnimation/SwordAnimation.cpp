@@ -38,8 +38,5 @@ void SwordAnimation::update(Weapon2& weapon, const sf::Time& dt) {
 }
 
 void SwordAnimation::draw(sf::RenderTarget& target, sf::RenderStates states) {
-    std::cerr << "Drawing Sword Animation at position: " 
-              << sprite.getPosition().x << ", " << sprite.getPosition().y 
-              << " with rotation: " << sprite.getRotation() << std::endl;
     target.draw(sprite, states); // Draw the sprite with the current rotation
 }
