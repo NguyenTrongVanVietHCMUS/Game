@@ -40,9 +40,7 @@ void Weapon2::update(const sf::Time& dt)
 
 void Weapon2::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-    std::cerr << "Drawing Weapon2 with stats:\n";
     if (animation) {
-        std::cerr << "Proccessing animation\n";
         animation->draw(target, states);
     }
 }
