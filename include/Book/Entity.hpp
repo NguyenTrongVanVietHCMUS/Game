@@ -33,7 +33,7 @@ public :
     std::string name ; 
     sf::Vector2f position; // Position of the entity
     Hitbox hitbox ;  
-    virtual bool handleEvent(const sf::Event& event,sf::RenderWindow*window) ;
+    virtual bool handleEvent(const sf::Event& event, sf::RenderWindow* window);
     virtual bool update(const sf::Time& dt)  ;
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states)const ; // Draw the entity
     void attachChild(Ptr child); 
@@ -41,6 +41,9 @@ public :
 public :
     // utility functions
     void updateHitboxOnPosition(sf::Time deltaTime);
+    bool inRange(const Entity* other)const;
+public: 
+    virtual float getRange()const; 
 public : 
     bool movable()const; 
     // Getters and Setters

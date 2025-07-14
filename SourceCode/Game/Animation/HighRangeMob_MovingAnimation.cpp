@@ -88,3 +88,24 @@ void HighRangeMob_MovingAnimation::handleCollision(const Entity* other)
     //std::cout << oldPosition.x << " " << oldPosition.y << " collided with " << other->name << std::endl;
     setSpritePosition();
 }
+void HighRangeMob_MovingAnimation::chase(sf::Vector2f target)
+{
+    // Chase logic for short-range mob
+    if (this->position.x < target.x)
+    {
+        mask = BIT_SET(mask, RIGHT); // Set the right direction bit
+    }
+    if (this->position.x > target.x)
+    {
+        mask = BIT_SET(mask, LEFT); // Set the left direction bit
+    }
+    if (this->position.y < target.y)
+    {
+        mask = BIT_SET(mask, DOWN);
+    }
+    if (this->position.y > target.y)
+    {
+        mask = BIT_SET(mask, UP);
+    }
+    setSpritePosition();
+}

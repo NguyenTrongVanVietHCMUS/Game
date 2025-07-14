@@ -19,9 +19,10 @@ void Entity::attachChild(Ptr child)
 {
     children.push_back(std::move(child)); // Attach a child entity
 }
-bool Entity::handleEvent(const sf::Event& event,sf::RenderWindow* window)
+bool Entity::handleEvent(const sf::Event& event, sf::RenderWindow* window)
 {
-    return false; 
+    // do nothing ; 
+    return 1;  
 }
 bool Entity::update(const sf::Time& dt)
 {
@@ -48,7 +49,16 @@ bool Entity::movable()const
 {
 	return type == Entity::Type::Ally || type == Entity::Type::Enemy || type == Entity::Type::AllyProjectile || type == Entity::Type::EnemyProjectile;
 }
-
+float Entity::getRange()const
+{   
+	throw std::runtime_error("getRange() not implemented for this entity type"); // Default implementation, should be overridden in derived classes
+}
+bool Entity::inRange(const Entity* other)const
+{
+    if (other == nullptr)return false; 
+	float distance = std::pow(position.x - other->getPosition().x, 2) + std::pow(position.y - other->getPosition().y, 2);
+    return distance <= std::pow(this->getRange(), 2);
+}
 void Entity::collide(const Entity* other)
 {
     // do nothing by default 

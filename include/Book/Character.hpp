@@ -12,8 +12,9 @@
 class Character : public Entity
 {
 protected:
-    std::unique_ptr<MovingAnimation> movingAnimation;
+    std::unique_ptr<MovingAnimation>movingAnimation;
 public:
+
     Character(std::string name, sf::Vector2f position);
     ~Character();
 public:
@@ -28,4 +29,6 @@ public:
         weaponHolder.draw(target, states); // Draw the weapon 
         hitbox.draw(target, states); // Draw the 
     }
-}; 
+public:
+    virtual void chase(sf::Vector2f position);
+};

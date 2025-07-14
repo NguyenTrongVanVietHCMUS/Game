@@ -1,9 +1,8 @@
 #include "Book/TileMap.hpp"
 #include<Control/Foreach.hpp>
-#include <fstream>
-#include<Book/Wall.hpp>
+#include <fstream> 
 #include<Book/Character.hpp>
-#include<Object/Character/Knight.hpp>
+#include<Book/Enemy.hpp>
 TileMap::TileMap()
 {
 
@@ -268,7 +267,7 @@ void TileMap::draw(sf::RenderTarget& target, sf::RenderStates states)const
     //target.setView(target.getDefaultView()); // Reset the view to the default view
     for(auto  x :entities)
     {
-        if(auto character = dynamic_cast<Knight*>(x))
+        if(auto character = dynamic_cast<Character*>(x))
         {
             sf::View view (character->getPosition(), sf::Vector2f(1216, 672));
             target.setView(view); // Set the view to the character's position
@@ -287,7 +286,7 @@ bool TileMap::handleEvent(const sf::Event& event,sf::RenderWindow* window)
 {
     for(auto&x : entities)
     {
-        if (auto character = dynamic_cast<Knight*>(x))
+        if (auto character = dynamic_cast<Character*>(x))
         {
             character->handleEvent(event, window);
         }
@@ -296,6 +295,19 @@ bool TileMap::handleEvent(const sf::Event& event,sf::RenderWindow* window)
 }
 bool TileMap::update(const sf::Time& dt)
 {
+    for (auto& x : entities)
+    {
+        if (auto enemy = dynamic_cast<Enemy*>(x))
+        {
+            for (auto& y : entities)
+            {
+                if (auto character = dynamic_cast<Character*>(y))
+                {
+                    enemy->attack(character);
+                }
+            }
+        }
+    }
     for (auto& x : entities)x->update(dt); 
     
     handleCollision();

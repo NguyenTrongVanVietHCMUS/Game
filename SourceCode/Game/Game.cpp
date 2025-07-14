@@ -16,8 +16,7 @@ Game::Game()
 		{
 			// load textures 
 			ResourceManager::getInstance().load<sf::Texture>(Textures::ID::Knight, "Media/Assets/Characters/Knight/knight_1.png");
-			ResourceManager::getInstance().load<sf::Texture>(Textures::ID::Boar, "Media/Assets/Mobs/Boar/NormalBoar.png");
-
+			ResourceManager::getInstance().load<sf::Texture>(Textures::ID::Boar, "Media/Assets/Mobs/Boar/NormalBoar.png"); 
 		}
 
 		{

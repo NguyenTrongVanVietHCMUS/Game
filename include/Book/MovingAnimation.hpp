@@ -78,6 +78,7 @@ public:
         target.draw(sprite, states);
     }
     virtual void handleCollision(const Entity* other) {} // Handle collision with another entity
+    virtual void chase(sf::Vector2f position) {}
 protected: 
     Direction direction;
     virtual void setSpritePosition()
@@ -103,7 +104,7 @@ public :
     virtual void handleCollision(const Entity* other); 
     void getshot(const Entity* other) override final; 
     void setSpritePosition() override final;
-    
+    void chase(sf::Vector2f position) override final;
 };
 
 class ShortRangeMob_MovingAnimation : public MovingAnimation
@@ -116,6 +117,7 @@ public:
     virtual void update(const sf::Time& deltaTime); 
     virtual void handleCollision(const Entity* other);
     void getshot(const Entity* other) override final; 
+	void chase(sf::Vector2f position) override final;
 };
 
 class HighRangeMob_MovingAnimation : public MovingAnimation
@@ -128,4 +130,5 @@ public:
     virtual void update(const sf::Time& deltaTime);
     virtual void handleCollision(const Entity* other);
     void getshot(const Entity* other) override final;
+    void chase(sf::Vector2f position) override final;
 };

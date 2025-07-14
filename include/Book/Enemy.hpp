@@ -3,30 +3,33 @@
 #include<Book/Entity.hpp>
 #include<Object/Skills/TestSkill.hpp>
 #include<Book/MovingAnimation.hpp>
-#include<Control/State.hpp>
 #include<Control/SkillHolder.hpp>
 #include<Control/SkillLoader.hpp>
 #include<Control/WeaponHolder.hpp>
-#include<Object/Weapon/Gun.hpp>
 #include<Control/WeaponLoader.hpp>
-class Mob : public Entity
+#include<Control/ResourceManager.hpp>
+class AIEnemy; 
+class Enemy : public Entity
 {
 protected:
-    std::unique_ptr<MovingAnimation> movingAnimation;
+    float range; 
+    std::unique_ptr<AIEnemy>aiEnemy;
+    std::unique_ptr<MovingAnimation>movingAnimation;
 public:
-    Mob(std::string name, sf::Vector2f position);
-    ~Mob();
+    Enemy(std::string name, sf::Vector2f position);
+    ~Enemy();
 public:
-    SkillHolder skillHolder;
+    //SkillHolder skillHolder;
     WeaponHolder weaponHolder;
     virtual void collide(const Entity* other);
-    virtual bool handleEvent(const sf::Event& event, sf::RenderWindow* window);
+    virtual void attack(Entity* target); 
     virtual bool update(const sf::Time& deltaTime);
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override
     {
-        hitbox.draw(target, states); // Draw the hitbox
         movingAnimation->draw(target, states);
-        skillHolder.draw(target, states); // Draw the skill holder
         weaponHolder.draw(target, states); // Draw the weapon 
+        hitbox.draw(target, states); // Draw the 
     }
+public:
+    virtual void chase(sf::Vector2f position);
 };

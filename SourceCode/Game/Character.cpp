@@ -12,8 +12,7 @@ Character::Character(
 Character::~Character()
 {
     // Destructor logic if needed
-}
-
+} 
 bool Character::handleEvent(const sf::Event& event,sf::RenderWindow*window)
 {
     movingAnimation->handleEvent(event, window); 
@@ -32,4 +31,8 @@ bool Character::update(const sf::Time& deltaTime)
 void Character::collide(const Entity* other)
 {    
     movingAnimation->handleCollision(other); 
+}
+void Character::chase(sf::Vector2f position)
+{
+    movingAnimation->chase(position);
 }

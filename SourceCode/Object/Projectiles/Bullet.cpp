@@ -57,9 +57,3 @@ void Bullet::draw(sf::RenderTarget& target, sf::RenderStates states) const
     hitbox.draw(target, states); // Draw the hitbox for debugging purposes
     target.draw(sprite, states);
 }
-
-bool Bullet::handleEvent(const sf::Event& event, sf::RenderWindow* window)
-{
-    // Handle events specific to the bullet
-    return true;
-}
