@@ -38,7 +38,7 @@ public :
     virtual Hitbox getHitbox()const ; // Get the hitbox of the entity
 public :
     // utility functions
-    void updateHitboxOnPosition(sf::Time deltaTime);
+    void updateHitboxOnPosition();
     bool inRange(const Entity* other)const;
 public: 
     virtual float getRange()const; 

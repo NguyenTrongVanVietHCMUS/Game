@@ -1,6 +1,6 @@
 ﻿# CMakeList.txt : CMake project for Game, include source and define
 # project specific logic here.
-#
+#AI
 
 # Add source to this project's executable.
 

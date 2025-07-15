@@ -126,8 +126,8 @@ public:
     ~ShortRangeMob_MovingAnimation();
     virtual void update(const sf::Time& deltaTime); 
     virtual void handleCollision(const Entity* other);
-    void getshot(const Entity* other) override final; 
-	void chase(sf::Vector2f position) override final;
+    void getshot(const Entity* other); 
+	void chase(sf::Vector2f position);
 };
 
 class HighRangeMob_MovingAnimation : public MovingAnimation
@@ -139,8 +139,8 @@ public:
     ~HighRangeMob_MovingAnimation();
     virtual void update(const sf::Time& deltaTime);
     virtual void handleCollision(const Entity* other);
-    void getshot(const Entity* other) override final;
-    void chase(sf::Vector2f position) override final;
+    void getshot(const Entity* other);
+    void chase(sf::Vector2f position);
 };
 
 class SlashProjectile_MovingAnimation : public MovingAnimation

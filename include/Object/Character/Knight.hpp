@@ -1,5 +1,5 @@
 #pragma once
-
+#include<Control/ResourceManager.hpp>
 #include<Book/Utility.hpp>
 #include<Book/Character.hpp>
 #include<Book/Strategy/WeaponBehavior.hpp>
@@ -11,7 +11,7 @@ public:
     {
         type = Entity::Type::Ally; 
         movingAnimation = std::make_unique<Character_MovingAnimation>(
-            texture, 
+            &ResourceManager::getInstance().get<sf::Texture>(Textures::ID::Knight),
             sf::Vector2u(8, 3), 
             0.1f,  // Switch time for the animation
             this->position, 
