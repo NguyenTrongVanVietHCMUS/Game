@@ -16,7 +16,7 @@ Enemy::~Enemy()
 bool Enemy::update(const sf::Time& deltaTime)
 {
     movingAnimation->update(deltaTime); // Update the animation
-    inventory->update(deltaTime); // Update the weapon holder
+    //inventory->update(deltaTime); // Update the weapon holder
     updateHitboxOnPosition(); // Update the hitbox position based on the entity's current position
     return false;
 }

@@ -47,6 +47,10 @@ public :
     };
 
 public:
+    virtual void chase(sf::Vector2f position)
+    {
+        // do nothing ;
+    }
     MovingAnimation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f& position, float scale, sf::Vector2f middlePosition)
         :texture(texture), imageCount(imageCount), switchTime(switchTime), position(position), scale(scale), middlePosition(middlePosition)
     {
@@ -80,7 +84,6 @@ public:
         target.draw(sprite, states);
     }
     virtual void handleCollision(const Entity* other) {} // Handle collision with another entity
-    virtual void chase(sf::Vector2f position) {}
 protected: 
     Direction direction;
     virtual void setSpritePosition()
@@ -90,7 +93,7 @@ protected:
         sprite.setOrigin(middlePosition.x * uvRect.width, middlePosition.y * uvRect.height);
         sprite.setTextureRect(uvRect);
     }
-    virtual void getshot(const Entity* other) = 0; 
+    
 };
 
 class Character_MovingAnimation : public MovingAnimation 
@@ -112,9 +115,9 @@ public :
     virtual void update(const sf::Time& deltaTime);
     virtual void handleEvent(const sf::Event& event,sf::RenderWindow* window);
     virtual void handleCollision(const Entity* other); 
-    void getshot(const Entity* other) override final; 
-    void setSpritePosition() override final;
-    void chase(sf::Vector2f position) override final;
+    void getshot(const Entity* other);
+    void setSpritePosition(); 
+    void chase(sf::Vector2f position); 
 };
 
 class ShortRangeMob_MovingAnimation : public MovingAnimation

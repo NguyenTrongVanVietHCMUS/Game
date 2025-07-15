@@ -12,7 +12,7 @@ protected:
     float range; 
     std::unique_ptr<AIEnemy>aiEnemy;
     std::unique_ptr<MovingAnimation>movingAnimation;
-    std::shared_ptr<Inventory> inventory;
+    //std::shared_ptr<Inventory> inventory;
 public:
     Enemy(std::string name, sf::Vector2f position);
     ~Enemy();
@@ -24,7 +24,7 @@ public:
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override
     {
         movingAnimation->draw(target, states);
-        inventory->draw(target, states); 
+        //inventory->draw(target, states); 
         hitbox.draw(target, states); // Draw the 
     }
 public:
