@@ -15,8 +15,8 @@ struct RangedWeaponBehavior : public IBehavior
 
 
     void activate(Weapon2& self, Entity* target) override{
-        float posX = self.getStat("MousePosX");
-        float posY = self.getStat("MousePosY");
+        float posX = self.getStat("TargetPosX");
+        float posY = self.getStat("TargetPosY");
         // normalize the direction vector
     
         sf::Vector2f direction = sf::Vector2f(posX, posY) - target->getPosition();
@@ -64,8 +64,9 @@ public:
         if(!texture->loadFromFile("Media/Assets/Projectiles/sword_slash.png")) {
             throw std::runtime_error("Failed to load melee projectile texture");
         }
-        float posX = self.getStat("MousePosX");
-        float posY = self.getStat("MousePosY");
+        float posX = self.getStat("TargetPosX");
+        float posY = self.getStat("TargetPosY");
+        std::cerr << "Position X: " << posX << ", Y: " << posY << std::endl;
         // normalize the direction vector
         sf::Vector2f direction = target->getPosition() - sf::Vector2f(posX, posY);
         float Angle = std::atan2(direction.y, direction.x); // Calculate the angle of the melee attack
@@ -79,7 +80,7 @@ public:
             Worldmap,
             "Media/Assets/Projectiles/sword_slash.png", // Path to the projectile texture
             nullptr, // No movement for melee
-            nullptr,
+            std::make_unique<MeleeCollisionBehavior>(Worldmap), // Melee collision behavior
             nullptr
         );
         proj->position -= offset; // Set the position of the projectile to be in front of the target

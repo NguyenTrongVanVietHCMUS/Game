@@ -1,4 +1,4 @@
-#include <Book/Strategy/WeaponAnimation.h>
+#include <Book/Strategy/WeaponAnimation.hpp>
 #include <Book/Weapon2.hpp>
 GunAnimation::GunAnimation(float TotalTime, float scale, sf::Texture* texture, 
                              const sf::Vector2f& position, float startAngle, float endAngle,
@@ -17,8 +17,9 @@ void GunAnimation::update(Weapon2& weapon, const sf::Time& dt) {
         CurrentTime = TotalTime; // Clamp to TotalTime
     }
     
-    float posX = weapon.getStat("MousePosX");
-    float posY = weapon.getStat("MousePosY");
+    float posX = weapon.getStat("TargetPosX");
+    float posY = weapon.getStat("TargetPosY");
+
     // Get the Original Angle of the gun based on the mouse position
     sf::Vector2f direction = sf::Vector2f(posX, posY) - owner->getPosition();
     float originalAngle = std::atan2(direction.y, direction.x) * 180.0f / 3.14159f; // Convert to degrees

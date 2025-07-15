@@ -35,3 +35,25 @@ public:
         return std::make_unique<ProjectileCollisionBehavior>(*this);
     }
 };
+
+struct MeleeCollisionBehavior : public ICollision
+{
+private:
+    State* Worldmap;
+public:
+    MeleeCollisionBehavior(State* worldmap) : Worldmap(worldmap) {}
+    void collide(Entity& self, const Entity* other) override {
+        if(self.type == Entity::Type::Ally && other->type == Entity::Type::Enemy)
+        {
+            std::cerr << "Ally hit enemy\n";
+        }
+        else if(self.type == Entity::Type::Enemy && other->type == Entity::Type::Ally)
+        {
+            std::cerr << "Enemy hit ally\n";
+        }
+    }
+
+    std::unique_ptr<ICollision> clone() const override {
+        return std::make_unique<MeleeCollisionBehavior>(*this);
+    }
+};

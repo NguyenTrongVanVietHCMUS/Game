@@ -3,7 +3,7 @@
 #include<Book/Utility.hpp>
 #include<Book/Character.hpp>
 #include<Book/Strategy/WeaponBehavior.hpp>
-#include<Book/Strategy/WeaponAnimation.h>
+#include<Book/Strategy/WeaponAnimation.hpp>
 class Knight : public Character
 {
 public:
@@ -16,7 +16,6 @@ public:
             0.1f,  // Switch time for the animation
             this->position, 
             2.1f, // Scale of the animation,
-            this->inventory,
             this, 
             sf::Vector2f(2.0f/3, 1)
         );  
