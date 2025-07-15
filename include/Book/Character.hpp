@@ -1,6 +1,7 @@
 #pragma once
 #include<Book/Utility.hpp> 
 #include<Book/MovingAnimation.hpp>
+#include<Control/ResourceManager.hpp>
 #include<Control/State.hpp>
 #include<Book/Inventory.hpp>
 class Character : public Entity
@@ -19,7 +20,9 @@ public :
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override
     {
         movingAnimation->draw(target, states);
-        hitbox.draw(target, states); // Draw the hitbox
         inventory->draw(target, states); // Draw the inventory
+        hitbox.draw(target, states); // Draw the hitbox
     }
+public:
+    virtual void chase(sf::Vector2f position);
 };

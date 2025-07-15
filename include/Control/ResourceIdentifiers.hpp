@@ -73,21 +73,8 @@ namespace Fonts
 {
 	enum ID
 	{
-		Title, 
-		Main, 
-	};
-}
-
-namespace SoundEffect
-{
-	enum ID
-	{
-		Button,
-		movechess,
-		capturemove,
-		movecheck,
-		gameend,
-		gamedraw,
+		Title,
+		Main,
 	};
 }
 
@@ -95,8 +82,6 @@ namespace Music
 {
 	enum ID
 	{
-		//MenuTheme,
-		//MissionTheme,
 		MusicTheme1,
 		MusicTheme2,
 		MusicTheme3,
@@ -114,7 +99,18 @@ namespace Map
 		Jungle,
 	};
 }
-
+namespace SoundEffect
+{
+	enum ID
+	{
+		Button,
+		movechess,
+		capturemove,
+		movecheck,
+		gameend,
+		gamedraw,
+	};
+}
 // Forward declaration and a few type definitions
 template <typename Resource, typename Identifier>
 class ResourceHolder;

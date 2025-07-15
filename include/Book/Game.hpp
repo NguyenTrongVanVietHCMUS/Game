@@ -10,10 +10,12 @@
 #include<Control/ResourceHolder.hpp>
 #include<Control/ResourceIdentifiers.hpp>
 
+#include<Control/ResourceManager.hpp>
+
+
 #include<Control/SoundPlayer.hpp>
 #include<Control/MusicPlayer.hpp>
 
-#include<Book/TileMap.hpp>
 
 #include<Screens/Lobby.hpp>
 #include<Screens/Title.hpp>

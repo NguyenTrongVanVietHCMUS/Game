@@ -1,24 +1,40 @@
 #include<Book/Entity.hpp>
 
-Entity::Entity(std::string name , sf::Vector2f position) : name(name) , position(position)
+Entity::Entity(std::string name , sf::Vector2f position) 
+    : name(name) , position(position)
 {
+	type = Entity::Type::Object; // Set the type of the entity
 }
+
+Entity::Entity(std::string name, sf::Vector2f position, Hitbox hitbox) 
+    : name(name), position(position), hitbox(hitbox)
+{
+    type = Entity::Type::Object; // Set the type of the entity
+}   
 Entity::~Entity()
 {
     // Destructor logic if needed
 }   
-bool Entity::handleEvent(const sf::Event& event,sf::RenderWindow* window)
+void Entity::attachChild(Ptr child)
 {
-    return false; 
+    children.push_back(std::move(child)); // Attach a child entity
+}
+bool Entity::handleEvent(const sf::Event& event, sf::RenderWindow* window)
+{
+    // do nothing ; 
+    return 1;  
 }
 bool Entity::update(const sf::Time& dt)
 {
-    // std::cout<<"Entity updating"<<std::endl;
+    for (Ptr&child : children)
+    {
+        child->update(dt); 
+    }
     return false;
 }
 void Entity::draw(sf::RenderTarget& target, sf::RenderStates states)const 
 {
-    hitbox.draw(target,states) ;  
+    //hitbox.draw(target,states) ;  
 }
 Hitbox Entity::getHitbox() const
 {
@@ -28,14 +44,22 @@ Hitbox Entity::getHitbox() const
 void Entity::updateHitboxOnPosition()
 {
     hitbox.hitbox = sf::FloatRect(position.x - hitbox.hitbox.width / 2, position.y - hitbox.hitbox.height, hitbox.hitbox.width, hitbox.hitbox.height);
-    // Update the hitbox position based on the entity's current position
-    // std::cerr << "Updating hitbox position to: " << position.x << ", " << position.y << std::endl;
 }
-
-
+bool Entity::movable()const
+{
+	return type == Entity::Type::Ally || type == Entity::Type::Enemy || type == Entity::Type::AllyProjectile || type == Entity::Type::EnemyProjectile;
+}
+float Entity::getRange()const
+{   
+	throw std::runtime_error("getRange() not implemented for this entity type"); // Default implementation, should be overridden in derived classes
+}
+bool Entity::inRange(const Entity* other)const
+{
+    if (other == nullptr)return false; 
+	float distance = std::pow(position.x - other->getPosition().x, 2) + std::pow(position.y - other->getPosition().y, 2);
+    return distance <= std::pow(this->getRange(), 2);
+}
 void Entity::collide(const Entity* other)
 {
-    // Handle collision logic here
-    // This is a placeholder function and should be implemented in derived classes
-    //std::cout << "Collided with entity: " << other->name << std::endl;
+    // do nothing by default 
 }

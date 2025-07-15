@@ -6,7 +6,6 @@
 
 class MovingAnimation : public sf::Drawable
 {
-
 public :
     sf::Sprite sprite; 
     sf::Texture* texture; 
@@ -20,7 +19,7 @@ public :
     sf::Vector2f oldPosition; 
 	sf::Vector2u currentImage;
     sf::Vector2f middlePosition;
-    int state;
+    int state; 
     float speed; 
     int mask; 
 
@@ -47,7 +46,11 @@ public :
         DEATH
     };
 
-public : 
+public:
+    virtual void chase(sf::Vector2f position)
+    {
+        // do nothing ;
+    }
     MovingAnimation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f& position, float scale, sf::Vector2f middlePosition)
         :texture(texture), imageCount(imageCount), switchTime(switchTime), position(position), scale(scale), middlePosition(middlePosition)
     {
@@ -61,8 +64,8 @@ public :
         sprite.setTexture(*texture);
         sprite.setScale(-scale, scale);
         mask = 0; 
+		direction = rand() % 2 == 0 ? LEFT : RIGHT; // Randomly set the initial direction
     }
-
     virtual ~MovingAnimation() 
     {
 		delete texture; // Assuming texture is dynamically allocated
@@ -75,19 +78,22 @@ public :
     {
         // do nothing ; 
     }
-
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states)const
     {
         states.texture = texture;
         target.draw(sprite, states);
     }
     virtual void handleCollision(const Entity* other) {} // Handle collision with another entity
-    void setSpritePosition()
+protected: 
+    Direction direction;
+    virtual void setSpritePosition()
     {
+
         sprite.setPosition(position);
         sprite.setOrigin(middlePosition.x * uvRect.width, middlePosition.y * uvRect.height);
         sprite.setTextureRect(uvRect);
     }
+    
 };
 
 class Character_MovingAnimation : public MovingAnimation 
@@ -100,22 +106,44 @@ class Character_MovingAnimation : public MovingAnimation
     Direction direction; 
     std::shared_ptr<Inventory> inventoryPtr; // Pointer to the inventory
     Entity* target; // Pointer to the target entity for weapon activation
+private: 
+    int jump = 0; 
+    int distancefromground = 0; 
 public :
     Character_MovingAnimation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f& position, float scale, std::shared_ptr<Inventory> inventory, Entity *target ,sf::Vector2f middlePosition = sf::Vector2f(0.5f, 1)); // Constructor with parameters
     ~Character_MovingAnimation();
     virtual void update(const sf::Time& deltaTime);
     virtual void handleEvent(const sf::Event& event,sf::RenderWindow* window);
-    virtual void handleCollision(const Entity* other);
+    virtual void handleCollision(const Entity* other); 
+    void getshot(const Entity* other);
+    void setSpritePosition(); 
+    void chase(sf::Vector2f position); 
 };
 
 class ShortRangeMob_MovingAnimation : public MovingAnimation
 {   
+private : 
+    float attackRange; 
 public:
     ShortRangeMob_MovingAnimation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f& position, float scale, sf::Vector2f middlePosition = sf::Vector2f(0.5f, 1));
     ~ShortRangeMob_MovingAnimation();
     virtual void update(const sf::Time& deltaTime); 
-    virtual void handleEvent(const sf::Event& event, sf::RenderWindow* window); 
     virtual void handleCollision(const Entity* other);
+    void getshot(const Entity* other); 
+	void chase(sf::Vector2f position);
+};
+
+class HighRangeMob_MovingAnimation : public MovingAnimation
+{
+private : 
+    float attackRange; 
+public:
+    HighRangeMob_MovingAnimation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f& position, float scale, sf::Vector2f middlePosition = sf::Vector2f(0.5f, 1));
+    ~HighRangeMob_MovingAnimation();
+    virtual void update(const sf::Time& deltaTime);
+    virtual void handleCollision(const Entity* other);
+    void getshot(const Entity* other);
+    void chase(sf::Vector2f position);
 };
 
 class SlashProjectile_MovingAnimation : public MovingAnimation

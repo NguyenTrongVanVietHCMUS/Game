@@ -13,7 +13,22 @@ public:
     
     void collide(Entity& self,const Entity* other) override {
         std::cerr << "Projectile collided with another entity\n";
-        Worldmap->popEntity(&self); // Remove the projectile from the worldmap
+        if(self.type == Entity::Type::AllyProjectile && other->type == Entity::Type::Enemy)
+        {
+            std::cerr << "Ally projectile hit enemy\n";
+            Worldmap->popEntity(&self); // Remove the projectile from the worldmap
+        }
+        else if(self.type == Entity::Type::EnemyProjectile && other->type == Entity::Type::Ally)
+        {
+            std::cerr << "Enemy projectile hit ally\n";
+            Worldmap->popEntity(&self); // Remove the projectile from the worldmap
+        }
+        else if(self.type == Entity::Type::AllyProjectile && other->type == Entity::Type::Object)
+        {
+            std::cerr << "Ally projectile hit object\n";
+            Worldmap->popEntity(&self); // Remove the projectile from the worldmap
+            return ;
+        }
     }
 
     std::unique_ptr<ICollision> clone() const override {

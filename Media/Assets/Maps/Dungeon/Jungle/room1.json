@@ -3,21 +3,21 @@
  "infinite":false,
  "layers":[
         {
-         "data":[4, 4, 3, 5, 5, 4, 4, 4, 4, 3, 3, 5, 4, 4, 5,
-            3, 3, 5, 5, 5, 5, 4, 5, 3, 5, 4, 4, 3, 5, 5,
-            4, 5, 5, 4, 3, 5, 5, 4, 3, 3, 4, 4, 3, 3, 4,
-            4, 5, 3, 5, 3, 5, 3, 5, 3, 5, 5, 4, 5, 4, 5,
-            5, 3, 4, 4, 4, 4, 5, 3, 3, 5, 5, 3, 3, 4, 4,
-            5, 4, 5, 3, 5, 3, 5, 4, 3, 3, 3, 3, 3, 5, 4,
-            5, 5, 4, 5, 4, 3, 5, 5, 5, 3, 5, 5, 3, 3, 5,
-            4, 4, 4, 4, 3, 3, 3, 5, 3, 5, 5, 3, 5, 5, 4,
-            3, 4, 3, 4, 5, 4, 3, 5, 5, 3, 5, 5, 3, 4, 3,
-            4, 5, 3, 3, 4, 5, 3, 5, 3, 5, 3, 5, 4, 5, 4,
-            4, 5, 5, 4, 3, 3, 5, 5, 5, 5, 5, 3, 3, 5, 3,
-            4, 4, 5, 4, 3, 4, 4, 3, 5, 4, 5, 4, 3, 3, 4,
-            5, 4, 4, 3, 5, 5, 5, 4, 4, 4, 5, 3, 5, 5, 3,
-            4, 5, 3, 3, 3, 3, 4, 3, 3, 4, 5, 4, 3, 3, 3,
-            3, 4, 3, 4, 4, 3, 3, 5, 4, 5, 5, 5, 5, 5, 5],
+         "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
          "height":15,
          "id":1,
          "name":"Tile Layer 1",
@@ -40,7 +40,7 @@
          "y":0
         }],
  "nextlayerid":4,
- "nextobjectid":422,
+ "nextobjectid":490,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",
@@ -49,19 +49,6 @@
         {
          "columns":1,
          "firstgid":1,
-         "image":"GrassWall.png",
-         "imageheight":44,
-         "imagewidth":32,
-         "margin":0,
-         "name":"GrassWall",
-         "spacing":0,
-         "tilecount":1,
-         "tileheight":44,
-         "tilewidth":32
-        }, 
-        {
-         "columns":1,
-         "firstgid":2,
          "image":"MossyStoneBricks.png",
          "imageheight":48,
          "imagewidth":32,
@@ -73,21 +60,8 @@
          "tilewidth":32
         }, 
         {
-         "columns":3,
-         "firstgid":3,
-         "image":"groundtile.png",
-         "imageheight":32,
-         "imagewidth":96,
-         "margin":0,
-         "name":"groundtile",
-         "spacing":0,
-         "tilecount":3,
-         "tileheight":32,
-         "tilewidth":32
-        }, 
-        {
          "columns":1,
-         "firstgid":6,
+         "firstgid":2,
          "image":"treew2all.png",
          "imageheight":50,
          "imagewidth":32,
@@ -97,6 +71,107 @@
          "tilecount":1,
          "tileheight":50,
          "tilewidth":32
+        }, 
+        {
+         "columns":0,
+         "firstgid":3,
+         "grid":
+            {
+             "height":1,
+             "orientation":"orthogonal",
+             "width":1
+            },
+         "margin":0,
+         "name":"Statues",
+         "spacing":0,
+         "tilecount":3,
+         "tileheight":432,
+         "tiles":[
+                {
+                 "id":0,
+                 "image":"..\/..\/..\/Statues\/Statue_of_the_Assassin.png",
+                 "imageheight":432,
+                 "imagewidth":432,
+                 "objectgroup":
+                    {
+                     "draworder":"index",
+                     "name":"",
+                     "objects":[
+                            {
+                             "height":181.833,
+                             "id":2,
+                             "name":"",
+                             "rotation":0,
+                             "type":"",
+                             "visible":true,
+                             "width":204.333,
+                             "x":113.333,
+                             "y":244
+                            }],
+                     "opacity":1,
+                     "type":"objectgroup",
+                     "visible":true,
+                     "x":0,
+                     "y":0
+                    }
+                }, 
+                {
+                 "id":1,
+                 "image":"..\/..\/..\/Statues\/Statue_of_the_Elf.png",
+                 "imageheight":432,
+                 "imagewidth":432,
+                 "objectgroup":
+                    {
+                     "draworder":"index",
+                     "name":"",
+                     "objects":[
+                            {
+                             "height":216,
+                             "id":1,
+                             "name":"",
+                             "rotation":0,
+                             "type":"",
+                             "visible":true,
+                             "width":205.333,
+                             "x":112.667,
+                             "y":208.667
+                            }],
+                     "opacity":1,
+                     "type":"objectgroup",
+                     "visible":true,
+                     "x":0,
+                     "y":0
+                    }
+                }, 
+                {
+                 "id":2,
+                 "image":"..\/..\/..\/Statues\/Statue_of_the_Knight.png",
+                 "imageheight":432,
+                 "imagewidth":432,
+                 "objectgroup":
+                    {
+                     "draworder":"index",
+                     "name":"",
+                     "objects":[
+                            {
+                             "height":215,
+                             "id":3,
+                             "name":"",
+                             "rotation":0,
+                             "type":"",
+                             "visible":true,
+                             "width":200,
+                             "x":116,
+                             "y":211.333
+                            }],
+                     "opacity":1,
+                     "type":"objectgroup",
+                     "visible":true,
+                     "x":0,
+                     "y":0
+                    }
+                }],
+         "tilewidth":432
         }],
  "tilewidth":32,
  "type":"map",

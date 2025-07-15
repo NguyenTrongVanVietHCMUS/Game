@@ -1,5 +1,5 @@
 #pragma once
-
+#include<Control/ResourceManager.hpp>
 #include<Book/Utility.hpp>
 #include<Book/Character.hpp>
 #include<Book/Strategy/WeaponBehavior.hpp>
@@ -7,10 +7,11 @@
 class Knight : public Character
 {
 public:
-    Knight(sf::Texture* texture,  sf::Vector2f position,State* state): Character("Knight", position)
+    Knight(sf::Vector2f position,State* state): Character("Knight", position)
     {
+        type = Entity::Type::Ally; 
         movingAnimation = std::make_unique<Character_MovingAnimation>(
-            texture, 
+            &ResourceManager::getInstance().get<sf::Texture>(Textures::ID::Knight),
             sf::Vector2u(8, 3), 
             0.1f,  // Switch time for the animation
             this->position, 
@@ -64,10 +65,9 @@ public:
                 )
             )
         );
-        movingAnimation->speed = 500.0f; 
+        movingAnimation->speed = 285.0f; 
         // Initialize the knight-specific properties here 
     }   
-    
     ~Knight() override = default; // Default destructor    
     Hitbox getHitbox() const 
     {
@@ -82,8 +82,12 @@ public:
         
         sf::RectangleShape hitboxshape(sf::Vector2f(getHitbox().hitbox.width, getHitbox().hitbox.height));
         hitboxshape.setPosition(sf::Vector2f(getHitbox().hitbox.left, getHitbox().hitbox.top));
-        hitboxshape.setFillColor(sf::Color(255, 0, 0, 128)); // semi-transparent red for visibility
+		hitboxshape.setFillColor(sf::Color(255, 0, 0, 100)); // Semi-transparent red color for the hitbox
         target.draw(hitboxshape, states); // Draw the hitbox shape
         inventory->draw(target, states); // Draw the inventory
     }
+    void collide(const Entity* other) override final 
+    {
+        movingAnimation->handleCollision(other); 
+	}
 };

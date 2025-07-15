@@ -8,11 +8,21 @@ class Entity:public sf::Drawable
 {
 
 public :
-
-    enum class type { Ally, Enemy };
-
-    Entity(std::string name , sf::Vector2f position); 
-    Entity(std::string name , sf::Vector2f position, Hitbox hitbox):name(name),position(position),hitbox(hitbox){}
+	typedef std::unique_ptr<Entity> Ptr; // Smart pointer for managing Entity objects
+    std::vector<Ptr>children;
+    
+    enum class Type
+    {
+		EnemyProjectile, 
+        AllyProjectile,
+        Enemy, 
+        Ally, 
+        Entity, 
+        Object
+    };
+    Type type; 
+    Entity(std::string name, sf::Vector2f position); 
+    Entity(std::string name, sf::Vector2f position, Hitbox hitbox); 
     virtual ~Entity();
 
 public :
@@ -21,14 +31,19 @@ public :
     std::string name ; 
     sf::Vector2f position; // Position of the entity
     Hitbox hitbox ;  
-    virtual bool handleEvent(const sf::Event& event,sf::RenderWindow*window) ;
+    virtual bool handleEvent(const sf::Event& event, sf::RenderWindow* window);
     virtual bool update(const sf::Time& dt)  ;
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states)const ; // Draw the entity
+    void attachChild(Ptr child); 
     virtual Hitbox getHitbox()const ; // Get the hitbox of the entity
 public :
     // utility functions
     void updateHitboxOnPosition();
+    bool inRange(const Entity* other)const;
+public: 
+    virtual float getRange()const; 
 public : 
+    bool movable()const; 
     // Getters and Setters
     sf::Vector2f getPosition() const { 
         // std::cerr << "Get position : " << position.x << ", " << position.y << std::endl; 

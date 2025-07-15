@@ -11,8 +11,8 @@
             "fileName": "lobby.json",
             "height": 672,
             "width": 1216,
-            "x": 1216,
-            "y": 0
+            "x": 1728,
+            "y": -192
         }
     ],
     "onlyShowAdjacentMaps": false,
