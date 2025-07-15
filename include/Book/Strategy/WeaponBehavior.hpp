@@ -23,16 +23,29 @@ struct RangedWeaponBehavior : public IBehavior
         float projectileSpeedX = projectileSpeed * (direction.x / std::sqrt(direction.x * direction.x + direction.y * direction.y)),
                 projectileSpeedY = projectileSpeed * (direction.y / std::sqrt(direction.x * direction.x + direction.y * direction.y));
         //std::cerr << "Projectile speed X: " << projectileSpeedX << ", Y: " << projectileSpeedY << std::endl;
+        
         auto proj = new Projectile2(
             "RangedProjectile",
-            0.5f, // as seconds represent life time of the projectile
+            2.0f, // as seconds represent life time of the projectile
             target->getPosition(),
             Worldmap,
             "Media/Assets/Projectiles/PurpleBullet.png", // Path to the projectile texture
             std::make_unique<StraightMovement>(projectileSpeedX, projectileSpeedY),
             std::make_unique<ProjectileCollisionBehavior>(Worldmap)
         );
-        
+        std::cerr << "Spawn Bullet\n";
+        if(target->type == Entity::Type::Ally)
+        {
+            proj->type = Entity::Type::AllyProjectile; // Set the projectile type to AllyProjectile
+        }
+        else if(target->type == Entity::Type::Enemy)
+        {
+            proj->type = Entity::Type::EnemyProjectile; // Set the projectile type to EnemyProjectile
+        }
+        else
+        {
+            proj->type = target->type; // Default type for other entities
+        }
         proj->update(sf::seconds(0)); // Initialize the projectile's animation
         Worldmap->pushEntity(proj);
     }

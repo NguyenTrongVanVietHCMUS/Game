@@ -318,8 +318,9 @@ bool TileMap::update(const sf::Time& dt)
         (a->getHitbox().hitbox.top + a->getHitbox().hitbox.height == b->getHitbox().hitbox.top + b->getHitbox().hitbox.height &&
         a->getHitbox().hitbox.left + a->getHitbox().hitbox.width < b->getHitbox().hitbox.left + b->getHitbox().hitbox.width);
     };
-    
+    updateQueueEntities();
     sort(entities.begin(),entities.end(),drawingOrder);
+    
     return 0; 
 }
 
@@ -342,6 +343,7 @@ void TileMap::updateQueueEntities()
         auto it = std::find(entities.begin(), entities.end(), entity);
         if (it != entities.end())
         {
+            std::cerr << "entity pop\n";
             entities.erase(it);
         }
     }
