@@ -58,12 +58,10 @@ public:
     }
     void update(const sf::Time& deltaTime) override
     {
-        // Update the gun's state
-        skillHolder.update(deltaTime); // Update the skill holder
-        // Additional update logic for the gun can be added here
+        skillHolder.update(deltaTime); 
     }
 
     Weapon* clone() override {
-        return new AK_47(holder, cooldownTime); // Create a new instance of AK_47
+        return new AK_47(holder, cooldownTime); 
     };
 };

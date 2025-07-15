@@ -9,25 +9,35 @@ Game::Game()
 	sounds(),
     stateStack(State::Context(window, textures, fonts, music, sounds, maps))
 {
-	// loading resources 
 	{
-		maps.load(Map::ID::Title, "Media/Assets/Maps/Title/title.world");
-		maps.load(Map::ID::Lobby, "Media/Assets/Maps/Lobby/lobby.world");
-		maps.load(Map::ID::Jungle, "Media/Assets/Maps/Dungeon/Jungle/jungle.world");
+		window.setVerticalSyncEnabled(true); // Enable vertical sync
+		window.setFramerateLimit(60); // Limit to 60 FPS
+		{
+			// load textures 
+			ResourceManager::getInstance().load<sf::Texture>(Textures::ID::Knight, "Media/Assets/Characters/Knight/knight_1.png");
+			ResourceManager::getInstance().load<sf::Texture>(Textures::ID::Boar, "Media/Assets/Mobs/Boar/NormalBoar.png"); 
+		}
 
-		textures.load(Textures::ID::Knight, "Media/Assets/Characters/Knight/knight_1.png");
-		textures.load(Textures::ID::Boar, "Media/Assets/Mobs/Boar/M_Boar_Support.png");
-		
-		fonts.load(Fonts::ID::Title, "Media/Fonts/PressStart2P_Regular.ttf");
-		fonts.load(Fonts::ID::Main, "Media/Fonts/Sansation.ttf");
+		{
+			// load maps 
+			ResourceManager::getInstance().load<TileMap>(Map::ID::Title, "Media/Assets/Maps/Title/title.world");
+			ResourceManager::getInstance().load<TileMap>(Map::ID::Lobby, "Media/Assets/Maps/Lobby/lobby.world");
+			ResourceManager::getInstance().load<TileMap>(Map::ID::Jungle, "Media/Assets/Maps/Dungeon/Jungle/jungle.world");
+		}
+
+		{
+			// load fonts 
+			ResourceManager::getInstance().load<sf::Font>(Fonts::ID::Main, "Media/Fonts/Sansation.ttf");
+			ResourceManager::getInstance().load<sf::Font>(Fonts::ID::Title, "Media/Fonts/PressStart2P_Regular.ttf");
+
+		}
+
 	
 	}
 	registerStates();	
 	stateStack.pushState(States::Title);
 
 	// Set the frame rate limit 
-	window.setFramerateLimit(60); // Limit to 60 FPS
-	window.setVerticalSyncEnabled(true); // Enable vertical sync
 
 }   
 

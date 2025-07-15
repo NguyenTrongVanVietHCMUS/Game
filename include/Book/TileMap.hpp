@@ -4,8 +4,7 @@
 #include <nlohmann/json.hpp>
 #include <Book/Entity.hpp>
 #include <Book/Object.hpp>
-#include <Book/Collision.hpp>
-#include<Control/Hitbox.hpp>
+#include<set>
 using json = nlohmann::json;
 
 class Layer:public sf::Drawable 
@@ -37,19 +36,25 @@ public:
 
 }; 
 struct Tileset {
+    std::string type = "Object";
     std::string File ; 
     sf::Texture texture;
     int firstGid;
     int tileWidth;
     int tileHeight;
     int columns;
-    int tileCount;
+    int tileCount;  
+    Hitbox hitbox; 
+    Tileset() = default;
 };
 class TileLayer: public Layer  
 {
 public:
     TileLayer()
     {
+		type = Layer::TileLayer; // Set the type of the layer
+		name = "Tile Layer"; // Default name for the layer
+        width = height = 0; 
         visible = true ; 
     }
     ~TileLayer()
@@ -122,12 +127,7 @@ public:
     sf::Vector2f position;
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states)const override
     {
-        {
-            for(auto x : entities)
-            {
-                x->draw(target,states) ; 
-            }
-        }
+        // do nothing becauase having entities already ; 
     }
 };
 
@@ -138,7 +138,16 @@ private:
 
 private:
     std::vector<std::vector<Tileset>> tilesets;
+    bool load(const std::string& jsonFile, int x, int y, int height, int width); 
+    bool isCollide(Entity* entity1, Entity* entity2) const {
+        return entity1->getHitbox().hitbox.intersects(entity2->getHitbox().hitbox);
+	}
+    void handleCollision(); 
+private: 
+    std::string File;
+    std::vector<Layer*> layers;  
 public:
+
     TileMap();
     ~TileMap();     
     std::vector<Entity*> PushQueueEntities; // Queue for entities to be pushed
@@ -146,15 +155,8 @@ public:
 
     std::vector<Entity*> entities; 
     sf::Vector2f startingPoint; 
-    std::string File;
-    std::vector<Layer*> layers;
-    Collision collision; // Assuming Collision is a class that handles collision detection
-    bool loadFromFile(const std::string& jsonFile);
-    bool load(const std::string& jsonFile, int x, int y,int height, int width);
-    
+    bool loadFromFile(const std::string& jsonFile); 
     bool handleEvent(const sf::Event& event, sf::RenderWindow* window);
     bool update(const sf::Time& dt);
-    void draw(sf::RenderTarget& target, sf::RenderStates states)const;
-
-    void handleCollision();
+    void draw(sf::RenderTarget& target, sf::RenderStates states)const; 
 };

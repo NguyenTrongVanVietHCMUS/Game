@@ -1,17 +1,16 @@
 #pragma once 
-#include<Book/Entity.hpp>
 
-#include<Control/Hitbox.hpp>
-class Entity;
-class Object : public Entity 
+#include<Book/Entity.hpp>
+class Object : public Entity
 {
-public : 
+public:
     sf::Texture* texture = new sf::Texture();
     sf::Sprite* sprite = new sf::Sprite();
-    Object(std::string name , std::string File,sf::Vector2f position,Hitbox hitbox , float scalex, float scaley):Entity(name,position,hitbox)
+    Object(std::string name, std::string File, sf::Vector2f position, Hitbox hitbox, float scalex, float scaley) :Entity(name, position, hitbox)
     {
+		type = Entity::Type::Object; // Set the type of the entity
         texture = new sf::Texture();
-        if(!texture->loadFromFile(File))
+        if (!texture->loadFromFile(File))
         {
             throw std::runtime_error("Failed to load texture from file: " + File);
         }
@@ -23,10 +22,11 @@ public :
     {
         states.texture = texture;
         target.draw(*sprite, states);
+		Entity::draw(target, states); // Call the base class draw method to draw the hitbox 
     }
     ~Object()
     {
-        delete texture; 
+        delete texture;
         delete sprite;
     }
 };
