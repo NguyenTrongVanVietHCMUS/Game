@@ -6,12 +6,17 @@
 #include <Book/Strategy/CollisionBehavior.hpp>
 #include <Control/State.hpp>
 #include <Book/MovingAnimation.hpp>
-
-struct RangedWeaponBehavior : public IBehavior
+#include <random>
+class RangedWeaponBehavior : public IBehavior
 {
+private:
+    float SpreadAngle = 0.0f;  
+    std::mt19937 rng{ std::random_device{}() };
+    std::uniform_real_distribution<float> dist{-SpreadAngle, SpreadAngle};
+public:
     float projectileSpeed;
     State* Worldmap = nullptr;
-    RangedWeaponBehavior(State* worldmap, float speed) : Worldmap(worldmap), projectileSpeed(speed) {}
+    RangedWeaponBehavior(State* worldmap, float speed, float spread = 0.0f) : Worldmap(worldmap), projectileSpeed(speed), SpreadAngle(spread) {}
 
 
     void activate(Weapon2& self, Entity* target) override{
@@ -20,10 +25,19 @@ struct RangedWeaponBehavior : public IBehavior
         // normalize the direction vector
     
         sf::Vector2f direction = sf::Vector2f(posX, posY) - target->getPosition();
-        float projectileSpeedX = projectileSpeed * (direction.x / std::sqrt(direction.x * direction.x + direction.y * direction.y)),
-                projectileSpeedY = projectileSpeed * (direction.y / std::sqrt(direction.x * direction.x + direction.y * direction.y));
-        //std::cerr << "Projectile speed X: " << projectileSpeedX << ", Y: " << projectileSpeedY << std::endl;
         
+        //std::cerr << "Projectile speed X: " << projectileSpeedX << ", Y: " << projectileSpeedY << std::endl;
+        float offsetAngle = dist(rng); // Randomly offset the angle within the spread range
+        float cosA = std::cos(offsetAngle * 3.14159265358979323846f / 180.0f); // Convert angle to radians
+        float sinA = std::sin(offsetAngle * 3.14159265358979323846f / 180.0f); // Convert angle to radians
+        sf::Vector2f RotatedDirection(
+            direction.x * cosA - direction.y * sinA,
+            direction.x * sinA + direction.y * cosA
+        );
+        float len = std::sqrt(RotatedDirection.x * RotatedDirection.x + RotatedDirection.y * RotatedDirection.y);
+        float projectileSpeedX = projectileSpeed * (RotatedDirection.x / len),
+              projectileSpeedY = projectileSpeed * (RotatedDirection.y / len);
+
         auto proj = new Projectile2(
             "RangedProjectile",
             2.0f, // as seconds represent life time of the projectile

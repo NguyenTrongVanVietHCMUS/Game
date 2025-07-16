@@ -29,7 +29,7 @@ public:
             std::make_shared<Weapon2>(
                 "AK_47",
                 this->position, // Position of the weapon
-                std::make_unique<RangedWeaponBehavior>(state, 500.0f), // Ranged weapon behavior with speed
+                std::make_unique<RangedWeaponBehavior>(state, 1500.0f, 20.0f), // Ranged weapon behavior with speed
                 std::make_unique<GunAnimation>(
                     0.2f, // Total time for the animation
                     0.4f, // Scale of the animation
