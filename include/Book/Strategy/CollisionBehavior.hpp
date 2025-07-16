@@ -12,7 +12,6 @@ public:
     ProjectileCollisionBehavior(State* worldmap) : Worldmap(worldmap) {}
     
     void collide(Entity& self,const Entity* other) override {
-        std::cerr << "Projectile collided with another entity\n";
         if(self.type == Entity::Type::AllyProjectile && other->type == Entity::Type::Enemy)
         {
             std::cerr << "Ally projectile hit enemy\n";

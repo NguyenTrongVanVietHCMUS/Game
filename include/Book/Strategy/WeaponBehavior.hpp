@@ -40,11 +40,11 @@ public:
 
         auto proj = new Projectile2(
             "RangedProjectile",
-            2.0f, // as seconds represent life time of the projectile
+            15.0f, // as seconds represent life time of the projectile
             target->getPosition(),
             Worldmap,
             "Media/Assets/Projectiles/PurpleBullet.png", // Path to the projectile texture
-            std::make_unique<StraightMovement>(projectileSpeedX, projectileSpeedY),
+            std::make_unique<FollowMovement>(projectileSpeedX, projectileSpeedY, projectileSpeed, Worldmap, 60.0f),
             std::make_unique<ProjectileCollisionBehavior>(Worldmap)
         );
         std::cerr << "Spawn Bullet\n";
