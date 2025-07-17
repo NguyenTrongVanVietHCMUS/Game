@@ -103,13 +103,12 @@ class Character_MovingAnimation : public MovingAnimation
         RIGHT
     }; 
     Direction direction; 
-    std::shared_ptr<Inventory> inventoryPtr; // Pointer to the inventory
     Entity* target; // Pointer to the target entity for weapon activation
 private: 
     int jump = 0; 
     int distancefromground = 0; 
 public :
-    Character_MovingAnimation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f& position, float scale, std::shared_ptr<Inventory> inventory, Entity *target ,sf::Vector2f middlePosition = sf::Vector2f(0.5f, 1)); // Constructor with parameters
+    Character_MovingAnimation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f& position, float scale, Entity *target ,sf::Vector2f middlePosition = sf::Vector2f(0.5f, 1)); // Constructor with parameters
     ~Character_MovingAnimation();
     virtual void update(const sf::Time& deltaTime);
     virtual void handleEvent(const sf::Event& event,sf::RenderWindow* window);

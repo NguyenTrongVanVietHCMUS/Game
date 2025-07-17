@@ -6,31 +6,45 @@
 #include <Book/Strategy/CollisionBehavior.hpp>
 #include <Control/State.hpp>
 #include <Book/MovingAnimation.hpp>
-
-struct RangedWeaponBehavior : public IBehavior
+#include <random>
+class RangedWeaponBehavior : public IBehavior
 {
+private:
+    float SpreadAngle = 0.0f;  
+    std::mt19937 rng{ std::random_device{}() };
+    std::uniform_real_distribution<float> dist{-SpreadAngle, SpreadAngle};
+public:
     float projectileSpeed;
     State* Worldmap = nullptr;
-    RangedWeaponBehavior(State* worldmap, float speed) : Worldmap(worldmap), projectileSpeed(speed) {}
+    RangedWeaponBehavior(State* worldmap, float speed, float spread = 0.0f) : Worldmap(worldmap), projectileSpeed(speed), SpreadAngle(spread) {}
 
 
     void activate(Weapon2& self, Entity* target) override{
-        float posX = self.getStat("MousePosX");
-        float posY = self.getStat("MousePosY");
+        float posX = self.getStat("TargetPosX");
+        float posY = self.getStat("TargetPosY");
         // normalize the direction vector
     
         sf::Vector2f direction = sf::Vector2f(posX, posY) - target->getPosition();
-        float projectileSpeedX = projectileSpeed * (direction.x / std::sqrt(direction.x * direction.x + direction.y * direction.y)),
-                projectileSpeedY = projectileSpeed * (direction.y / std::sqrt(direction.x * direction.x + direction.y * direction.y));
-        //std::cerr << "Projectile speed X: " << projectileSpeedX << ", Y: " << projectileSpeedY << std::endl;
         
+        //std::cerr << "Projectile speed X: " << projectileSpeedX << ", Y: " << projectileSpeedY << std::endl;
+        float offsetAngle = dist(rng); // Randomly offset the angle within the spread range
+        float cosA = std::cos(offsetAngle * 3.14159265358979323846f / 180.0f); // Convert angle to radians
+        float sinA = std::sin(offsetAngle * 3.14159265358979323846f / 180.0f); // Convert angle to radians
+        sf::Vector2f RotatedDirection(
+            direction.x * cosA - direction.y * sinA,
+            direction.x * sinA + direction.y * cosA
+        );
+        float len = std::sqrt(RotatedDirection.x * RotatedDirection.x + RotatedDirection.y * RotatedDirection.y);
+        float projectileSpeedX = projectileSpeed * (RotatedDirection.x / len),
+              projectileSpeedY = projectileSpeed * (RotatedDirection.y / len);
+
         auto proj = new Projectile2(
             "RangedProjectile",
-            2.0f, // as seconds represent life time of the projectile
+            15.0f, // as seconds represent life time of the projectile
             target->getPosition(),
             Worldmap,
             "Media/Assets/Projectiles/PurpleBullet.png", // Path to the projectile texture
-            std::make_unique<StraightMovement>(projectileSpeedX, projectileSpeedY),
+            std::make_unique<FollowMovement>(projectileSpeedX, projectileSpeedY, projectileSpeed, Worldmap, 60.0f),
             std::make_unique<ProjectileCollisionBehavior>(Worldmap)
         );
         std::cerr << "Spawn Bullet\n";
@@ -64,8 +78,9 @@ public:
         if(!texture->loadFromFile("Media/Assets/Projectiles/sword_slash.png")) {
             throw std::runtime_error("Failed to load melee projectile texture");
         }
-        float posX = self.getStat("MousePosX");
-        float posY = self.getStat("MousePosY");
+        float posX = self.getStat("TargetPosX");
+        float posY = self.getStat("TargetPosY");
+        std::cerr << "Position X: " << posX << ", Y: " << posY << std::endl;
         // normalize the direction vector
         sf::Vector2f direction = target->getPosition() - sf::Vector2f(posX, posY);
         float Angle = std::atan2(direction.y, direction.x); // Calculate the angle of the melee attack
@@ -79,7 +94,7 @@ public:
             Worldmap,
             "Media/Assets/Projectiles/sword_slash.png", // Path to the projectile texture
             nullptr, // No movement for melee
-            nullptr,
+            std::make_unique<MeleeCollisionBehavior>(Worldmap), // Melee collision behavior
             nullptr
         );
         proj->position -= offset; // Set the position of the projectile to be in front of the target

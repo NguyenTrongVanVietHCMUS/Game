@@ -1,9 +1,8 @@
 #include<Book/MovingAnimation.hpp>
 
-Character_MovingAnimation::Character_MovingAnimation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f& position, float scale, std::shared_ptr<Inventory> inventory, Entity* target, sf::Vector2f middlePosition)
-    :MovingAnimation(texture, imageCount, switchTime, position, scale, middlePosition), inventoryPtr(inventory), target(target)
+Character_MovingAnimation::Character_MovingAnimation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f& position, float scale, Entity* target, sf::Vector2f middlePosition)
+    :MovingAnimation(texture, imageCount, switchTime, position, scale, middlePosition), target(target)
 {
-    inventoryPtr = inventory; // Initialize the inventory pointer
 	direction = rand() % 2 == 0 ? LEFT : RIGHT; // Randomly set the initial direction
 }
 
@@ -33,23 +32,8 @@ void Character_MovingAnimation::handleEvent(const sf::Event& event,sf::RenderWin
         {
             mask = BIT_SET(mask,RIGHT) ; 
         }
-        if(event.key.code==sf::Keyboard::Q)
-        {
-            // Handle space key press, e.g., attack or use an item
-            if(inventoryPtr)
-            {
-                inventoryPtr->activateWeapon(target); // Example function to use an item from the inventory
-            }
-        }
-        if(event.key.code==sf::Keyboard::E)
-        {
-            // Handle space key press, e.g., attack or use an item
-            if(inventoryPtr)
-            {
-                inventoryPtr->SwitchWeapon(); // Example function to switch weapon
-            }
-        }
     }
+    
     if(event.type==sf::Event::KeyReleased)
     {
         if(event.key.code==sf::Keyboard::W)
@@ -71,14 +55,7 @@ void Character_MovingAnimation::handleEvent(const sf::Event& event,sf::RenderWin
     }
     sf::Vector2i mousePixel = sf::Mouse::getPosition(*window);
     sf::Vector2f worldPos = window->mapPixelToCoords(mousePixel, window->getView());
-    auto weapon = inventoryPtr->getCurrentWeapon();
-    if (weapon)
-    {
-        weapon->setStat("positionX", position.x);
-        weapon->setStat("positionY", position.y);
-        weapon->setStat("MousePosX", worldPos.x);
-        weapon->setStat("MousePosY", worldPos.y);
-    }
+
     if (worldPos.x < position.x)
     {
 		direction = LEFT;

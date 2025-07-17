@@ -69,3 +69,26 @@ void State::popEntity(Entity* entity)
 		}
 	}
 }
+
+Entity* State::GetClosestEntity(Entity::Type type, sf::Vector2f position) const
+{
+	float ClosestDistance = 10000.0f; // Define a distance threshold for "closest"
+	Entity* closestEntity = nullptr;
+	if(map)
+	{
+		
+		for(const auto& entity : map->entities)
+		{
+			sf::Vector2f entityPosition = entity->getPosition();
+			float distance = std::sqrt(std::pow(entityPosition.x - position.x, 2) + std::pow(entityPosition.y - position.y, 2));
+			if(distance < ClosestDistance && entity->type == type)
+			{
+				// If this entity is closer than the current closest, update closestEntity
+				ClosestDistance = distance;
+				closestEntity = entity;
+			} 
+		
+		}
+	}
+	return closestEntity;
+}

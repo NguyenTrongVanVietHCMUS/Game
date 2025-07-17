@@ -16,6 +16,32 @@ Character::~Character()
 bool Character::handleEvent(const sf::Event& event,sf::RenderWindow*window)
 {
     movingAnimation->handleEvent(event, window); 
+    if(event.type == sf::Event::KeyPressed)
+    {
+        if(event.key.code == sf::Keyboard::Q)
+        {
+            inventory->activateWeapon(this); // Activate the skill
+            return true; 
+        }
+        if(event.key.code == sf::Keyboard::E)
+        {
+            inventory->SwitchWeapon(); // Switch to the next weapon
+            return true; 
+        }
+    }
+    // Handle when mouse position changes
+    
+    sf::Vector2i mousePixel = sf::Mouse::getPosition(*window);
+    sf::Vector2f worldPos = window->mapPixelToCoords(mousePixel, window->getView());
+    std::shared_ptr<Weapon2> weapon = inventory->getCurrentWeapon();
+    if (weapon)
+    {
+        weapon->setStat("TargetPosX", worldPos.x);
+        weapon->setStat("TargetPosY", worldPos.y);
+        weapon->setStat("MousePosX", position.x);
+        weapon->setStat("MousePosY", position.y);
+    }
+    
     return false; 
 }
 bool Character::update(const sf::Time& deltaTime)

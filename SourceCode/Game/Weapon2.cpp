@@ -31,11 +31,12 @@ void Weapon2::activate(Entity*target)
     }
 }
 
-void Weapon2::update(const sf::Time& dt)
+bool Weapon2::update(const sf::Time& dt)
 {
     if( animation) {
         animation->update(*this, dt);
     }
+    return true;
 }
 
 void Weapon2::draw(sf::RenderTarget& target, sf::RenderStates states) const

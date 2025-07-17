@@ -3,7 +3,7 @@
 #include<Book/Utility.hpp>
 #include<Book/Character.hpp>
 #include<Book/Strategy/WeaponBehavior.hpp>
-#include<Book/Strategy/WeaponAnimation.h>
+#include<Book/Strategy/WeaponAnimation.hpp>
 class Knight : public Character
 {
 public:
@@ -16,7 +16,6 @@ public:
             0.1f,  // Switch time for the animation
             this->position, 
             2.1f, // Scale of the animation,
-            this->inventory,
             this, 
             sf::Vector2f(2.0f/3, 1)
         );  
@@ -27,7 +26,9 @@ public:
 
         inventory->addWeapon(
             std::make_shared<Weapon2>(
-                std::make_unique<RangedWeaponBehavior>(state, 500.0f), // Ranged weapon behavior with speed
+                "AK_47",
+                this->position, // Position of the weapon
+                std::make_unique<RangedWeaponBehavior>(state, 500.0f, 20.0f), // Ranged weapon behavior with speed
                 std::make_unique<GunAnimation>(
                     0.2f, // Total time for the animation
                     0.4f, // Scale of the animation
@@ -47,6 +48,8 @@ public:
         }
         inventory->addWeapon(
             std::make_shared<Weapon2>(
+                "Scythe",
+                this->position, // Position of the weapon
                 std::make_unique<MeleeWeaponBehavior>(state), // Melee weapon behavior with speed
                 std::make_unique<SwordAnimation>(
                     0.2f, // Total time for the animation

@@ -1,4 +1,4 @@
-#include <Book/Strategy/WeaponAnimation.h>
+#include <Book/Strategy/WeaponAnimation.hpp>
 #include <Book/Weapon2.hpp>
 // ------------------------- SWORD ANIMATION -------------------------
 
@@ -20,9 +20,9 @@ void SwordAnimation::update(Weapon2& weapon, const sf::Time& dt) {
     if (CurrentTime >= TotalTime) {
         CurrentTime = TotalTime; // Clamp to TotalTime
     }
-    
-    float posX = weapon.getStat("MousePosX");
-    float posY = weapon.getStat("MousePosY");
+
+    float posX = weapon.getStat("TargetPosX");
+    float posY = weapon.getStat("TargetPosY");
     // Get the Original Angle of the sword based on the mouse position
     sf::Vector2f direction = owner->getPosition() - sf::Vector2f(posX, posY);
     float originalAngle = std::atan2(direction.y, direction.x) * 180.0f / 3.14159f; // Convert to degrees

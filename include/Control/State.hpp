@@ -50,6 +50,7 @@ class State
 		}
 		virtual void 	    pushEntity(Entity* entity);
 		virtual void 	    popEntity(Entity* entity);
+		virtual Entity*		GetClosestEntity(Entity::Type type, sf::Vector2f position) const;
 		virtual void        handleCollision(); 
 
 	protected:
