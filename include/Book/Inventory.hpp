@@ -32,4 +32,7 @@ public:
     void draw(sf::RenderTarget& target, sf::RenderStates states) const; // Draw the inventory
 
     std::shared_ptr<Weapon2> getCurrentWeapon() const;
+
+public:
+    void shoot(Entity* shooter, Entity* target); // Shoot the current weapon at the target
 };
