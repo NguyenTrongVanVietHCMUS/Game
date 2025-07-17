@@ -5,8 +5,7 @@ Enemy::Enemy(
     sf::Vector2f position
 ) :Entity(name, position)
 {
-    type = Entity::Type::Entity; // Set the type of the entity
-
+    type = Entity::Type::Entity; // Set the type of the 
 }
 
 Enemy::~Enemy()

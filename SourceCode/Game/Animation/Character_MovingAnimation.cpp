@@ -179,9 +179,9 @@ void Character_MovingAnimation::handleCollision(const Entity* other)
 	}
     if (other->type == Entity::Type::Object)
     {
-        position = oldPosition; 
+        position = oldPosition;
     }
-    //std::cout << oldPosition.x << " " << oldPosition.y << " collided with " << other->name <<   std::endl;
+
     setSpritePosition(); 
 }
 void Character_MovingAnimation::chase(sf::Vector2f position)

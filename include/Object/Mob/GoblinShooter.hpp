@@ -5,13 +5,17 @@
 #include<Book/MovingAnimation.hpp>
 
 
-class GoblinShooter : public Character
+class GoblinShooter : public Enemy
 {
+private : 
+    float sightRange; 
 public:
-    GoblinShooter(sf::Texture* texture, sf::Vector2f position) : Character("GoblinShooter", position)
+    GoblinShooter(sf::Vector2f position) : Enemy("GoblinShooter", position)
     {
-        movingAnimation = std::make_unique<HighRangeMob_MovingAnimation>(texture, sf::Vector2u(8, 3), 0.1f, this->position, 2.5f);
+        sightRange = 800.0f; 
+        movingAnimation = std::make_unique<HighRangeMob_MovingAnimation>(&ResourceManager::getInstance().get<sf::Texture>(Textures::ID::GoblinShooter), sf::Vector2u(8, 3), 0.1f, this->position, 2.5f);
         movingAnimation->speed   = 300.0f; // Set the speed of the boar
+        aiEnemy = std::make_unique<AIHighRangeEnemy>(); 
     }
 
     ~GoblinShooter() override = default; // Default destructor    
@@ -22,12 +26,9 @@ public:
         tempHitbox.hitbox = sf::FloatRect(position.x, position.y, 50, 12);
         return tempHitbox; // Return the hitbox of the boar
     }
-    virtual bool handleEvent(const sf::Event& event, sf::RenderWindow* window) override
+    float getRange()const final
     {
-        //movingAnimation->handleEvent(event, window);
-        //skillHolder.handleEvent(event, window); // Handle events for the skill holder
-        //weaponHolder.handleEvent(event, window); // Handle events for the weapon holder
-        return false;  
+        return sightRange;
     }
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override
     {

@@ -93,7 +93,6 @@ protected:
         sprite.setOrigin(middlePosition.x * uvRect.width, middlePosition.y * uvRect.height);
         sprite.setTextureRect(uvRect);
     }
-    
 };
 
 class Character_MovingAnimation : public MovingAnimation 

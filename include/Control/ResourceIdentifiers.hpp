@@ -14,6 +14,7 @@ namespace Textures
 	{
 		Knight,
 		Boar,
+		GoblinShooter,
 		TitleScreen,
 		Buttons,
 		ExtraButtons,

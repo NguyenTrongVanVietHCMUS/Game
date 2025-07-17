@@ -16,10 +16,12 @@ Game::Game()
 			// load textures 
 			ResourceManager::getInstance().load<sf::Texture>(Textures::ID::Knight, "Media/Assets/Characters/Knight/knight_1.png");
 			ResourceManager::getInstance().load<sf::Texture>(Textures::ID::Boar, "Media/Assets/Mobs/Boar/NormalBoar.png"); 
+			ResourceManager::getInstance().load<sf::Texture>(Textures::ID::GoblinShooter, "Media/Assets/Mobs/GoblinShooter/GoblinShooter.png");
 		}
 
 		{
 			// load maps 
+
 			ResourceManager::getInstance().load<TileMap>(Map::ID::Title, "Media/Assets/Maps/Title/title.world");
 			ResourceManager::getInstance().load<TileMap>(Map::ID::Lobby, "Media/Assets/Maps/Lobby/lobby.world");
 			ResourceManager::getInstance().load<TileMap>(Map::ID::Jungle, "Media/Assets/Maps/Dungeon/Jungle/jungle.world");

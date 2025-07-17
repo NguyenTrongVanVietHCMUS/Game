@@ -86,11 +86,11 @@
             "expandedObjectLayers": [
                 2
             ],
-            "scale": 1,
+            "scale": 0.75,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 583,
-                "y": 416
+                "x": 566.6666666666666,
+                "y": 605.3333333333334
             }
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/battleroom1.json#GroundTiles": {
@@ -155,11 +155,11 @@
             "expandedObjectLayers": [
                 2
             ],
-            "scale": 0.25,
+            "scale": 0.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 476,
-                "y": 564
+                "x": 460,
+                "y": 228
             }
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway1.json#GroundTiles": {
@@ -255,11 +255,11 @@
             "expandedObjectLayers": [
                 2
             ],
-            "scale": 0.25,
+            "scale": 0.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": -260,
-                "y": 820
+                "x": -276,
+                "y": 484
             }
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/startingroom.json#GroundTiles": {
@@ -391,8 +391,8 @@
             "scale": 0.75,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 216,
-                "y": 197.33333333333337
+                "x": 597.3333333333333,
+                "y": 335.33333333333337
             }
         },
         "V:/Game/Media/Assets/Maps/Lobby/lobby.json#BackgroundWall": {

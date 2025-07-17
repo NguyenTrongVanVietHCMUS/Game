@@ -20,7 +20,6 @@ public:
             this, 
             sf::Vector2f(2.0f/3, 1)
         );  
-
         sf::Texture* gunTexture = new sf::Texture();
         if (!gunTexture->loadFromFile("Media/Assets/Weapons/gun/AK_47.png")) {
             std::cerr << "Failed to load gun texture\n";
