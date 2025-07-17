@@ -5,7 +5,7 @@ Enemy::Enemy(
     sf::Vector2f position
 ) :Entity(name, position)
 {
-    type = Entity::Type::Entity; // Set the type of the 
+    type = Entity::Type::Enemy; // Set the type of the 
 }
 
 Enemy::~Enemy()
@@ -30,4 +30,8 @@ void Enemy::attack(Entity* target)
 void Enemy::chase(sf::Vector2f position)
 {
     movingAnimation->chase(position);
+}
+void Enemy::shoot(Entity* target)
+{
+    inventory->shoot(this,target); 
 }

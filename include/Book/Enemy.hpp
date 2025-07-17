@@ -12,7 +12,7 @@ protected:
     float range; 
     std::unique_ptr<AIEnemy>aiEnemy;
     std::unique_ptr<MovingAnimation>movingAnimation;
-    //std::shared_ptr<Inventory> inventory;
+    std::shared_ptr<Inventory> inventory;
 public:
     Enemy(std::string name, sf::Vector2f position);
     ~Enemy();
@@ -29,4 +29,5 @@ public:
     }
 public:
     virtual void chase(sf::Vector2f position);
+    virtual void shoot(Entity* target); 
 };
