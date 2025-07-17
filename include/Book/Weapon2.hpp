@@ -16,7 +16,7 @@ public:
         std::unique_ptr<IBehavior> behavior = nullptr, std::unique_ptr<IWeaponAnimation> animation = nullptr)
         : behavior(std::move(behavior)), animation(std::move(animation)), Entity(name, position), cooldownBehavior(std::make_unique<BasicCooldownBehavior>(1.0f)) {};
     
-        Weapon2(std::string name, sf::Vector2f position, 
+    Weapon2(std::string name, sf::Vector2f position, 
         std::unique_ptr<IBehavior> behavior, std::unique_ptr<IWeaponAnimation> animation,
         std::unique_ptr<ICooldownBehavior> cooldownBehavior)
         : behavior(std::move(behavior)), animation(std::move(animation)), cooldownBehavior(std::move(cooldownBehavior)), Entity(name, position) {};
@@ -24,7 +24,13 @@ public:
     Weapon2(std::string name, sf::Vector2f position, float cooldownTime,
         std::unique_ptr<IBehavior> behavior, std::unique_ptr<IWeaponAnimation> animation)
         : behavior(std::move(behavior)), animation(std::move(animation)), cooldownBehavior(std::make_unique<BasicCooldownBehavior>(cooldownTime)), Entity(name, position) {};
-
+    Entity::Type ProjectileTypeTransform(Entity* entity) const {
+        if( entity->type == Entity::Type::Enemy) {
+            return Entity::Type::AllyProjectile; // Transform enemy to ally projectile
+        } else if (entity->type == Entity::Type::Ally) {
+            return Entity::Type::EnemyProjectile; // Transform ally to enemy projectile
+        }
+    }
     void setBehavior(std::unique_ptr<IBehavior> newBehavior);
     void setStat(const std::string& statName, float value);
     float getStat(const std::string& statName) const;

@@ -107,10 +107,47 @@ public:
             Angle,
             sf::Vector2f(0.5f, 0.5f) // Middle position for the animation
         );
-
+        proj->type = self.ProjectileTypeTransform(target); // Transform the projectile type based on the target type
         proj->updateHitboxOnPosition(); // Update the hitbox position based on the entity's current position
         proj->setMovingAnimation(std::move(movingAnimation));
         proj->update(sf::seconds(0)); // Initialize the projectile's animation
         Worldmap->pushEntity(proj);
     }
+};
+
+class ThrowBehavior : public IBehavior
+{
+private:
+    State* Worldmap = nullptr;
+public:
+    ThrowBehavior(State* worldmap) : Worldmap(worldmap) {}
+
+    void activate(Weapon2& self, Entity* target) override {
+        sf::Texture* bombText = new sf::Texture(ResourceManager::getInstance().get<sf::Texture>(Textures::ID::bomb));
+        float posX = self.getStat("TargetPosX");
+        float posY = self.getStat("TargetPosY");
+        std::cerr << "Position X: " << posX << ", Y: " << posY << std::endl;
+        // normalize the direction vector
+        sf::Vector2f direction = target->getPosition() - sf::Vector2f(posX, posY);
+        float Angle = std::atan2(direction.y, direction.x); // Calculate the angle of the throw
+        // Offset the position of the projectile to be in front of the target
+        sf::Vector2f offset(25.0f * std::cos(Angle), 25.0f * std::sin(Angle)); // Offset by 50 pixels in the direction of the throw
+        float len = std::sqrt(direction.x * direction.x + direction.y * direction.y);
+        float projectileSpeedX = 500.0f * (direction.x / len),
+              projectileSpeedY = 500.0f * (direction.y / len);
+        auto proj = new Projectile2(
+            "ThrowingBomb",
+            0.12f, // as seconds
+            target->getPosition(),
+            Worldmap,
+            "Media/Assets/Projectiles/bomb.png", // Path to the projectile texture
+            std::make_unique<ThrowMovement>(projectileSpeedX, projectileSpeedY, 200), // No movement for melee
+            nullptr,
+            nullptr
+        );
+        proj->type = self.ProjectileTypeTransform(target); // Transform the projectile type based on the target type
+        proj->update(sf::seconds(0)); // Initialize the projectile's animation
+        Worldmap->pushEntity(proj);
+    }
+
 };

@@ -65,6 +65,16 @@ public:
                 )
             )
         );
+
+        inventory->addWeapon(
+            std::make_shared<Weapon2>(
+                "ThrowingBomb",
+                this->position, // Position of the weapon
+                0.5f, // Cooldown time for the weapon
+                std::make_unique<ThrowBehavior>(state), // Throw behavior
+                nullptr
+            )
+        );
         movingAnimation->speed = 285.0f; 
         // Initialize the knight-specific properties here 
     }   
