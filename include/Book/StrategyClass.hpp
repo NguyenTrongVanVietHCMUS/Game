@@ -30,6 +30,18 @@ struct IBehavior
     virtual ~IBehavior() = default;
 };
 
+class ICooldownBehavior
+{
+protected:
+    float cooldownTime; // Time in seconds for the cooldown
+    float currentCooldown; // Current cooldown time
+public:
+    ICooldownBehavior(float cooldownTime) : cooldownTime(cooldownTime), currentCooldown(0.0f) {}
+    virtual void update(const sf::Time& dt) = 0;
+    bool isReady() const { return currentCooldown >= cooldownTime; }
+    void reset() { currentCooldown = 0; }
+};
+
 class IWeaponAnimation
 {
 protected:
