@@ -65,3 +65,13 @@ void Inventory::draw(sf::RenderTarget& target, sf::RenderStates states) const {
         currentWeapon->draw(target, states);
     }
 }
+
+void Inventory::shoot(Entity* shooter, Entity* target) {
+    std::shared_ptr<Weapon2> currentWeapon = getCurrentWeapon();
+    if (currentWeapon) {
+        currentWeapon->setStat("TargetPosX", target->getPosition().x);
+        currentWeapon->setStat("TargetPosY", target->getPosition().y);
+        
+        currentWeapon->activate(shooter);
+    } 
+}
