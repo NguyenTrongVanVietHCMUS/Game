@@ -44,7 +44,7 @@ class State
 		virtual				~State();
 
 		virtual void		draw(){return;}
-		virtual bool		update(const sf::Time& dt){return 0 ; }
+		virtual bool		update(sf::Time dt){return 0 ; }
 		virtual bool		handleEvent(const sf::Event& event) {
 			return false;
 		}

@@ -14,7 +14,7 @@ void Title::draw()
 {
     getContext().window->draw(*map);
 }
-bool Title::update(const sf::Time& dt)
+bool Title::update(sf::Time dt)
 {
     map->update(dt);
     return 0;

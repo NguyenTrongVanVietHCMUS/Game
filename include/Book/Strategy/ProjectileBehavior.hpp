@@ -11,7 +11,7 @@ private:
 public:
     StraightMovement(float speedX, float speedY) : speedX(speedX), speedY(speedY) {}
 
-    void update(Projectile2& projectile, const sf::Time& dt) override
+    void update(Projectile2& projectile, sf::Time dt) override
     {
         // Update the position of the projectile based on its speed and the elapsed time
         projectile.position.x += speedX * dt.asSeconds();
@@ -36,7 +36,7 @@ private:
 public:
     FollowMovement(float speed, State* worldmap) : speed(speed), Worldmap(worldmap), speedX(0), speedY(0) {}
     FollowMovement(float speedX, float speedY, float speed, State* worldmap, float criticalAngle) : speed(speed), speedX(speedX), speedY(speedY), Worldmap(worldmap), CriticalAngle(criticalAngle * 3.14f / 180.0f) {}
-    void update(Projectile2& projectile, const sf::Time& dt) override;
+    void update(Projectile2& projectile, sf::Time dt) override;
 
     std::unique_ptr<IMovement> clone() const override
     {

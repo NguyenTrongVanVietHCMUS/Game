@@ -24,7 +24,7 @@ bool Entity::handleEvent(const sf::Event& event, sf::RenderWindow* window)
     // do nothing ; 
     return 1;  
 }
-bool Entity::update(const sf::Time& dt)
+bool Entity::update(sf::Time dt)
 {
     for (Ptr&child : children)
     {

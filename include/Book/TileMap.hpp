@@ -157,6 +157,6 @@ public:
     sf::Vector2f startingPoint; 
     bool loadFromFile(const std::string& jsonFile); 
     bool handleEvent(const sf::Event& event, sf::RenderWindow* window);
-    bool update(const sf::Time& dt);
+    bool update(sf::Time dt);
     void draw(sf::RenderTarget& target, sf::RenderStates states)const; 
 };

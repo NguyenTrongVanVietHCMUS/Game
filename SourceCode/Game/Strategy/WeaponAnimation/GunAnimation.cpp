@@ -11,7 +11,7 @@ GunAnimation::GunAnimation(float TotalTime, float scale, sf::Texture* texture,
     sprite.setScale(scale, scale);
 }
 
-void GunAnimation::update(Weapon2& weapon, const sf::Time& dt) {
+void GunAnimation::update(Weapon2& weapon, sf::Time dt) {
     CurrentTime += dt.asSeconds();
     if (CurrentTime >= TotalTime) {
         CurrentTime = TotalTime; // Clamp to TotalTime

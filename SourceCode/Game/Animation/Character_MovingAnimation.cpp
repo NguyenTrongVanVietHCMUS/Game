@@ -69,24 +69,24 @@ void Character_MovingAnimation::handleEvent(const sf::Event& event,sf::RenderWin
         // stay the same 
     }
 }
-void Character_MovingAnimation::update(const sf::Time& deltaTime)
+void Character_MovingAnimation::update(sf::Time dt)
 {
     oldPosition = position ;  
     if(BIT(mask,UP))
     {
-        position.y -= speed * deltaTime.asSeconds();
+        position.y -= speed * dt.asSeconds();
     }
     if(BIT(mask,DOWN))
     {
-        position.y += speed * deltaTime.asSeconds();
+        position.y += speed * dt.asSeconds();
     }
     if(BIT(mask,LEFT))
     {
-        position.x -= speed * deltaTime.asSeconds();
+        position.x -= speed * dt.asSeconds();
     }
     if(BIT(mask,RIGHT))
     {
-        position.x += speed * deltaTime.asSeconds();
+        position.x += speed * dt.asSeconds();
     }
     if((BIT(mask,UP)!=BIT(mask,DOWN)) || (BIT(mask,LEFT) != BIT(mask,RIGHT)))
     {
@@ -108,7 +108,7 @@ void Character_MovingAnimation::update(const sf::Time& deltaTime)
     
     currentImage.y = state;
 
-    totalTime += deltaTime.asSeconds();
+    totalTime += dt.asSeconds();
     if (state == IDLE || state == DEATH) jump = 0,distancefromground=0; 
     if (totalTime >= switchTime)
     {
@@ -160,8 +160,4 @@ void Character_MovingAnimation::handleCollision(const Entity* other)
     }
 
     setSpritePosition(); 
-}
-void Character_MovingAnimation::chase(sf::Vector2f position)
-{
-    // do nothing ; 
 }

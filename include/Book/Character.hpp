@@ -1,9 +1,10 @@
 #pragma once
 #include<Book/Utility.hpp> 
-#include<Book/MovingAnimation.hpp>
+
 #include<Control/ResourceManager.hpp>
 #include<Control/State.hpp>
 #include<Book/Inventory.hpp>
+class MovingAnimation;
 class Character : public Entity
 {
 protected : 
@@ -16,13 +17,6 @@ public :
     //SkillHolder skillHolder;
     virtual void collide(const Entity*other); 
     virtual bool handleEvent(const sf::Event& event,sf::RenderWindow* window) ;  
-    virtual bool update(const sf::Time& deltaTime) ; 
-    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override
-    {
-        movingAnimation->draw(target, states);
-        inventory->draw(target, states); // Draw the inventory
-        hitbox.draw(target, states); // Draw the hitbox
-    }
-public:
-    virtual void chase(sf::Vector2f position);
+    virtual bool update(sf::Time dt) ; 
+    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const; 
 };

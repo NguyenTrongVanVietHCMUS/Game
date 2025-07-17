@@ -27,7 +27,7 @@ void Jungle::draw()
     getContext().window->draw(*map);
 }
 
-bool Jungle::update(const sf::Time& dt)
+bool Jungle::update(sf::Time dt)
 {
     map->update(dt);
     return 0; 

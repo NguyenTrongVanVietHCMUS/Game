@@ -16,7 +16,6 @@ public:
         movingAnimation = std::make_unique<HighRangeMob_MovingAnimation>(&ResourceManager::getInstance().get<sf::Texture>(Textures::ID::GoblinShooter), sf::Vector2u(8, 3), 0.1f, this->position, 2.5f);
         movingAnimation->speed   = 300.0f; // Set the speed of the boar
         aiEnemy = std::make_unique<AIHighRangeEnemy>();
-        sf::Texture* gunTexture = new sf::Texture();
         inventory->addWeapon(
             std::make_shared<Weapon2>(
                 "AK_47",
@@ -49,11 +48,6 @@ public:
     {
         return sightRange;
     }
-    void attack()
-    {
-
-    }
-    shoot(sf::)
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override
     {
         movingAnimation->draw(target, states);

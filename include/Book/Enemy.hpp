@@ -10,17 +10,16 @@ class Enemy : public Entity
 {
 protected:
     float range; 
-    std::unique_ptr<AIEnemy>aiEnemy;
+    std::unique_ptr<AIEnemy>aiEnemy; 
     std::unique_ptr<MovingAnimation>movingAnimation;
-    std::shared_ptr<Inventory> inventory;
+    std::shared_ptr<Inventory> inventory = std::make_shared<Inventory>();
 public:
     Enemy(std::string name, sf::Vector2f position);
     ~Enemy();
 public:
 
     virtual void collide(const Entity* other);
-    virtual void attack(Entity* target); 
-    virtual bool update(const sf::Time& deltaTime);
+    virtual void update(Entity* target , sf::Time dt);
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override
     {
         movingAnimation->draw(target, states);
@@ -28,6 +27,7 @@ public:
         hitbox.draw(target, states); // Draw the 
     }
 public:
-    virtual void chase(sf::Vector2f position);
-    virtual void shoot(Entity* target); 
+    virtual void chase(Entity* target,sf::Time dt);
+    virtual void wander(sf::Time dt); 
+    virtual void shoot(Entity* target,sf::Time dt); 
 };

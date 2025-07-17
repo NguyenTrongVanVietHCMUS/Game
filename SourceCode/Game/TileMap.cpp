@@ -293,7 +293,7 @@ bool TileMap::handleEvent(const sf::Event& event,sf::RenderWindow* window)
     }
     return 0; 
 }
-bool TileMap::update(const sf::Time& dt)
+bool TileMap::update(sf::Time dt)
 {
     for (auto& x : entities)
     {
@@ -303,7 +303,7 @@ bool TileMap::update(const sf::Time& dt)
             {
                 if (auto character = dynamic_cast<Character*>(y))
                 {
-                    enemy->attack(character);
+                    enemy->update(character,dt);
                 }
             }
         }

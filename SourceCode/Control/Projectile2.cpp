@@ -52,7 +52,7 @@ float Projectile2::getAttribute(const std::string& attributeName) const
     return 0.0f; // Default value if attribute not found
 }
 
-bool Projectile2::update(const sf::Time& dt)
+bool Projectile2::update(sf::Time dt)
 {
     float CurrentLifeTime = getAttribute("CurrentLifeTime");
     CurrentLifeTime += dt.asSeconds(); // Increment the current lifetime by the delta time

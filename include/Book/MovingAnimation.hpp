@@ -42,15 +42,12 @@ public :
     enum State
     {
         IDLE,
-        MOVING,
+        MOVING,  
         DEATH
     };
 
 public:
-    virtual void chase(sf::Vector2f position)
-    {
-        // do nothing ;
-    }
+    
     MovingAnimation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f& position, float scale, sf::Vector2f middlePosition)
         :texture(texture), imageCount(imageCount), switchTime(switchTime), position(position), scale(scale), middlePosition(middlePosition)
     {
@@ -66,33 +63,19 @@ public:
         mask = 0; 
 		direction = rand() % 2 == 0 ? LEFT : RIGHT; // Randomly set the initial direction
     }
-    virtual ~MovingAnimation() 
-    {
-		delete texture; // Assuming texture is dynamically allocated
-    } 
-    virtual void update(const sf::Time& deltaTime) 
-    {
-        
-    } // Update the animation
-    virtual void handleEvent(const sf::Event& event, sf::RenderWindow* window) 
-    {
-        // do nothing ; 
-    }
+    virtual ~MovingAnimation();
+    virtual void update(sf::Time dt);
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states)const
     {
         states.texture = texture;
         target.draw(sprite, states);
     }
     virtual void handleCollision(const Entity* other) {} // Handle collision with another entity
+    virtual void chase(Entity* target,sf::Time dt); 
+    virtual void wander(sf::Time dt); 
 protected: 
     Direction direction;
-    virtual void setSpritePosition()
-    {
-
-        sprite.setPosition(position);
-        sprite.setOrigin(middlePosition.x * uvRect.width, middlePosition.y * uvRect.height);
-        sprite.setTextureRect(uvRect);
-    }
+    virtual void setSpritePosition(); 
 };
 
 class Character_MovingAnimation : public MovingAnimation 
@@ -110,12 +93,11 @@ private:
 public :
     Character_MovingAnimation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f& position, float scale, Entity *target ,sf::Vector2f middlePosition = sf::Vector2f(0.5f, 1)); // Constructor with parameters
     ~Character_MovingAnimation();
-    virtual void update(const sf::Time& deltaTime);
+    virtual void update(sf::Time dt);
     virtual void handleEvent(const sf::Event& event,sf::RenderWindow* window);
     virtual void handleCollision(const Entity* other); 
     void getshot(const Entity* other);
-    void setSpritePosition(); 
-    void chase(sf::Vector2f position); 
+    void setSpritePosition();  
 };
 
 class ShortRangeMob_MovingAnimation : public MovingAnimation
@@ -125,10 +107,8 @@ private :
 public:
     ShortRangeMob_MovingAnimation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f& position, float scale, sf::Vector2f middlePosition = sf::Vector2f(0.5f, 1));
     ~ShortRangeMob_MovingAnimation();
-    virtual void update(const sf::Time& deltaTime); 
     virtual void handleCollision(const Entity* other);
     void getshot(const Entity* other); 
-	void chase(sf::Vector2f position);
 };
 
 class HighRangeMob_MovingAnimation : public MovingAnimation
@@ -138,10 +118,9 @@ private :
 public:
     HighRangeMob_MovingAnimation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f& position, float scale, sf::Vector2f middlePosition = sf::Vector2f(0.5f, 1));
     ~HighRangeMob_MovingAnimation();
-    virtual void update(const sf::Time& deltaTime);
     virtual void handleCollision(const Entity* other);
     void getshot(const Entity* other);
-    void chase(sf::Vector2f position);
+   
 };
 
 class SlashProjectile_MovingAnimation : public MovingAnimation
@@ -150,7 +129,7 @@ class SlashProjectile_MovingAnimation : public MovingAnimation
 public:
     SlashProjectile_MovingAnimation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f& position, float scale,float Angle = 0.5f, sf::Vector2f middlePosition = sf::Vector2f(0.5f, 1));
     ~SlashProjectile_MovingAnimation();
-    virtual void update(const sf::Time& deltaTime);
+    virtual void update(sf::Time dt); 
     virtual void handleEvent(const sf::Event& event, sf::RenderWindow* window);
     virtual void handleCollision(const Entity* other);
 };
