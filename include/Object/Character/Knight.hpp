@@ -29,6 +29,7 @@ public:
             std::make_shared<Weapon2>(
                 "AK_47",
                 this->position, // Position of the weapon
+                0.1f, // Cooldown time for the weapon
                 std::make_unique<RangedWeaponBehavior>(state, 500.0f, 20.0f), // Ranged weapon behavior with speed
                 std::make_unique<GunAnimation>(
                     0.2f, // Total time for the animation
@@ -51,6 +52,7 @@ public:
             std::make_shared<Weapon2>(
                 "Scythe",
                 this->position, // Position of the weapon
+                0.5f, // Cooldown time for the weapon
                 std::make_unique<MeleeWeaponBehavior>(state), // Melee weapon behavior with speed
                 std::make_unique<SwordAnimation>(
                     0.2f, // Total time for the animation

@@ -23,6 +23,11 @@ float Weapon2::getStat(const std::string& statName) const
 
 void Weapon2::activate(Entity*target)
 {
+    if( cooldownBehavior && !cooldownBehavior->isReady()) {
+        return; // If the weapon is on cooldown, do not activate
+    } else {
+        cooldownBehavior->reset(); // Reset cooldown if ready
+    }
     if (behavior) {
         behavior->activate(*this, target);
     }
@@ -33,6 +38,10 @@ void Weapon2::activate(Entity*target)
 
 bool Weapon2::update(const sf::Time& dt)
 {
+    if( cooldownBehavior) {
+        cooldownBehavior->update(dt); // Update cooldown behavior
+    }
+
     if( animation) {
         animation->update(*this, dt);
     }
