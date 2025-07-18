@@ -5,7 +5,7 @@ class Projectile2;
 class Weapon2;
 struct IMovement
 {
-    virtual void update(Projectile2& projectile, sf::Time dt) = 0;
+    virtual void update(Projectile2& projectile,const sf::Time &dt) = 0;
     virtual std::unique_ptr<IMovement> clone() const = 0;
     virtual ~IMovement() = default;
 };

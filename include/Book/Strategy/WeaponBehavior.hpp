@@ -48,18 +48,7 @@ public:
             std::make_unique<ProjectileCollisionBehavior>(Worldmap)
         );
         std::cerr << "Spawn Bullet\n";
-        if(target->type == Entity::Type::Ally)
-        {
-            proj->type = Entity::Type::AllyProjectile; // Set the projectile type to AllyProjectile
-        }
-        else if(target->type == Entity::Type::Enemy)
-        {
-            proj->type = Entity::Type::EnemyProjectile; // Set the projectile type to EnemyProjectile
-        }
-        else
-        {
-            proj->type = target->type; // Default type for other entities
-        }
+        proj->type = self.ProjectileTypeTransform(target); // Transform the projectile type based on the target type
         proj->update(sf::seconds(0)); // Initialize the projectile's animation
         Worldmap->pushEntity(proj);
     }

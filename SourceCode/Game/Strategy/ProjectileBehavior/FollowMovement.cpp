@@ -1,6 +1,6 @@
 #include <Book/Strategy/ProjectileBehavior.hpp>
 
-void FollowMovement::update(Projectile2& projectile,  sf::Time dt)
+void FollowMovement::update(Projectile2& projectile, const sf::Time &dt)
 {
     if (!Worldmap) return; // Ensure Worldmap is valid
  
