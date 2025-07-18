@@ -87,3 +87,15 @@ void Weapon2::UpdateBulletSpawnPosition() {
     OriginalBulletSpawnPosition = position + OriginalBulletSpawnPosition;
     // Draw a small circle at the postion
 }
+
+Entity::Type Weapon2::ProjectileTypeTransform(Entity* entity) const {
+    switch (entity->type)
+    {
+    case Entity::Type::Enemy: case Entity::Type::EnemyProjectile:
+        return Entity::Type::EnemyProjectile; // Transform enemy to ally projectile
+    case Entity::Type::Ally: case Entity::Type::AllyProjectile:
+        return Entity::Type::AllyProjectile; // Transform ally to enemy projectile
+    default:
+        return Entity::Type::Entity; // Default case, no transformation
+    }
+}

@@ -132,7 +132,7 @@ public:
             2.5f,
             Worldmap,
             "Media/Assets/Projectiles/bomb.png", // Path to the projectile texture
-            std::make_unique<ThrowMovement>(1.0f, target->getPosition(), sf::Vector2f(posX, posY) , 2.5f), // No movement for melee
+            std::make_unique<ThrowMovement>(1.0f, target->getPosition(), sf::Vector2f(posX, posY) , 2.5f, Worldmap), // No movement for melee
             nullptr,
             nullptr
         );
