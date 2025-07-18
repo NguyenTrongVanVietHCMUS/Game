@@ -10,7 +10,9 @@ private:
     std::unique_ptr<IBehavior> behavior; // Strategy for weapon behavior
     std::unique_ptr<IWeaponAnimation> animation; // Animation for the weapon
     std::unique_ptr<ICooldownBehavior> cooldownBehavior; // Cooldown behavior for the weapon
-    
+    sf::Vector2f ScaleBulletSpawnPosition = sf::Vector2f(0, 0); // Position where the bullet spawns based on the weapon's scale
+    sf::Vector2f OriginalBulletSpawnPosition;
+    void UpdateBulletSpawnPosition() ;
 public:
     Weapon2(std::string name, sf::Vector2f position,
         std::unique_ptr<IBehavior> behavior = nullptr, std::unique_ptr<IWeaponAnimation> animation = nullptr)
@@ -24,11 +26,16 @@ public:
     Weapon2(std::string name, sf::Vector2f position, float cooldownTime,
         std::unique_ptr<IBehavior> behavior, std::unique_ptr<IWeaponAnimation> animation)
         : behavior(std::move(behavior)), animation(std::move(animation)), cooldownBehavior(std::make_unique<BasicCooldownBehavior>(cooldownTime)), Entity(name, position) {};
+
+    Weapon2(std::string name, sf::Vector2f position, float cooldownTime, sf::Vector2f scaleBulletSpawnPosition,
+        std::unique_ptr<IBehavior> behavior, std::unique_ptr<IWeaponAnimation> animation)
+        : behavior(std::move(behavior)), animation(std::move(animation)), cooldownBehavior(std::make_unique<BasicCooldownBehavior>(cooldownTime)), Entity(name, position), ScaleBulletSpawnPosition(scaleBulletSpawnPosition) {};
+
     Entity::Type ProjectileTypeTransform(Entity* entity) const {
         if( entity->type == Entity::Type::Enemy) {
-            return Entity::Type::AllyProjectile; // Transform enemy to ally projectile
+            return Entity::Type::EnemyProjectile; // Transform enemy to ally projectile
         } else if (entity->type == Entity::Type::Ally) {
-            return Entity::Type::EnemyProjectile; // Transform ally to enemy projectile
+            return Entity::Type::AllyProjectile; // Transform ally to enemy projectile
         }
     }
     void setBehavior(std::unique_ptr<IBehavior> newBehavior);
@@ -40,4 +47,8 @@ public:
 
     bool update(sf::Time dt);
     void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+
+
+public:
+    sf::Vector2f GetProjectileSpawnPosition() const;
 };

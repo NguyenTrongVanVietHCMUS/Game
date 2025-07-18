@@ -34,6 +34,7 @@ void SwordAnimation::update(Weapon2& weapon, sf::Time dt) {
     // Set the position of the sprite based on the owner entity's position
     float PositionX = owner->getPosition().x; // Center the sword on the owner
     float PositionY = owner->getPosition().y - 20.0f;
+    weapon.position = {PositionX, PositionY};
     sprite.setPosition(PositionX  , PositionY);
 }
 

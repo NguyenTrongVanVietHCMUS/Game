@@ -23,9 +23,9 @@ public:
         float posX = self.getStat("TargetPosX");
         float posY = self.getStat("TargetPosY");
         // normalize the direction vector
-    
-        sf::Vector2f direction = sf::Vector2f(posX, posY) - target->getPosition();
-        
+        sf::Vector2f SpawnPosition = self.GetProjectileSpawnPosition();
+        sf::Vector2f direction =  sf::Vector2f(posX, posY) - SpawnPosition;
+
         //std::cerr << "Projectile speed X: " << projectileSpeedX << ", Y: " << projectileSpeedY << std::endl;
         float offsetAngle = dist(rng); // Randomly offset the angle within the spread range
         float cosA = std::cos(offsetAngle * 3.14159265358979323846f / 180.0f); // Convert angle to radians
@@ -41,7 +41,7 @@ public:
         auto proj = new Projectile2(
             "RangedProjectile",
             15.0f, // as seconds represent life time of the projectile
-            target->getPosition(),
+            SpawnPosition,
             Worldmap,
             "Media/Assets/Projectiles/PurpleBullet.png", // Path to the projectile texture
             std::make_unique<FollowMovement>(projectileSpeedX, projectileSpeedY, projectileSpeed, Worldmap, 60.0f),
@@ -69,9 +69,10 @@ public:
         }
         float posX = self.getStat("TargetPosX");
         float posY = self.getStat("TargetPosY");
-        std::cerr << "Position X: " << posX << ", Y: " << posY << std::endl;
+
         // normalize the direction vector
-        sf::Vector2f direction = target->getPosition() - sf::Vector2f(posX, posY);
+        sf::Vector2f SpawnerPosition = self.GetProjectileSpawnPosition();
+        sf::Vector2f direction = SpawnerPosition - sf::Vector2f(posX, posY);
         float Angle = std::atan2(direction.y, direction.x); // Calculate the angle of the melee attack
         // Offset the position of the projectile to be in front of the target
         sf::Vector2f offset(25.0f * std::cos(Angle), 25.0f * std::sin(Angle)); // Offset by 50 pixels in the direction of the attack
@@ -79,7 +80,7 @@ public:
         auto proj = new Projectile2(
             "MeleeProjectile",
             0.12f, // as seconds
-            target->getPosition(),
+            SpawnerPosition,
             Worldmap,
             "Media/Assets/Projectiles/sword_slash.png", // Path to the projectile texture
             nullptr, // No movement for melee

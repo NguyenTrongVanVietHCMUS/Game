@@ -24,7 +24,8 @@ public:
                 "AK_47",
                 this->position, // Position of the weapon
                 0.1f, // Cooldown time for the weapon
-                std::make_unique<RangedWeaponBehavior>(state, 500.0f, 20.0f), // Ranged weapon behavior with speed
+                sf::Vector2(0.6f,-0.2f),
+                std::make_unique<RangedWeaponBehavior>(state, 500.0f, 0.0f), // Ranged weapon behavior with speed
                 std::make_unique<GunAnimation>(
                     0.2f, // Total time for the animation
                     0.4f, // Scale of the animation

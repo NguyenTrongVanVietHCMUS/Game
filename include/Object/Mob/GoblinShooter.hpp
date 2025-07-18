@@ -20,6 +20,8 @@ public:
             std::make_shared<Weapon2>(
                 "AK_47",
                 this->position, // Position of the weapon
+                1.0f, // cooldowntime
+                sf::Vector2(0.5f,-0.2f), // The Scale position of the bullet spawner
                 std::make_unique<RangedWeaponBehavior>(state, 500.0f, 20.0f), // Ranged weapon behavior with speed
                 std::make_unique<GunAnimation>(
                     0.2f, // Total time for the animation

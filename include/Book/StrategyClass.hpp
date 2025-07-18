@@ -64,5 +64,9 @@ public:
     virtual void handleEvent(const sf::Event& event) {};
     virtual ~IWeaponAnimation() = default;
 
-
+public:
+    sf::Vector2f getSpriteSize() const {
+        return sf::Vector2f(sprite.getTexture()->getSize().x * sprite.getScale().x, 
+                        sprite.getTexture()->getSize().y * sprite.getScale().y);
+    }
 };

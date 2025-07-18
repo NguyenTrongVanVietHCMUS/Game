@@ -21,7 +21,7 @@ void GunAnimation::update(Weapon2& weapon, sf::Time dt) {
     // Get the Original Angle of the gun based on the mouse position
     sf::Vector2f direction = sf::Vector2f(posX, posY) - owner->getHandPosition();
     float originalAngle = std::atan2(direction.y, direction.x) * 180.0f / 3.14159f; // Convert to degrees
-
+    weapon.setStat("OriginalAngle", originalAngle); // Store the original angle in the weapon's stats
     float t = CurrentTime / TotalTime; // Normalized time [0, 1]
     float angleOffset = startAngle + t * (endAngle - startAngle); // Interpolate angle
     
@@ -36,6 +36,8 @@ void GunAnimation::update(Weapon2& weapon, sf::Time dt) {
 
     float PositionX = owner->getHandPosition().x - OffsetX * (1-t); // Center the gun on the owner
     float PositionY = owner->getHandPosition().y - OffsetY * (1-t) ; // Apply recoil effect
+    
+    weapon.position = {PositionX, PositionY};
     sprite.setPosition(PositionX, PositionY);
 }
 

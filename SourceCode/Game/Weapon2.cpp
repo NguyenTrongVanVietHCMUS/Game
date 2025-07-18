@@ -45,6 +45,7 @@ bool Weapon2::update(sf::Time dt)
     if( animation) {
         animation->update(*this, dt);
     }
+    UpdateBulletSpawnPosition();
     return true;
 }
 
@@ -53,4 +54,36 @@ void Weapon2::draw(sf::RenderTarget& target, sf::RenderStates states) const
     if (animation) {
         animation->draw(target, states);
     }
+    sf::CircleShape dot(3);
+    dot.setFillColor(sf::Color::Red);
+    dot.setOrigin(3, 3);
+    dot.setPosition(OriginalBulletSpawnPosition);
+    target.draw(dot, states);
+}
+
+sf::Vector2f Weapon2::GetProjectileSpawnPosition() const
+{
+    return OriginalBulletSpawnPosition;
+}
+
+
+void Weapon2::UpdateBulletSpawnPosition() {
+    // Update the bullet spawn position based on the weapon's position and scale bullet spawn and original rotation
+    float originalAngle = getStat("OriginalAngle");
+    float angleRad = originalAngle * 3.14159f / 180.0f; // Convert degrees to radians
+    sf::Vector2f lengthAfterScale;
+    
+    if(animation)
+    {
+        sf::Vector2f SpriteSize = animation->getSpriteSize();
+        lengthAfterScale.x = SpriteSize.x * ScaleBulletSpawnPosition.x;
+        lengthAfterScale.y = SpriteSize.y * ScaleBulletSpawnPosition.y;
+    } else lengthAfterScale = {0.0f, 0.0f};
+    // Using current original angle and lengthAfterScale to get the position
+    OriginalBulletSpawnPosition = {
+        std::cos(angleRad) * lengthAfterScale.x - std::sin(angleRad) * lengthAfterScale.y,
+        std::sin(angleRad) * lengthAfterScale.x + std::cos(angleRad) * lengthAfterScale.y
+    };
+    OriginalBulletSpawnPosition = position + OriginalBulletSpawnPosition;
+    // Draw a small circle at the postion
 }
