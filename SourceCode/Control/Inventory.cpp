@@ -76,3 +76,12 @@ void Inventory::shoot(Entity* shooter, Entity* target)
         currentWeapon->activate(shooter);
     } 
 }
+
+void Inventory::AimAt(sf::Vector2f position)
+{
+    std::shared_ptr<Weapon2> currentWeapon = getCurrentWeapon();
+    if (currentWeapon) {
+        currentWeapon->setStat("TargetPosX", position.x);
+        currentWeapon->setStat("TargetPosY", position.y);
+    } 
+}

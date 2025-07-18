@@ -9,7 +9,7 @@ private:
     //std::vector<std::shared_ptr<Skill>> skills; // List of skills in the inventory
     int CurrentWeaponIndex = 0; // Index of the currently active weapon
     int CurrentSkillIndex = 0; // Index of the currently active skill
-    int MaxWeapon = 3; // Maximum index for weapons
+    int MaxWeapon = 5; // Maximum index for weapons
     int MaxSkill = 1; // Maximum index for skills
 
 public:
@@ -35,4 +35,5 @@ public:
 
 public:
     void shoot(Entity* shooter, Entity* target); // Shoot the current weapon at the target
+    void AimAt(sf::Vector2f position);
 };

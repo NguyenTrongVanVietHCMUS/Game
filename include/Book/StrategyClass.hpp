@@ -5,7 +5,7 @@ class Projectile2;
 class Weapon2;
 struct IMovement
 {
-    virtual void update(Projectile2& projectile, sf::Time dt) = 0;
+    virtual void update(Projectile2& projectile,const sf::Time &dt) = 0;
     virtual std::unique_ptr<IMovement> clone() const = 0;
     virtual ~IMovement() = default;
 };
@@ -64,5 +64,9 @@ public:
     virtual void handleEvent(const sf::Event& event) {};
     virtual ~IWeaponAnimation() = default;
 
-
+public:
+    sf::Vector2f getSpriteSize() const {
+        return sf::Vector2f(sprite.getTexture()->getSize().x * sprite.getScale().x, 
+                        sprite.getTexture()->getSize().y * sprite.getScale().y);
+    }
 };
