@@ -1,9 +1,9 @@
 #include<Book/MovingAnimation.hpp>
 
-HighRangeMob_MovingAnimation::HighRangeMob_MovingAnimation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f& position, float scale, sf::Vector2f middlePosition)
+HighRangeMob_MovingAnimation::HighRangeMob_MovingAnimation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f& position, float scale, Entity* entity, sf::Vector2f middlePosition)
     :MovingAnimation(texture, imageCount, switchTime, position, scale, middlePosition)
 {
-
+    this->entity = entity; 
 }
 
 HighRangeMob_MovingAnimation::~HighRangeMob_MovingAnimation()
@@ -26,7 +26,14 @@ void HighRangeMob_MovingAnimation::handleCollision(const Entity* other)
     }
     if (other->type == Entity::Type::Object)
     {
-        position = oldPosition;
+        sf::Vector2f res = oldPosition;
+        sf::Vector2f temp = position;
+        position = sf::Vector2f(oldPosition.x, temp.y);
+        if (entity->isCollide(other))
+        {
+            position = sf::Vector2f(temp.x, oldPosition.y);
+            if (entity->isCollide(other)) position = oldPosition;
+        }
     }
 
     //std::cout << oldPosition.x << " " << oldPosition.y << " collided with " << other->name << std::endl;

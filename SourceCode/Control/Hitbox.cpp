@@ -9,7 +9,7 @@ Hitbox::~Hitbox()
 {
     // Destructor implementation
 }
-bool Hitbox::isColliding(const Hitbox& other) const
+bool Hitbox::isCollide(const Hitbox& other) const
 {
     return hitbox.intersects(other.hitbox);
 }

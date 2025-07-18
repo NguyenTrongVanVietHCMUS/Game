@@ -74,28 +74,38 @@ void MovingAnimation::chase(Entity* target , sf::Time dt )
 {
 	sf::Vector2f destination = target->getPosition();
     mask = 0;
-    if (this->position.x < destination.x)
+    if(abs(this->position.x - destination.x) > 5.0f)
     {
-        mask = BIT_SET(mask, RIGHT); // Set the right direction bit
+        if (this->position.x < destination.x)
+        {
+            mask = BIT_SET(mask, RIGHT); // Set the right direction bit
+        }
+        if (this->position.x > destination.x)
+        {
+            mask = BIT_SET(mask, LEFT); // Set the left direction bit
+        }
     }
-    if (this->position.x > destination.x)
+    if(abs(this->position.y - destination.y) > 5.0f)
     {
-        mask = BIT_SET(mask, LEFT); // Set the left direction bit
-    }
-    if (this->position.y < destination.y)
-    {
-        mask = BIT_SET(mask, DOWN);
-    }
-    if (this->position.y > destination.y)
-    {
-        mask = BIT_SET(mask, UP);
-    }
+        if (this->position.y < destination.y)
+        {
+            mask = BIT_SET(mask, DOWN); // Set the down direction bit
+        }
+        if (this->position.y > destination.y)
+        {
+            mask = BIT_SET(mask, UP); // Set the up direction bit
+        }
+	}
     MovingAnimation::update(dt); 
 }
-void MovingAnimation::wander(sf::Time dt )
+void MovingAnimation::wander(sf::Time dt)
 {
-
-    MovingAnimation::update(dt); 
+    bool change = rand() % 68 == 0;
+    if (change)
+    {
+        mask = rand() % 16;
+    }
+    MovingAnimation::update(dt);
 }
 sf::Vector2f MovingAnimation::getHandPosition()const
 {

@@ -1,8 +1,9 @@
 #include<Book/MovingAnimation.hpp>
 
-Character_MovingAnimation::Character_MovingAnimation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f& position, float scale, Entity* target, sf::Vector2f middlePosition)
-    :MovingAnimation(texture, imageCount, switchTime, position, scale, middlePosition), target(target)
+Character_MovingAnimation::Character_MovingAnimation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f& position, float scale, Entity* entity, sf::Vector2f middlePosition)
+    :MovingAnimation(texture, imageCount, switchTime, position, scale, middlePosition)
 {
+    this->entity = entity; 
 	direction = rand() % 2 == 0 ? LEFT : RIGHT; // Randomly set the initial direction
 }
 
@@ -149,13 +150,20 @@ void Character_MovingAnimation::handleCollision(const Entity* other)
 {
     // Handle collision logic here
     // This is a placeholder function and should be implemented with actual collision handling 
+
     if(other->type==Entity::Type::EnemyProjectile)
     {
         getshot(other); 
 	}
     if (other->type == Entity::Type::Object)
     {
-        position = oldPosition;
+        sf::Vector2f temp = position; 
+        position = sf::Vector2f(oldPosition.x, temp.y);
+        if (entity->isCollide(other))
+        {
+            position = sf::Vector2f(temp.x,oldPosition.y) ; 
+            if (entity->isCollide(other)) position = oldPosition;
+        }
     }
 
     setSpritePosition(); 

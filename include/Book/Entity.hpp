@@ -52,6 +52,7 @@ public :
     sf::Vector2f getDirection() const { return sf::Vector2f(0.45f, 0.45f); } // Placeholder for direction
 
     virtual void collide(const Entity* other) ;
+    bool isCollide(const Entity* other)const; 
     bool operator<(const Entity& other)const{
         return getHitbox().hitbox.top + getHitbox().hitbox.height < other.getHitbox().hitbox.top + other.getHitbox().hitbox.height||(
             getHitbox().hitbox.top + getHitbox().hitbox.height == other.getHitbox().hitbox.top + other.getHitbox().hitbox.height &&

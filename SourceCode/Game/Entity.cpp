@@ -59,9 +59,13 @@ bool Entity::inRange(const Entity* other)const
 	float distance = std::pow(position.x - other->getPosition().x, 2) + std::pow(position.y - other->getPosition().y, 2);
     return distance <= std::pow(this->getRange(), 2);
 }
-void Entity::collide(const Entity* other)
+bool Entity::isCollide(const Entity* other)const
 {
-    // do nothing by default 
+    return this->getHitbox().isCollide(other->getHitbox());  
+}
+void Entity::collide(const Entity* other)
+{   
+    // do nothing for now ; 
 }
 sf::Vector2f Entity::getHandPosition()const
 {

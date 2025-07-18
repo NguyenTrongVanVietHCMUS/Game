@@ -1,9 +1,9 @@
 #include<Book/MovingAnimation.hpp>
 
-ShortRangeMob_MovingAnimation::ShortRangeMob_MovingAnimation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f& position, float scale, sf::Vector2f middlePosition)
+ShortRangeMob_MovingAnimation::ShortRangeMob_MovingAnimation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f& position, float scale, Entity* entity, sf::Vector2f middlePosition)
     :MovingAnimation(texture, imageCount, switchTime, position, scale, middlePosition)
 {
-   
+    this->entity = entity; 
 }
 
 ShortRangeMob_MovingAnimation::~ShortRangeMob_MovingAnimation()

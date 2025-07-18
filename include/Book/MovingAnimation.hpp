@@ -7,6 +7,7 @@
 class MovingAnimation : public sf::Drawable
 {
 public :
+    Entity* entity; 
     sf::Sprite sprite; 
     sf::Texture* texture; 
     sf::Vector2u imageCount; 
@@ -83,12 +84,11 @@ class Character_MovingAnimation : public MovingAnimation
         RIGHT
     }; 
     Direction direction; 
-    Entity* target; // Pointer to the target entity for weapon activation
 private: 
     int jump = 0; 
     int distancefromground = 0; 
 public :
-    Character_MovingAnimation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f& position, float scale, Entity *target ,sf::Vector2f middlePosition = sf::Vector2f(0.5f, 1)); // Constructor with parameters
+    Character_MovingAnimation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f& position, float scale, Entity* entity ,sf::Vector2f middlePosition = sf::Vector2f(0.5f, 1)); // Constructor with parameters
     ~Character_MovingAnimation();
     virtual void update(sf::Time dt);
     virtual void handleEvent(const sf::Event& event,sf::RenderWindow* window);
@@ -103,7 +103,7 @@ class ShortRangeMob_MovingAnimation : public MovingAnimation
 private : 
     float attackRange; 
 public:
-    ShortRangeMob_MovingAnimation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f& position, float scale, sf::Vector2f middlePosition = sf::Vector2f(0.5f, 1));
+    ShortRangeMob_MovingAnimation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f& position, float scale, Entity* entity, sf::Vector2f middlePosition = sf::Vector2f(0.5f, 1));
     ~ShortRangeMob_MovingAnimation();
     virtual void handleCollision(const Entity* other);
     void getshot(const Entity* other); 
@@ -114,7 +114,7 @@ class HighRangeMob_MovingAnimation : public MovingAnimation
 private : 
     float attackRange; 
 public:
-    HighRangeMob_MovingAnimation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f& position, float scale, sf::Vector2f middlePosition = sf::Vector2f(0.5f, 1));
+    HighRangeMob_MovingAnimation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f& position, float scale, Entity* entity, sf::Vector2f middlePosition = sf::Vector2f(0.5f, 1));
     ~HighRangeMob_MovingAnimation();
     virtual void handleCollision(const Entity* other);
     void getshot(const Entity* other);

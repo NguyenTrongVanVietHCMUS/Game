@@ -11,7 +11,7 @@
     "fileStates": {
         "": {
             "dynamicWrapping": false,
-            "scaleInDock": 0.125,
+            "scaleInDock": 1,
             "scaleInEditor": 3
         },
         "#Map Tileset": {
@@ -86,11 +86,11 @@
             "expandedObjectLayers": [
                 2
             ],
-            "scale": 0.75,
+            "scale": 0.33,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 566.6666666666666,
-                "y": 605.3333333333334
+                "x": -90.90909090909076,
+                "y": 796.969696969697
             }
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/battleroom1.json#GroundTiles": {
@@ -155,11 +155,11 @@
             "expandedObjectLayers": [
                 2
             ],
-            "scale": 0.5,
+            "scale": 0.33,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 460,
-                "y": 228
+                "x": 612.1212121212122,
+                "y": 318.18181818181824
             }
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway1.json#GroundTiles": {
@@ -180,41 +180,52 @@
             "scaleInEditor": 1
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway2.json": {
-            "scale": 0.33,
-            "selectedLayer": 0,
+            "expandedObjectLayers": [
+                2
+            ],
+            "scale": 1.5,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": -278.7878787878785,
-                "y": 1003.030303030303
+                "x": 220,
+                "y": 878.3333333333333
             }
         },
+        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway2.json#GroundTiles": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1
+        },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway2.json#MossyStoneBricks": {
+            "scaleInDock": 1
+        },
+        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway2.json#Walls": {
+            "dynamicWrapping": true,
             "scaleInDock": 1
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway2.json#groundtile": {
             "scaleInDock": 1
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway3.json": {
-            "scale": 2,
+            "scale": 0.33,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 415,
-                "y": 287
+                "x": 266.66666666666674,
+                "y": 521.2121212121212
             }
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway4.json": {
-            "scale": 0.7973214285714285,
+            "scale": 0.33,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": -48.91377379619257,
-                "y": 559.3729003359463
+                "x": -124.24242424242425,
+                "y": 769.6969696969697
             }
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway5.json": {
-            "scale": 3,
+            "scale": 2,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 49.33333333333334,
-                "y": 120.33333333333334
+                "x": 34,
+                "y": 146.5
             }
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/room1.json": {
@@ -251,15 +262,34 @@
             "dynamicWrapping": false,
             "scaleInDock": 1
         },
+        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/room2.json": {
+            "expandedObjectLayers": [
+                2
+            ],
+            "scale": 1,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 424,
+                "y": -1458
+            }
+        },
+        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/room2.json#GroundTiles": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1
+        },
+        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/room2.json#Walls": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1
+        },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/startingroom.json": {
             "expandedObjectLayers": [
                 2
             ],
-            "scale": 0.5,
+            "scale": 1,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": -276,
-                "y": 484
+                "x": 552,
+                "y": 1500
             }
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/startingroom.json#GroundTiles": {
@@ -392,7 +422,7 @@
             "selectedLayer": 2,
             "viewCenter": {
                 "x": 597.3333333333333,
-                "y": 335.33333333333337
+                "y": 336
             }
         },
         "V:/Game/Media/Assets/Maps/Lobby/lobby.json#BackgroundWall": {
@@ -565,13 +595,15 @@
         }
     },
     "last.externalTilesetPath": "V:/Game/Media/Assets/TileSets",
-    "last.imagePath": "V:/Game/Media/Assets/TileSets/Deco",
+    "last.imagePath": "V:/Game/Media/Assets/TileSets",
     "last.worldFilePath": "V:/Game/Media/Assets/Maps/Dungeon/Jungle",
     "loadedWorlds": [
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/jungle.world"
     ],
-    "map.fixedSize": false,
+    "map.fixedSize": true,
+    "map.height": 15,
     "map.lastUsedFormat": "json",
+    "map.width": 15,
     "openFiles": [
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/startingroom.json",
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/battleroom1.json",
@@ -598,5 +630,5 @@
     "tileset.embedInMap": true,
     "tileset.lastUsedFilter": "All Files (*)",
     "tileset.lastUsedFormat": "tsx",
-    "tileset.type": 1
+    "tileset.type": 0
 }

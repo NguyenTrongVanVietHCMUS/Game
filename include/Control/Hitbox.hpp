@@ -9,7 +9,7 @@ public:
     ~Hitbox();
     sf::FloatRect hitbox; // Hitbox of the entity
 
-    bool isColliding(const Hitbox& other) const;
+    bool isCollide(const Hitbox& other) const;
     void draw(sf::RenderTarget& target, sf::RenderStates states) const; // Draw the hitbo
     void update(sf::Time dt);
     void update(const sf::Sprite& sprite); // Set the size of the hitbox based on 
