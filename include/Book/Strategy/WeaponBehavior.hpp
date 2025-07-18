@@ -136,7 +136,7 @@ public:
             nullptr,
             nullptr
         );
-        proj->type = self.ProjectileTypeTransform(target); // Transform the projectile type based on the target type
+        proj->type = target->type;
         proj->update(sf::seconds(0)); // Initialize the projectile's animation
         Worldmap->pushEntity(proj);
     }

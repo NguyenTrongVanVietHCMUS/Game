@@ -30,15 +30,15 @@ void ThrowMovement::update(Projectile2& projectile, const sf::Time& dt)
         );
 
         sf::Texture* texture = new sf::Texture();
-        if(!texture->loadFromFile("Media/Assets/Projectiles/Explosion2.png")) {
+        if(!texture->loadFromFile("Media/Assets/Projectiles/Explosion.png")) {
             throw std::runtime_error("Failed to load explosion texture");
         }
         std::unique_ptr<MovingAnimation> movingAnimation = std::make_unique<Explosion_Animation>(
             texture,
-            sf::Vector2u(3, 3), // Assuming the explosion texture has 4x2 frames
+            sf::Vector2u(4, 2), // Assuming the explosion texture has 4x2 frames
             0.05f, // Switch time for the animation
             projectile.position, 
-            1.0f, // Scale of the animation
+            2.0f, // Scale of the animation
             sf::Vector2f(0.5f, 0.5f) // Middle position for the animation
         );
         proj->setMovingAnimation(std::move(movingAnimation));
