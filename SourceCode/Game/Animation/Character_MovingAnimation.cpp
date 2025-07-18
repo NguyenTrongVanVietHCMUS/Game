@@ -140,11 +140,10 @@ void Character_MovingAnimation::setSpritePosition()
     sprite.setPosition(position);
     if (state == MOVING)
     {
-        std::cerr << distancefromground << std::endl;
         sprite.setPosition(position.x, position.y - 1.5 * distancefromground); // Adjust for jump effect
     }
-    sprite.setOrigin(middlePosition.x * uvRect.width, middlePosition.y * uvRect.height);
     sprite.setTextureRect(uvRect);
+    sprite.setOrigin(middlePosition.x * uvRect.width, middlePosition.y * uvRect.height);
 }
 void Character_MovingAnimation::handleCollision(const Entity* other)
 {
@@ -160,4 +159,8 @@ void Character_MovingAnimation::handleCollision(const Entity* other)
     }
 
     setSpritePosition(); 
+}
+sf::Vector2f Character_MovingAnimation::getHandPosition()const
+{
+	return sprite.getPosition() + sf::Vector2f(0,-sprite.getGlobalBounds().height/2+25); // Adjust the hand position based on the sprite's position and middle position
 }

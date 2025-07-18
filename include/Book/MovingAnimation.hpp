@@ -65,14 +65,11 @@ public:
     }
     virtual ~MovingAnimation();
     virtual void update(sf::Time dt);
-    virtual void draw(sf::RenderTarget& target, sf::RenderStates states)const
-    {
-        states.texture = texture;
-        target.draw(sprite, states);
-    }
+    virtual void draw(sf::RenderTarget& target, sf::RenderStates states)const;
     virtual void handleCollision(const Entity* other) {} // Handle collision with another entity
     virtual void chase(Entity* target,sf::Time dt); 
     virtual void wander(sf::Time dt); 
+    virtual sf::Vector2f getHandPosition()const;
 protected: 
     Direction direction;
     virtual void setSpritePosition(); 
@@ -98,6 +95,7 @@ public :
     virtual void handleCollision(const Entity* other); 
     void getshot(const Entity* other);
     void setSpritePosition();  
+	sf::Vector2f getHandPosition()const; // Get the hand position for weapon activation
 };
 
 class ShortRangeMob_MovingAnimation : public MovingAnimation

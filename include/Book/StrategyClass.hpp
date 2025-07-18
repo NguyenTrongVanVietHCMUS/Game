@@ -45,7 +45,7 @@ public:
 class IWeaponAnimation
 {
 protected:
-    float scale = 1.0f; // Scale of the weapon animation
+    float scale = 1.0f; // Scale of the weapon animation    
     float TotalTime = 0.0f; // Total time for the animation
     float CurrentTime = 0.0f; // Current time for the animation
     sf::Vector2f position; // Position of the weapon animation

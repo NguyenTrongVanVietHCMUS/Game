@@ -58,4 +58,5 @@ public :
             getHitbox().hitbox.left + getHitbox().hitbox.width < other.getHitbox().hitbox.left + other.getHitbox().hitbox.width
         );
     }
+    virtual sf::Vector2f getHandPosition()const; 
 };

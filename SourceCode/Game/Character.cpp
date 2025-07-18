@@ -18,14 +18,11 @@ void Character::draw(sf::RenderTarget& target, sf::RenderStates states) const
     movingAnimation->draw(target, states); // Draw the moving animation
     inventory->draw(target, states); // Draw the inventory
     hitbox.draw(target, states); // Draw the hitbox
+
 }
 bool Character::handleEvent(const sf::Event& event,sf::RenderWindow*window)
 {
-    Character_MovingAnimation* t =  dynamic_cast<Character_MovingAnimation*>(movingAnimation.get()); 
-    if (t)
-    {
-        t->handleEvent(event, window); 
-    }
+    dynamic_cast<Character_MovingAnimation*>(movingAnimation.get())->handleEvent(event, window); 
     if(event.type == sf::Event::KeyPressed)
     {
         if(event.key.code == sf::Keyboard::Q)
@@ -48,22 +45,23 @@ bool Character::handleEvent(const sf::Event& event,sf::RenderWindow*window)
     {
         weapon->setStat("TargetPosX", worldPos.x);
         weapon->setStat("TargetPosY", worldPos.y);
-        weapon->setStat("MousePosX", position.x);
-        weapon->setStat("MousePosY", position.y);
     }
-    
     return false; 
 }
 bool Character::update(sf::Time dt)
 {
-    //std::cout<<"updating Character " << position.x << ", " << position.y << std::endl;
-    
+
     movingAnimation->update(dt); // Update the animation
     inventory->update(dt); // Update the inventory
     updateHitboxOnPosition(); // Update the hitbox position based on the entity's current position
+
     return false;
 }
 void Character::collide(const Entity* other)
 {    
     movingAnimation->handleCollision(other); 
+}
+sf::Vector2f Character::getHandPosition()const
+{
+    return movingAnimation->getHandPosition(); 
 }

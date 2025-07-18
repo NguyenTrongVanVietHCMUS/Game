@@ -59,6 +59,11 @@ void MovingAnimation::update(sf::Time dt)
     uvRect.top = currentImage.y * uvRect.height;
     setSpritePosition();
 }
+void MovingAnimation::draw(sf::RenderTarget& target, sf::RenderStates states) const
+{
+    states.texture = texture;
+    target.draw(sprite, states);
+}
 void MovingAnimation::setSpritePosition()
 {
     sprite.setPosition(position);
@@ -91,4 +96,8 @@ void MovingAnimation::wander(sf::Time dt )
 {
 
     MovingAnimation::update(dt); 
+}
+sf::Vector2f MovingAnimation::getHandPosition()const
+{
+    return sf::Vector2f(position.x, position.y - sprite.getGlobalBounds().height / 2 + 100);
 }

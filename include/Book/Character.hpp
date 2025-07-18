@@ -7,6 +7,8 @@
 class MovingAnimation;
 class Character : public Entity
 {
+protected: 
+    virtual sf::Vector2f getHandPosition()const; 
 protected : 
     std::unique_ptr<MovingAnimation> movingAnimation ; 
     std::shared_ptr<Inventory> inventory;
@@ -19,4 +21,5 @@ public :
     virtual bool handleEvent(const sf::Event& event,sf::RenderWindow* window) ;  
     virtual bool update(sf::Time dt) ; 
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const; 
+    
 };

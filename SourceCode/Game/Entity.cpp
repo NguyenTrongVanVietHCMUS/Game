@@ -63,3 +63,7 @@ void Entity::collide(const Entity* other)
 {
     // do nothing by default 
 }
+sf::Vector2f Entity::getHandPosition()const
+{
+    return position - sf::Vector2f(0,28);
+}

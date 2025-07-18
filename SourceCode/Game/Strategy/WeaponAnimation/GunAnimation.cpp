@@ -7,8 +7,6 @@ GunAnimation::GunAnimation(float TotalTime, float scale, sf::Texture* texture,
     : IWeaponAnimation(TotalTime, scale, texture, position, middlePosition), 
       startAngle(startAngle), endAngle(endAngle), recoilOffset(recoilOffset), owner(owner), scale(scale) {
 
-    sprite.setPosition(position);
-    sprite.setScale(scale, scale);
 }
 
 void GunAnimation::update(Weapon2& weapon, sf::Time dt) {
@@ -21,7 +19,7 @@ void GunAnimation::update(Weapon2& weapon, sf::Time dt) {
     float posY = weapon.getStat("TargetPosY");
 
     // Get the Original Angle of the gun based on the mouse position
-    sf::Vector2f direction = sf::Vector2f(posX, posY) - owner->getPosition();
+    sf::Vector2f direction = sf::Vector2f(posX, posY) - owner->getHandPosition();
     float originalAngle = std::atan2(direction.y, direction.x) * 180.0f / 3.14159f; // Convert to degrees
 
     float t = CurrentTime / TotalTime; // Normalized time [0, 1]
@@ -31,13 +29,13 @@ void GunAnimation::update(Weapon2& weapon, sf::Time dt) {
         sprite.setScale(scale, -scale);
     } else sprite.setScale(scale, scale); 
     sprite.setRotation(originalAngle + angleOffset); // Set the rotation of the sprite
-    
+	sprite.setOrigin(middlePosition.x * sprite.getTexture()->getSize().x, middlePosition.y * sprite.getTexture()->getSize().y); // Set the origin of the sprite
     // Set the position of the sprite based on the owner entity's position
     float OffsetX = recoilOffset * std::cos(originalAngle * 3.14159f / 180.0f); // Recoil offset in X direction
     float OffsetY = recoilOffset * std::sin(originalAngle * 3.14159f / 180.0f); // Recoil offset in Y direction
 
-    float PositionX = owner->getPosition().x - OffsetX * (1-t); // Center the gun on the owner
-    float PositionY = owner->getPosition().y - OffsetY * (1-t) - 15; // Apply recoil effect
+    float PositionX = owner->getHandPosition().x - OffsetX * (1-t); // Center the gun on the owner
+    float PositionY = owner->getHandPosition().y - OffsetY * (1-t) ; // Apply recoil effect
     sprite.setPosition(PositionX, PositionY);
 }
 
