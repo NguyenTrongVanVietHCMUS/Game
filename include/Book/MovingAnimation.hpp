@@ -70,6 +70,8 @@ public:
     virtual void chase(Entity* target,sf::Time dt); 
     virtual void wander(sf::Time dt); 
     virtual sf::Vector2f getHandPosition()const;
+    void setSpriteScale(float scale);
+    void setSpriteRotation(float angle);
 protected: 
     Direction direction;
     virtual void setSpritePosition(); 

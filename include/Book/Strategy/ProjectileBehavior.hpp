@@ -48,15 +48,29 @@ public:
 class ThrowMovement : public IMovement
 {
 private:
+    float RotationSpeed = 200.0f;
     float speedX, speedY;
     float heightVelocity;
-    float gravity = 9.81f; // Gravity constant
+    float gravity = 9.8f; // Gravity constant
     float CurrentHeight = 0.0f;
-    float initialHeight = 0.0f; // Initial height of the projectile
+    float HeightScale = 100.0f;
+    float OriginalScale;
+    float HeightSpriteScale = 0.3f;
+    //Random Current rotation
+    float CurrentRotation = static_cast<float>(rand() % 360); // Current rotation of the projectile
 public:
-    ThrowMovement(float speedX, float speedY, float initialHeight) 
-        : speedX(speedX), speedY(speedY), initialHeight(initialHeight), heightVelocity(initialHeight) {}
-    
+    ThrowMovement(float speedX, float speedY, float InitVelocity , float OriginalScale = 1.0f) 
+        : speedX(speedX), speedY(speedY), heightVelocity(InitVelocity), OriginalScale(OriginalScale) {}
+    ThrowMovement(  float FlyTime,
+                    sf::Vector2f StartPosition,sf::Vector2f TargetPosition ,
+                    float OriginalScale = 1.0f)
+        : OriginalScale(OriginalScale) {
+            sf::Vector2f direction = TargetPosition - StartPosition;
+            heightVelocity = FlyTime * gravity / 2 ;
+            speedX = direction.x / FlyTime;
+            speedY = direction.y / FlyTime;
+
+        }
     void update(Projectile2& projectile, const sf::Time& dt) override;
 
     std::unique_ptr<IMovement> clone() const override{

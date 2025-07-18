@@ -9,12 +9,16 @@ void ThrowMovement::update(Projectile2& projectile, const sf::Time& dt)
     // Update the height of the projectile based on gravity
     CurrentHeight += heightVelocity * dt.asSeconds();
     heightVelocity -= gravity * dt.asSeconds(); // Apply gravity to height velocity
+    projectile.setSpriteScale(OriginalScale + OriginalScale * HeightSpriteScale * CurrentHeight); // Scale the sprite based on the height scale
     // scale and offset the projectile's position base on the current height
-    projectile.position.y += heightVelocity * dt.asSeconds();
+    projectile.position.y -= heightVelocity * dt.asSeconds() * HeightScale;
+    projectile.setSpriteRotation(CurrentRotation); // Update the rotation of the projectile
+    CurrentRotation = (int)(CurrentRotation + RotationSpeed * dt.asSeconds()) % 360; // Update the rotation based on speedX
+    projectile.setSpriteRotation(CurrentRotation); // Set the rotation of the sprite
     // If the projectile has fallen below its initial height, reset it
     if (CurrentHeight < 0.0f) {
-        CurrentHeight = 0.0f;
-        heightVelocity = initialHeight; // Reset height velocity
+        isActive = false; 
+        return;
     }
 
     projectile.updateHitboxOnPosition(); // Update the hitbox position based on the new position

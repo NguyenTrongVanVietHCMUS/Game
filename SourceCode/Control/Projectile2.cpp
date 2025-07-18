@@ -65,6 +65,10 @@ bool Projectile2::update(sf::Time dt)
     }
     if (movementStrategy) {
         movementStrategy->update(*this, dt);
+        if( !movementStrategy->isActive) {
+            currentMap->popEntity(this); // Remove the projectile if the movement strategy is inactive
+            return true; // Indicate that the projectile should be removed
+        }
     }
 
     sprite.setPosition(getPosition()); // Update the sprite position to match the projectile's position
@@ -99,4 +103,55 @@ void Projectile2::draw(sf::RenderTarget& target, sf::RenderStates states) const
         
     }
      
+}
+
+void Projectile2::setSpriteScale(float scale)
+{
+    if(movingAnimation) {
+        movingAnimation->setSpriteScale(scale); // Set the scale of the sprite in the moving animation
+    } else sprite.setScale(scale, scale); // Set the scale of the sprite
+}
+
+
+void Projectile2::setSpriteRotation(float angle)
+{
+    if(movingAnimation) {
+        movingAnimation->setSpriteRotation(angle); // Set the rotation of the sprite in the moving animation
+    } else {
+        sprite.setRotation(angle); // Set the rotation of the sprite
+    }
+}
+
+Projectile2::Projectile2(std::string name,float LifeTime,sf::Vector2f position, float scale, State* CurrentMap, std::string texturePath,
+std::unique_ptr<IMovement> movement, std::unique_ptr<ICollision> collision, std::unique_ptr<MovingAnimation> animation)
+: Entity(name, position), movementStrategy(std::move(movement)), collisionStrategy(std::move(collision)), currentMap(CurrentMap), movingAnimation(std::move(animation)) {
+    // Load the projectile texture
+    if (!texture.loadFromFile(texturePath)) {
+        throw std::runtime_error("Failed to load projectile texture");
+    }
+    attributes["MaxLifeTime"] = LifeTime; // Set the maximum lifetime of the projectile
+    sprite.setTexture(texture);
+    // update hitbox size
+    hitbox.hitbox = sf::FloatRect(position.x, position.y, texture.getSize().x, texture.getSize().y);
+    // set origin hitbox to center of the sprite
+    
+    sprite.setOrigin(texture.getSize().x / 2.f, texture.getSize().y);
+    sprite.setScale(scale, scale); // Set the scale of the sprite
+}
+
+
+Projectile2::Projectile2(std::string name,float LifeTime,sf::Vector2f position, State* CurrentMap, std::string texturePath,
+std::unique_ptr<IMovement> movement, std::unique_ptr<ICollision> collision , std::unique_ptr<MovingAnimation> animation)
+: Entity(name, position), movementStrategy(std::move(movement)), collisionStrategy(std::move(collision)), currentMap(CurrentMap), movingAnimation(std::move(animation)) {
+    // Load the projectile texture
+    if (!texture.loadFromFile(texturePath)) {
+        throw std::runtime_error("Failed to load projectile texture");
+    }
+    attributes["MaxLifeTime"] = LifeTime; // Set the maximum lifetime of the projectile
+    sprite.setTexture(texture);
+    // update hitbox size
+    hitbox.hitbox = sf::FloatRect(position.x, position.y, texture.getSize().x, texture.getSize().y);
+    // set origin hitbox to center of the sprite
+    
+    sprite.setOrigin(texture.getSize().x / 2.f, texture.getSize().y);
 }

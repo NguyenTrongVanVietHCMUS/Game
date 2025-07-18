@@ -17,7 +17,7 @@ void GunAnimation::update(Weapon2& weapon, sf::Time dt) {
     
     float posX = weapon.getStat("TargetPosX");
     float posY = weapon.getStat("TargetPosY");
-
+    
     // Get the Original Angle of the gun based on the mouse position
     sf::Vector2f direction = sf::Vector2f(posX, posY) - owner->getHandPosition();
     float originalAngle = std::atan2(direction.y, direction.x) * 180.0f / 3.14159f; // Convert to degrees
