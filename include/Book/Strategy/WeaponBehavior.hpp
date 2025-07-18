@@ -118,7 +118,7 @@ public:
         float posY = self.getStat("TargetPosY");
         std::cerr << "Position X: " << posX << ", Y: " << posY << std::endl;
         // normalize the direction vector
-        sf::Vector2f direction = target->getPosition() - sf::Vector2f(posX, posY);
+        sf::Vector2f direction = sf::Vector2f(posX, posY) - target->getPosition();
         float Angle = std::atan2(direction.y, direction.x); // Calculate the angle of the throw
         // Offset the position of the projectile to be in front of the target
         sf::Vector2f offset(25.0f * std::cos(Angle), 25.0f * std::sin(Angle)); // Offset by 50 pixels in the direction of the throw
@@ -127,11 +127,12 @@ public:
               projectileSpeedY = 500.0f * (direction.y / len);
         auto proj = new Projectile2(
             "ThrowingBomb",
-            0.12f, // as seconds
+            1000.0f, // as seconds
             target->getPosition(),
+            2.5f,
             Worldmap,
             "Media/Assets/Projectiles/bomb.png", // Path to the projectile texture
-            std::make_unique<ThrowMovement>(projectileSpeedX, projectileSpeedY, 200), // No movement for melee
+            std::make_unique<ThrowMovement>(1.0f, target->getPosition(), sf::Vector2f(posX, posY) , 2.5f), // No movement for melee
             nullptr,
             nullptr
         );

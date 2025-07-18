@@ -111,3 +111,14 @@ sf::Vector2f MovingAnimation::getHandPosition()const
 {
     return sf::Vector2f(position.x, position.y - sprite.getGlobalBounds().height / 2 + 100);
 }
+
+void MovingAnimation::setSpriteScale(float scale)
+{
+    this->scale = scale; // Set the scale of the sprite
+    sprite.setScale(scale, scale); // Apply the scale to the sprite
+}
+
+void MovingAnimation::setSpriteRotation(float angle)
+{
+    sprite.setRotation(angle); // Set the rotation of the sprite
+}

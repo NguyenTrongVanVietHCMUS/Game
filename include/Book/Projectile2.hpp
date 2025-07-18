@@ -17,26 +17,19 @@ private:
     State* currentMap; // Pointer to the current map or state
 public:
     Projectile2(std::string name,float LifeTime,sf::Vector2f position, State* CurrentMap, std::string texturePath,
-        std::unique_ptr<IMovement> movement = nullptr, std::unique_ptr<ICollision> collision = nullptr, std::unique_ptr<MovingAnimation> animation = nullptr)
-        : Entity(name, position), movementStrategy(std::move(movement)), collisionStrategy(std::move(collision)), currentMap(CurrentMap), movingAnimation(std::move(animation)) {
-            // Load the projectile texture
-            if (!texture.loadFromFile(texturePath)) {
-                throw std::runtime_error("Failed to load projectile texture");
-            }
-            attributes["MaxLifeTime"] = LifeTime; // Set the maximum lifetime of the projectile
-            sprite.setTexture(texture);
-            // update hitbox size
-            hitbox.hitbox = sf::FloatRect(position.x, position.y, texture.getSize().x, texture.getSize().y);
-            // set origin hitbox to center of the sprite
-            
-            sprite.setOrigin(texture.getSize().x / 2.f, texture.getSize().y);
-        }
+        std::unique_ptr<IMovement> movement = nullptr, std::unique_ptr<ICollision> collision = nullptr, std::unique_ptr<MovingAnimation> animation = nullptr);
+
+    Projectile2(std::string name,float LifeTime,sf::Vector2f position, float scale, State* CurrentMap, std::string texturePath,
+    std::unique_ptr<IMovement> movement = nullptr, std::unique_ptr<ICollision> collision = nullptr, std::unique_ptr<MovingAnimation> animation = nullptr);
+    
     void setBehavior(std::unique_ptr<IMovement> movement, std::unique_ptr<ICollision> collision);
     void setMovement(std::unique_ptr<IMovement> movement);
     void setCollision(std::unique_ptr<ICollision> collision);
     void setMovingAnimation(std::unique_ptr<MovingAnimation> animation);
     void addTrailEffect(std::unique_ptr<IEffect> effect);
 
+    void setSpriteScale(float scale);
+    void setSpriteRotation(float angle);
     void setAttribute(const std::string& attributeName, float value);
     float getAttribute(const std::string& attributeName) const;
 
