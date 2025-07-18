@@ -56,15 +56,16 @@ private:
     float HeightScale = 100.0f;
     float OriginalScale;
     float HeightSpriteScale = 0.3f;
+    State *Worldmap = nullptr;
     //Random Current rotation
     float CurrentRotation = static_cast<float>(rand() % 360); // Current rotation of the projectile
 public:
-    ThrowMovement(float speedX, float speedY, float InitVelocity , float OriginalScale = 1.0f) 
-        : speedX(speedX), speedY(speedY), heightVelocity(InitVelocity), OriginalScale(OriginalScale) {}
+    ThrowMovement(float speedX, float speedY, float InitVelocity , float OriginalScale = 1.0f, State* worldmap = nullptr) 
+        : speedX(speedX), speedY(speedY), heightVelocity(InitVelocity), OriginalScale(OriginalScale), Worldmap(worldmap) {}
     ThrowMovement(  float FlyTime,
                     sf::Vector2f StartPosition,sf::Vector2f TargetPosition ,
-                    float OriginalScale = 1.0f)
-        : OriginalScale(OriginalScale) {
+                    float OriginalScale = 1.0f , State* worldmap = nullptr)
+        : OriginalScale(OriginalScale), Worldmap(worldmap) {
             sf::Vector2f direction = TargetPosition - StartPosition;
             heightVelocity = FlyTime * gravity / 2 ;
             speedX = direction.x / FlyTime;

@@ -133,3 +133,14 @@ public:
     virtual void handleEvent(const sf::Event& event, sf::RenderWindow* window);
     virtual void handleCollision(const Entity* other);
 };
+
+
+class Explosion_Animation : public MovingAnimation
+{
+public:
+    Explosion_Animation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f& position, float scale, sf::Vector2f middlePosition = sf::Vector2f(0.5f, 0.5f));
+    ~Explosion_Animation();
+    virtual void update(sf::Time dt);
+    virtual void handleEvent(const sf::Event& event, sf::RenderWindow* window);
+    virtual void handleCollision(const Entity* other);
+};

@@ -31,13 +31,7 @@ public:
         std::unique_ptr<IBehavior> behavior, std::unique_ptr<IWeaponAnimation> animation)
         : behavior(std::move(behavior)), animation(std::move(animation)), cooldownBehavior(std::make_unique<BasicCooldownBehavior>(cooldownTime)), Entity(name, position), ScaleBulletSpawnPosition(scaleBulletSpawnPosition) {};
 
-    Entity::Type ProjectileTypeTransform(Entity* entity) const {
-        if( entity->type == Entity::Type::Enemy) {
-            return Entity::Type::EnemyProjectile; // Transform enemy to ally projectile
-        } else if (entity->type == Entity::Type::Ally) {
-            return Entity::Type::AllyProjectile; // Transform ally to enemy projectile
-        }
-    }
+    Entity::Type ProjectileTypeTransform(Entity* entity) const;
     void setBehavior(std::unique_ptr<IBehavior> newBehavior);
     void setStat(const std::string& statName, float value);
     float getStat(const std::string& statName) const;
