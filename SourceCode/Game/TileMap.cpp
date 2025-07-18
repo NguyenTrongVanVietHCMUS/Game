@@ -293,19 +293,21 @@ bool TileMap::handleEvent(const sf::Event& event,sf::RenderWindow* window)
     }
     return 0; 
 }
-bool TileMap::update(const sf::Time& dt)
+bool TileMap::update(sf::Time dt)
 {
+    Character* player = nullptr; 
+    for (auto& x : entities)
+    {
+        if (auto character = dynamic_cast<Character*>(x))
+        {
+            player = character;
+        }
+    }
     for (auto& x : entities)
     {
         if (auto enemy = dynamic_cast<Enemy*>(x))
         {
-            for (auto& y : entities)
-            {
-                if (auto character = dynamic_cast<Character*>(y))
-                {
-                    enemy->attack(character);
-                }
-            }
+            enemy->update(player, dt); 
         }
     }
     for (auto& x : entities)x->update(dt); 

@@ -19,7 +19,7 @@ void Lobby::draw()
     getContext().window->draw(*map);
 }
 
-bool Lobby::update(const sf::Time& dt)
+bool Lobby::update(sf::Time dt)
 {
     map->update(dt);
     return 0; 

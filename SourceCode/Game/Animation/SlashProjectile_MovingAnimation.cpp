@@ -9,9 +9,9 @@ SlashProjectile_MovingAnimation::~SlashProjectile_MovingAnimation()
     // Destructor logic if needed
 }
 
-void SlashProjectile_MovingAnimation::update(const sf::Time& deltaTime)
+void SlashProjectile_MovingAnimation::update(sf::Time dt)
 {
-    totalTime += deltaTime.asSeconds();
+    totalTime += dt.asSeconds();
     currentImage.y = 0; // Assuming the animation is always on the first row
     if (totalTime >= switchTime) {
         totalTime -= switchTime;

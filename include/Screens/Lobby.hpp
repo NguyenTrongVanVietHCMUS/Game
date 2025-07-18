@@ -14,6 +14,6 @@ public:
     Lobby(StateStack&stack ,Context context);
     ~Lobby(); 
     virtual void draw();
-    virtual bool update(const sf::Time& dt);
+    virtual bool update(sf::Time dt);
     virtual bool handleEvent(const sf::Event& event);
 };  

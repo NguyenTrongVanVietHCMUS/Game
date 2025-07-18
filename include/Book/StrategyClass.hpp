@@ -5,7 +5,7 @@ class Projectile2;
 class Weapon2;
 struct IMovement
 {
-    virtual void update(Projectile2& projectile, const sf::Time& dt) = 0;
+    virtual void update(Projectile2& projectile, sf::Time dt) = 0;
     virtual std::unique_ptr<IMovement> clone() const = 0;
     virtual ~IMovement() = default;
 };
@@ -45,7 +45,7 @@ public:
 class IWeaponAnimation
 {
 protected:
-    float scale = 1.0f; // Scale of the weapon animation
+    float scale = 1.0f; // Scale of the weapon animation    
     float TotalTime = 0.0f; // Total time for the animation
     float CurrentTime = 0.0f; // Current time for the animation
     sf::Vector2f position; // Position of the weapon animation
@@ -59,7 +59,7 @@ public:
     void play(); // This will put CurrentTime to 0 and start the animation
     
 public:
-    virtual void update(Weapon2& weapon, const sf::Time& dt) {};
+    virtual void update(Weapon2& weapon, sf::Time dt) {};
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) {};
     virtual void handleEvent(const sf::Event& event) {};
     virtual ~IWeaponAnimation() = default;

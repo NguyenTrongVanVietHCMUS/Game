@@ -24,7 +24,7 @@ bool Entity::handleEvent(const sf::Event& event, sf::RenderWindow* window)
     // do nothing ; 
     return 1;  
 }
-bool Entity::update(const sf::Time& dt)
+bool Entity::update(sf::Time dt)
 {
     for (Ptr&child : children)
     {
@@ -62,4 +62,8 @@ bool Entity::inRange(const Entity* other)const
 void Entity::collide(const Entity* other)
 {
     // do nothing by default 
+}
+sf::Vector2f Entity::getHandPosition()const
+{
+    return position - sf::Vector2f(0,28);
 }

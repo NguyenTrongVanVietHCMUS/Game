@@ -38,6 +38,6 @@ public:
     // So Target could be user or an entity that being aim
     void activate(Entity* target);
 
-    bool update(const sf::Time& dt);
+    bool update(sf::Time dt);
     void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 };

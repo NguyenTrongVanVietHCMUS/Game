@@ -18,6 +18,7 @@ Game::Game()
 			ResourceManager::getInstance().load<sf::Texture>(Textures::ID::Boar, "Media/Assets/Mobs/Boar/NormalBoar.png"); 
 			ResourceManager::getInstance().load<sf::Texture>(Textures::ID::GoblinShooter, "Media/Assets/Mobs/GoblinShooter/GoblinShooter.png");
 			ResourceManager::getInstance().load<sf::Texture>(Textures::ID::bomb, "Media/Assets/Projectiles/bomb.png");
+			ResourceManager::getInstance().load<sf::Texture>(Textures::ID::AK_47, "Media/Assets/Weapons/gun/AK_47.png");
 		}
 
 		{
@@ -81,7 +82,7 @@ void Game::PollEvents()
     }
 }
 
-void Game::Update(const sf::Time& dt)
+void Game::Update(sf::Time dt)
 {
     stateStack.update(dt) ;
 }

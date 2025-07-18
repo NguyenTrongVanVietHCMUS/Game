@@ -52,7 +52,7 @@ std::shared_ptr<Weapon2> Inventory::getCurrentWeapon() const {
 }
 
 
-void Inventory::update(const sf::Time& dt) {
+void Inventory::update(sf::Time dt) {
     std::shared_ptr<Weapon2> currentWeapon = getCurrentWeapon();
     if (currentWeapon) {
         currentWeapon->update(dt);
@@ -66,7 +66,8 @@ void Inventory::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     }
 }
 
-void Inventory::shoot(Entity* shooter, Entity* target) {
+void Inventory::shoot(Entity* shooter, Entity* target) 
+{
     std::shared_ptr<Weapon2> currentWeapon = getCurrentWeapon();
     if (currentWeapon) {
         currentWeapon->setStat("TargetPosX", target->getPosition().x);

@@ -11,7 +11,7 @@ private:
 public:
     StraightMovement(float speedX, float speedY) : speedX(speedX), speedY(speedY) {}
 
-    void update(Projectile2& projectile, const sf::Time& dt) override
+    void update(Projectile2& projectile, sf::Time dt) override
     {
         // Update the position of the projectile based on its speed and the elapsed time
         projectile.position.x += speedX * dt.asSeconds();

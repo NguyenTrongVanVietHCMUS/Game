@@ -3,19 +3,37 @@
 #include<Book/Utility.hpp>
 #include<Book/Character.hpp>
 #include<Book/MovingAnimation.hpp>
-
+#include<memory>
 
 class GoblinShooter : public Enemy
 {
 private : 
     float sightRange; 
 public:
-    GoblinShooter(sf::Vector2f position) : Enemy("GoblinShooter", position)
+    GoblinShooter(sf::Vector2f position,State* state) : Enemy("GoblinShooter", position)
     {
         sightRange = 800.0f; 
         movingAnimation = std::make_unique<HighRangeMob_MovingAnimation>(&ResourceManager::getInstance().get<sf::Texture>(Textures::ID::GoblinShooter), sf::Vector2u(8, 3), 0.1f, this->position, 2.5f);
-        movingAnimation->speed   = 300.0f; // Set the speed of the boar
-        aiEnemy = std::make_unique<AIHighRangeEnemy>(); 
+        movingAnimation->speed   = 150.0f; 
+        aiEnemy = std::make_unique<AIHighRangeEnemy>();
+        inventory->addWeapon(
+            std::make_shared<Weapon2>(
+                "AK_47",
+                this->position, // Position of the weapon
+                std::make_unique<RangedWeaponBehavior>(state, 500.0f, 20.0f), // Ranged weapon behavior with speed
+                std::make_unique<GunAnimation>(
+                    0.2f, // Total time for the animation
+                    0.4f, // Scale of the animation
+                    &ResourceManager::getInstance().get<sf::Texture>(Textures::ID::AK_47), // Texture for the gun animation
+                    this->position, // Position of the gun animation
+                    10.0f, // Start angle of the gun animation
+                    0.0f, // End angle of the gun animation
+                    25.0f, // Recoil offset for the gun animation
+                    this, // Owner of the gun animation
+                    sf::Vector2f(0.5f, 0.5f) // Middle position for the gun animation
+                )
+            )
+        );
     }
 
     ~GoblinShooter() override = default; // Default destructor    
@@ -33,6 +51,7 @@ public:
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override
     {
         movingAnimation->draw(target, states);
+        inventory->draw(target, states); 
         //skillHolder.draw(target, states); // Draw the skill holder
         //weaponHolder.draw(target, states); // Draw the weapon holder
 

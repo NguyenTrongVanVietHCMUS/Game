@@ -69,24 +69,24 @@ void Character_MovingAnimation::handleEvent(const sf::Event& event,sf::RenderWin
         // stay the same 
     }
 }
-void Character_MovingAnimation::update(const sf::Time& deltaTime)
+void Character_MovingAnimation::update(sf::Time dt)
 {
     oldPosition = position ;  
     if(BIT(mask,UP))
     {
-        position.y -= speed * deltaTime.asSeconds();
+        position.y -= speed * dt.asSeconds();
     }
     if(BIT(mask,DOWN))
     {
-        position.y += speed * deltaTime.asSeconds();
+        position.y += speed * dt.asSeconds();
     }
     if(BIT(mask,LEFT))
     {
-        position.x -= speed * deltaTime.asSeconds();
+        position.x -= speed * dt.asSeconds();
     }
     if(BIT(mask,RIGHT))
     {
-        position.x += speed * deltaTime.asSeconds();
+        position.x += speed * dt.asSeconds();
     }
     if((BIT(mask,UP)!=BIT(mask,DOWN)) || (BIT(mask,LEFT) != BIT(mask,RIGHT)))
     {
@@ -108,7 +108,7 @@ void Character_MovingAnimation::update(const sf::Time& deltaTime)
     
     currentImage.y = state;
 
-    totalTime += deltaTime.asSeconds();
+    totalTime += dt.asSeconds();
     if (state == IDLE || state == DEATH) jump = 0,distancefromground=0; 
     if (totalTime >= switchTime)
     {
@@ -140,11 +140,10 @@ void Character_MovingAnimation::setSpritePosition()
     sprite.setPosition(position);
     if (state == MOVING)
     {
-        std::cerr << distancefromground << std::endl;
         sprite.setPosition(position.x, position.y - 1.5 * distancefromground); // Adjust for jump effect
     }
-    sprite.setOrigin(middlePosition.x * uvRect.width, middlePosition.y * uvRect.height);
     sprite.setTextureRect(uvRect);
+    sprite.setOrigin(middlePosition.x * uvRect.width, middlePosition.y * uvRect.height);
 }
 void Character_MovingAnimation::handleCollision(const Entity* other)
 {
@@ -161,7 +160,7 @@ void Character_MovingAnimation::handleCollision(const Entity* other)
 
     setSpritePosition(); 
 }
-void Character_MovingAnimation::chase(sf::Vector2f position)
+sf::Vector2f Character_MovingAnimation::getHandPosition()const
 {
-    // do nothing ; 
+	return sprite.getPosition() + sf::Vector2f(0,-sprite.getGlobalBounds().height/2+25); // Adjust the hand position based on the sprite's position and middle position
 }

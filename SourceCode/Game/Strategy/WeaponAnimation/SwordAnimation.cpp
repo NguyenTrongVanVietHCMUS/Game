@@ -15,7 +15,7 @@ SwordAnimation::SwordAnimation(float TotalTime, float scale, sf::Texture* textur
     sprite.setScale(scale, -scale );
 }
 
-void SwordAnimation::update(Weapon2& weapon, const sf::Time& dt) {
+void SwordAnimation::update(Weapon2& weapon, sf::Time dt) {
     CurrentTime += dt.asSeconds();
     if (CurrentTime >= TotalTime) {
         CurrentTime = TotalTime; // Clamp to TotalTime

@@ -36,7 +36,7 @@ void Weapon2::activate(Entity*target)
     }
 }
 
-bool Weapon2::update(const sf::Time& dt)
+bool Weapon2::update(sf::Time dt)
 {
     if( cooldownBehavior) {
         cooldownBehavior->update(dt); // Update cooldown behavior

@@ -56,7 +56,7 @@ public:
         skillHolder.handleEvent(event, window); // Handle events for the skill holder
         UpdateAngle(event, window); // Update the angle of the gun based on mouse movement
     }
-    void update(const sf::Time& deltaTime) override
+    void update(sf::Time dt) override
     {
         skillHolder.update(deltaTime); 
     }

@@ -16,13 +16,8 @@ public:
             0.1f,  // Switch time for the animation
             this->position, 
             2.1f, // Scale of the animation,
-            this, 
-            sf::Vector2f(2.0f/3, 1)
+            this
         );  
-        sf::Texture* gunTexture = new sf::Texture();
-        if (!gunTexture->loadFromFile("Media/Assets/Weapons/gun/AK_47.png")) {
-            std::cerr << "Failed to load gun texture\n";
-        }
 
         inventory->addWeapon(
             std::make_shared<Weapon2>(
@@ -33,13 +28,13 @@ public:
                 std::make_unique<GunAnimation>(
                     0.2f, // Total time for the animation
                     0.4f, // Scale of the animation
-                    gunTexture, // Texture for the gun animation
+                    &ResourceManager::getInstance().get<sf::Texture>(Textures::ID::AK_47), // Texture for the gun animation
                     this->position, // Position of the gun animation
                     10.0f, // Start angle of the gun animation
                     0.0f, // End angle of the gun animation
                     25.0f, // Recoil offset for the gun animation
                     this, // Owner of the gun animation
-                    sf::Vector2f(0.5f, 0.5f) // Middle position for the gun animation
+                    sf::Vector2f(0.4f, 0.6f) // Middle position for the gun animation
                 )
             )
         );
@@ -95,6 +90,11 @@ public:
 		hitboxshape.setFillColor(sf::Color(255, 0, 0, 100)); // Semi-transparent red color for the hitbox
         target.draw(hitboxshape, states); // Draw the hitbox shape
         inventory->draw(target, states); // Draw the inventory
+        sf::CircleShape circle(3);
+        circle.setPosition(getHandPosition());
+        circle.setFillColor(sf::Color::Green); // Set the color of the circle to red
+        // Draw the circle at the hand position for debugging purposes
+        target.draw(circle, states);
     }
     void collide(const Entity* other) override final 
     {

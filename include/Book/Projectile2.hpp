@@ -40,7 +40,7 @@ public:
     void setAttribute(const std::string& attributeName, float value);
     float getAttribute(const std::string& attributeName) const;
 
-    bool update(const sf::Time& dt) override;
+    bool update(sf::Time dt) override;
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
     void collide(const Entity* other) override;
 };

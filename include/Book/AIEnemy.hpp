@@ -8,15 +8,15 @@ public:
 	virtual ~AIEnemy() = default;
 
 	// Virtual function to be overridden by derived classes
-	virtual void attack(Enemy* enemy, Entity* target) = 0; 
+	virtual void update(Enemy* enemy, Entity* target, sf::Time dt) = 0; 
 };
 class AIShortRangeEnemy : public AIEnemy
 {
 public : 
-	void attack(Enemy* enemy, Entity* target); 
+	void update(Enemy* enemy, Entity* target, sf::Time dt); 
 };
 class AIHighRangeEnemy : public AIEnemy
 {
 public : 
-	void attack(Enemy* enemy, Entity* target); 
+	void update(Enemy* enemy, Entity* target, sf::Time dt); 
 };
