@@ -35,4 +35,5 @@ public:
 
 public:
     void shoot(Entity* shooter, Entity* target); // Shoot the current weapon at the target
+    void AimAt(sf::Vector2f position);
 };

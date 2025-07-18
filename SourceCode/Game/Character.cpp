@@ -40,12 +40,7 @@ bool Character::handleEvent(const sf::Event& event,sf::RenderWindow*window)
     
     sf::Vector2i mousePixel = sf::Mouse::getPosition(*window);
     sf::Vector2f worldPos = window->mapPixelToCoords(mousePixel, window->getView());
-    std::shared_ptr<Weapon2> weapon = inventory->getCurrentWeapon();
-    if (weapon)
-    {
-        weapon->setStat("TargetPosX", worldPos.x);
-        weapon->setStat("TargetPosY", worldPos.y);
-    }
+    inventory->AimAt(worldPos);
     return false; 
 }
 bool Character::update(sf::Time dt)
