@@ -26,7 +26,14 @@ void ShortRangeMob_MovingAnimation::handleCollision(const Entity* other)
 	}
     if (other->type == Entity::Type::Object)
     {
-        position = oldPosition; 
+        sf::Vector2f res = oldPosition;
+        sf::Vector2f temp = position;
+        position = sf::Vector2f(oldPosition.x, temp.y);
+        if (entity->isCollide(other))
+        {
+            position = sf::Vector2f(temp.x, oldPosition.y);
+            if (entity->isCollide(other)) position = oldPosition;
+        }
     }
 
     //std::cout << oldPosition.x << " " << oldPosition.y << " collided with " << other->name << std::endl;

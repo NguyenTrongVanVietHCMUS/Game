@@ -28,6 +28,8 @@ void Enemy::chase(Entity* target , sf::Time dt)
 void Enemy::wander(sf::Time dt)
 {
     movingAnimation->wander(dt); 
+	inventory->AimAt(position-sf::Vector2f(0,100)); // Aim at the middle position of the moving animation
+    inventory->update(dt); 
 }
 void Enemy::shoot(Entity* target,sf::Time dt)
 {
