@@ -36,6 +36,5 @@ void HighRangeMob_MovingAnimation::handleCollision(const Entity* other)
         }
     }
 
-    //std::cout << oldPosition.x << " " << oldPosition.y << " collided with " << other->name << std::endl;
     setSpritePosition();
 }

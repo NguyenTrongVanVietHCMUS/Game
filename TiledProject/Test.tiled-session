@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "V:/Game/Media/Assets/Maps/Dungeon/Jungle/battleroom1.json",
+    "activeFile": "V:/Game/Media/Assets/Maps/Dungeon/Jungle/startingroom.json",
     "expandedProjectPaths": [
         "."
     ],
@@ -12,7 +12,7 @@
         "": {
             "dynamicWrapping": false,
             "scaleInDock": 1,
-            "scaleInEditor": 3
+            "scaleInEditor": 1.5
         },
         "#Map Tileset": {
             "scaleInDock": 1
@@ -155,11 +155,11 @@
             "expandedObjectLayers": [
                 2
             ],
-            "scale": 0.33,
+            "scale": 0.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 612.1212121212122,
-                "y": 318.18181818181824
+                "x": 298,
+                "y": 382
             }
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway1.json#GroundTiles": {
@@ -183,11 +183,11 @@
             "expandedObjectLayers": [
                 2
             ],
-            "scale": 1.5,
+            "scale": 1,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 220,
-                "y": 878.3333333333333
+                "x": 296,
+                "y": 350
             }
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway2.json#GroundTiles": {
@@ -270,7 +270,7 @@
             "selectedLayer": 1,
             "viewCenter": {
                 "x": 424,
-                "y": -1458
+                "y": -354
             }
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/room2.json#GroundTiles": {
@@ -288,8 +288,8 @@
             "scale": 0.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 1034,
-                "y": 670
+                "x": 72,
+                "y": 661
             }
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/startingroom.json#GroundTiles": {
@@ -301,6 +301,10 @@
             "dynamicWrapping": true,
             "scaleInDock": 0.5,
             "scaleInEditor": 1
+        },
+        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/startingroom.json#Red Effect Bullet Impact Explosion 32x32": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/startingroom.json#Walls": {
             "dynamicWrapping": true,
@@ -595,7 +599,7 @@
         }
     },
     "last.externalTilesetPath": "V:/Game/Media/Assets/TileSets",
-    "last.imagePath": "V:/Game/Media/Assets/TileSets",
+    "last.imagePath": "C:/Users/billy/OneDrive/Máy tính",
     "last.worldFilePath": "V:/Game/Media/Assets/Maps/Dungeon/Jungle",
     "loadedWorlds": [
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/jungle.world"
@@ -609,23 +613,28 @@
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/battleroom1.json",
         "V:/Game/Media/Assets/Maps/Lobby/garden.json",
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway1.json",
-        "V:/Game/Media/Assets/Maps/Lobby/lobby.json"
+        "V:/Game/Media/Assets/Maps/Lobby/lobby.json",
+        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway2.json",
+        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway3.json",
+        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway4.json",
+        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway5.json",
+        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/room2.json"
     ],
     "project": "Test.tiled-project",
     "property.type": "object",
     "recentFiles": [
-        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/startingroom.json",
+        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/room2.json",
+        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway5.json",
+        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway4.json",
+        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway3.json",
+        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway2.json",
         "V:/Game/Media/Assets/Maps/Lobby/lobby.json",
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway1.json",
         "V:/Game/Media/Assets/Maps/Lobby/garden.json",
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/battleroom1.json",
+        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/startingroom.json",
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/battleroom2.json",
-        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/battleroom3.json",
-        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/chestroom.json",
-        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway2.json",
-        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway3.json",
-        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway4.json",
-        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway5.json"
+        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/battleroom3.json"
     ],
     "tileset.embedInMap": true,
     "tileset.lastUsedFilter": "All Files (*)",

@@ -987,7 +987,7 @@
          "y":0
         }],
  "nextlayerid":4,
- "nextobjectid":488,
+ "nextobjectid":518,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",
@@ -1137,6 +1137,19 @@
                     },
                  "type":"Object"
                 }],
+         "tilewidth":32
+        }, 
+        {
+         "columns":20,
+         "firstgid":30,
+         "image":"C:\/Users\/billy\/OneDrive\/M\u00e1y t\u00ednh\/Red Effect Bullet Impact Explosion 32x32.png",
+         "imageheight":512,
+         "imagewidth":640,
+         "margin":0,
+         "name":"Red Effect Bullet Impact Explosion 32x32",
+         "spacing":0,
+         "tilecount":320,
+         "tileheight":32,
          "tilewidth":32
         }],
  "tilewidth":32,
