@@ -333,8 +333,8 @@ void TileMap::updateQueueEntities()
     {
         if (entity)
         {
+            std::cerr << "pushing entity :" << entity->name << ' ' << entity->position.x << ' ' << entity->position.y << '\n';
             entities.push_back(entity);
-            
         }
     }
     PushQueueEntities.clear();
@@ -358,7 +358,19 @@ void TileMap::updateQueueEntities()
         }
     }
 
+
     PopQueueEntities.clear();
+
+    for (auto& entity : PopQueueEntitiesNoDelete)
+    {
+        auto it = std::find(entities.begin(), entities.end(), entity);
+        if (it != entities.end())
+        {
+            std::cerr << "entity pop no delete\n";
+            entities.erase(it);
+        }
+    }
+    PopQueueEntitiesNoDelete.clear();
 }
  
 void TileMap::handleCollision()

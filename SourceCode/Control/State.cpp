@@ -70,6 +70,21 @@ void State::popEntity(Entity* entity)
 	}
 }
 
+void State::popEntityNoDelete(Entity* entity)
+{
+	if (map)
+	{
+		std::cerr << entity->name << " pop no delete\n";
+		if (entity && std::find(map->PopQueueEntitiesNoDelete.begin(), map->PopQueueEntitiesNoDelete.end(), entity) == map->PopQueueEntitiesNoDelete.end())
+		{
+			map->PopQueueEntitiesNoDelete.push_back(entity);
+		} else 
+		{
+			std::cerr << "Entity already in PopQueueEntitiesNoDelete or is null." << std::endl;
+		}
+	}
+}
+
 Entity* State::GetClosestEntity(Entity::Type type, sf::Vector2f position) const
 {
 	float ClosestDistance = 10000.0f; // Define a distance threshold for "closest"

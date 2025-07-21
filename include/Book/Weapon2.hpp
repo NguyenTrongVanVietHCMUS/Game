@@ -3,6 +3,7 @@
 #include <Book/StrategyClass.hpp>
 #include <Book/Strategy/CooldownBehavior.hpp>
 #include <Book/Entity.hpp>
+#include <Control/State.hpp>
 class Weapon2 : public Entity
 {
 private:
@@ -12,24 +13,26 @@ private:
     std::unique_ptr<ICooldownBehavior> cooldownBehavior; // Cooldown behavior for the weapon
     sf::Vector2f ScaleBulletSpawnPosition = sf::Vector2f(0, 0); // Position where the bullet spawns based on the weapon's scale
     sf::Vector2f OriginalBulletSpawnPosition;
+    bool ishold = true;
+    State *CurrentMap = nullptr;
     void UpdateBulletSpawnPosition() ;
 public:
+    Weapon2(std::string nam, sf::Vector2f position,
+        std::unique_ptr<IBehavior> behavior = nullptr, std::unique_ptr<IWeaponAnimation> animation = nullptr, State* map = nullptr)
+        : behavior(std::move(behavior)), animation(std::move(animation)), Entity(name, position), cooldownBehavior(std::make_unique<BasicCooldownBehavior>(1.0f)), CurrentMap(map){};
+
     Weapon2(std::string name, sf::Vector2f position,
-        std::unique_ptr<IBehavior> behavior = nullptr, std::unique_ptr<IWeaponAnimation> animation = nullptr)
-        : behavior(std::move(behavior)), animation(std::move(animation)), Entity(name, position), cooldownBehavior(std::make_unique<BasicCooldownBehavior>(1.0f)) {};
-    
-    Weapon2(std::string name, sf::Vector2f position, 
         std::unique_ptr<IBehavior> behavior, std::unique_ptr<IWeaponAnimation> animation,
-        std::unique_ptr<ICooldownBehavior> cooldownBehavior)
-        : behavior(std::move(behavior)), animation(std::move(animation)), cooldownBehavior(std::move(cooldownBehavior)), Entity(name, position) {};
+        std::unique_ptr<ICooldownBehavior> cooldownBehavior, State* map = nullptr)
+        : behavior(std::move(behavior)), animation(std::move(animation)), cooldownBehavior(std::move(cooldownBehavior)), Entity(name, position), CurrentMap(map) {};
 
     Weapon2(std::string name, sf::Vector2f position, float cooldownTime,
-        std::unique_ptr<IBehavior> behavior, std::unique_ptr<IWeaponAnimation> animation)
-        : behavior(std::move(behavior)), animation(std::move(animation)), cooldownBehavior(std::make_unique<BasicCooldownBehavior>(cooldownTime)), Entity(name, position) {};
+        std::unique_ptr<IBehavior> behavior, std::unique_ptr<IWeaponAnimation> animation, State* map = nullptr)
+        : behavior(std::move(behavior)), animation(std::move(animation)), cooldownBehavior(std::make_unique<BasicCooldownBehavior>(cooldownTime)), Entity(name, position), CurrentMap(map) {};
 
     Weapon2(std::string name, sf::Vector2f position, float cooldownTime, sf::Vector2f scaleBulletSpawnPosition,
-        std::unique_ptr<IBehavior> behavior, std::unique_ptr<IWeaponAnimation> animation)
-        : behavior(std::move(behavior)), animation(std::move(animation)), cooldownBehavior(std::make_unique<BasicCooldownBehavior>(cooldownTime)), Entity(name, position), ScaleBulletSpawnPosition(scaleBulletSpawnPosition) {};
+        std::unique_ptr<IBehavior> behavior, std::unique_ptr<IWeaponAnimation> animation, State* map = nullptr)
+        : behavior(std::move(behavior)), animation(std::move(animation)), cooldownBehavior(std::make_unique<BasicCooldownBehavior>(cooldownTime)), Entity(name, position), ScaleBulletSpawnPosition(scaleBulletSpawnPosition), CurrentMap(map) {};
 
     Entity::Type ProjectileTypeTransform(Entity* entity) const;
     void setBehavior(std::unique_ptr<IBehavior> newBehavior);
@@ -40,9 +43,8 @@ public:
     void activate(Entity* target);
 
     bool update(sf::Time dt);
-    void draw(sf::RenderTarget& target, sf::RenderStates states) const;
-
-
+    void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+    void switchHold( bool isHold);
 public:
     sf::Vector2f GetProjectileSpawnPosition() const;
 };

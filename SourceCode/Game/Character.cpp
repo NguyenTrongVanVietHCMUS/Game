@@ -35,6 +35,11 @@ bool Character::handleEvent(const sf::Event& event,sf::RenderWindow*window)
             inventory->SwitchWeapon(); // Switch to the next weapon
             return true; 
         }
+        if(event.key.code == sf::Keyboard::R)
+        {
+            inventory->removeCurrentWeapon(); // Remove the current weapon
+            return true; 
+        }
     }
     // Handle when mouse position changes
     

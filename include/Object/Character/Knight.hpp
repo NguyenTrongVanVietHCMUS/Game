@@ -36,7 +36,8 @@ public:
                     25.0f, // Recoil offset for the gun animation
                     this, // Owner of the gun animation
                     sf::Vector2f(0.4f, 0.6f) // Middle position for the gun animation
-                )
+                ),
+                state
             )
         );
         sf::Texture* swordTexture = new sf::Texture();

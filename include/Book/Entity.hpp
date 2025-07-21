@@ -17,7 +17,8 @@ public :
         AllyProjectile,
         Enemy, 
         Ally, 
-        Entity, 
+        Entity,
+        Weapon, 
         Object
     };
     Type type; 

@@ -38,6 +38,7 @@ void Weapon2::activate(Entity*target)
 
 bool Weapon2::update(sf::Time dt)
 {
+    type = Entity::Type::Weapon; // Set the type of the entity to Weapon
     if( cooldownBehavior) {
         cooldownBehavior->update(dt); // Update cooldown behavior
     }
@@ -45,6 +46,7 @@ bool Weapon2::update(sf::Time dt)
     if( animation) {
         animation->update(*this, dt);
     }
+
     UpdateBulletSpawnPosition();
     return true;
 }
@@ -97,5 +99,19 @@ Entity::Type Weapon2::ProjectileTypeTransform(Entity* entity) const {
         return Entity::Type::AllyProjectile; // Transform ally to enemy projectile
     default:
         return Entity::Type::Entity; // Default case, no transformation
+    }
+}
+
+void Weapon2::switchHold( bool ishold)
+{
+    this->ishold = ishold;
+    if(CurrentMap){
+        std::cerr << "weapon name : " << name << '\n';
+        if (ishold) {
+            CurrentMap->popEntityNoDelete(this);
+        } else {
+            CurrentMap->pushEntity(this);
+        }
+        std::cerr << "Current position : " << position.x << ", " << position.y << std::endl;
     }
 }
