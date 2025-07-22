@@ -49,7 +49,9 @@ class State
 			return false;
 		}
 		virtual void 	    pushEntity(Entity* entity);
+		virtual void 	    pushEntity(std::shared_ptr<Entity> entity);
 		virtual void 	    popEntity(Entity* entity);
+		virtual void 		popEntityNoDelete(Entity* entity);
 		virtual Entity*		GetClosestEntity(Entity::Type type, sf::Vector2f position) const;
 		virtual void        handleCollision(); 
 
@@ -64,5 +66,8 @@ class State
 		Context				mContext;
 		TileMap* map ; 
 	
+
+	private:
+		std::vector<std::shared_ptr<Entity>> _OwnershipReference; // To keep track of entities owned by this state
 };
 

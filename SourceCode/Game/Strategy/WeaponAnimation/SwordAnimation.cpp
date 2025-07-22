@@ -6,8 +6,8 @@ SwordAnimation::SwordAnimation(float TotalTime, float scale, sf::Texture* textur
                                  const sf::Vector2f& position, float startAngle, float endAngle,
                                     Entity* owner,
                                  const sf::Vector2f& middlePosition)
-    : IWeaponAnimation(TotalTime, scale, texture, position, middlePosition), 
-      startAngle(startAngle), endAngle(endAngle), owner(owner) {
+    : IWeaponAnimation(TotalTime, scale, texture, position, middlePosition, owner), 
+      startAngle(startAngle), endAngle(endAngle){
     
  
     

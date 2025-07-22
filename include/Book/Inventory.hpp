@@ -13,7 +13,7 @@ private:
     int MaxSkill = 1; // Maximum index for skills
 
 public:
-    Inventory() = default;
+    Inventory() {}
     ~Inventory() = default;
 
     void addWeapon(std::shared_ptr<Weapon2> weapon);
@@ -32,7 +32,7 @@ public:
     void draw(sf::RenderTarget& target, sf::RenderStates states) const; // Draw the inventory
 
     std::shared_ptr<Weapon2> getCurrentWeapon() const;
-
+    void removeCurrentWeapon(); // Remove the currently active weapon from the inventory
 public:
     void shoot(Entity* shooter, Entity* target); // Shoot the current weapon at the target
     void AimAt(sf::Vector2f position);

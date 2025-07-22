@@ -1,8 +1,8 @@
 #include <Book/StrategyClass.hpp>
 
 IWeaponAnimation::IWeaponAnimation(float TotalTime, float scale, sf::Texture* texture, 
-                                       const sf::Vector2f& position, const sf::Vector2f& middlePosition)
-    : TotalTime(TotalTime), scale(scale), position(position), middlePosition(middlePosition), texture(texture) {
+                                       const sf::Vector2f& position, const sf::Vector2f& middlePosition, Entity* owner)
+    : TotalTime(TotalTime), scale(scale), position(position), middlePosition(middlePosition), texture(texture), owner(owner) {
     if (texture) {
         sprite.setTexture(*texture);
         sprite.setScale(scale, scale);

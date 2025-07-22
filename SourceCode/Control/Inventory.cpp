@@ -3,6 +3,7 @@
 void Inventory::addWeapon(std::shared_ptr<Weapon2> weapon) {
     if (weapons.size() < MaxWeapon) {
         weapons.push_back(weapon);
+        CurrentWeaponIndex = weapons.size() - 1; // Set the current weapon to the newly added one
     } else {
         std::cerr << "Inventory is full, cannot add more weapons." << std::endl;
     }
@@ -12,6 +13,7 @@ void Inventory::addWeapon(std::shared_ptr<Weapon2> weapon) {
 void Inventory::removeWeapon(std::shared_ptr<Weapon2> weapon) {
     auto it = std::find(weapons.begin(), weapons.end(), weapon);
     if (it != weapons.end()) {
+        weapon->switchHold(false);
         weapons.erase(it);
         CurrentWeaponIndex = std::max(0, CurrentWeaponIndex - 1); // Adjust index if necessary
     } else {
@@ -84,4 +86,13 @@ void Inventory::AimAt(sf::Vector2f position)
         currentWeapon->setStat("TargetPosX", position.x);
         currentWeapon->setStat("TargetPosY", position.y);
     } 
+}
+
+void Inventory::removeCurrentWeapon() {
+    if (CurrentWeaponIndex < weapons.size()) {
+        auto weaponToRemove = getCurrentWeapon();
+        removeWeapon(weaponToRemove);
+    } else {
+        std::cerr << "No current weapon to remove." << std::endl;
+    }
 }

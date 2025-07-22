@@ -56,6 +56,15 @@ void State::pushEntity(Entity* entity)
 	}
 }
 
+void State::pushEntity(std::shared_ptr<Entity> entity)
+{
+	if (map)
+	{
+		map->PushQueueEntities.push_back(entity.get());
+		_OwnershipReference.push_back(entity);
+	}
+}
+
 void State::popEntity(Entity* entity)
 {
 	if (map)
@@ -66,6 +75,21 @@ void State::popEntity(Entity* entity)
 		} else 
 		{
 			std::cerr << "Entity already in PopQueueEntities or is null." << std::endl;
+		}
+	}
+}
+
+void State::popEntityNoDelete(Entity* entity)
+{
+	if (map)
+	{
+		std::cerr << entity->name << " pop no delete\n";
+		if (entity && std::find(map->PopQueueEntitiesNoDelete.begin(), map->PopQueueEntitiesNoDelete.end(), entity) == map->PopQueueEntitiesNoDelete.end())
+		{
+			map->PopQueueEntitiesNoDelete.push_back(entity);
+		} else 
+		{
+			std::cerr << "Entity already in PopQueueEntitiesNoDelete or is null." << std::endl;
 		}
 	}
 }

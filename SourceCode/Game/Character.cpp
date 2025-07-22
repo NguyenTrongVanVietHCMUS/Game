@@ -2,11 +2,13 @@
 #include<Book/MovingAnimation.hpp>
 Character::Character(
     std::string name , 
-    sf::Vector2f position
+    sf::Vector2f position,
+    State *state
 ):Entity(name,position)
 {
 	type = Entity::Type::Entity; // Set the type of the entity
     inventory = std::make_shared<Inventory>(); // Initialize the inventory
+    map = state;
 }
 
 Character::~Character()
@@ -34,6 +36,30 @@ bool Character::handleEvent(const sf::Event& event,sf::RenderWindow*window)
         {
             inventory->SwitchWeapon(); // Switch to the next weapon
             return true; 
+        }
+        if(event.key.code == sf::Keyboard::R)
+        {
+            inventory->removeCurrentWeapon(); // Remove the current weapon
+            return true; 
+        }
+        if(event.key.code == sf::Keyboard::F)
+        {
+            if(map){
+
+                std::cerr << "F key pressed, trying to pick up the nearest weapon." << std::endl;
+                Entity* NearestWeapon = map->GetClosestEntity(Entity::Type::Weapon, getPosition());
+                if(NearestWeapon)
+                {
+                    sf::Vector2f distance = NearestWeapon->getPosition() - getPosition();
+                    float length = std::sqrt(distance.x * distance.x + distance.y * distance.y);
+                    if(length <= pickupRange){
+                        std::shared_ptr<Weapon2> weapon = std::dynamic_pointer_cast<Weapon2>(NearestWeapon->shared_from_this());
+                        weapon->switchHold(true, this); // Switch hold state to true
+                        inventory->addWeapon(weapon); // Add the nearest weapon to the inventory
+                    }
+                }
+                
+            }
         }
     }
     // Handle when mouse position changes

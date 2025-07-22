@@ -6,7 +6,6 @@ class SwordAnimation : public IWeaponAnimation
 {
 private:
     float startAngle, endAngle;
-    Entity* owner = nullptr; // Owner of the sword animation, if needed
 public:
     SwordAnimation(float TotalTime, float scale, sf::Texture* texture, 
                     const sf::Vector2f& position, float startAngle = 0.0f, float endAngle = 0.0f,
@@ -22,7 +21,6 @@ private:
     float startAngle, endAngle;
     float recoilOffset;
     float scale; // Scale of the gun animation
-    Entity* owner = nullptr; // Owner of the gun animation, if needed
 public:
     GunAnimation(float TotalTime, float scale, sf::Texture* texture, 
                  const sf::Vector2f& position, float startAngle = 0.0f, float endAngle = 0.0f,float recoilOffset = 10.0f,
