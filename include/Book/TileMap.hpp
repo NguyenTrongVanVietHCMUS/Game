@@ -4,6 +4,7 @@
 #include <nlohmann/json.hpp>
 #include <Book/Entity.hpp>
 #include <Book/Object.hpp>
+#include <Control/CameraManager.hpp>
 #include<set>
 using json = nlohmann::json;
 
@@ -145,9 +146,10 @@ private:
     void handleCollision(); 
 private: 
     std::string File;
-    std::vector<Layer*> layers;  
-public:
+    std::vector<Layer*> layers; 
+    CameraManager camera;
 
+public:
     TileMap();
     ~TileMap();     
     std::vector<Entity*> PushQueueEntities; // Queue for entities to be pushed

@@ -76,3 +76,23 @@ public:
         owner = newOwner;
     }
 };
+
+class IStatusEffect{
+private:
+    float duration; // Duration of the effect in seconds
+    float elapsedTime; // Time elapsed since the effect started
+protected:
+    void updateElapsedTime(const sf::Time& dt) {
+        elapsedTime += dt.asSeconds();
+    }
+public:
+    IStatusEffect(float duration) : duration(duration), elapsedTime(0) {}
+    bool isExpired() const { return elapsedTime >= duration; }
+    virtual void update(const sf::Time& dt) { updateElapsedTime(dt); }
+    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const {}
+    virtual ~IStatusEffect() = default;
+
+    bool isActive() const {
+        return elapsedTime < duration; // Check if the effect is still active
+    }
+};
