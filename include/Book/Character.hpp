@@ -22,4 +22,10 @@ public :
     virtual bool update(sf::Time dt) ; 
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const; 
     
+	virtual int getMaxHealth() const;
+	virtual int getMaxMana() const;
+    virtual int getMaxShield() const;
+    virtual int getHealth(); 
+    virtual int getMana(); 
+    virtual int getShield();
 };

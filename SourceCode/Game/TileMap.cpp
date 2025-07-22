@@ -403,4 +403,14 @@ void TileMap::handleCollision()
     }
     // Handle potential aftermath of collisions here
 }
- 
+Character* TileMap::getPlayer()const
+{
+    for (auto x : entities)
+    {
+        if(auto character = dynamic_cast<Character*>(x))
+        {
+            return character; 
+		}   
+    }
+    throw std::runtime_error("No player found in the TileMap entities."); 
+}

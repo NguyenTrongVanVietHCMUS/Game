@@ -4,14 +4,18 @@
 #include<Object/Mob/Boar.hpp> 
 #include<Object/Mob/GoblinShooter.hpp>
 Jungle::Jungle(StateStack& stack,Context context):
-    State(stack,context) 
+    State(stack,context)
 {         
     map = new TileMap(ResourceManager::getInstance().get<TileMap>(Map::ID::Jungle)); 
     map->entities.push_back(new Knight(map->startingPoint, this)); 
     
     map->entities.push_back(new Boar(map->startingPoint,this)); // Add a Boar entity to the 
     map->entities.push_back(new GoblinShooter(map->startingPoint,this)); 
-    context.music->play(Music::Jungle); 
+    context.music->play(Music::Jungle);
+
+
+
+    statPlayer.setPlayer(map->getPlayer()); 
 }
 
 Jungle::~Jungle()
@@ -22,6 +26,7 @@ Jungle::~Jungle()
 void Jungle::draw() 
 {
     getContext().window->draw(*map);
+    getContext().window->draw(statPlayer); 
 }
 
 bool Jungle::update(sf::Time dt)
