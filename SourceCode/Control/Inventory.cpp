@@ -48,7 +48,6 @@ std::shared_ptr<Weapon2> Inventory::getCurrentWeapon() const {
     if (CurrentWeaponIndex < weapons.size()) {
         return weapons[CurrentWeaponIndex];
     } else {
-        std::cerr << "No current weapon available." << std::endl;
         return nullptr;
     }
 }

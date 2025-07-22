@@ -23,7 +23,6 @@ float Weapon2::getStat(const std::string& statName) const
 
 void Weapon2::activate(Entity*target)
 {
-    std::cerr << "What active : " << name << '\n';
     if( cooldownBehavior && !cooldownBehavior->isReady()) {
         return; // If the weapon is on cooldown, do not activate
     } else {
