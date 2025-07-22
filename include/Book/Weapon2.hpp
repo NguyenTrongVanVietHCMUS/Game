@@ -44,7 +44,7 @@ public:
 
     bool update(sf::Time dt);
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
-    void switchHold( bool isHold);
+    void switchHold( bool isHold, Entity* owner = nullptr);
 public:
     sf::Vector2f GetProjectileSpawnPosition() const;
 };

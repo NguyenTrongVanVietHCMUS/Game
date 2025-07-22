@@ -7,13 +7,17 @@
 class MovingAnimation;
 class Character : public Entity
 {
+protected:
+    float pickupRange = 50.0f;
 protected: 
     virtual sf::Vector2f getHandPosition()const; 
 protected : 
     std::unique_ptr<MovingAnimation> movingAnimation ; 
     std::shared_ptr<Inventory> inventory;
+    State *map;
+    
 public : 
-    Character(std::string name , sf::Vector2f position);
+    Character(std::string name , sf::Vector2f position, State *state =nullptr);
     ~Character(); 
 public : 
     //SkillHolder skillHolder;

@@ -4,8 +4,8 @@ GunAnimation::GunAnimation(float TotalTime, float scale, sf::Texture* texture,
                              const sf::Vector2f& position, float startAngle, float endAngle,
                              float recoilOffset, Entity* owner,
                              const sf::Vector2f& middlePosition)
-    : IWeaponAnimation(TotalTime, scale, texture, position, middlePosition), 
-      startAngle(startAngle), endAngle(endAngle), recoilOffset(recoilOffset), owner(owner), scale(scale) {
+    : IWeaponAnimation(TotalTime, scale, texture, position, middlePosition, owner), 
+      startAngle(startAngle), endAngle(endAngle), recoilOffset(recoilOffset), scale(scale) {
 
 }
 

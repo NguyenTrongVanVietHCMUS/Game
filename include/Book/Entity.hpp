@@ -4,7 +4,7 @@
 #include<memory>
 
 
-class Entity:public sf::Drawable
+class Entity:public sf::Drawable, public std::enable_shared_from_this<Entity>
 {
 
 public :

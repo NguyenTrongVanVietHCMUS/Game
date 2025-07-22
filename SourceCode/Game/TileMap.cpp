@@ -296,6 +296,12 @@ bool TileMap::handleEvent(const sf::Event& event,sf::RenderWindow* window)
 bool TileMap::update(sf::Time dt)
 {
     Character* player = nullptr; 
+
+    if(PushQueueEntities.size() > 0)
+    {
+        std::cerr << "Check the first list in queue : " << PushQueueEntities[0]->name << std::endl;
+    }
+
     for (auto& x : entities)
     {
         if (auto character = dynamic_cast<Character*>(x))

@@ -3,6 +3,7 @@
 void Inventory::addWeapon(std::shared_ptr<Weapon2> weapon) {
     if (weapons.size() < MaxWeapon) {
         weapons.push_back(weapon);
+        CurrentWeaponIndex = weapons.size() - 1; // Set the current weapon to the newly added one
     } else {
         std::cerr << "Inventory is full, cannot add more weapons." << std::endl;
     }

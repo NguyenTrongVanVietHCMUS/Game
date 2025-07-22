@@ -53,9 +53,10 @@ protected:
     sf::Vector2f middlePosition; // Middle position of the weapon animation
     sf::Texture* texture = nullptr; // Texture for the weapon animation
     sf::Sprite sprite; // Sprite for the weapon animation
+    Entity* owner = nullptr;
 public:
     IWeaponAnimation(float TotalTime, float scale, sf::Texture* texture, 
-                    const sf::Vector2f& position, const sf::Vector2f& middlePosition = sf::Vector2f(0, 0));
+                    const sf::Vector2f& position, const sf::Vector2f& middlePosition = sf::Vector2f(0, 0), Entity* owner = nullptr);
 
     void play(); // This will put CurrentTime to 0 and start the animation
     
@@ -69,5 +70,9 @@ public:
     sf::Vector2f getSpriteSize() const {
         return sf::Vector2f(sprite.getTexture()->getSize().x * sprite.getScale().x, 
                         sprite.getTexture()->getSize().y * sprite.getScale().y);
+    }
+
+    void SetOwner(Entity* newOwner) {
+        owner = newOwner;
     }
 };

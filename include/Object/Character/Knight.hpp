@@ -7,7 +7,7 @@
 class Knight : public Character
 {
 public:
-    Knight(sf::Vector2f position,State* state): Character("Knight", position)
+    Knight(sf::Vector2f position,State* state): Character("Knight", position, state)
     {
         type = Entity::Type::Ally; 
         movingAnimation = std::make_unique<Character_MovingAnimation>(

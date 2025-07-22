@@ -23,6 +23,7 @@ float Weapon2::getStat(const std::string& statName) const
 
 void Weapon2::activate(Entity*target)
 {
+    std::cerr << "What active : " << name << '\n';
     if( cooldownBehavior && !cooldownBehavior->isReady()) {
         return; // If the weapon is on cooldown, do not activate
     } else {
@@ -39,11 +40,11 @@ void Weapon2::activate(Entity*target)
 bool Weapon2::update(sf::Time dt)
 {
     type = Entity::Type::Weapon; // Set the type of the entity to Weapon
-    if( cooldownBehavior) {
+    if(ishold && cooldownBehavior) {
         cooldownBehavior->update(dt); // Update cooldown behavior
     }
 
-    if( animation) {
+    if(ishold && animation) {
         animation->update(*this, dt);
     }
 
@@ -102,16 +103,19 @@ Entity::Type Weapon2::ProjectileTypeTransform(Entity* entity) const {
     }
 }
 
-void Weapon2::switchHold( bool ishold)
+void Weapon2::switchHold( bool ishold, Entity* owner)
 {
     this->ishold = ishold;
     if(CurrentMap){
-        std::cerr << "weapon name : " << name << '\n';
         if (ishold) {
             CurrentMap->popEntityNoDelete(this);
+            if (owner) {
+                if(animation) {
+                    animation->SetOwner(owner); // Set the owner for the animation
+                }   
+            }
         } else {
-            CurrentMap->pushEntity(this);
+            CurrentMap->pushEntity(this->shared_from_this());
         }
-        std::cerr << "Current position : " << position.x << ", " << position.y << std::endl;
     }
 }

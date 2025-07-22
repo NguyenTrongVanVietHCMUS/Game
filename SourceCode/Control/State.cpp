@@ -56,6 +56,15 @@ void State::pushEntity(Entity* entity)
 	}
 }
 
+void State::pushEntity(std::shared_ptr<Entity> entity)
+{
+	if (map)
+	{
+		map->PushQueueEntities.push_back(entity.get());
+		_OwnershipReference.push_back(entity);
+	}
+}
+
 void State::popEntity(Entity* entity)
 {
 	if (map)
