@@ -85,12 +85,7 @@ namespace Music
 {
 	enum ID
 	{
-		MusicTheme1,
-		MusicTheme2,
-		MusicTheme3,
-		MusicMission1,
-		MusicMission2,
-		MusicMission3,
+		Jungle,
 	};
 }
 namespace Map

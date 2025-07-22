@@ -9,12 +9,9 @@ Jungle::Jungle(StateStack& stack,Context context):
     map = new TileMap(ResourceManager::getInstance().get<TileMap>(Map::ID::Jungle)); 
     map->entities.push_back(new Knight(map->startingPoint, this)); 
     
-    for (int i = 1; i <= 1; i++)
-    {
-        map->entities.push_back(new Boar(map->startingPoint,this)); // Add a Boar entity to the map
-    }
+    map->entities.push_back(new Boar(map->startingPoint,this)); // Add a Boar entity to the 
     map->entities.push_back(new GoblinShooter(map->startingPoint,this)); 
-
+    context.music->play(Music::Jungle); 
 }
 
 Jungle::~Jungle()

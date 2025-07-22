@@ -89,6 +89,8 @@ class Character_MovingAnimation : public MovingAnimation
 private: 
     int jump = 0; 
     int distancefromground = 0; 
+    bool moveX; 
+    bool moveY;
 public :
     Character_MovingAnimation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f& position, float scale, Entity* entity ,sf::Vector2f middlePosition = sf::Vector2f(0.5f, 1)); // Constructor with parameters
     ~Character_MovingAnimation();
@@ -107,6 +109,7 @@ private :
 public:
     ShortRangeMob_MovingAnimation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f& position, float scale, Entity* entity, sf::Vector2f middlePosition = sf::Vector2f(0.5f, 1));
     ~ShortRangeMob_MovingAnimation();
+
     virtual void handleCollision(const Entity* other);
     void getshot(const Entity* other); 
 };
@@ -129,7 +132,7 @@ class SlashProjectile_MovingAnimation : public MovingAnimation
 public:
     SlashProjectile_MovingAnimation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f& position, float scale,float Angle = 0.5f, sf::Vector2f middlePosition = sf::Vector2f(0.5f, 1));
     ~SlashProjectile_MovingAnimation();
-    virtual void update(sf::Time dt); 
+    virtual void update(sf::Time dt);
     virtual void handleEvent(const sf::Event& event, sf::RenderWindow* window);
     virtual void handleCollision(const Entity* other);
 };

@@ -5,6 +5,8 @@ Character_MovingAnimation::Character_MovingAnimation(sf::Texture* texture, sf::V
 {
     this->entity = entity; 
 	direction = rand() % 2 == 0 ? LEFT : RIGHT; // Randomly set the initial direction
+    moveX = 1;
+    moveY = 1;
 }
 
 Character_MovingAnimation::~Character_MovingAnimation()
@@ -47,11 +49,11 @@ void Character_MovingAnimation::handleEvent(const sf::Event& event,sf::RenderWin
         }
         if(event.key.code==sf::Keyboard::A)
         {
-            mask = BIT_CLEAR(mask,LEFT) ; 
+            mask = BIT_CLEAR(mask, LEFT);
         }
-        if(event.key.code==sf::Keyboard::D)
+        if (event.key.code == sf::Keyboard::D)
         {
-            mask = BIT_CLEAR(mask,RIGHT) ; 
+            mask = BIT_CLEAR(mask, RIGHT);
         }
     }
     sf::Vector2i mousePixel = sf::Mouse::getPosition(*window);
@@ -59,7 +61,7 @@ void Character_MovingAnimation::handleEvent(const sf::Event& event,sf::RenderWin
 
     if (worldPos.x < position.x)
     {
-		direction = LEFT;
+        direction = LEFT;
     }
     else if (worldPos.x > position.x)
     {
@@ -72,56 +74,56 @@ void Character_MovingAnimation::handleEvent(const sf::Event& event,sf::RenderWin
 }
 void Character_MovingAnimation::update(sf::Time dt)
 {
-    oldPosition = position ;  
-    if(BIT(mask,UP))
+    oldPosition = position;
+    if (BIT(mask, UP))
     {
         position.y -= speed * dt.asSeconds();
     }
-    if(BIT(mask,DOWN))
+    if (BIT(mask, DOWN))
     {
         position.y += speed * dt.asSeconds();
     }
-    if(BIT(mask,LEFT))
+    if (BIT(mask, LEFT))
     {
         position.x -= speed * dt.asSeconds();
     }
-    if(BIT(mask,RIGHT))
+    if (BIT(mask, RIGHT))
     {
         position.x += speed * dt.asSeconds();
     }
-    if((BIT(mask,UP)!=BIT(mask,DOWN)) || (BIT(mask,LEFT) != BIT(mask,RIGHT)))
+    if ((BIT(mask, UP) != BIT(mask, DOWN)) || (BIT(mask, LEFT) != BIT(mask, RIGHT)))
     {
         state = MOVING; // Moving state
     }
     else
     {
         state = IDLE; // Idle state
-	}
+    }
     // update the rotation base on position of 
     if (direction == LEFT)
     {
         sprite.setScale(-scale, scale);
-    } 
+    }
     else
     {
         sprite.setScale(scale, scale);
     }
-    
+
     currentImage.y = state;
 
     totalTime += dt.asSeconds();
-    if (state == IDLE || state == DEATH) jump = 0,distancefromground=0; 
+    if (state == IDLE || state == DEATH) jump = 0, distancefromground = 0;
     if (totalTime >= switchTime)
     {
         totalTime -= switchTime;
-        currentImage.x++; 
+        currentImage.x++;
         if (state == MOVING)
         {
             jump = distancefromground == 0 ? 1 : jump;
             jump = distancefromground == 4 ? -1 : jump;
             distancefromground += jump; // corrected the variable name
         }
-        else distancefromground = 0; 
+        else distancefromground = 0;
 
         if (currentImage.x >= imageCount.x)
         {
@@ -130,12 +132,12 @@ void Character_MovingAnimation::update(sf::Time dt)
     }
     uvRect.left = currentImage.x * uvRect.width;
     uvRect.top = currentImage.y * uvRect.height;
-    setSpritePosition(); 
+    setSpritePosition();
 }
-void Character_MovingAnimation::getshot(const Entity*other)
+void Character_MovingAnimation::getshot(const Entity* other)
 {
 
-}   
+}
 void Character_MovingAnimation::setSpritePosition()
 {
     sprite.setPosition(position);
@@ -146,6 +148,7 @@ void Character_MovingAnimation::setSpritePosition()
     sprite.setTextureRect(uvRect);
     sprite.setOrigin(middlePosition.x * uvRect.width, middlePosition.y * uvRect.height);
 }
+
 void Character_MovingAnimation::handleCollision(const Entity* other)
 {
     // Handle collision logic here
@@ -157,13 +160,19 @@ void Character_MovingAnimation::handleCollision(const Entity* other)
 	}
     if (other->type == Entity::Type::Object)
     {
-        sf::Vector2f temp = position; 
-        position = sf::Vector2f(oldPosition.x, temp.y);
+        sf::Vector2f temp = position;
+        sf::Vector2f res = oldPosition;
+        position = sf::Vector2f(temp.x, oldPosition.y);
         if (entity->isCollide(other))
         {
-            position = sf::Vector2f(temp.x,oldPosition.y) ; 
-            if (entity->isCollide(other)) position = oldPosition;
+            temp.x = oldPosition.x; 
         }
+        position = sf::Vector2f(oldPosition.x, temp.y); 
+        if(entity->isCollide(other))
+        {
+            temp.y = oldPosition.y;
+		}
+        position = temp; 
     }
 
     setSpritePosition(); 
