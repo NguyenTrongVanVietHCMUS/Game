@@ -36,6 +36,10 @@ Game::Game()
 
 		}
 
+		{
+			// load music
+		}
+
 	
 	}
 	registerStates();	

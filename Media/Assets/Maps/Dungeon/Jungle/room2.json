@@ -637,18 +637,6 @@
                  "y":32
                 }, 
                 {
-                 "height":0,
-                 "id":65,
-                 "name":"StartingPoint",
-                 "point":true,
-                 "rotation":0,
-                 "type":"Point",
-                 "visible":true,
-                 "width":0,
-                 "x":248.5,
-                 "y":213
-                }, 
-                {
                  "gid":27,
                  "height":50,
                  "id":67,
@@ -671,6 +659,18 @@
                  "width":32,
                  "x":64,
                  "y":480
+                }, 
+                {
+                 "height":0,
+                 "id":69,
+                 "name":"StartingPoint",
+                 "point":true,
+                 "rotation":0,
+                 "type":"Point",
+                 "visible":true,
+                 "width":0,
+                 "x":236.363636363636,
+                 "y":266.666666666667
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -679,7 +679,7 @@
          "y":0
         }],
  "nextlayerid":3,
- "nextobjectid":69,
+ "nextobjectid":70,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",

@@ -27,7 +27,7 @@ void Inventory::activateWeapon(Entity* target) {
     if (CurrentWeaponIndex < weapons.size()) {
         weapons[CurrentWeaponIndex]->activate(target);
     } else {
-        std::cerr << "No weapon is currently selected." << std::endl;
+        //std::cerr << "No weapon is currently selected." << std::endl;
     }
 }
 
@@ -48,6 +48,7 @@ std::shared_ptr<Weapon2> Inventory::getCurrentWeapon() const {
     if (CurrentWeaponIndex < weapons.size()) {
         return weapons[CurrentWeaponIndex];
     } else {
+        //std::cerr << "No current weapon available." << std::endl;
         return nullptr;
     }
 }

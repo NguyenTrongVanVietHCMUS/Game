@@ -15,6 +15,7 @@ void HighRangeMob_MovingAnimation::getshot(const Entity* other)
     position.y -= 10;
     setSpritePosition();
 }
+
 void HighRangeMob_MovingAnimation::handleCollision(const Entity* other)
 {
     // Handle collision logic here
@@ -26,14 +27,19 @@ void HighRangeMob_MovingAnimation::handleCollision(const Entity* other)
     }
     if (other->type == Entity::Type::Object)
     {
-        sf::Vector2f res = oldPosition;
         sf::Vector2f temp = position;
+        sf::Vector2f res = oldPosition;
+        position = sf::Vector2f(temp.x, oldPosition.y);
+        if (entity->isCollide(other))
+        {
+            temp.x = oldPosition.x;
+        }
         position = sf::Vector2f(oldPosition.x, temp.y);
         if (entity->isCollide(other))
         {
-            position = sf::Vector2f(temp.x, oldPosition.y);
-            if (entity->isCollide(other)) position = oldPosition;
+            temp.y = oldPosition.y;
         }
+        position = temp;
     }
 
     setSpritePosition();
