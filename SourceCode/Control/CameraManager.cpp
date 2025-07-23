@@ -26,7 +26,6 @@ void CameraManager::update(sf::Time dt)
 {
     for (auto& effect : activeEffects) {
         if (effect->isActive()) {
-            std::cerr << "Updating camera effect" << std::endl;
             effect->update(dt);
         }
     }

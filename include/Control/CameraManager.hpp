@@ -2,7 +2,7 @@
 #include <iostream>
 #include <memory>
 #include <vector>
-#include <book/Strategy/CameraEffectBehavior.hpp>
+#include <Book/CameraEffect.hpp>
 #include <Book/Attribute/CameraAttribute.hpp>
 
 
@@ -23,6 +23,7 @@ public:
     void setCenter(float x, float y);
     void setCenter(const sf::Vector2f& center);
     const sf::View& getView() const;
+    sf::Vector2f getPosition() const {return view.getCenter();}
 public:
     void applyEffect(CameraEffect* effect);
     void update(sf::Time dt);

@@ -3,12 +3,14 @@
 Character::Character(
     std::string name , 
     sf::Vector2f position,
-    State *state
+    State *state,
+    CameraManager* cameraManager
 ):Entity(name,position)
 {
 	type = Entity::Type::Entity; // Set the type of the entity
     inventory = std::make_shared<Inventory>(); // Initialize the inventory
     map = state;
+    this->cameraManager = cameraManager;
 }
 
 Character::~Character()
@@ -59,6 +61,12 @@ bool Character::handleEvent(const sf::Event& event,sf::RenderWindow*window)
                     }
                 }
                 
+            }
+        }
+        if(event.key.code == sf::Keyboard::Space)
+        {
+            if (cameraManager) {
+                cameraManager->applyEffect(new ShakeCameraEffect(1.0f, cameraManager, 10.0f)); // Apply a shake effect to the camera
             }
         }
     }
