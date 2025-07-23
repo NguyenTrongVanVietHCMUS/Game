@@ -39,7 +39,7 @@ void CameraManager::update(sf::Time dt)
 
 void CameraManager::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-    target.setView(UIView);
+    target.setView(UIView); // Set the camera view for drawing
     for (const auto& effect : activeEffects) {
         effect->draw(target, states);
     }

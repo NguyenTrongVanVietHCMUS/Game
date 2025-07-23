@@ -78,7 +78,7 @@ public:
 };
 
 class IStatusEffect{
-private:
+protected:
     float duration; // Duration of the effect in seconds
     float elapsedTime; // Time elapsed since the effect started
 protected:
