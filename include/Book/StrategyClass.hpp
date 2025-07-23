@@ -91,8 +91,7 @@ public:
     virtual void update(const sf::Time& dt) { updateElapsedTime(dt); }
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const {}
     virtual ~IStatusEffect() = default;
-
-    bool isActive() const {
+    virtual bool isActive() const {
         return elapsedTime < duration; // Check if the effect is still active
     }
 };

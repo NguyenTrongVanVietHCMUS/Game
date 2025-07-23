@@ -4,6 +4,7 @@
 #include<Control/ResourceManager.hpp>
 #include<Control/State.hpp>
 #include<Book/Inventory.hpp>
+#include<Book/StrategyClass.hpp>
 class MovingAnimation;
 class Character : public Entity
 {
@@ -14,6 +15,7 @@ protected:
 protected : 
     std::unique_ptr<MovingAnimation> movingAnimation ; 
     std::shared_ptr<Inventory> inventory;
+    std::vector<std::shared_ptr<IStatusEffect> > statusEffect; // Status effect for the character
     State *map;
     
 public : 
@@ -25,5 +27,4 @@ public :
     virtual bool handleEvent(const sf::Event& event,sf::RenderWindow* window) ;  
     virtual bool update(sf::Time dt) ; 
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const; 
-    
 };

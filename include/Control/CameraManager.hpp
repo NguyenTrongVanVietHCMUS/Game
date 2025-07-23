@@ -12,18 +12,19 @@ public:
     CameraAttribute attribute;
 private:
     sf::View view; // The camera view
-    sf::RenderTarget* target; // The render target to which the camera applies
+    sf::View UIView;
     std::vector<CameraEffect*> activeEffects;
 public:
-    CameraManager(sf::RenderTarget& renderTarget)
-        : target(&renderTarget), view(renderTarget.getDefaultView()){}
-    CameraManager(){}
+    CameraManager()
+        : view(sf::FloatRect(0, 0, 1216, 672)), UIView(sf::FloatRect(0, 0, 1216, 672)){}
+    CameraManager(const sf::View& initialView)
+        : view(initialView), UIView(sf::FloatRect(0, 0, 1216, 672)) {}
 
     void setCenter(float x, float y);
+    void setCenter(const sf::Vector2f& center);
     const sf::View& getView() const;
 public:
     void applyEffect(CameraEffect* effect);
-    void updateTarget(sf::RenderTarget& renderTarget);
     void update(sf::Time dt);
-    void draw(sf::RenderTarget& target, sf::RenderStates states) ;
+    void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 };

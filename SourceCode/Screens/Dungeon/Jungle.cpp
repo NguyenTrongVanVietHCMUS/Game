@@ -7,14 +7,14 @@ Jungle::Jungle(StateStack& stack,Context context):
     State(stack,context) 
 {         
     map = new TileMap(ResourceManager::getInstance().get<TileMap>(Map::ID::Jungle)); 
-    map->entities.push_back(new Knight(map->startingPoint, this)); 
+    map->entities.push_back(new Knight(map->startingPoint, this, &map->camera)); 
     
     for (int i = 1; i <= 1; i++)
     {
         map->entities.push_back(new Boar(map->startingPoint,this)); // Add a Boar entity to the map
     }
     map->entities.push_back(new GoblinShooter(map->startingPoint,this)); 
-
+    
 }
 
 Jungle::~Jungle()

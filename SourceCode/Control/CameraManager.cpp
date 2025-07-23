@@ -3,7 +3,11 @@
 void CameraManager::setCenter(float x, float y)
 {
     view.setCenter(x, y);
-    target->setView(view);
+}
+
+void CameraManager::setCenter(const sf::Vector2f& center)
+{
+    view.setCenter(center);
 }
 
 const sf::View& CameraManager::getView() const
@@ -22,6 +26,7 @@ void CameraManager::update(sf::Time dt)
 {
     for (auto& effect : activeEffects) {
         if (effect->isActive()) {
+            std::cerr << "Updating camera effect" << std::endl;
             effect->update(dt);
         }
     }
@@ -33,16 +38,11 @@ void CameraManager::update(sf::Time dt)
     );
 }
 
-void CameraManager::updateTarget(sf::RenderTarget& renderTarget)
+void CameraManager::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-    target = &renderTarget;
-    view = renderTarget.getDefaultView();
-}
-
-void CameraManager::draw(sf::RenderTarget& target, sf::RenderStates states) 
-{
-    updateTarget(target);
+    target.setView(UIView);
     for (const auto& effect : activeEffects) {
         effect->draw(target, states);
     }
+    target.setView(view); // Reset to the UI view after drawing effects
 }

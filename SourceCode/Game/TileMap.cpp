@@ -265,14 +265,14 @@ bool TileMap::load(const std::string& jsonFile,int x , int y,int height, int wid
 void TileMap::draw(sf::RenderTarget& target, sf::RenderStates states)const
 {
     //target.setView(target.getDefaultView()); // Reset the view to the default view
-    for(auto  x :entities)
+    /*for(auto  x :entities)
     {
         if(auto character = dynamic_cast<Character*>(x))
         {
             sf::View view (character->getPosition(), sf::Vector2f(1216, 672));
             target.setView(view); // Set the view to the character's position
         }
-    }
+    }*/
     for(auto& x : layers)
     {
         x->draw(target, states); // Draw each layer
@@ -281,6 +281,7 @@ void TileMap::draw(sf::RenderTarget& target, sf::RenderStates states)const
     {
 		x->draw(target, states); // Draw each entity
     }
+    camera.draw(target, states); // Draw the camera
 }
 bool TileMap::handleEvent(const sf::Event& event,sf::RenderWindow* window) 
 {
@@ -295,6 +296,7 @@ bool TileMap::handleEvent(const sf::Event& event,sf::RenderWindow* window)
 }
 bool TileMap::update(sf::Time dt)
 {
+    camera.update(dt); 
     Character* player = nullptr; 
 
     if(PushQueueEntities.size() > 0)

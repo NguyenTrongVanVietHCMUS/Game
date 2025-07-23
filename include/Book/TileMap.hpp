@@ -147,11 +147,12 @@ private:
 private: 
     std::string File;
     std::vector<Layer*> layers; 
-    CameraManager camera;
+
 
 public:
     TileMap();
-    ~TileMap();     
+    ~TileMap();    
+    CameraManager camera; 
     std::vector<Entity*> PushQueueEntities; // Queue for entities to be pushed
     std::vector<Entity*> PopQueueEntities; // Queue for entities to be popped
     std::vector<Entity*> PopQueueEntitiesNoDelete;
