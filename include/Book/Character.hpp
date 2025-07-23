@@ -4,6 +4,9 @@
 #include<Control/ResourceManager.hpp>
 #include<Control/State.hpp>
 #include<Book/Inventory.hpp>
+#include<Book/StrategyClass.hpp>
+#include<Control/CameraManager.hpp>
+#include<Book/Strategy/StatusEffect/CameraEffect.hpp>
 class MovingAnimation;
 class Character : public Entity
 {
@@ -14,10 +17,11 @@ protected:
 protected : 
     std::unique_ptr<MovingAnimation> movingAnimation ; 
     std::shared_ptr<Inventory> inventory;
+    std::vector<std::shared_ptr<IStatusEffect> > statusEffect; // Status effect for the character
     State *map;
-    
+    CameraManager* cameraManager; // Pointer to the camera manager for camera effects
 public : 
-    Character(std::string name , sf::Vector2f position, State *state =nullptr);
+    Character(std::string name , sf::Vector2f position, State *state =nullptr, CameraManager* cameraManager = nullptr);
     ~Character(); 
 public : 
     //SkillHolder skillHolder;
@@ -25,5 +29,4 @@ public :
     virtual bool handleEvent(const sf::Event& event,sf::RenderWindow* window) ;  
     virtual bool update(sf::Time dt) ; 
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const; 
-    
 };

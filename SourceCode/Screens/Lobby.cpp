@@ -6,7 +6,7 @@ Lobby::Lobby(StateStack& stack,Context context):
     State(stack,context) 
 {         
     map = new TileMap(ResourceManager::getInstance().get<TileMap>(Map::ID::Lobby)); 
-    map->entities.push_back(new Knight(map->startingPoint, this)); // Adjusted to match the new Knight constructor
+    map->entities.push_back(new Knight(map->startingPoint, this, &map->camera)); // Adjusted to match the new Knight constructor
 }
 
 Lobby::~Lobby()

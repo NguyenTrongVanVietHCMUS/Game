@@ -4,10 +4,12 @@
 #include<Book/Character.hpp>
 #include<Book/Strategy/WeaponBehavior.hpp>
 #include<Book/Strategy/WeaponAnimation.hpp>
+#include<Control/CameraManager.hpp>
+#include <Book/Strategy/StatusEffect/CameraEffect.hpp>
 class Knight : public Character
 {
 public:
-    Knight(sf::Vector2f position,State* state): Character("Knight", position, state)
+    Knight(sf::Vector2f position,State* state, CameraManager* cameraManager = nullptr): Character("Knight", position, state, cameraManager)
     {
         type = Entity::Type::Ally; 
         movingAnimation = std::make_unique<Character_MovingAnimation>(
@@ -18,7 +20,7 @@ public:
             2.1f, // Scale of the animation,
             this
         );  
-
+        statusEffect.push_back(std::make_shared<FollowCameraEffect>(cameraManager, this)); // Add follow camera effect
         inventory->addWeapon(
             std::make_shared<Weapon2>(
                 "AK_47",
