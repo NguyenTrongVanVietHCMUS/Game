@@ -15,7 +15,6 @@ void DarknessCameraEffect::update(const sf::Time& dt) {
     if((duration - elapsedTime) <= 1.0/alphaMultiplierLerpSpeed)
     {
         isReverse = true;
-        std::cerr << "isReverse" << std::endl;
         currentAlphaMultiplier = std::max(currentAlphaMultiplier - alphaMultiplierLerpSpeed * delta, 0.0f);
     }
 }
