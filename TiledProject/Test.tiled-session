@@ -97,14 +97,11 @@
             "scaleInEditor": 1
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/battleroom1.json": {
-            "expandedObjectLayers": [
-                2
-            ],
             "scale": 0.25,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 692,
-                "y": 448
+                "x": 912,
+                "y": 1432
             }
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/battleroom1.json#GroundTiles": {
@@ -552,11 +549,11 @@
             "expandedObjectLayers": [
                 2
             ],
-            "scale": 0.25,
+            "scale": 0.125,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 2164,
-                "y": -1400
+                "x": 1560,
+                "y": -936
             }
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/startingroom.json#GroundTiles": {
@@ -866,7 +863,7 @@
         }
     },
     "last.externalTilesetPath": "V:/Game/Media/Assets/TileSets",
-    "last.imagePath": "C:/Users/billy/OneDrive/Máy tính",
+    "last.imagePath": "V:/Game/Media/Assets/TileSets/HUD",
     "last.worldFilePath": "V:/Game/Media/Assets/Maps/Dungeon/Jungle",
     "loadedWorlds": [
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/jungle.world"
@@ -891,5 +888,9 @@
     "tileset.embedInMap": true,
     "tileset.lastUsedFilter": "All Files (*)",
     "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 12,
+        "width": 10
+    },
     "tileset.type": 0
 }

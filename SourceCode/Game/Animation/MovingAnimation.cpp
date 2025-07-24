@@ -2,7 +2,7 @@
 
 MovingAnimation::~MovingAnimation()
 {
-    delete texture; 
+    
 }
 void MovingAnimation::update(sf::Time dt)
 {
