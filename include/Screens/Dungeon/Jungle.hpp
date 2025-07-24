@@ -9,8 +9,10 @@
 #include<Screens/HUD/StatPlayer.hpp>    
 class Jungle : public State 
 {
+private : 
+    StatPlayer statPlayer;
 public:
-    StatPlayer statPlayer; 
+    
     Jungle(StateStack&stack ,Context context);
     ~Jungle(); 
     virtual void draw();

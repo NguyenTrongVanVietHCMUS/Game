@@ -6,10 +6,12 @@
 #include "Control/ResourceHolder.hpp"
 #include "Control/ResourceIdentifiers.hpp"
 #include "Control/StateIdentifiers.hpp"
+#include<Screens/HUD/StatPlayer.hpp>    
+// Forward declaration to avoid circular dependency
 class Lobby : public State 
 {
 private : 
- 
+    StatPlayer statPlayer;
 public:
     Lobby(StateStack&stack ,Context context);
     ~Lobby(); 

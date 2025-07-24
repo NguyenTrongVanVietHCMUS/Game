@@ -7,6 +7,8 @@ Lobby::Lobby(StateStack& stack,Context context):
 {         
     map = new TileMap(ResourceManager::getInstance().get<TileMap>(Map::ID::Lobby)); 
     map->entities.push_back(new Knight(map->startingPoint, this)); // Adjusted to match the new Knight constructor
+
+    statPlayer.setPlayer(map->getPlayer()); 
 }
 
 Lobby::~Lobby()
@@ -17,6 +19,7 @@ Lobby::~Lobby()
 void Lobby::draw() 
 {
     getContext().window->draw(*map);
+    getContext().window->draw(statPlayer); 
 }
 
 bool Lobby::update(sf::Time dt)
