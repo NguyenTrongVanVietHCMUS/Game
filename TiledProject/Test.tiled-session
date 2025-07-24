@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "D:/HCMUS/3Semester/Project/Game/Media/Assets/Maps/Dungeon/Jungle/startingroom.json",
+    "activeFile": "V:/Game/Media/Assets/Maps/Dungeon/Jungle/roomweapon.json",
     "expandedProjectPaths": [
         "."
     ],
@@ -367,11 +367,11 @@
             "expandedObjectLayers": [
                 3
             ],
-            "scale": 0.25,
+            "scale": 0.33,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 244,
-                "y": 1224
+                "x": -566.6666666666665,
+                "y": 760.6060606060606
             }
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathwaytobossroom.json#GroundTiles": {
@@ -531,11 +531,11 @@
             "expandedObjectLayers": [
                 4
             ],
-            "scale": 0.25,
+            "scale": 0.125,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": -844,
-                "y": 1696
+                "x": -2328,
+                "y": 144
             }
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/roomweapon.json#GroundTiles": {
@@ -549,11 +549,11 @@
             "expandedObjectLayers": [
                 2
             ],
-            "scale": 0.125,
+            "scale": 0.33,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 1560,
-                "y": -936
+                "x": 2821.212121212121,
+                "y": -1442.4242424242425
             }
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/startingroom.json#GroundTiles": {
@@ -873,16 +873,20 @@
     "map.lastUsedFormat": "json",
     "map.width": 17,
     "openFiles": [
-        "D:/HCMUS/3Semester/Project/Game/Media/Assets/Maps/Dungeon/Jungle/startingroom.json"
+        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/startingroom.json",
+        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/roomweapon.json",
+        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathwaytobossroom.json"
     ],
     "project": "Test.tiled-project",
     "property.type": "object",
     "recentFiles": [
+        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/startingroom.json",
+        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathwaytobossroom.json",
+        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/roomweapon.json",
         "D:/HCMUS/3Semester/Project/Game/Media/Assets/Maps/Dungeon/Jungle/startingroom.json",
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/room2.json",
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway5.json",
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/room5.json",
-        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/startingroom.json",
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/battleroom2.json"
     ],
     "tileset.embedInMap": true,

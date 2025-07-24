@@ -95,14 +95,14 @@
             "fileName": "bossroom.json",
             "height": 1376,
             "width": 1376,
-            "x": 3744,
+            "x": 3712,
             "y": -3840
         },
         {
             "fileName": "pathwaytobossroom.json",
             "height": 1056,
             "width": 224,
-            "x": 4352,
+            "x": 4320,
             "y": -2464
         },
         {
@@ -110,7 +110,7 @@
             "height": 672,
             "width": 672,
             "x": 5440,
-            "y": -1312
+            "y": -1280
         },
         {
             "fileName": "pathway9.json",
