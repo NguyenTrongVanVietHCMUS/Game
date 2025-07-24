@@ -36,7 +36,7 @@ private:
     mutable sf::Shader shader;
     mutable sf::RectangleShape overlay;
 
-    float currentRadius = 100.0f;
+    float currentRadius = 32.0f;
     float radiusLerpSpeed = 600.0f;
 
     float currentAlpha = 0.0f;
