@@ -57,9 +57,15 @@ public:
         uvRect.top = 0;
         uvRect.left = 0;
         currentImage.x = 0;
-        uvRect.width = int(texture->getSize().x / float(imageCount.x));
-        uvRect.height = int(texture->getSize().y / float(imageCount.y));
-        sprite.setTexture(*texture);
+        if(texture)
+        {
+            
+            uvRect.width = int(texture->getSize().x / float(imageCount.x));
+            uvRect.height = int(texture->getSize().y / float(imageCount.y));
+            sprite.setTexture(*texture);
+        }else {
+            std::cerr << "MovingAnimation: Texture is null, sprite will not be drawn." << std::endl;
+        }
         sprite.setScale(-scale, scale);
         mask = 0; 
 		direction = rand() % 2 == 0 ? LEFT : RIGHT; // Randomly set the initial direction
@@ -146,4 +152,40 @@ public:
     virtual void update(sf::Time dt);
     virtual void handleEvent(const sf::Event& event, sf::RenderWindow* window);
     virtual void handleCollision(const Entity* other);
+};
+
+class laserAimAnimation : public MovingAnimation
+{
+private:
+    sf::Vector2f BeginPosition;
+    sf::Vector2f TargetPosition;
+
+public:
+    laserAimAnimation(sf::Vector2f BeginPosition, sf::Vector2f targetPosition, sf::Vector2f middlePosition , sf::Vector2f& position)
+        : BeginPosition(BeginPosition), TargetPosition(targetPosition), 
+        MovingAnimation(nullptr, sf::Vector2u(0.f, 0.f), 0, position, 1.0f, sf::Vector2f(0.5f, 0.5f)) {}
+
+    void draw(sf::RenderTarget& target, sf::RenderStates states)const override;
+    void update(sf::Time dt) {}
+};
+
+class LaserAnimation : public MovingAnimation
+{
+private:
+    sf::Vector2f startPosition;
+    sf::Vector2f endPosition;
+    float elapseTime = 0.0f;
+public:
+    LaserAnimation(sf::Texture *texture, sf::Vector2f startPosition, sf::Vector2f endPosition, sf::Vector2f middlePosition, sf::Vector2f& position)
+        : startPosition(startPosition), endPosition(endPosition),
+        MovingAnimation(texture, sf::Vector2u(1.f, 1.f), 0, position, 1.0f, middlePosition) {
+            float distance = std::pow(endPosition.x - startPosition.x, 2) + std::pow(endPosition.y - startPosition.y, 2);
+            distance = std::sqrt(distance);
+            float spriteWidth = sprite.getGlobalBounds().width;
+            scale = distance / spriteWidth;
+            sprite.setScale(scale, 1.0f);
+            sprite.setOrigin(0.0f, sprite.getGlobalBounds().height / 2.0f); // Center the sprite vertically
+        }
+
+    void update(sf::Time dt) override;
 };

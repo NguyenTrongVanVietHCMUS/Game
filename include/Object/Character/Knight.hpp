@@ -74,6 +74,29 @@ public:
                 nullptr
             )
         );
+
+        inventory->addWeapon(
+             std::make_shared<Weapon2>(
+                "AK_47",
+                this->position, // Position of the weapon
+                0.1f, // Cooldown time for the weapon
+                sf::Vector2(0.6f,-0.2f),
+                std::make_unique<laserGunBehavior>(state), // Ranged weapon behavior with speed
+                std::make_unique<GunAnimation>(
+                    0.2f, // Total time for the animation
+                    0.4f, // Scale of the animation
+                    &ResourceManager::getInstance().get<sf::Texture>(Textures::ID::AK_47), // Texture for the gun animation
+                    this->position, // Position of the gun animation
+                    10.0f, // Start angle of the gun animation
+                    0.0f, // End angle of the gun animation
+                    25.0f, // Recoil offset for the gun animation
+                    this, // Owner of the gun animation
+                    sf::Vector2f(0.4f, 0.6f) // Middle position for the gun animation
+                ),
+                state
+            )
+        );
+        
         movingAnimation->speed = 285.0f; 
         // Initialize the knight-specific properties here 
     }   

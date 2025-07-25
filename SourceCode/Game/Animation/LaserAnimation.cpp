@@ -10,3 +10,13 @@ void laserAimAnimation::draw(sf::RenderTarget& target, sf::RenderStates states)c
     line[1].color = sf::Color::Red;
     target.draw(line, 2, sf::Lines);
 }
+
+void LaserAnimation::update(sf::Time dt) {
+
+    elapseTime += dt.asMilliseconds();
+    float ScaleY = sin(elapseTime);
+    sprite.setScale(scale, ScaleY * 3);
+    float angle = std::atan2(endPosition.y - startPosition.y, endPosition.x - startPosition.x) * 180.0f / 3.14159f; // Convert to degrees
+    sprite.setRotation(angle);
+    sprite.setPosition(startPosition);
+}

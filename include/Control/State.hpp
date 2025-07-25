@@ -54,6 +54,7 @@ class State
 		virtual void 		popEntityNoDelete(Entity* entity);
 		virtual Entity*		GetClosestEntity(Entity::Type type, sf::Vector2f position) const;
 		virtual std::vector<Entity*> GetEntities() const;
+		virtual std::vector<Entity*> GetEntities(Entity::Type type) const;
 		virtual void        handleCollision(); 
 
 	protected:

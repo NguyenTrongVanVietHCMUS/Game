@@ -6,6 +6,7 @@
 #include <Book/Strategy/CollisionBehavior.hpp>
 #include <Control/State.hpp>
 #include <Book/MovingAnimation.hpp>
+#include <Control/ResourceManager.hpp>
 #include <random>
 class RangedWeaponBehavior : public IBehavior
 {
@@ -141,4 +142,13 @@ public:
         Worldmap->pushEntity(proj);
     }
 
+};
+
+class laserGunBehavior : public IBehavior
+{
+private:
+    State* Worldmap = nullptr;
+public:
+    laserGunBehavior(State* worldmap) : Worldmap(worldmap) {}
+    void activate(Weapon2& self, Entity* target) override ;
 };
