@@ -116,3 +116,12 @@ Entity* State::GetClosestEntity(Entity::Type type, sf::Vector2f position) const
 	}
 	return closestEntity;
 }
+
+std::vector<Entity*> State::GetEntities() const
+{
+	if (map)
+	{
+		return map->entities;
+	}
+	return {};
+}
