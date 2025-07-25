@@ -93,10 +93,11 @@ bool TileMap::load(const std::string& jsonFile,int x , int y,int height, int wid
                     return false;
                 }
                 tileset.File = resolvedImagePath.string();
-                tileset.firstGid = int(tilesetData["firstgid"]) + int(tiles["id"]);
+                tileset.firstGid = int(tilesetData["firstgid"]) + int(tiles["id"]) ; 
                 tileset.tileWidth = tiles["imagewidth"];
 				tileset.type = tiles["type"];
                 tileset.tileHeight = tiles["imageheight"];
+                tileset.tileCount = 1; 
                 auto& temp = tiles["objectgroup"];
                 for(auto &info : temp["objects"]) // changed x to temp
                 {
@@ -154,8 +155,8 @@ bool TileMap::load(const std::string& jsonFile,int x , int y,int height, int wid
             {
                 int tileId = layerData["data"][i];
                 if (tileId == 0) continue; // Skip empty tiles
-                size_t tilesetIndex = 0;
-                for (size_t j = 0; j < tilesets.back().size(); j++)
+                int  tilesetIndex = 0;
+                for (int j = 0; j < tilesets.back().size(); j++)
                 {
                     if (tileId >= tilesets.back()[j].firstGid && tileId < tilesets.back()[j].firstGid + tilesets.back()[j].tileCount)
                     {
@@ -422,4 +423,14 @@ void TileMap::handleCollision()
     }
     // Handle potential aftermath of collisions here
 }
- 
+Character* TileMap::getPlayer()const
+{
+    for (auto x : entities)
+    {
+        if(auto character = dynamic_cast<Character*>(x))
+        {
+            return character; 
+		}   
+    }
+    throw std::runtime_error("No player found in the TileMap entities."); 
+}

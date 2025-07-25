@@ -6,9 +6,13 @@
 #include "Control/ResourceHolder.hpp"
 #include "Control/ResourceIdentifiers.hpp"
 #include "Control/StateIdentifiers.hpp"
+#include<Screens/HUD/StatPlayer.hpp>    
 class Jungle : public State 
 {
+private : 
+    StatPlayer statPlayer;
 public:
+    
     Jungle(StateStack&stack ,Context context);
     ~Jungle(); 
     virtual void draw();

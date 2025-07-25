@@ -1,6 +1,6 @@
 #pragma once
 #include "Book/Utility.hpp"
-#include<Control/Hitbox.hpp>
+#include <Control/Hitbox.hpp>
 #include <nlohmann/json.hpp>
 #include <Book/Entity.hpp>
 #include <Book/Object.hpp>
@@ -8,6 +8,8 @@
 #include<set>
 using json = nlohmann::json;
 
+
+class Character;  
 class Layer:public sf::Drawable 
 {
 public:
@@ -162,4 +164,8 @@ public:
     bool handleEvent(const sf::Event& event, sf::RenderWindow* window);
     bool update(sf::Time dt);
     void draw(sf::RenderTarget& target, sf::RenderStates states)const; 
+
+
+
+    Character* getPlayer()const;
 };

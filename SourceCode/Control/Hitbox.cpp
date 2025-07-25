@@ -11,7 +11,9 @@ Hitbox::~Hitbox()
 }
 bool Hitbox::isCollide(const Hitbox& other) const
 {
-    return hitbox.intersects(other.hitbox);
+    return intersect(hitbox.left,hitbox.left+hitbox.width,other.hitbox.left,other.hitbox.left+other.hitbox.width)
+        &&
+        intersect(hitbox.top, hitbox.top + hitbox.height, other.hitbox.top, other.hitbox.top + other.hitbox.height);
 }
 void Hitbox::draw(sf::RenderTarget& target, sf::RenderStates states) const 
 {
@@ -36,4 +38,8 @@ void Hitbox::update(sf::Sprite const & sprite)
     // Set the position of the hitbox to match the sprite's position
     hitbox.left = sprite.getPosition().x - hitbox.width / 2;
     hitbox.top = sprite.getPosition().y - hitbox.height / 2;
+}
+void Hitbox::print()const
+{
+	std::cout << hitbox.left << " " << hitbox.top << " " << hitbox.left + hitbox.width << " " << hitbox.top + hitbox.height << std::endl;
 }

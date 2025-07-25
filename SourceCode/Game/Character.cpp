@@ -100,3 +100,28 @@ sf::Vector2f Character::getHandPosition()const
 {
     return movingAnimation->getHandPosition(); 
 }
+int Character::getMaxHealth()const
+{
+    return 10; // Maximum health value
+}   
+int Character::getMaxMana()const 
+{
+	return 120; // Maximum mana value    
+}
+int Character::getMaxShield()const
+{
+	return 3; // Maximum shield value  
+}
+
+int Character::getHealth()
+{
+    return 10; 
+}
+int Character::getMana()
+{
+    return 35; 
+}   
+int Character::getShield()
+{
+    return 2; 
+}
