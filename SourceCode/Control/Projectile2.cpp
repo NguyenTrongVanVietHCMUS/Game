@@ -95,6 +95,7 @@ void Projectile2::collide(const Entity* other)
 void Projectile2::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     if(movingAnimation) {
+        
         movingAnimation->draw(target, states); // Draw the moving animation if it exists
         hitbox.draw(target, states); //Draw the hitbox for debugging purposes
     } else {

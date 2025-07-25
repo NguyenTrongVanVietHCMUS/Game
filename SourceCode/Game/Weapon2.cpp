@@ -104,6 +104,9 @@ Entity::Type Weapon2::ProjectileTypeTransform(Entity* entity) const {
 
 void Weapon2::switchHold( bool ishold, Entity* owner)
 {
+    if(this->ishold == ishold) {
+        return; // No change in hold state
+    }
     this->ishold = ishold;
     if(CurrentMap){
         if (ishold) {
@@ -114,6 +117,12 @@ void Weapon2::switchHold( bool ishold, Entity* owner)
                 }   
             }
         } else {
+            this->setStat("TargetPosX", this->getPosition().x + 10);
+            this->setStat("TargetPosY", this->getPosition().y);
+            if(animation)
+            {
+                animation->update(*this, sf::seconds(0)); // Update the animation to the current state
+            }
             CurrentMap->pushEntity(this->shared_from_this());
         }
     }

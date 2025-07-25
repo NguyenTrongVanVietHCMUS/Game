@@ -125,3 +125,19 @@ std::vector<Entity*> State::GetEntities() const
 	}
 	return {};
 }
+
+std::vector<Entity*> State::GetEntities(Entity::Type type) const
+{
+	std::vector<Entity*> filteredEntities;
+	if (map)
+	{
+		for (const auto& entity : map->entities)
+		{
+			if (entity->type == type)
+			{
+				filteredEntities.push_back(entity);
+			}
+		}
+	}
+	return filteredEntities;
+}

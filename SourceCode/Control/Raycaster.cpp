@@ -24,13 +24,14 @@ RaycastHit Raycaster::cast(
     int err = dx + dy;
 
     // 4) Step along the line
+    std::vector<Entity*> entities = currentWorld->GetEntities(Entity::Type::Object);
     while (true) {
         // World‐space sample point (center of pixel)
         float sampleX = x0 + 0.5f;
         float sampleY = y0 + 0.5f;
 
         // 5) Check each entity’s AABB for containment
-        for (Entity* e : currentWorld->GetEntities()) {
+        for (Entity* e : entities) {
             const sf::FloatRect& r = e->hitbox.hitbox;
             if (r.contains(sampleX, sampleY)) {
                 // We’ve hit something!
