@@ -118,7 +118,7 @@ public:
             elapsedTime = 0.0f; // Reset the timer
             auto proj = new Projectile2(
                 "LaserBeam",
-                0.5f, // Lifetime of the laser beam
+                0.05f, // Lifetime of the laser beam
                 startPosition,
                 Worldmap,
                 "Media/Assets/Projectiles/Laser.png", // Path to the laser beam texture
@@ -138,6 +138,7 @@ public:
                 proj->position
             );
             proj->setMovingAnimation(std::move(animation));
+            proj->type = projectile.type;
             proj->update(sf::seconds(0)); // Initialize the projectile's animation
             Worldmap->pushEntity(proj); // Add the laser beam to the world map
         }

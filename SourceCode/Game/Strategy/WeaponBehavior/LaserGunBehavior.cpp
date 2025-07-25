@@ -17,12 +17,12 @@ void laserGunBehavior::activate(Weapon2& self, Entity* target) {
         std::cerr << "Laser hit entity: " << raycast.entity->name << " at position: " << raycast.position.x << ", " << raycast.position.y << std::endl;
         
         auto proj = new Projectile2(
-            "RangedProjectile",
-            1.5f, // as seconds represent life time of the projectile
+            "Aim Target",
+            0.05f, // as seconds represent life time of the projectile
             target->position,
             Worldmap,
             "Media/Assets/Projectiles/Laser.png", // Path to the projectile texture
-            std::make_unique<LaserAimMovement>(0.1f, SpawnPosition, raycast.position, Worldmap), // Laser beam movement strategy
+            std::make_unique<LaserAimMovement>(0.0f, SpawnPosition, raycast.position, Worldmap), // Laser beam movement strategy
             nullptr
         );
         std::cerr << "Creating laser aim animation.\n";
