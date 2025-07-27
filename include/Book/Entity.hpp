@@ -46,7 +46,7 @@ public:
 public : 
     bool movable()const; 
     // Getters and Setters
-    sf::Vector2f getPosition() const { 
+    virtual sf::Vector2f getPosition() const { 
         // std::cerr << "Get position : " << position.x << ", " << position.y << std::endl; 
         return position;
      }

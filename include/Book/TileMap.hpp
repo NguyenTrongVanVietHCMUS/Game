@@ -3,7 +3,8 @@
 #include <Control/Hitbox.hpp>
 #include <nlohmann/json.hpp>
 #include <Book/Entity.hpp>
-#include <Book/Object.hpp>
+#include <Object/Object.hpp>
+#include <Object/Decorator.hpp>
 #include <Control/CameraManager.hpp>
 #include<set>
 using json = nlohmann::json;

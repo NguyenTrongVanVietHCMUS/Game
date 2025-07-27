@@ -3,6 +3,8 @@
 #include <fstream> 
 #include<Book/Character.hpp>
 #include<Book/Enemy.hpp>
+#include<Object/Decorator.hpp>
+#include<Object/Chest/Chest.hpp>
 TileMap::TileMap()
 {
 
@@ -229,17 +231,27 @@ bool TileMap::load(const std::string& jsonFile,int x , int y,int height, int wid
                         }
                     }
 					auto& tile = tilesets.back()[tilesetIndex];
-                    if (layerData["name"] == "taskboard")
+                    if (objectData["name"] == "Chest")
                     {
-
+                        float scalex = float(objectData["width"]) / tile.tileWidth;
+                        float scaley = float(objectData["height"]) / tile.tileHeight;
+                        layer->entities.push_back(
+                            new Chest
+                            (
+                                sf::Vector2f(objectData["x"] + x, objectData["y"] + y - float(objectData["height"])),
+                                sf::FloatRect(x + objectData["x"] + tile.hitbox.hitbox.left * scalex, y + objectData["y"] - objectData["height"] + tile.hitbox.hitbox.top * scaley, tile.hitbox.hitbox.width * scalex, tile.hitbox.hitbox.height * scaley),
+                                scalex,
+                                scaley
+                            )
+                        );
                     }
-                    else
+                    /*else
                     {
 						float scalex = float(objectData["width"]) / tile.tileWidth;
 						float scaley = float(objectData["height"]) / tile.tileHeight;
 
                         layer->entities.push_back(
-                            new Object
+                            new Decorator
                             (
                                 objectData["name"],
                                 tile.File,
@@ -249,7 +261,7 @@ bool TileMap::load(const std::string& jsonFile,int x , int y,int height, int wid
                                 scaley
                             )
                         );
-                    }
+                    }*/
                 }
             }
             for (auto&x : layer->entities)
@@ -298,20 +310,21 @@ bool TileMap::handleEvent(const sf::Event& event,sf::RenderWindow* window)
 bool TileMap::update(sf::Time dt)
 {
     camera.update(dt); 
-    Character* player = nullptr; 
+    //Character* player = nullptr; 
 
     if(PushQueueEntities.size() > 0)
     {
         std::cerr << "Check the first list in queue : " << PushQueueEntities[0]->name << std::endl;
     }
 
-    for (auto& x : entities)
+    /*for (auto& x : entities)
     {
         if (auto character = dynamic_cast<Character*>(x))
         {
             player = character;
         }
-    }
+    }*/
+    Character* player = getPlayer(); 
     for (auto& x : entities)
     {
         if (auto enemy = dynamic_cast<Enemy*>(x))
@@ -320,7 +333,14 @@ bool TileMap::update(sf::Time dt)
         }
     }
     for (auto& x : entities)x->update(dt); 
-    
+    for (auto& x : entities)
+    {
+        if (auto object = dynamic_cast<Object*>(x))
+        {
+            object->update(player); 
+        }
+    }
+
     handleCollision();
     
     auto drawingOrder = [](const Entity* a, const Entity* b)
@@ -401,7 +421,7 @@ void TileMap::handleCollision()
     {
 		for (int j = i + 1; j < entities.size(); j++)if (entities[j]->movable())
         {
-            if(isCollide(entities[i],entities[j]))
+            if(isCollide(entities[i],entities[j])) 
             {
 				entities[i]->collide(entities[j]);
                 entities[j]->collide(entities[i]);
@@ -421,6 +441,7 @@ void TileMap::handleCollision()
             }
         }
     }
+
     // Handle potential aftermath of collisions here
 }
 Character* TileMap::getPlayer()const
@@ -432,5 +453,6 @@ Character* TileMap::getPlayer()const
             return character; 
 		}   
     }
-    throw std::runtime_error("No player found in the TileMap entities."); 
+    return nullptr; 
+    //throw std::runtime_error("No player found in the TileMap entities."); 
 }

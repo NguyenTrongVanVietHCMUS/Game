@@ -1,12 +1,12 @@
 #pragma once 
 
 #include<Book/Entity.hpp>
-class Object : public Entity
+class Decorator : public Entity
 {
 public:
     sf::Texture* texture = new sf::Texture();
     sf::Sprite* sprite = new sf::Sprite();
-    Object(std::string name, std::string File, sf::Vector2f position, Hitbox hitbox, float scalex, float scaley) :Entity(name, position, hitbox)
+    Decorator(std::string name, std::string File, sf::Vector2f position, Hitbox hitbox, float scalex, float scaley) :Entity(name, position, hitbox)
     {
 		type = Entity::Type::Object; // Set the type of the entity
         texture = new sf::Texture();
@@ -16,7 +16,7 @@ public:
         }
         sprite->setTexture(*texture);
         sprite->setPosition(position);
-        sprite->scale(scalex, scaley); // Scale the sprite based on the provided parameters
+        sprite->scale(scalex, scaley);
     }
     void draw(sf::RenderTarget& target, sf::RenderStates states) const
     {
@@ -24,7 +24,11 @@ public:
         target.draw(*sprite, states);
 		Entity::draw(target, states); // Call the base class draw method to draw the hitbox 
     }
-    ~Object()
+    virtual void update(Entity* player, sf::Time dt)
+    {
+        // do nothing  
+    }
+    ~Decorator()
     {
         delete texture;
         delete sprite;
