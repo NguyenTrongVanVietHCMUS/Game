@@ -36,13 +36,6 @@
             "y": 1600
         },
         {
-            "fileName": "room3.json",
-            "height": 3200,
-            "width": 3200,
-            "x": -1888,
-            "y": -992
-        },
-        {
             "fileName": "pathway3.json",
             "height": 640,
             "width": 224,

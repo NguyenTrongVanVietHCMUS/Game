@@ -10,7 +10,7 @@
          "name":"Image Layer 1",
          "opacity":1,
          "type":"imagelayer",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -163,8 +163,8 @@
                  "type":"",
                  "visible":true,
                  "width":43.3333333333333,
-                 "x":420.333333333333,
-                 "y":189
+                 "x":440.333333333333,
+                 "y":192
                 }, 
                 {
                  "gid":13,
@@ -249,15 +249,27 @@
                  "width":75,
                  "x":737,
                  "y":187
+                }, 
+                {
+                 "gid":26,
+                 "height":51,
+                 "id":159,
+                 "name":"Chest",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":58,
+                 "x":448,
+                 "y":288
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }],
  "nextlayerid":12,
- "nextobjectid":158,
+ "nextobjectid":161,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",
@@ -314,7 +326,7 @@
          "margin":0,
          "name":"Objects",
          "spacing":0,
-         "tilecount":17,
+         "tilecount":21,
          "tileheight":372,
          "tiles":[
                 {
@@ -812,6 +824,126 @@
                              "width":44.5,
                              "x":76.5,
                              "y":153
+                            }],
+                     "opacity":1,
+                     "type":"objectgroup",
+                     "visible":true,
+                     "x":0,
+                     "y":0
+                    },
+                 "type":"Object"
+                }, 
+                {
+                 "id":17,
+                 "image":"..\/..\/TileSets\/Chest\/body.png",
+                 "imageheight":51,
+                 "imagewidth":58,
+                 "objectgroup":
+                    {
+                     "draworder":"index",
+                     "id":2,
+                     "name":"",
+                     "objects":[
+                            {
+                             "height":26.3758079409049,
+                             "id":1,
+                             "name":"",
+                             "rotation":0,
+                             "type":"",
+                             "visible":true,
+                             "width":57.9732225300092,
+                             "x":0.53554939981533,
+                             "y":22.3591874422899
+                            }],
+                     "opacity":1,
+                     "type":"objectgroup",
+                     "visible":true,
+                     "x":0,
+                     "y":0
+                    },
+                 "type":"Object"
+                }, 
+                {
+                 "id":18,
+                 "image":"..\/..\/TileSets\/Chest\/bottom.png",
+                 "imageheight":30,
+                 "imagewidth":58,
+                 "objectgroup":
+                    {
+                     "draworder":"index",
+                     "id":2,
+                     "name":"",
+                     "objects":[
+                            {
+                             "height":20.3508771929825,
+                             "id":1,
+                             "name":"",
+                             "rotation":0,
+                             "type":"",
+                             "visible":true,
+                             "width":45.7894736842105,
+                             "x":6.56048014773777,
+                             "y":4.81994459833795
+                            }],
+                     "opacity":1,
+                     "type":"objectgroup",
+                     "visible":true,
+                     "x":0,
+                     "y":0
+                    },
+                 "type":"Object"
+                }, 
+                {
+                 "id":19,
+                 "image":"..\/..\/TileSets\/Chest\/left.png",
+                 "imageheight":20,
+                 "imagewidth":23,
+                 "objectgroup":
+                    {
+                     "draworder":"index",
+                     "id":2,
+                     "name":"",
+                     "objects":[
+                            {
+                             "height":6.96214219759926,
+                             "id":1,
+                             "name":"",
+                             "rotation":0,
+                             "type":"",
+                             "visible":true,
+                             "width":11.6481994459834,
+                             "x":9.77377654662973,
+                             "y":7.76546629732225
+                            }],
+                     "opacity":1,
+                     "type":"objectgroup",
+                     "visible":true,
+                     "x":0,
+                     "y":0
+                    },
+                 "type":"Object"
+                }, 
+                {
+                 "id":20,
+                 "image":"..\/..\/TileSets\/Chest\/right.png",
+                 "imageheight":20,
+                 "imagewidth":23,
+                 "objectgroup":
+                    {
+                     "draworder":"index",
+                     "id":2,
+                     "name":"",
+                     "objects":[
+                            {
+                             "height":10.8448753462604,
+                             "id":1,
+                             "name":"",
+                             "rotation":0,
+                             "type":"",
+                             "visible":true,
+                             "width":22.2253000923361,
+                             "x":3.61495844875346,
+                             "y":7.36380424746076
                             }],
                      "opacity":1,
                      "type":"objectgroup",

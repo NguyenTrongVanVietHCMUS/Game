@@ -34,6 +34,7 @@ Game::Game()
 			ResourceManager::getInstance().load<sf::Texture>(Textures::ID::FuryBar, "Media/Assets/TileSets/HUD/furybar.png");
 			ResourceManager::getInstance().load<sf::Texture>(Textures::ID::EmptyBar, "Media/Assets/TileSets/HUD/emptybar.png");
 
+
 		}
 
 		{
