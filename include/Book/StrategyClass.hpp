@@ -28,6 +28,7 @@ struct IEffect
 struct IBehavior
 {
     virtual void activate(Weapon2& weapon, Entity* target) = 0;
+    virtual std::unique_ptr<IBehavior> clone() const = 0;
     virtual ~IBehavior() = default;
 };
 
@@ -41,6 +42,7 @@ public:
     virtual void update(const sf::Time& dt) = 0;
     bool isReady() const { return currentCooldown >= cooldownTime; }
     void reset() { currentCooldown = 0; }
+    virtual std::unique_ptr<ICooldownBehavior> clone() const = 0;
 };
 
 class IWeaponAnimation
@@ -64,6 +66,7 @@ public:
     virtual void update(Weapon2& weapon, sf::Time dt) {};
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) {};
     virtual void handleEvent(const sf::Event& event) {};
+    virtual std::unique_ptr<IWeaponAnimation> clone() const = 0;
     virtual ~IWeaponAnimation() = default;
 
 public:

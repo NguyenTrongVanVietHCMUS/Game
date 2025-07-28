@@ -53,6 +53,9 @@ public:
         proj->update(sf::seconds(0)); // Initialize the projectile's animation
         Worldmap->pushEntity(proj);
     }
+    std::unique_ptr<IBehavior> clone() const override {
+        return std::make_unique<RangedWeaponBehavior>(*this);
+    }
 };
 
 
@@ -104,6 +107,9 @@ public:
         proj->update(sf::seconds(0)); // Initialize the projectile's animation
         Worldmap->pushEntity(proj);
     }
+    std::unique_ptr<IBehavior> clone() const override {
+        return std::make_unique<MeleeWeaponBehavior>(*this);
+    }
 };
 
 class ThrowBehavior : public IBehavior
@@ -141,7 +147,9 @@ public:
         proj->update(sf::seconds(0)); // Initialize the projectile's animation
         Worldmap->pushEntity(proj);
     }
-
+    std::unique_ptr<IBehavior> clone() const override {
+        return std::make_unique<ThrowBehavior>(*this);
+    }
 };
 
 class laserGunBehavior : public IBehavior
@@ -151,4 +159,7 @@ private:
 public:
     laserGunBehavior(State* worldmap) : Worldmap(worldmap) {}
     void activate(Weapon2& self, Entity* target) override ;
+    std::unique_ptr<IBehavior> clone() const override {
+        return std::make_unique<laserGunBehavior>(*this);
+    }
 };

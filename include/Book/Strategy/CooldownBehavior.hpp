@@ -11,4 +11,7 @@ public:
             currentCooldown += dt.asSeconds();
         }
     }
+    std::unique_ptr<ICooldownBehavior> clone() const override {
+        return std::make_unique<BasicCooldownBehavior>(*this);
+    }
 };

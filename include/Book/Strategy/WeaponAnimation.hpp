@@ -13,6 +13,9 @@ public:
                     const sf::Vector2f& middlePosition = sf::Vector2f(0, 0));
     void update(Weapon2& weapon, sf::Time dt) override;
     void draw(sf::RenderTarget& target, sf::RenderStates states) override;
+    std::unique_ptr<IWeaponAnimation> clone() const override {
+        return std::make_unique<SwordAnimation>(*this);
+    }
 };
 
 class GunAnimation : public IWeaponAnimation
@@ -28,4 +31,7 @@ public:
                  const sf::Vector2f& middlePosition = sf::Vector2f(0, 0));
     void update(Weapon2& weapon, sf::Time dt) override;
     void draw(sf::RenderTarget& target, sf::RenderStates states) override;
+    std::unique_ptr<IWeaponAnimation> clone() const override {
+        return std::make_unique<GunAnimation>(*this);
+    }
 };

@@ -33,7 +33,13 @@ public:
     Weapon2(std::string name, sf::Vector2f position, float cooldownTime, sf::Vector2f scaleBulletSpawnPosition,
         std::unique_ptr<IBehavior> behavior, std::unique_ptr<IWeaponAnimation> animation, State* map = nullptr)
         : behavior(std::move(behavior)), animation(std::move(animation)), cooldownBehavior(std::make_unique<BasicCooldownBehavior>(cooldownTime)), Entity(name, position), ScaleBulletSpawnPosition(scaleBulletSpawnPosition), CurrentMap(map) {};
-
+    
+    // This constructor is used by the WeaponBuilder class to create a weapon
+    Weapon2(std::string name, sf::Vector2f position,
+        std::unique_ptr<IBehavior> behavior, std::unique_ptr<IWeaponAnimation> animation,
+        std::unique_ptr<ICooldownBehavior> cooldownBehavior, sf::Vector2f scaleBulletSpawnPosition, State* map = nullptr)
+        : behavior(std::move(behavior)), animation(std::move(animation)), cooldownBehavior(std::move(cooldownBehavior)), Entity(name, position), ScaleBulletSpawnPosition(scaleBulletSpawnPosition), CurrentMap(map) {};
+ 
     Entity::Type ProjectileTypeTransform(Entity* entity) const;
     void setBehavior(std::unique_ptr<IBehavior> newBehavior);
     void setStat(const std::string& statName, float value);

@@ -6,6 +6,7 @@
 #include<Book/Strategy/WeaponAnimation.hpp>
 #include<Control/CameraManager.hpp>
 #include <Book/Strategy/StatusEffect/CameraEffect.hpp>
+#include <Control/WeaponBuilder.hpp>
 class Knight : public Character
 {
 public:
