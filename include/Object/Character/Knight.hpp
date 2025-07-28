@@ -7,6 +7,7 @@
 #include<Control/CameraManager.hpp>
 #include <Book/Strategy/StatusEffect/CameraEffect.hpp>
 #include <Control/WeaponBuilder.hpp>
+#include <Control/StrategyFactory.hpp>
 class Knight : public Character
 {
 public:
@@ -28,7 +29,7 @@ public:
                 this->position, // Position of the weapon
                 0.1f, // Cooldown time for the weapon
                 sf::Vector2(0.6f,-0.2f),
-                std::make_unique<RangedWeaponBehavior>(state, 500.0f, 0.0f), // Ranged weapon behavior with speed
+                std::make_unique<RangedWeaponBehavior>(state, 500.0f, 0.0f), 
                 std::make_unique<GunAnimation>(
                     0.2f, // Total time for the animation
                     0.4f, // Scale of the animation
