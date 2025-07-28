@@ -9,6 +9,16 @@ void Inventory::addWeapon(std::shared_ptr<Weapon2> weapon) {
     }
 }
 
+void Inventory::addWeapon(std::shared_ptr<Weapon2> weapon, Entity *owner) {
+    if (weapons.size() < MaxWeapon) {
+        weapon->switchHold(true, owner); // Set the weapon to be held by the owner
+        weapons.push_back(std::move(weapon));
+        CurrentWeaponIndex = weapons.size() - 1; // Set the current weapon to the newly added one
+    } else {
+        std::cerr << "Inventory is full, cannot add more weapons." << std::endl;
+    }
+}
+
 
 void Inventory::removeWeapon(std::shared_ptr<Weapon2> weapon) {
     auto it = std::find(weapons.begin(), weapons.end(), weapon);

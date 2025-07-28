@@ -1,31 +1,51 @@
-[
-    {
-        "name": "Pistol",
-        "type": "Gun",
-        "cooldownTime": 0.5,
-        "damage": 10.0,
-        "speed": 800.0
-    },
-    {
-        "name": "Sniper",
-        "type": "Gun",
-        "cooldownTime": 1.5,
-        "damage": 50.0,
-        "speed": 2000.0
-    },
-    {
-        "name": "RapidGun",
-        "type": "Gun",
-        "cooldownTime": 0.1,
-        "damage": 5.0,
-        "speed": 1000.0
-    },
-    {
-        "name": "TestGun",
-        "type": "Gun",
-        "cooldownTime": 0.1,
-        "damage": 5.0,
-        "speed": 700.0
-    }
+{
+  "AK47": {
+    "name": "AK47",
+    "position": { "x": 150, "y": 75 },
 
-]
+    "behavior": {
+      "type": "Ranged Weapon Behavior",
+      "projectileSpeed": 1200.0,
+      "spreadAngle": 0.0
+    },
+
+    "animation": {
+      "type": "Gun Animation",
+      "totalTime": 0.3,
+      "scale": 1.0,
+      "texture": "Media/Assets/Weapons/Gun/AK_47.png",
+      "startAngle": 10.0,
+      "endAngle": 0.0,
+      "recoilOffset": 0.05
+    },
+
+    "cooldownTime": 0.15,
+
+    "scaleBulletSpawnPosition": { "x": 0.6, "y": -0.2 }
+  },
+
+  "Shotgun": {
+    "name": "Shotgun",
+    "position": { "x": 200, "y": 100 },
+
+    "behavior": {
+      "type": "Ranged Weapon Behavior",
+      "projectileSpeed": 700.0,
+      "spreadAngle": 25.0
+    },
+
+    "animation": {
+      "type": "Gun Animation",
+      "totalTime": 0.4,
+      "scale": 1.2,
+      "texture": "assets/textures/shotgun.png",
+      "startAngle": -10.0,
+      "endAngle": 10.0,
+      "recoilOffset": 0.1
+    },
+
+    "cooldownTime": 1.0,
+
+    "scaleBulletSpawnPosition": { "x": 0.6, "y": 0.4 }
+  }
+}

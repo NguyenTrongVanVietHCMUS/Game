@@ -3,6 +3,7 @@
 #include <nlohmann/json.hpp>
 #include <Control/State.hpp>
 #include <Book/Strategy/WeaponBehavior.hpp>
+#include <Book/Strategy/WeaponAnimation.hpp>
 using json = nlohmann::json;
 
 class StrategyFactory
@@ -18,9 +19,22 @@ public:
         throw std::runtime_error("Unknown behavior type: " + data.at("type").get<std::string>());
     }
 
+    static std::unique_ptr<IWeaponAnimation> createAnimation(const json& data, Entity* owner)
+    {
+        auto it = animationRegistry().find(data.at("type").get<std::string>());
+        if (it != animationRegistry().end())
+        {
+            return it->second(data, owner);
+        }
+        throw std::runtime_error("Unknown animation type: " + data.at("type").get<std::string>());
+    }
+
 private:
     using BehaviorFactoryMap = std::unordered_map<std::string, std::function<std::unique_ptr<IBehavior>(const json&, State*)>>;
+    using AnimationFactoryMap = std::unordered_map<std::string, std::function<std::unique_ptr<IWeaponAnimation>(const json&, Entity*)>>;
 
+private:
+    static std::unordered_map<std::string, sf::Texture*> textureCache;
 private:
     // Factory methods for each type of behavior
     static BehaviorFactoryMap& behaviorRegistry()
@@ -33,5 +47,42 @@ private:
             }}
         };
         return registry;
+    }
+
+    static AnimationFactoryMap& animationRegistry()
+    {
+        static AnimationFactoryMap registry{
+            {"Gun Animation", [](const json& data, Entity* owner){
+                return std::make_unique<GunAnimation>(
+                    data.at("totalTime").get<float>(),
+                    data.at("scale").get<float>(),
+                    getTexture(data.at("texture").get<std::string>()),
+                    owner? owner->getPosition() : sf::Vector2f{0.0f, 0.0f},
+                    data.value("startAngle", 0.0f),
+                    data.value("endAngle", 0.0f),
+                    data.value("recoilOffset", 0.0f),
+                    owner,
+                    sf::Vector2f(0.4f, 0.6f)
+                );
+            }}
+        };
+        return registry;
+    }
+
+private:
+    static sf::Texture* getTexture(const std::string& texturePath)
+    {
+        auto it = textureCache.find(texturePath);
+        if (it != textureCache.end())
+        {
+            return it->second;
+        }
+        sf::Texture* texture = new sf::Texture();
+        if (!texture->loadFromFile(texturePath))
+        {
+            throw std::runtime_error("Failed to load texture: " + texturePath);
+        }
+        textureCache[texturePath] = texture;
+        return texture;
     }
 };

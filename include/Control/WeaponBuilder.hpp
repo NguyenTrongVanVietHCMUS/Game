@@ -58,17 +58,15 @@ public:
         return *this;
     }
 
-    Weapon2 build()
+    std::shared_ptr<Weapon2> build()
     {
-        std::unique_ptr<IBehavior> behaviorPtr = _behavior? _behavior->clone() : nullptr;
-        std::unique_ptr<IWeaponAnimation> animationPtr = _animation? _animation->clone() : nullptr;
-        std::unique_ptr<ICooldownBehavior> cooldownBehaviorPtr = _cooldownBehavior? _cooldownBehavior->clone() : nullptr;
-        return Weapon2(
+
+        return std::make_shared<Weapon2>(
             _name,
             _position,
-            std::move(behaviorPtr),
-            std::move(animationPtr),
-            std::move(cooldownBehaviorPtr),
+            std::move(_behavior),
+            std::move(_animation),
+            std::move(_cooldownBehavior),
             _scaleBulletSpawnPosition,
             _worldmap
         );

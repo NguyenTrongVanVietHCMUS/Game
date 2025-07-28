@@ -76,6 +76,7 @@ public:
     }
 
     void SetOwner(Entity* newOwner) {
+		std::cerr << "Setting owner of weapon animation to " << newOwner->name << std::endl;
         owner = newOwner;
     }
 };

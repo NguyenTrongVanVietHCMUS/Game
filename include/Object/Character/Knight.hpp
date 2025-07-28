@@ -6,13 +6,15 @@
 #include<Book/Strategy/WeaponAnimation.hpp>
 #include<Control/CameraManager.hpp>
 #include <Book/Strategy/StatusEffect/CameraEffect.hpp>
-#include <Control/WeaponBuilder.hpp>
-#include <Control/StrategyFactory.hpp>
+#include<Control/WeaponLoader.hpp>
+
+
 class Knight : public Character
 {
 public:
     Knight(sf::Vector2f position,State* state, CameraManager* cameraManager = nullptr): Character("Knight", position, state, cameraManager)
     {
+        WeaponLoader weaponLoader(state);
         type = Entity::Type::Ally; 
         movingAnimation = std::make_unique<Character_MovingAnimation>(
             &ResourceManager::getInstance().get<sf::Texture>(Textures::ID::Knight),
@@ -23,27 +25,12 @@ public:
             this
         );  
         statusEffect.push_back(std::make_shared<FollowCameraEffect>(cameraManager, this)); // Add follow camera effect
-        inventory->addWeapon(
-            std::make_shared<Weapon2>(
-                "AK_47",
-                this->position, // Position of the weapon
-                0.1f, // Cooldown time for the weapon
-                sf::Vector2(0.6f,-0.2f),
-                std::make_unique<RangedWeaponBehavior>(state, 500.0f, 0.0f), 
-                std::make_unique<GunAnimation>(
-                    0.2f, // Total time for the animation
-                    0.4f, // Scale of the animation
-                    &ResourceManager::getInstance().get<sf::Texture>(Textures::ID::AK_47), // Texture for the gun animation
-                    this->position, // Position of the gun animation
-                    10.0f, // Start angle of the gun animation
-                    0.0f, // End angle of the gun animation
-                    25.0f, // Recoil offset for the gun animation
-                    this, // Owner of the gun animation
-                    sf::Vector2f(0.4f, 0.6f) // Middle position for the gun animation
-                ),
-                state
-            )
-        );
+        
+        try {
+            inventory->addWeapon(weaponLoader.LoadWeapons("AK47"), this); // Load the weapon from JSON file
+        } catch (const std::exception& e) {
+            std::cerr << "Failed to create inventory: " << e.what() << std::endl;
+        }
         sf::Texture* swordTexture = new sf::Texture();
         if (!swordTexture->loadFromFile("Media/Assets/Weapons/sword/Scythe.png")) {
             std::cerr << "Failed to load sword texture\n";

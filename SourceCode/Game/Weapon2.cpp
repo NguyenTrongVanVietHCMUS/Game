@@ -105,6 +105,11 @@ Entity::Type Weapon2::ProjectileTypeTransform(Entity* entity) const {
 void Weapon2::switchHold( bool ishold, Entity* owner)
 {
     if(this->ishold == ishold) {
+        if (owner) {
+            if (animation) {
+                animation->SetOwner(owner); // Set the owner for the animation
+            }
+        }
         return; // No change in hold state
     }
     this->ishold = ishold;

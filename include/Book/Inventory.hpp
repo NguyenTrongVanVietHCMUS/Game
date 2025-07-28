@@ -17,6 +17,7 @@ public:
     ~Inventory() = default;
 
     void addWeapon(std::shared_ptr<Weapon2> weapon);
+    void addWeapon(std::shared_ptr<Weapon2> weapon, Entity *owner);
     //void addSkill(std::shared_ptr<Skill> skill);
 
     void removeWeapon(std::shared_ptr<Weapon2> weapon);
