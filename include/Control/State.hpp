@@ -66,8 +66,7 @@ class State
 	protected :
 		StateStack*			mStack;
 		Context				mContext;
-		TileMap* map ; 
-	
+		TileMap*			map; 
 
 	private:
 		std::vector<std::shared_ptr<Entity>> _OwnershipReference; // To keep track of entities owned by this state

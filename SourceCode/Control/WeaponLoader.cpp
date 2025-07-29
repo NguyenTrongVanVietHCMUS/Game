@@ -38,3 +38,23 @@ std::shared_ptr<Weapon2> WeaponLoader::LoadWeapons(std::string weaponName) {
     return builder.build();
 
 }
+
+std::shared_ptr<Weapon2> WeaponLoader::LoadRandomWeapon() {
+    if (!file.is_open()) {
+        throw std::runtime_error("Failed to open weapon file for random weapon selection.");
+    }
+
+    json weaponData;
+    file >> weaponData;
+
+    // Get a random weapon name from the JSON data
+    if (weaponData.empty()) {
+        throw std::runtime_error("No weapons available in the file.");
+    }
+
+    auto it = weaponData.begin();
+    std::advance(it, rand() % weaponData.size()); // Randomly select a weapon
+    std::string randomWeaponName = it.key();
+
+    return LoadWeapons(randomWeaponName);
+}

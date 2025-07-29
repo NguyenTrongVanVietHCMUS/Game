@@ -12,6 +12,7 @@ class WeaponLoader
 public:
     WeaponLoader(State* state, std::string filename = "Media/Config/weaponsList.json") : mState(state), file(filename) {}
     std::shared_ptr<Weapon2> LoadWeapons(std::string weaponName);
+    std::shared_ptr<Weapon2> LoadRandomWeapon();
 private:
     std::ifstream file;
     State* mState;
