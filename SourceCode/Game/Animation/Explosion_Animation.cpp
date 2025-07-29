@@ -6,6 +6,7 @@ Explosion_Animation::Explosion_Animation(sf::Texture* texture, sf::Vector2u imag
 
 Explosion_Animation::~Explosion_Animation()
 {
+    delete texture; // Clean up the texture if it was dynamically allocated
     // Destructor logic if needed
 }
 

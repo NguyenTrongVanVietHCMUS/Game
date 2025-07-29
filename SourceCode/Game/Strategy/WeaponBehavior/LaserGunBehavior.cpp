@@ -15,14 +15,14 @@ void laserGunBehavior::activate(Weapon2& self, Entity* target) {
     if(raycast.entity)
     {
         std::cerr << "Laser hit entity: " << raycast.entity->name << " at position: " << raycast.position.x << ", " << raycast.position.y << std::endl;
-        
-        auto proj = new Projectile2(
+    } else std::cerr << "Laser did not hit any entity." << std::endl;
+    auto proj = new Projectile2(
             "Aim Target",
-            0.05f, // as seconds represent life time of the projectile
+            0.5f, // as seconds represent life time of the projectile
             target->position,
             Worldmap,
             "Media/Assets/Projectiles/Laser.png", // Path to the projectile texture
-            std::make_unique<LaserAimMovement>(0.0f, SpawnPosition, raycast.position, Worldmap), // Laser beam movement strategy
+            std::make_unique<LaserAimMovement>(0.1f, SpawnPosition, raycast.position, Worldmap), // Laser beam movement strategy
             nullptr
         );
         std::cerr << "Creating laser aim animation.\n";
@@ -37,6 +37,4 @@ void laserGunBehavior::activate(Weapon2& self, Entity* target) {
         proj->type = self.ProjectileTypeTransform(target); // Transform the projectile type based on the target type
         proj->update(sf::seconds(0));
         Worldmap->pushEntity(proj);
-        
-    } else std::cerr << "Laser did not hit any entity." << std::endl;
 }

@@ -383,6 +383,7 @@ void TileMap::updateQueueEntities()
     {
         if (entity)
         {
+            std::cerr << "Deleting entity: " << entity->name << " at position: " << entity->position.x << ", " << entity->position.y << std::endl;
             delete entity; // Clean up the entity if it was dynamically allocated
         }
     }

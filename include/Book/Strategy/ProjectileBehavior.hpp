@@ -115,10 +115,11 @@ public:
         elapsedTime += dt.asSeconds();
         if (elapsedTime >= aimTime) {
             // Logic for when the laser beam is ready to fire
+            aimTime = 1000000.0f;
             elapsedTime = 0.0f; // Reset the timer
             auto proj = new Projectile2(
                 "LaserBeam",
-                0.05f, // Lifetime of the laser beam
+                0.2f, // Lifetime of the laser beam
                 startPosition,
                 Worldmap,
                 "Media/Assets/Projectiles/Laser.png", // Path to the laser beam texture

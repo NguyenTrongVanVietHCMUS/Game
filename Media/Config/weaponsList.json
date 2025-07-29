@@ -12,7 +12,7 @@
     "animation": {
       "type": "Gun Animation",
       "totalTime": 0.3,
-      "scale": 1.0,
+      "scale": 0.4,
       "texture": "Media/Assets/Weapons/Gun/AK_47.png",
       "startAngle": 10.0,
       "endAngle": 0.0,

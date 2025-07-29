@@ -186,6 +186,10 @@ public:
             sprite.setScale(scale, 1.0f);
             sprite.setOrigin(0.0f, sprite.getGlobalBounds().height / 2.0f); // Center the sprite vertically
         }
-
+    ~LaserAnimation() {
+        if (texture) {
+            delete texture; // Clean up the texture if it was dynamically allocated
+        }
+    }
     void update(sf::Time dt) override;
 };

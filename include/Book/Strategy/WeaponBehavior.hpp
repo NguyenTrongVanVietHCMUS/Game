@@ -120,7 +120,7 @@ public:
     ThrowBehavior(State* worldmap) : Worldmap(worldmap) {}
 
     void activate(Weapon2& self, Entity* target) override {
-        sf::Texture* bombText = new sf::Texture(ResourceManager::getInstance().get<sf::Texture>(Textures::ID::bomb));
+        sf::Texture* bombText = &ResourceManager::getInstance().get<sf::Texture>(Textures::ID::bomb);
         float posX = self.getStat("TargetPosX");
         float posY = self.getStat("TargetPosY");
         std::cerr << "Position X: " << posX << ", Y: " << posY << std::endl;
