@@ -1,15 +1,19 @@
 #include <Control/WeaponLoader.hpp>
 #include <Book/Weapon2.hpp>
-
+#include <Control/State.hpp>
 std::shared_ptr<Weapon2> WeaponLoader::LoadWeapons(std::string weaponName) {
+    std::cerr << "Loading weapon: " << weaponName << std::endl;
+    std::ifstream file = std::ifstream(filePath);
     if (!file.is_open()) {
+        std::cerr << "Failed to open weapon file: " << weaponName << std::endl;
         throw std::runtime_error("Failed to open weapon file: " + weaponName);
     }
-
+    std::cerr << "Weapon file opened successfully.\n";
     json weaponData;
     file >> weaponData;
 
     // get the weapon data by name
+    std::cerr << "Loading weapon: " << weaponName << std::endl;
     if (!weaponData.contains(weaponName)) {
         throw std::runtime_error("Weapon not found: " + weaponName);
     }
@@ -33,13 +37,15 @@ std::shared_ptr<Weapon2> WeaponLoader::LoadWeapons(std::string weaponName) {
             weaponData[weaponName]["scaleBulletSpawnPosition"]["y"]
         ));
     }
-
+    file.close(); // Close the file after reading
     // Build and return the weapon
     return builder.build();
 
 }
 
 std::shared_ptr<Weapon2> WeaponLoader::LoadRandomWeapon() {
+    std::cerr << "Creating a random weapon\n";
+    std::ifstream file = std::ifstream(filePath);
     if (!file.is_open()) {
         throw std::runtime_error("Failed to open weapon file for random weapon selection.");
     }
@@ -55,6 +61,8 @@ std::shared_ptr<Weapon2> WeaponLoader::LoadRandomWeapon() {
     auto it = weaponData.begin();
     std::advance(it, rand() % weaponData.size()); // Randomly select a weapon
     std::string randomWeaponName = it.key();
-
+    std::cerr << "Random weapon selected: " << randomWeaponName << std::endl;
+    // close the file after reading
+    file.close();
     return LoadWeapons(randomWeaponName);
 }

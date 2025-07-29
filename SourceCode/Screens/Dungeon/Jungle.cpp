@@ -12,7 +12,7 @@ Jungle::Jungle(StateStack& stack,Context context):
     map->entities.push_back(new Boar(map->startingPoint,this)); // Add a Boar entity to the 
     map->entities.push_back(new GoblinShooter(map->startingPoint,this)); 
     context.music->play(Music::Jungle);
-
+    map->setWeaponLoader(weaponLoader); // Set the weapon loader for the map
 
 
     statPlayer.setPlayer(map->getPlayer()); 

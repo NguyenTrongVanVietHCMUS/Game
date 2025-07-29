@@ -4,6 +4,7 @@
 #include <Book/Strategy/CooldownBehavior.hpp>
 #include <Book/Entity.hpp>
 #include <Control/State.hpp>
+#include <Control/State.hpp>
 class Weapon2 : public Entity
 {
 private:
@@ -53,4 +54,10 @@ public:
     void switchHold( bool isHold, Entity* owner = nullptr);
 public:
     sf::Vector2f GetProjectileSpawnPosition() const;
+    sf::Texture* getTexture() const {
+        if (animation) {
+            return animation->getTexture();
+        }
+        return nullptr; // Return nullptr if no animation is set
+    }
 };

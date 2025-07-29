@@ -6,11 +6,12 @@
 #include <Object/Object.hpp>
 #include <Object/Decorator.hpp>
 #include <Control/CameraManager.hpp>
-#include<set>
+#include <set>
 using json = nlohmann::json;
 
-
+class WeaponLoader;
 class Character;  
+
 class Layer:public sf::Drawable 
 {
 public:
@@ -150,7 +151,7 @@ private:
 private: 
     std::string File;
     std::vector<Layer*> layers; 
-
+    WeaponLoader* weaponLoader; // Reference to the weapon loader for loading weapons
 
 public:
     TileMap();
@@ -165,7 +166,9 @@ public:
     bool handleEvent(const sf::Event& event, sf::RenderWindow* window);
     bool update(sf::Time dt);
     void draw(sf::RenderTarget& target, sf::RenderStates states)const; 
-
+    void setWeaponLoader(WeaponLoader* weaponLoader) {
+        this->weaponLoader = weaponLoader; 
+    }
 
 
     Character* getPlayer()const;

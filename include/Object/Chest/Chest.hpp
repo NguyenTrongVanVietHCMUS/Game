@@ -7,6 +7,7 @@ class Chest :public Object
 {
 private:
 	std::shared_ptr<Weapon2> items = nullptr;
+	bool itemAdded = false;
 public: 
 	Chest(sf::Vector2f position,Hitbox hibox ,float scalex , float scaley); 
 	Chest(sf::Vector2f position, Hitbox hitbox, float scalex, float scaley, WeaponLoader& weaponLoader);
@@ -14,6 +15,9 @@ public:
 	// I need weapon loader to load random weapon
 	virtual void collide(Entity* entity);
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+
 public:
 	std::shared_ptr<Weapon2> getItems();
+	void setItems(std::shared_ptr<Weapon2> newItems);
+	bool isItemAdded() const { return itemAdded; }
 };

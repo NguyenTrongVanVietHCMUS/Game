@@ -7,7 +7,6 @@
 #include<Book/TileMap.hpp>
 #include <memory>
 
-
 namespace sf
 {
 	class RenderWindow;
@@ -15,6 +14,7 @@ namespace sf
 class StateStack;
 class MusicPlayer;
 class SoundPlayer;
+class WeaponLoader;
 class State
 {
 	public:
@@ -66,8 +66,8 @@ class State
 	protected :
 		StateStack*			mStack;
 		Context				mContext;
-		TileMap*			map; 
-
+		TileMap*			map = nullptr; 
+		WeaponLoader*		weaponLoader; // Pointer to the weapon loader for loading weapons
 	private:
 		std::vector<std::shared_ptr<Entity>> _OwnershipReference; // To keep track of entities owned by this state
 };

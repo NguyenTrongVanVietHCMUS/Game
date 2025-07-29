@@ -70,6 +70,11 @@ public:
     virtual ~IWeaponAnimation() = default;
 
 public:
+    sf::Texture* getTexture() const {
+        return texture; // Return the texture of the weapon animation
+    }
+
+public:
     sf::Vector2f getSpriteSize() const {
         return sf::Vector2f(sprite.getTexture()->getSize().x * sprite.getScale().x, 
                         sprite.getTexture()->getSize().y * sprite.getScale().y);

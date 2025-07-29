@@ -7,13 +7,14 @@ Lobby::Lobby(StateStack& stack,Context context):
 {         
     map = new TileMap(ResourceManager::getInstance().get<TileMap>(Map::ID::Lobby)); 
     map->entities.push_back(new Knight(map->startingPoint, this, &map->camera)); // Adjusted to match the new Knight constructor
-
+    map->setWeaponLoader(weaponLoader); // Set the weapon loader for the map
     statPlayer.setPlayer(map->getPlayer()); 
 }
 
 Lobby::~Lobby()
 {
     delete map;
+    delete weaponLoader;
 }
 
 void Lobby::draw() 

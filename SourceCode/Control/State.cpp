@@ -1,6 +1,6 @@
 #include "Control/State.hpp"
 #include "Control/StateStack.hpp"
-
+#include "Control/WeaponLoader.hpp"
 State::Context::Context(sf::RenderWindow& window, TextureHolder& textures, FontHolder& fonts, MusicPlayer& music, SoundPlayer& sounds, MapHolder& maps)
 : window(&window)
 , textures(&textures)
@@ -16,10 +16,12 @@ State::State(StateStack& stack, Context context)
 : mStack(&stack)
 , mContext(context)
 {
+	weaponLoader = new WeaponLoader(this); // Initialize the weapon loader with the current state
 }
 
 State::~State()
 {
+	
 }
 
 void State::requestStackPush(States::ID stateID)

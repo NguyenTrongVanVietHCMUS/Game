@@ -53,7 +53,7 @@ bool Weapon2::update(sf::Time dt)
 
 void Weapon2::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-    if (animation) {
+        if (animation) {
         animation->draw(target, states);
     }
     sf::CircleShape dot(3);

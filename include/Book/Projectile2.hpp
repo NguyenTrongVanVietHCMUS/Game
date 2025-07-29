@@ -3,6 +3,7 @@
 #include <Book/StrategyClass.hpp>
 #include <Control/State.hpp>
 #include <Book/MovingAnimation.hpp>
+#include <Control/State.hpp>
 class Projectile2 : public Entity
 {
 private:

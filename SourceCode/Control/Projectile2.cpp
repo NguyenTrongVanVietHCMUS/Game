@@ -1,5 +1,5 @@
 #include <Book/Projectile2.hpp>
-
+#include <Control/State.hpp>
 void Projectile2::setBehavior(std::unique_ptr<IMovement> movement, std::unique_ptr<ICollision> collision)
 {
     if (movement) {

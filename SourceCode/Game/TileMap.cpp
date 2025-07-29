@@ -5,6 +5,8 @@
 #include<Book/Enemy.hpp>
 #include<Object/Decorator.hpp>
 #include<Object/Chest/Chest.hpp>
+#include <Control/WeaponLoader.hpp>
+#include <Control/WeaponBuilder.hpp>
 TileMap::TileMap()
 {
 
@@ -330,6 +332,21 @@ bool TileMap::update(sf::Time dt)
         if (auto enemy = dynamic_cast<Enemy*>(x))
         {
             enemy->update(player, dt); 
+        }
+        if (auto chest = dynamic_cast<Chest*>(x))
+        {
+            if (!chest->isItemAdded())
+            {
+                try
+                {
+                    chest->setItems(weaponLoader->LoadRandomWeapon());
+                }
+                catch(const std::exception& e)
+                {
+                    std::cerr << e.what() << '\n';
+                }
+                
+            }
         }
     }
     for (auto& x : entities)x->update(dt); 
