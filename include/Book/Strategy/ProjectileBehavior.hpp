@@ -7,10 +7,10 @@ class StraightMovement : public IMovement
 {
 private:
     float speedX, speedY;
-
+    float speed;
 public:
     StraightMovement(float speedX, float speedY) : speedX(speedX), speedY(speedY) {}
-
+    StraightMovement(float speed) : speed(speed) {}
     void update(Projectile2& projectile, const sf::Time &dt) override
     {
         // Update the position of the projectile based on its speed and the elapsed time
@@ -22,6 +22,17 @@ public:
     std::unique_ptr<IMovement> clone() const override
     {
         return std::make_unique<StraightMovement>(*this);
+    }
+
+    virtual void setDirection(sf::Vector2f direction) override
+    {
+        // Normalize the direction vector and set the speed components
+        float length = std::sqrt(direction.x * direction.x + direction.y * direction.y);
+        if (length > 0)
+        {
+            speedX = (direction.x / length) * speed;
+            speedY = (direction.y / length) * speed;
+        }
     }
 };
 
@@ -42,6 +53,16 @@ public:
     std::unique_ptr<IMovement> clone() const override
     {
         return std::make_unique<FollowMovement>(*this);
+    }
+    void setDirection(sf::Vector2f direction) override
+    {
+        // Normalize the direction vector and set the speed components
+        float length = std::sqrt(direction.x * direction.x + direction.y * direction.y);
+        if (length > 0)
+        {
+            speedX = (direction.x / length) * speed;
+            speedY = (direction.y / length) * speed;
+        }
     }
 };
 

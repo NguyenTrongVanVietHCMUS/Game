@@ -32,7 +32,7 @@ public:
 private:
     using BehaviorFactoryMap = std::unordered_map<std::string, std::function<std::unique_ptr<IBehavior>(const json&, State*)>>;
     using AnimationFactoryMap = std::unordered_map<std::string, std::function<std::unique_ptr<IWeaponAnimation>(const json&, Entity*)>>;
-
+    using MovingBehaviorFactoryMap = std::unordered_map<std::string, std::function<std::unique_ptr<IMovement>(const json&, State*)>>;
 private:
     static std::unordered_map<std::string, sf::Texture*> textureCache;
 private:
@@ -64,6 +64,28 @@ private:
                     owner,
                     sf::Vector2f(0.4f, 0.6f)
                 );
+            }}
+        };
+        return registry;
+    }
+
+    static MovingBehaviorFactoryMap& movingBehaviorRegistry()
+    {
+        static MovingBehaviorFactoryMap registry{
+            {"Follow Movement", [](const json& data, State* map){
+                return std::make_unique<FollowMovement>(
+                    data.at("speedX").get<float>(),
+                    data.at("speedY").get<float>(),
+                    data.at("projectileSpeed").get<float>(),
+                    map,
+                    data.value("maxDistance", 60.0f));
+            }},
+            {"Laser Aim Movement", [](const json& data, State* map){
+                return std::make_unique<LaserAimMovement>(
+                    data.at("aimTime").get<float>(),
+                    sf::Vector2f(data.at("startPositionX").get<float>(), data.at("startPositionY").get<float>()),
+                    sf::Vector2f(data.at("endPositionX").get<float>(), data.at("endPositionY").get<float>()),
+                    map);
             }}
         };
         return registry;

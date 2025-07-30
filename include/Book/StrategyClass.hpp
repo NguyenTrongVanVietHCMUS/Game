@@ -5,10 +5,13 @@ class Projectile2;
 class Weapon2;
 struct IMovement
 {
+protected:
+public:
     bool isActive = true;
     virtual void update(Projectile2& projectile,const sf::Time &dt) = 0;
     virtual std::unique_ptr<IMovement> clone() const = 0;
     virtual ~IMovement() = default;
+    virtual void setDirection(sf::Vector2f direction) {};
 };
 
 struct ICollision
