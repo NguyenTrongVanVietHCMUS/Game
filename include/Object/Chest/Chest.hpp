@@ -17,7 +17,8 @@ public:
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
 public:
-	std::shared_ptr<Weapon2> getItems();
+	std::shared_ptr<Weapon2> getItems(); // Get the items from the chest
+	void takeItem(std::shared_ptr<Weapon2> &item); // Take the item away from the chest
 	void setItems(std::shared_ptr<Weapon2> newItems);
 	bool isItemAdded() const { return itemAdded; }
 };

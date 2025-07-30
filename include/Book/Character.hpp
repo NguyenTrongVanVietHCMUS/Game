@@ -11,7 +11,7 @@ class MovingAnimation;
 class Character : public Entity
 {
 protected:
-    float pickupRange = 50.0f;
+    float pickupRange = 150.0f;
 protected: 
     virtual sf::Vector2f getHandPosition()const; 
 protected : 

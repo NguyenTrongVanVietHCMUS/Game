@@ -1,5 +1,6 @@
 #include <Book/Character.hpp>
 #include<Book/MovingAnimation.hpp>
+#include<Object/Chest/Chest.hpp>
 Character::Character(
     std::string name , 
     sf::Vector2f position,
@@ -49,18 +50,29 @@ bool Character::handleEvent(const sf::Event& event,sf::RenderWindow*window)
             if(map){
 
                 std::cerr << "F key pressed, trying to pick up the nearest weapon." << std::endl;
-                Entity* NearestWeapon = map->GetClosestEntity(Entity::Type::Weapon, getPosition());
+                Entity* NearestWeapon = map->GetClosestItem(getPosition());
                 if(NearestWeapon)
                 {
                     sf::Vector2f distance = NearestWeapon->getPosition() - getPosition();
                     float length = std::sqrt(distance.x * distance.x + distance.y * distance.y);
                     if(length <= pickupRange){
-                        std::shared_ptr<Weapon2> weapon = std::dynamic_pointer_cast<Weapon2>(NearestWeapon->shared_from_this());
+                
+                        std::shared_ptr<Weapon2> weapon = nullptr;
+                        if(auto item = dynamic_cast<Weapon2*>(NearestWeapon)) {
+                            weapon = std::dynamic_pointer_cast<Weapon2>(item->shared_from_this()); // Create a shared pointer to the weapon
+                        } else if(auto chest = dynamic_cast<Chest*>(NearestWeapon)) {
+                            chest->takeItem(weapon); // Take the item away from the chest
+                        }else 
+                        {
+                            std::cerr << "Nearest entity is not a Weapon2 or Chest." << std::endl;
+                            return false; // Exit if the nearest entity is not a weapon or chest
+                        }
                         weapon->switchHold(true, this); // Switch hold state to true
                         inventory->addWeapon(weapon); // Add the nearest weapon to the inventory
                     }
+                } else {
+                    std::cerr << "No nearest weapon found." << std::endl;
                 }
-                
             }
         }
         if(event.key.code == sf::Keyboard::Space)

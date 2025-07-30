@@ -1,6 +1,7 @@
 #include "Control/State.hpp"
 #include "Control/StateStack.hpp"
 #include "Control/WeaponLoader.hpp"
+#include "Object/Chest/Chest.hpp"
 State::Context::Context(sf::RenderWindow& window, TextureHolder& textures, FontHolder& fonts, MusicPlayer& music, SoundPlayer& sounds, MapHolder& maps)
 : window(&window)
 , textures(&textures)
@@ -114,6 +115,40 @@ Entity* State::GetClosestEntity(Entity::Type type, sf::Vector2f position) const
 				closestEntity = entity;
 			} 
 		
+		}
+	}
+	return closestEntity;
+}
+
+Entity* State::GetClosestItem(sf::Vector2f position) const
+{
+	float ClosestDistance = 10000.0f; // Define a distance threshold for "closest"
+	Entity* closestEntity = nullptr;
+	if(map)
+	{
+		for(const auto& entity : map->entities)
+		{
+			sf::Vector2f entityPosition = entity->getPosition();
+			float distance = std::sqrt(std::pow(entityPosition.x - position.x, 2) + std::pow(entityPosition.y - position.y, 2));
+			if(distance < ClosestDistance && entity->type == Entity::Type::Weapon)
+			{
+				// If this entity is closer than the current closest, update closestEntity
+				ClosestDistance = distance;
+				closestEntity = entity;
+			} 
+			if(auto chest = dynamic_cast<Chest*>(entity)) // Check if the entity is a Chest
+			{
+				
+				if(chest->getItems() != nullptr)
+				{
+					float itemDistance = std::sqrt(std::pow(chest->getItems()->getPosition().x - position.x, 2) + std::pow(chest->getItems()->getPosition().y - position.y, 2));
+					if(itemDistance < ClosestDistance)
+					{
+						ClosestDistance = itemDistance;
+						closestEntity = entity;
+					}
+				}
+			}
 		}
 	}
 	return closestEntity;

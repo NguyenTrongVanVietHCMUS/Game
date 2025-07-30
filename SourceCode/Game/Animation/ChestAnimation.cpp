@@ -138,5 +138,11 @@ void ChestAnimation::setItems(std::shared_ptr<Weapon2> newItems)
 			itemsSprite->setPosition(items->position);
 			itemsSprite->setScale(0.4, 0.4);
 		}
+	} else {
+		items = nullptr;
+		if (itemsSprite) {
+			delete itemsSprite; // Clean up the items sprite if it was created
+			itemsSprite = nullptr;
+		}
 	}
 }

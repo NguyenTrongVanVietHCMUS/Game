@@ -30,8 +30,19 @@ void Chest::collide(Entity* other)
 std::shared_ptr<Weapon2> Chest::getItems()
 {
 	std::shared_ptr<Weapon2> result = items;
-	items = nullptr;
 	return result;
+}
+
+void Chest::takeItem(std::shared_ptr<Weapon2> &item)
+{
+	item = items;
+	if(items)
+	{
+		if(auto chestAnim = dynamic_cast<ChestAnimation*>(interactingAnimation.get())) {
+			chestAnim->setItems(nullptr); // Clear the items in the animation
+			
+		}
+	}
 }
 
 void Chest::setItems(std::shared_ptr<Weapon2> newItems)
