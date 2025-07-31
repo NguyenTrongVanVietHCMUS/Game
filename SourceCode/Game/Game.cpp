@@ -18,6 +18,9 @@ Game::Game()
 			ResourceManager::getInstance().load<sf::Texture>(Textures::ID::Knight, "Media/Assets/Characters/Knight/knight_1.png");
 			ResourceManager::getInstance().load<sf::Texture>(Textures::ID::Boar, "Media/Assets/Mobs/Boar/NormalBoar.png"); 
 			ResourceManager::getInstance().load<sf::Texture>(Textures::ID::GoblinShooter, "Media/Assets/Mobs/GoblinShooter/GoblinShooter.png");
+			ResourceManager::getInstance().load<sf::Texture>(Textures::ID::SwordMinion, "Media/Assets/TileSets/Enemy/SwordMinion.png");
+
+			ResourceManager::getInstance().load<sf::Texture>(Textures::ID::SwordMinionSword, "Media/Assets/TileSets/Weapons/SwordMinionSword.png");
 			ResourceManager::getInstance().load<sf::Texture>(Textures::ID::bomb, "Media/Assets/Projectiles/bomb.png");
 			ResourceManager::getInstance().load<sf::Texture>(Textures::ID::AK_47, "Media/Assets/Weapons/gun/AK_47.png");
 

@@ -16,8 +16,11 @@ namespace Textures
 		Knight,
 		Boar,
 		GoblinShooter,
+		SwordMinion,
+
+
 		AK_47,
-		TitleScreen,
+		SwordMinionSword,
 		Buttons,
 		ExtraButtons,
 		Explosion,

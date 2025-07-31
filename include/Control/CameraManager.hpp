@@ -29,5 +29,6 @@ public:
 public:
     void applyEffect(CameraEffect* effect);
     void update(sf::Time dt);
+    void handleEvents(const sf::Event& event);
     void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 };

@@ -248,7 +248,7 @@ bool TileMap::load(const std::string& jsonFile,int x , int y,int height, int wid
                             )
                         );
                     }
-                    /*else
+                    else
                     {
 						float scalex = float(objectData["width"]) / tile.tileWidth;
 						float scaley = float(objectData["height"]) / tile.tileHeight;
@@ -264,7 +264,7 @@ bool TileMap::load(const std::string& jsonFile,int x , int y,int height, int wid
                                 scaley
                             )
                         );
-                    }*/
+                    }
                 }
             }
             for (auto&x : layer->entities)
@@ -301,6 +301,7 @@ void TileMap::draw(sf::RenderTarget& target, sf::RenderStates states)const
 }
 bool TileMap::handleEvent(const sf::Event& event,sf::RenderWindow* window) 
 {
+    camera.handleEvents(event);
     for(auto&x : entities)
     {
         if (auto character = dynamic_cast<Character*>(x))
