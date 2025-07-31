@@ -29,10 +29,43 @@ public:
         throw std::runtime_error("Unknown animation type: " + data.at("type").get<std::string>());
     }
 
+    static std::unique_ptr<IMovement> createMovement(const json& data, State* map, sf::Vector2f startPos, sf::Vector2f endPos)
+    {
+        auto it = movingBehaviorRegistry().find(data.at("type").get<std::string>());
+        if (it != movingBehaviorRegistry().end())
+        {
+            return it->second(data, map, startPos, endPos);
+        }
+        throw std::runtime_error("Unknown movement type: " + data.at("type").get<std::string>());
+    }
+
+    static std::unique_ptr<ICollision> createCollisionBehavior(const json& data, State* map)
+    {
+        auto it = collisionBehaviorRegistry().find(data.at("type").get<std::string>());
+        if (it != collisionBehaviorRegistry().end())
+        {
+            return it->second(data, map);
+        }
+        throw std::runtime_error("Unknown collision behavior type: " + data.at("type").get<std::string>());
+    }
+
+    static std::unique_ptr<MovingAnimation> createMovingAnimation(const json& data, sf::Vector2f& position, sf::Vector2f startPosition = sf::Vector2f(0.0f, 0.0f), sf::Vector2f endPosition = sf::Vector2f(0.0f, 0.0f))
+    {
+        auto it = movingAnimationRegistry().find(data.at("type").get<std::string>());
+        if (it != movingAnimationRegistry().end())
+        {
+            return it->second(data, position, startPosition, endPosition);
+        }
+        throw std::runtime_error("Unknown moving animation type: " + data.at("type").get<std::string>());
+    }
+
 private:
+//SlashProjectile_MovingAnimation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f& position, float scale,float Angle = 0.5f, sf::Vector2f middlePosition = sf::Vector2f(0.5f, 1));
     using BehaviorFactoryMap = std::unordered_map<std::string, std::function<std::unique_ptr<IBehavior>(const json&, State*)>>;
     using AnimationFactoryMap = std::unordered_map<std::string, std::function<std::unique_ptr<IWeaponAnimation>(const json&, Entity*)>>;
-    using MovingBehaviorFactoryMap = std::unordered_map<std::string, std::function<std::unique_ptr<IMovement>(const json&, State*)>>;
+    using MovingBehaviorFactoryMap = std::unordered_map<std::string, std::function<std::unique_ptr<IMovement>(const json&, State*, sf::Vector2f, sf::Vector2f)>>;
+    using CollisionBehaviorFactoryMap = std::unordered_map<std::string, std::function<std::unique_ptr<ICollision>(const json&, State*)>>;
+    using MovingAnimationFactoryMap = std::unordered_map<std::string, std::function<std::unique_ptr<MovingAnimation>(const json&, sf::Vector2f, sf::Vector2f, sf::Vector2f&)>>;
 private:
     static std::unordered_map<std::string, sf::Texture*> textureCache;
 private:
@@ -72,25 +105,49 @@ private:
     static MovingBehaviorFactoryMap& movingBehaviorRegistry()
     {
         static MovingBehaviorFactoryMap registry{
-            {"Follow Movement", [](const json& data, State* map){
+            {"Follow Movement", [](const json& data, State* map, sf::Vector2f startPos, sf::Vector2f endPos){
                 return std::make_unique<FollowMovement>(
-                    data.at("speedX").get<float>(),
-                    data.at("speedY").get<float>(),
-                    data.at("projectileSpeed").get<float>(),
+                    data.value("speed", 500.0f),
+                    startPos,
+                    endPos,
                     map,
-                    data.value("maxDistance", 60.0f));
-            }},
-            {"Laser Aim Movement", [](const json& data, State* map){
-                return std::make_unique<LaserAimMovement>(
-                    data.at("aimTime").get<float>(),
-                    sf::Vector2f(data.at("startPositionX").get<float>(), data.at("startPositionY").get<float>()),
-                    sf::Vector2f(data.at("endPositionX").get<float>(), data.at("endPositionY").get<float>()),
-                    map);
+                    data.value("criticalAngle", 60.0f)
+                );
             }}
         };
         return registry;
     }
 
+    static CollisionBehaviorFactoryMap& collisionBehaviorRegistry()
+    {
+        static CollisionBehaviorFactoryMap registry{
+            {"Projectile Collision Behavior", [](const json& data, State* map){
+                return std::make_unique<ProjectileCollisionBehavior>(map);
+            }},
+            {"Melee Collision Behavior", [](const json& data, State* map){
+                return std::make_unique<MeleeCollisionBehavior>(map);
+            }}
+        };
+        return registry;
+    }
+
+    static MovingAnimationFactoryMap& movingAnimationRegistry()
+    {
+        static MovingAnimationFactoryMap registry{
+            {"Slash Projectile Animation", [](const json& data, sf::Vector2f startPosition, sf::Vector2f endPosition,sf::Vector2f& position){
+                return std::make_unique<SlashProjectile_MovingAnimation>(
+                    getTexture(data.at("texture").get<std::string>()),
+                    sf::Vector2u(data.at("imageCount").at("x").get<float>(), data.at("imageCount").at("y").get<float>()),
+                    data.at("switchTime").get<float>(),
+                    position,
+                    data.value("scale", 1.0f),
+                    data.value("angle", 0.5f),
+                    sf::Vector2f(data.value("middlePositionX", 0.5f), data.value("middlePositionY", 1.0f))
+                );
+            }}
+        };
+        return registry;
+    }
 private:
     static sf::Texture* getTexture(const std::string& texturePath)
     {

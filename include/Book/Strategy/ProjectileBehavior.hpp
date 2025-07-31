@@ -46,6 +46,18 @@ private:
     State* Worldmap = nullptr;
     Entity* target = nullptr; // Target entity to follow
 public:
+    FollowMovement(float speed, sf::Vector2f startPosition, sf::Vector2f endPosition, State* worldmap, float criticalAngle = 60.0f)
+        : speed(speed), Worldmap(worldmap), CriticalAngle(criticalAngle * 3.14f / 180.0f)
+    {
+        // Calculate the direction vector and set the speed components
+        sf::Vector2f direction = endPosition - startPosition;
+        float length = std::sqrt(direction.x * direction.x + direction.y * direction.y);
+        if (length > 0)
+        {
+            speedX = (direction.x / length) * speed;
+            speedY = (direction.y / length) * speed;
+        }
+    }
     FollowMovement(float speed, State* worldmap) : speed(speed), Worldmap(worldmap), speedX(0), speedY(0) {}
     FollowMovement(float speedX, float speedY, float speed, State* worldmap, float criticalAngle) : speed(speed), speedX(speedX), speedY(speedY), Worldmap(worldmap), CriticalAngle(criticalAngle * 3.14f / 180.0f) {}
     void update(Projectile2& projectile, const sf::Time& dt) override;
