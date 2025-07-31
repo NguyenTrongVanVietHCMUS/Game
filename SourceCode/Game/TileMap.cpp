@@ -247,7 +247,7 @@ bool TileMap::load(const std::string& jsonFile,int x , int y,int height, int wid
                             )
                         );
                     }
-                    /*else
+                    else
                     {
 						float scalex = float(objectData["width"]) / tile.tileWidth;
 						float scaley = float(objectData["height"]) / tile.tileHeight;
@@ -263,7 +263,7 @@ bool TileMap::load(const std::string& jsonFile,int x , int y,int height, int wid
                                 scaley
                             )
                         );
-                    }*/
+                    }
                 }
             }
             for (auto&x : layer->entities)
