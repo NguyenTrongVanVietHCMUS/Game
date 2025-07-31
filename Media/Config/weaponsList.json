@@ -6,7 +6,8 @@
     "behavior": {
       "type": "Ranged Weapon Behavior",
       "projectileSpeed": 1200.0,
-      "spreadAngle": 0.0
+      "spreadAngle": 0.0,
+      "Projectile": "PurpleBullet"
     },
 
     "animation": {
@@ -16,36 +17,37 @@
       "texture": "Media/Assets/Weapons/Gun/AK_47.png",
       "startAngle": 10.0,
       "endAngle": 0.0,
-      "recoilOffset": 0.05
+      "recoilOffset": 10.0
     },
 
     "cooldownTime": 0.15,
 
     "scaleBulletSpawnPosition": { "x": 0.6, "y": -0.2 }
   },
-
-  "Shotgun": {
-    "name": "Shotgun",
-    "position": { "x": 200, "y": 100 },
+  
+  "GoblinGun": {
+    "name": "GoblinGun",
+    "position": { "x": 150, "y": 75 },
 
     "behavior": {
       "type": "Ranged Weapon Behavior",
-      "projectileSpeed": 700.0,
-      "spreadAngle": 25.0
+      "projectileSpeed": 1200.0,
+      "spreadAngle": 0.0,
+      "Projectile": "GoblinBullet"
     },
 
     "animation": {
       "type": "Gun Animation",
-      "totalTime": 0.4,
-      "scale": 1.2,
-      "texture": "assets/textures/shotgun.png",
-      "startAngle": -10.0,
-      "endAngle": 10.0,
-      "recoilOffset": 0.1
+      "totalTime": 0.3,
+      "scale": 0.4,
+      "texture": "Media/Assets/Weapons/Gun/AK_47.png",
+      "startAngle": 10.0,
+      "endAngle": 0.0,
+      "recoilOffset": 10.0
     },
 
     "cooldownTime": 1.0,
 
-    "scaleBulletSpawnPosition": { "x": 0.6, "y": 0.4 }
+    "scaleBulletSpawnPosition": { "x": 0.6, "y": -0.2 }
   }
 }

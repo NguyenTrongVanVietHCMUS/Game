@@ -122,6 +122,8 @@ private:
     {
         static CollisionBehaviorFactoryMap registry{
             {"Projectile Collision Behavior", [](const json& data, State* map){
+
+                std::cerr << "Creating ProjectileCollisionBehavior " << std::endl;
                 return std::make_unique<ProjectileCollisionBehavior>(map);
             }},
             {"Melee Collision Behavior", [](const json& data, State* map){

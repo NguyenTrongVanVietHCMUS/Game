@@ -19,40 +19,7 @@ public:
     State* Worldmap = nullptr;
     RangedWeaponBehavior(State* worldmap, float speed, float spread = 0.0f) : Worldmap(worldmap), projectileSpeed(speed), SpreadAngle(spread) {}
 
-
-    void activate(Weapon2& self, Entity* target) override{
-        float posX = self.getStat("TargetPosX");
-        float posY = self.getStat("TargetPosY");
-        // normalize the direction vector
-        sf::Vector2f SpawnPosition = self.GetProjectileSpawnPosition();
-        sf::Vector2f direction =  sf::Vector2f(posX, posY) - SpawnPosition;
-
-        //std::cerr << "Projectile speed X: " << projectileSpeedX << ", Y: " << projectileSpeedY << std::endl;
-        float offsetAngle = dist(rng); // Randomly offset the angle within the spread range
-        float cosA = std::cos(offsetAngle * 3.14159265358979323846f / 180.0f); // Convert angle to radians
-        float sinA = std::sin(offsetAngle * 3.14159265358979323846f / 180.0f); // Convert angle to radians
-        sf::Vector2f RotatedDirection(
-            direction.x * cosA - direction.y * sinA,
-            direction.x * sinA + direction.y * cosA
-        );
-        float len = std::sqrt(RotatedDirection.x * RotatedDirection.x + RotatedDirection.y * RotatedDirection.y);
-        float projectileSpeedX = projectileSpeed * (RotatedDirection.x / len),
-              projectileSpeedY = projectileSpeed * (RotatedDirection.y / len);
-
-        auto proj = new Projectile2(
-            "RangedProjectile",
-            15.0f, // as seconds represent life time of the projectile
-            SpawnPosition,
-            Worldmap,
-            "Media/Assets/Projectiles/PurpleBullet.png", // Path to the projectile texture
-            std::make_unique<FollowMovement>(projectileSpeedX, projectileSpeedY, projectileSpeed, Worldmap, 60.0f),
-            std::make_unique<ProjectileCollisionBehavior>(Worldmap)
-        );
-        std::cerr << "Spawn Bullet\n";
-        proj->type = self.ProjectileTypeTransform(target); // Transform the projectile type based on the target type
-        proj->update(sf::seconds(0)); // Initialize the projectile's animation
-        Worldmap->pushEntity(proj);
-    }
+    void activate(Weapon2& self, Entity* target) override;
     std::unique_ptr<IBehavior> clone() const override {
         return std::make_unique<RangedWeaponBehavior>(*this);
     }
@@ -66,47 +33,7 @@ private:
 public:
     MeleeWeaponBehavior(State* worldmap) : Worldmap(worldmap) {}
 
-    void activate(Weapon2& self, Entity* target) override {
-        sf::Texture* texture = new sf::Texture();
-        if(!texture->loadFromFile("Media/Assets/Projectiles/sword_slash.png")) {
-            throw std::runtime_error("Failed to load melee projectile texture");
-        }
-        float posX = self.getStat("TargetPosX");
-        float posY = self.getStat("TargetPosY");
-
-        // normalize the direction vector
-        sf::Vector2f SpawnerPosition = self.GetProjectileSpawnPosition();
-        sf::Vector2f direction = SpawnerPosition - sf::Vector2f(posX, posY);
-        float Angle = std::atan2(direction.y, direction.x); // Calculate the angle of the melee attack
-        // Offset the position of the projectile to be in front of the target
-        sf::Vector2f offset(25.0f * std::cos(Angle), 25.0f * std::sin(Angle)); // Offset by 50 pixels in the direction of the attack
-
-        auto proj = new Projectile2(
-            "MeleeProjectile",
-            0.12f, // as seconds
-            SpawnerPosition,
-            Worldmap,
-            "Media/Assets/Projectiles/sword_slash.png", // Path to the projectile texture
-            nullptr, // No movement for melee
-            std::make_unique<MeleeCollisionBehavior>(Worldmap), // Melee collision behavior
-            nullptr
-        );
-        proj->position -= offset; // Set the position of the projectile to be in front of the target
-        std::unique_ptr<MovingAnimation> movingAnimation = std::make_unique<SlashProjectile_MovingAnimation>(
-            texture, 
-            sf::Vector2u(3, 1), 
-            0.04f, // Switch time for the animation
-            proj->position, 
-            5.0f, // Scale of the animation
-            Angle,
-            sf::Vector2f(0.5f, 0.5f) // Middle position for the animation
-        );
-        proj->type = self.ProjectileTypeTransform(target); // Transform the projectile type based on the target type
-        proj->updateHitboxOnPosition(); // Update the hitbox position based on the entity's current position
-        proj->setMovingAnimation(std::move(movingAnimation));
-        proj->update(sf::seconds(0)); // Initialize the projectile's animation
-        Worldmap->pushEntity(proj);
-    }
+    void activate(Weapon2& self, Entity* target) override;
     std::unique_ptr<IBehavior> clone() const override {
         return std::make_unique<MeleeWeaponBehavior>(*this);
     }

@@ -105,7 +105,6 @@ void Game::PollEvents()
 
 void Game::Update(sf::Time dt)
 {
-	std::cout << 1.0f / dt.asSeconds() << " FPS" << std::endl;
     stateStack.update(dt) ;
 }
 

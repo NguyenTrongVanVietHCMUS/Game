@@ -423,7 +423,6 @@ void TileMap::updateQueueEntities()
  
 void TileMap::handleCollision()
 {
-    std::cout << entities.size() << " entities in the map" << std::endl;
     //// entities intersect with entities 
 	std::vector<std::pair<Entity*, Entity*>> collision; // To avoid checking the same pair twice
     for(auto& entity : entities)if(entity->movable())

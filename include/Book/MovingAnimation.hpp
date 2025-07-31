@@ -48,7 +48,28 @@ public :
     };
 
 public:
-    
+    MovingAnimation(const MovingAnimation& other, sf::Vector2f& position)
+        : texture(other.texture), imageCount(other.imageCount), switchTime(other.switchTime),
+          position(position), scale(other.scale), middlePosition(other.middlePosition)
+    {
+        totalTime = 0;
+        row = 0;
+        uvRect.top = 0;
+        uvRect.left = 0;
+        currentImage.x = 0;
+        if(texture)
+        {
+            
+            uvRect.width = int(texture->getSize().x / float(imageCount.x));
+            uvRect.height = int(texture->getSize().y / float(imageCount.y));
+            sprite.setTexture(*texture);
+        }else {
+            std::cerr << "MovingAnimation: Texture is null, sprite will not be drawn." << std::endl;
+        }
+        sprite.setScale(-scale, scale);
+        mask = 0; 
+		direction = rand() % 2 == 0 ? LEFT : RIGHT; // Randomly set the initial direction
+    }
     MovingAnimation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f& position, float scale, sf::Vector2f middlePosition)
         :texture(texture), imageCount(imageCount), switchTime(switchTime), position(position), scale(scale), middlePosition(middlePosition)
     {

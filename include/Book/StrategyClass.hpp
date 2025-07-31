@@ -30,9 +30,18 @@ struct IEffect
 
 struct IBehavior
 {
+protected:
+    Projectile2* projectile = nullptr;
+public:
     virtual void activate(Weapon2& weapon, Entity* target) = 0;
     virtual std::unique_ptr<IBehavior> clone() const = 0;
     virtual ~IBehavior() = default;
+
+public:
+    void setProjectile(Projectile2* proj) {
+        std::cerr << "Setting projectile for behavior: "<< std::endl;
+        projectile = proj; // Set the projectile for the behavior
+    }
 };
 
 class ICooldownBehavior
