@@ -17,6 +17,9 @@ private:
 
     State* currentMap; // Pointer to the current map or state
 public:
+    // Basic constructor for builder
+    Projectile2(std::string name, float lifeTime, sf::Vector2f position, State* currentMap, std::string texturePath);
+
     Projectile2(std::string name,float LifeTime,sf::Vector2f position, State* CurrentMap, std::string texturePath,
         std::unique_ptr<IMovement> movement = nullptr, std::unique_ptr<ICollision> collision = nullptr, std::unique_ptr<MovingAnimation> animation = nullptr);
 

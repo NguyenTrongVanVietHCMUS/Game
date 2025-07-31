@@ -123,6 +123,21 @@ void Projectile2::setSpriteRotation(float angle)
     }
 }
 
+Projectile2::Projectile2(std::string name, float lifeTime, sf::Vector2f position, State* currentMap, std::string texturePath)
+: Entity(name, position), currentMap(currentMap) {
+    // Load the projectile texture
+    if (!texture.loadFromFile(texturePath)) {
+        std::cerr << "Warning : Failed to load projectile texture from " << texturePath << " ! Any draw method without animation will result RUNTIME ERROR" << std::endl;
+    }
+    attributes["MaxLifeTime"] = lifeTime; // Set the maximum lifetime of the projectile
+    attributes["CurrentLifeTime"] = 0.0f; // Initialize current lifetime to 0
+    sprite.setTexture(texture);
+    // update hitbox size
+    hitbox.hitbox = sf::FloatRect(position.x, position.y, texture.getSize().x, texture.getSize().y);
+    // set origin hitbox to center of the sprite
+    sprite.setOrigin(texture.getSize().x / 2.f, texture.getSize().y);
+}
+
 Projectile2::Projectile2(std::string name,float LifeTime,sf::Vector2f position, float scale, State* CurrentMap, std::string texturePath,
 std::unique_ptr<IMovement> movement, std::unique_ptr<ICollision> collision, std::unique_ptr<MovingAnimation> animation)
 : Entity(name, position), movementStrategy(std::move(movement)), collisionStrategy(std::move(collision)), currentMap(CurrentMap), movingAnimation(std::move(animation)) {
