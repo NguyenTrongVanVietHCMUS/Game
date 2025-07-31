@@ -37,6 +37,23 @@ void CameraManager::update(sf::Time dt)
     );
 }
 
+void CameraManager::handleEvents(const sf::Event& event)
+{
+    if (event.type == sf::Event::Resized)
+    {
+        // New size from the window
+        float newW = static_cast<float>(event.size.width);
+        float newH = static_cast<float>(event.size.height);
+
+        // Resize the main camera view
+        view.setSize(newW, newH);
+
+        // If you have a separate UI view, resize that too
+        // (so your UI elements also scale/position correctly)
+        UIView.setSize(newW, newH);
+    }
+}
+
 void CameraManager::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     target.setView(UIView); // Set the camera view for drawing

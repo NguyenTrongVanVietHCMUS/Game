@@ -300,6 +300,7 @@ void TileMap::draw(sf::RenderTarget& target, sf::RenderStates states)const
 }
 bool TileMap::handleEvent(const sf::Event& event,sf::RenderWindow* window) 
 {
+    camera.handleEvents(event);
     for(auto&x : entities)
     {
         if (auto character = dynamic_cast<Character*>(x))
