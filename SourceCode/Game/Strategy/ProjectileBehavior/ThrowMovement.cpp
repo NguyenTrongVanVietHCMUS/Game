@@ -37,7 +37,7 @@ void ThrowMovement::update(Projectile2& projectile, const sf::Time& dt)
             texture,
             sf::Vector2u(3,3), // Assuming the explosion texture has 4x2 frames
             0.05f, // Switch time for the animation
-            projectile.position, 
+            proj->position, 
             2.0f, // Scale of the animation
             sf::Vector2f(0.5f, 0.5f) // Middle position for the animation
         );

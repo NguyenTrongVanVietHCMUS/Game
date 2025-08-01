@@ -1,7 +1,9 @@
 #include <Control/WeaponLoader.hpp>
+#include <Control/ProjectileLoader.hpp>
 #include <Book/Weapon2.hpp>
 #include <Control/State.hpp>
 std::shared_ptr<Weapon2> WeaponLoader::LoadWeapons(std::string weaponName) {
+    ProjectileLoader projectileLoader(mState);
     std::cerr << "Loading weapon: " << weaponName << std::endl;
     std::ifstream file = std::ifstream(filePath);
     if (!file.is_open()) {
@@ -23,7 +25,19 @@ std::shared_ptr<Weapon2> WeaponLoader::LoadWeapons(std::string weaponName) {
                                                   sf::Vector2f(weaponData[weaponName]["position"]["x"], weaponData[weaponName]["position"]["y"]), 
                                                   mState);
     if (weaponData[weaponName].contains("behavior")) {
-        builder.withBehavior(StrategyFactory::createBehavior(weaponData[weaponName]["behavior"], mState));
+        Projectile2 *projectile = nullptr;
+        if(weaponData[weaponName]["behavior"].contains("Projectile")) {
+            projectile = projectileLoader.LoadProjectile(
+                weaponData[weaponName]["behavior"]["Projectile"].get<std::string>(),
+                sf::Vector2f(weaponData[weaponName]["position"]["x"], weaponData[weaponName]["position"]["y"]),
+                sf::Vector2f(0, 0) // Default end position, can be adjusted later
+            );
+        }
+        auto behavior = StrategyFactory::createBehavior(weaponData[weaponName]["behavior"], mState);
+        if (projectile) {
+            behavior->setProjectile(projectile);
+        }
+        builder.withBehavior(std::move(behavior));
     }
     if (weaponData[weaponName].contains("animation")) {
         builder.withAnimation(StrategyFactory::createAnimation(weaponData[weaponName]["animation"], nullptr));

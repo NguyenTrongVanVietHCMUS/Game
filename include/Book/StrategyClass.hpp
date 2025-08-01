@@ -5,10 +5,13 @@ class Projectile2;
 class Weapon2;
 struct IMovement
 {
+protected:
+public:
     bool isActive = true;
     virtual void update(Projectile2& projectile,const sf::Time &dt) = 0;
     virtual std::unique_ptr<IMovement> clone() const = 0;
     virtual ~IMovement() = default;
+    virtual void setDirection(sf::Vector2f direction) {};
 };
 
 struct ICollision
@@ -27,9 +30,18 @@ struct IEffect
 
 struct IBehavior
 {
+protected:
+    Projectile2* projectile = nullptr;
+public:
     virtual void activate(Weapon2& weapon, Entity* target) = 0;
     virtual std::unique_ptr<IBehavior> clone() const = 0;
     virtual ~IBehavior() = default;
+
+public:
+    void setProjectile(Projectile2* proj) {
+        std::cerr << "Setting projectile for behavior: "<< std::endl;
+        projectile = proj; // Set the projectile for the behavior
+    }
 };
 
 class ICooldownBehavior

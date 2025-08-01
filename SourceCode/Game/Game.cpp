@@ -1,4 +1,5 @@
 #include "Book/Game.hpp"
+#include <iostream>
 // Constructor
 template <typename Resource, typename Identifier>
 void Game::load(Identifier id, const std::string& filename)

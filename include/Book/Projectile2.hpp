@@ -14,10 +14,14 @@ private:
     sf::Sprite sprite; // Sprite representing the projectile
     sf::Texture texture; // Texture for the projectile sprite
     std::unordered_map<std::string, float> attributes; // Additional stats for the projectile
-
+    std::string texturePath;
     State* currentMap; // Pointer to the current map or state
 public:
-    Projectile2(std::string name,float LifeTime,sf::Vector2f position, State* CurrentMap, std::string texturePath,
+
+    // Basic constructor for builder
+    
+    Projectile2(std::string name, float lifeTime, sf::Vector2f position, State* currentMap, sf::Texture texture);
+    Projectile2(std::string name, float LifeTime, sf::Vector2f position, State* CurrentMap, std::string texturePath,
         std::unique_ptr<IMovement> movement = nullptr, std::unique_ptr<ICollision> collision = nullptr, std::unique_ptr<MovingAnimation> animation = nullptr);
 
     Projectile2(std::string name,float LifeTime,sf::Vector2f position, float scale, State* CurrentMap, std::string texturePath,
@@ -37,4 +41,6 @@ public:
     bool update(sf::Time dt) override;
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
     void collide(const Entity* other) override;
+
+    Projectile2* clone(sf::Vector2f direction)const;
 };

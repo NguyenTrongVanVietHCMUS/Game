@@ -123,13 +123,29 @@ void Projectile2::setSpriteRotation(float angle)
     }
 }
 
+
+Projectile2::Projectile2(std::string name, float lifeTime, sf::Vector2f position, State* currentMap, sf::Texture texture)
+: Entity(name, position), currentMap(currentMap) {
+    // Load the projectile texture
+    std::cerr << "Warning : Using texture from memory, make sure the texture is valid and not destroyed before using it" << std::endl;
+    this->texture = texture;
+    attributes["MaxLifeTime"] = lifeTime; // Set the maximum lifetime of the projectile
+    attributes["CurrentLifeTime"] = 0.0f; // Initialize current lifetime to 0
+    sprite.setTexture(texture);
+    // update hitbox size
+    hitbox.hitbox = sf::FloatRect(position.x, position.y, texture.getSize().x, texture.getSize().y);
+    // set origin hitbox to center of the sprite
+    sprite.setOrigin(texture.getSize().x / 2.f, texture.getSize().y);
+}
+
 Projectile2::Projectile2(std::string name,float LifeTime,sf::Vector2f position, float scale, State* CurrentMap, std::string texturePath,
 std::unique_ptr<IMovement> movement, std::unique_ptr<ICollision> collision, std::unique_ptr<MovingAnimation> animation)
 : Entity(name, position), movementStrategy(std::move(movement)), collisionStrategy(std::move(collision)), currentMap(CurrentMap), movingAnimation(std::move(animation)) {
     // Load the projectile texture
     if (!texture.loadFromFile(texturePath)) {
         throw std::runtime_error("Failed to load projectile texture");
-    }
+    }   
+    this->texturePath = texturePath; // Store the texture path for future reference
     attributes["MaxLifeTime"] = LifeTime; // Set the maximum lifetime of the projectile
     sprite.setTexture(texture);
     // update hitbox size
@@ -148,6 +164,7 @@ std::unique_ptr<IMovement> movement, std::unique_ptr<ICollision> collision , std
     if (!texture.loadFromFile(texturePath)) {
         throw std::runtime_error("Failed to load projectile texture");
     }
+    this->texturePath = texturePath; // Store the texture path for future reference
     attributes["MaxLifeTime"] = LifeTime; // Set the maximum lifetime of the projectile
     sprite.setTexture(texture);
     // update hitbox size
@@ -155,4 +172,22 @@ std::unique_ptr<IMovement> movement, std::unique_ptr<ICollision> collision , std
     // set origin hitbox to center of the sprite
     
     sprite.setOrigin(texture.getSize().x / 2.f, texture.getSize().y);
+}
+
+Projectile2* Projectile2::clone(sf::Vector2f direction) const {
+    auto *proj = new Projectile2(name, getAttribute("MaxLifeTime"), position, currentMap, texturePath);
+    proj->movementStrategy = movementStrategy ? movementStrategy->clone() : nullptr;
+    proj->collisionStrategy = collisionStrategy ? collisionStrategy->clone() : nullptr;
+    if(proj->collisionStrategy){
+        std::cerr << "Cloning projectile with collision strategy" << std::endl;
+    } else std::cerr << "WARNING : Cloning projectile without collision strategy" << std::endl;
+    proj->movementStrategy->setDirection(direction); // Set the direction for the cloned projectile
+    proj->setAttribute("CurrentLifeTime", 0.0f); // Reset the
+    if(movingAnimation) {
+        proj->movingAnimation = std::make_unique<MovingAnimation>(*movingAnimation, proj->position);
+    }
+    for (const auto& effect : trailStrategies) {
+        proj->trailStrategies.push_back(effect->clone());
+    }
+    return proj;
 }

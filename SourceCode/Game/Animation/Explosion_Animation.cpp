@@ -27,7 +27,7 @@ void Explosion_Animation::update(sf::Time dt)
 
     uvRect.top = currentImage.y * uvRect.height;
     uvRect.left = currentImage.x * uvRect.width;
-
+    std::cerr << "Explosion position: " << position.x << ", " << position.y << std::endl;
     setSpritePosition();
 }
 

@@ -7,10 +7,16 @@ class StraightMovement : public IMovement
 {
 private:
     float speedX, speedY;
-
+    float speed;
 public:
+    StraightMovement(float speed, sf::Vector2f StartPosition, sf::Vector2f EndPosition)
+        : speed(speed)
+    {
+        sf::Vector2f direction = EndPosition - StartPosition;
+        setDirection(direction);
+    }
     StraightMovement(float speedX, float speedY) : speedX(speedX), speedY(speedY) {}
-
+    StraightMovement(float speed) : speed(speed) {}
     void update(Projectile2& projectile, const sf::Time &dt) override
     {
         // Update the position of the projectile based on its speed and the elapsed time
@@ -22,6 +28,17 @@ public:
     std::unique_ptr<IMovement> clone() const override
     {
         return std::make_unique<StraightMovement>(*this);
+    }
+
+    virtual void setDirection(sf::Vector2f direction) override
+    {
+        // Normalize the direction vector and set the speed components
+        float length = std::sqrt(direction.x * direction.x + direction.y * direction.y);
+        if (length > 0)
+        {
+            speedX = (direction.x / length) * speed;
+            speedY = (direction.y / length) * speed;
+        }
     }
 };
 
@@ -35,6 +52,18 @@ private:
     State* Worldmap = nullptr;
     Entity* target = nullptr; // Target entity to follow
 public:
+    FollowMovement(float speed, sf::Vector2f startPosition, sf::Vector2f endPosition, State* worldmap, float criticalAngle = 60.0f)
+        : speed(speed), Worldmap(worldmap), CriticalAngle(criticalAngle * 3.14f / 180.0f)
+    {
+        // Calculate the direction vector and set the speed components
+        sf::Vector2f direction = endPosition - startPosition;
+        float length = std::sqrt(direction.x * direction.x + direction.y * direction.y);
+        if (length > 0)
+        {
+            speedX = (direction.x / length) * speed;
+            speedY = (direction.y / length) * speed;
+        }
+    }
     FollowMovement(float speed, State* worldmap) : speed(speed), Worldmap(worldmap), speedX(0), speedY(0) {}
     FollowMovement(float speedX, float speedY, float speed, State* worldmap, float criticalAngle) : speed(speed), speedX(speedX), speedY(speedY), Worldmap(worldmap), CriticalAngle(criticalAngle * 3.14f / 180.0f) {}
     void update(Projectile2& projectile, const sf::Time& dt) override;
@@ -42,6 +71,16 @@ public:
     std::unique_ptr<IMovement> clone() const override
     {
         return std::make_unique<FollowMovement>(*this);
+    }
+    void setDirection(sf::Vector2f direction) override
+    {
+        // Normalize the direction vector and set the speed components
+        float length = std::sqrt(direction.x * direction.x + direction.y * direction.y);
+        if (length > 0)
+        {
+            speedX = (direction.x / length) * speed;
+            speedY = (direction.y / length) * speed;
+        }
     }
 };
 

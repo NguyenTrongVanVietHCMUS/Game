@@ -48,7 +48,28 @@ public :
     };
 
 public:
-    
+    MovingAnimation(const MovingAnimation& other, sf::Vector2f& position)
+        : texture(other.texture), imageCount(other.imageCount), switchTime(other.switchTime),
+          position(position), scale(other.scale), middlePosition(other.middlePosition)
+    {
+        totalTime = 0;
+        row = 0;
+        uvRect.top = 0;
+        uvRect.left = 0;
+        currentImage.x = 0;
+        if(texture)
+        {
+            
+            uvRect.width = int(texture->getSize().x / float(imageCount.x));
+            uvRect.height = int(texture->getSize().y / float(imageCount.y));
+            sprite.setTexture(*texture);
+        }else {
+            std::cerr << "MovingAnimation: Texture is null, sprite will not be drawn." << std::endl;
+        }
+        sprite.setScale(-scale, scale);
+        mask = 0; 
+		direction = rand() % 2 == 0 ? LEFT : RIGHT; // Randomly set the initial direction
+    }
     MovingAnimation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f& position, float scale, sf::Vector2f middlePosition)
         :texture(texture), imageCount(imageCount), switchTime(switchTime), position(position), scale(scale), middlePosition(middlePosition)
     {
@@ -159,7 +180,7 @@ class laserAimAnimation : public MovingAnimation
 private:
     sf::Vector2f BeginPosition;
     sf::Vector2f TargetPosition;
-
+    
 public:
     laserAimAnimation(sf::Vector2f BeginPosition, sf::Vector2f targetPosition, sf::Vector2f middlePosition , sf::Vector2f& position)
         : BeginPosition(BeginPosition), TargetPosition(targetPosition), 
@@ -175,21 +196,18 @@ private:
     sf::Vector2f startPosition;
     sf::Vector2f endPosition;
     float elapseTime = 0.0f;
+    sf::Texture* BallTexture;
+    sf::Sprite ballSprite1 , ballSprite2;
 public:
-    LaserAnimation(sf::Texture *texture, sf::Vector2f startPosition, sf::Vector2f endPosition, sf::Vector2f middlePosition, sf::Vector2f& position)
-        : startPosition(startPosition), endPosition(endPosition),
-        MovingAnimation(texture, sf::Vector2u(1.f, 1.f), 0, position, 1.0f, middlePosition) {
-            float distance = std::pow(endPosition.x - startPosition.x, 2) + std::pow(endPosition.y - startPosition.y, 2);
-            distance = std::sqrt(distance);
-            float spriteWidth = sprite.getGlobalBounds().width;
-            scale = distance / spriteWidth;
-            sprite.setScale(scale, 1.0f);
-            sprite.setOrigin(0.0f, sprite.getGlobalBounds().height / 2.0f); // Center the sprite vertically
-        }
+    LaserAnimation(sf::Texture *texture, sf::Vector2f startPosition, sf::Vector2f endPosition, sf::Vector2f middlePosition, sf::Vector2f& position);
     ~LaserAnimation() {
         if (texture) {
             delete texture; // Clean up the texture if it was dynamically allocated
         }
+        if (BallTexture) {
+            delete BallTexture; // Clean up the ball texture if it was dynamically allocated
+        }
     }
     void update(sf::Time dt) override;
-};
+    void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+}; 

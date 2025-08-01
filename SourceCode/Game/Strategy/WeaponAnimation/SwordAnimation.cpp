@@ -32,10 +32,9 @@ void SwordAnimation::update(Weapon2& weapon, sf::Time dt) {
     sprite.setRotation(originalAngle + angleOffset); // Set the rotation of the sprite
 
     // Set the position of the sprite based on the owner entity's position
-    float PositionX = owner->getPosition().x; // Center the sword on the owner
-    float PositionY = owner->getPosition().y - 20.0f;
-    weapon.position = {PositionX, PositionY};
-    sprite.setPosition(PositionX  , PositionY);
+    sf::Vector2f OwnerHandPosition = owner->getHandPosition();
+    weapon.position = OwnerHandPosition;
+    sprite.setPosition(OwnerHandPosition);
 }
 
 void SwordAnimation::draw(sf::RenderTarget& target, sf::RenderStates states) {

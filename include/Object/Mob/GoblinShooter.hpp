@@ -4,6 +4,7 @@
 #include<Book/Character.hpp>
 #include<Book/MovingAnimation.hpp>
 #include<memory>
+#include<Control/WeaponLoader.hpp>
 
 class GoblinShooter : public Enemy
 {
@@ -16,26 +17,7 @@ public:
         movingAnimation = std::make_unique<HighRangeMob_MovingAnimation>(&ResourceManager::getInstance().get<sf::Texture>(Textures::ID::GoblinShooter), sf::Vector2u(8, 3), 0.1f, this->position, 2.5f, this);
         movingAnimation->speed   = 125.0f; 
         aiEnemy = std::make_unique<AIHighRangeEnemy>();
-        inventory->addWeapon(
-            std::make_shared<Weapon2>(
-                "AK_47",
-                this->position, // Position of the weapon
-                1.0f, // cooldowntime
-                sf::Vector2(0.5f,-0.2f), // The Scale position of the bullet spawner
-                std::make_unique<RangedWeaponBehavior>(state, 500.0f, 20.0f), // Ranged weapon behavior with speed
-                std::make_unique<GunAnimation>(
-                    0.2f, // Total time for the animation
-                    0.4f, // Scale of the animation
-                    &ResourceManager::getInstance().get<sf::Texture>(Textures::ID::AK_47), // Texture for the gun animation
-                    this->position, // Position of the gun animation
-                    10.0f, // Start angle of the gun animation
-                    0.0f, // End angle of the gun animation
-                    25.0f, // Recoil offset for the gun animation
-                    this, // Owner of the gun animation
-                    sf::Vector2f(0.5f, 0.5f) // Middle position for the gun animation
-                )
-            )
-        );
+        inventory->addWeapon(WeaponLoader(state).LoadWeapons("GoblinGun"), this);
     }
 
     ~GoblinShooter() override = default; // Default destructor    
