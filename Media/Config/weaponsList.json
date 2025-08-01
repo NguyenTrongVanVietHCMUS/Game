@@ -31,7 +31,7 @@
 
     "behavior": {
       "type": "Ranged Weapon Behavior",
-      "projectileSpeed": 1200.0,
+    "projectileSpeed": 1200.0,
       "spreadAngle": 0.0,
       "Projectile": "GoblinBullet"
     },
