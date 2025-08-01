@@ -31,11 +31,8 @@ public:
         } catch (const std::exception& e) {
             std::cerr << "Failed to create inventory: " << e.what() << std::endl;
         }
-        sf::Texture* swordTexture = new sf::Texture();
-        if (!swordTexture->loadFromFile("Media/Assets/Weapons/sword/Sword.png")) {
-            std::cerr << "Failed to load sword texture\n";
-        }
-        
+        inventory->addWeapon(weaponLoader.LoadWeapons("Sword"), this); // Load the Sword weapon from JSON file
+
         try {
             inventory->addWeapon(weaponLoader.LoadWeapons("ThrowBomb"), this); // Load the ThrowBomb weapon from JSON file
         } catch (const std::exception& e) {

@@ -54,7 +54,7 @@ public:
         auto it = movingAnimationRegistry().find(data.at("type").get<std::string>());
         if (it != movingAnimationRegistry().end())
         {
-            return it->second(data, position, startPosition, endPosition);
+            return it->second(data, startPosition, endPosition, position);
         }
         throw std::runtime_error("Unknown moving animation type: " + data.at("type").get<std::string>());
     }
@@ -198,8 +198,37 @@ private:
                     data.at("switchTime").get<float>(),
                     position,
                     data.value("scale", 1.0f),
-                    data.value("angle", 0.5f),
+                    startPosition,
+                    endPosition,
                     sf::Vector2f(data.value("middlePositionX", 0.5f), data.value("middlePositionY", 1.0f))
+                );
+            }},
+            {"Explosion Animation", [](const json& data, sf::Vector2f startPosition, sf::Vector2f endPosition, sf::Vector2f& position){
+                return std::make_unique<Explosion_Animation>(
+                    getTexture(data.at("texture").get<std::string>()),
+                    sf::Vector2u(data.at("imageCount").at("x").get<float>(), data.at("imageCount").at("y").get<float>()),
+                    data.at("switchTime").get<float>(),
+                    position,
+                    data.value("scale", 1.0f),
+                    sf::Vector2f(data.value("middlePositionX", 0.5f), data.value("middlePositionY", 0.5f))
+                );
+            }},
+            {"Laser Aim Animation", [](const json& data, sf::Vector2f startPosition, sf::Vector2f endPosition, sf::Vector2f& position){
+                return std::make_unique<laserAimAnimation>(
+                    startPosition,
+                    endPosition,
+                    sf::Vector2f(data.value("middlePositionX", 0.5f), data.value("middlePositionY", 0.5f)),
+                    position
+                );
+
+            }},
+            {"Laser Animation", [](const json& data, sf::Vector2f startPosition, sf::Vector2f endPosition, sf::Vector2f& position){
+                return std::make_unique<LaserAnimation>(
+                    getTexture(data.at("texture").get<std::string>()),
+                    startPosition,
+                    endPosition,
+                    sf::Vector2f(data.value("middlePositionX", 0.5f), data.value("middlePositionY", 0.5f)),
+                    position
                 );
             }}
         };

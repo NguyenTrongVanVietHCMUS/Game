@@ -1,10 +1,7 @@
 #include<Book/Strategy/WeaponBehavior.hpp>
-
+#include<Control/ProjectileLoader.hpp>
 void MeleeWeaponBehavior::activate(Weapon2& self, Entity* target) {
-    sf::Texture* texture = new sf::Texture();
-    if(!texture->loadFromFile("Media/Assets/Projectiles/sword_slash.png")) {
-        throw std::runtime_error("Failed to load melee projectile texture");
-    }
+    ProjectileLoader projectileLoader(Worldmap);
     float posX = self.getStat("TargetPosX");
     float posY = self.getStat("TargetPosY");
 
@@ -14,30 +11,20 @@ void MeleeWeaponBehavior::activate(Weapon2& self, Entity* target) {
     float Angle = std::atan2(direction.y, direction.x); // Calculate the angle of the melee attack
     // Offset the position of the projectile to be in front of the target
     sf::Vector2f offset(25.0f * std::cos(Angle), 25.0f * std::sin(Angle)); // Offset by 50 pixels in the direction of the attack
-
-    auto proj = new Projectile2(
-        "MeleeProjectile",
-        0.12f, // as seconds
-        SpawnerPosition,
-        Worldmap,
-        "Media/Assets/Projectiles/sword_slash.png", // Path to the projectile texture
-        nullptr, // No movement for melee
-        std::make_unique<MeleeCollisionBehavior>(Worldmap), // Melee collision behavior
-        nullptr
+    Projectile2 *proj;
+    try {
+        proj = projectileLoader.LoadProjectile(
+        ProjectileName,
+        SpawnerPosition + offset, // Set the projectile's position to the spawn position with offset
+        sf::Vector2f(SpawnerPosition.x + offset.x * 2, SpawnerPosition.y + offset.y * 2) // Set the target position for the projectile
     );
-    proj->position -= offset; // Set the position of the projectile to be in front of the target
-    std::unique_ptr<MovingAnimation> movingAnimation = std::make_unique<SlashProjectile_MovingAnimation>(
-        texture, 
-        sf::Vector2u(3, 1), 
-        0.04f, // Switch time for the animation
-        proj->position, 
-        5.0f, // Scale of the animation
-        Angle,
-        sf::Vector2f(0.5f, 0.5f) // Middle position for the animation
-    );
+    } catch (const std::exception& e) {
+        std::cerr << "Error creating projectile: " << e.what() << std::endl;
+        return; // Exit if projectile creation fails
+    }
+    
     proj->type = self.ProjectileTypeTransform(target); // Transform the projectile type based on the target type
     proj->updateHitboxOnPosition(); // Update the hitbox position based on the entity's current position
-    proj->setMovingAnimation(std::move(movingAnimation));
     proj->update(sf::seconds(0)); // Initialize the projectile's animation
     Worldmap->pushEntity(proj);
 } 

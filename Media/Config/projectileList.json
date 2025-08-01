@@ -1,13 +1,13 @@
 {
   "PurpleBullet": {
     "lifeTime": 3.0,
-    "scale": 0.8,
+    "scale": 2.0,
     "texturePath": "Media/Assets/Projectiles/PurpleBullet.png",
 
     "movement": {
       "type": "Follow Movement",
-      "speed": 400.0,
-      "criticalAngle": 30.0,
+      "speed": 1000.0,
+      "criticalAngle": 60.0,
       "targetPosition": { "x": 500.0, "y": 300.0 }
     },
 
@@ -29,6 +29,24 @@
 
     "collisionBehavior": {
       "type": "Projectile Collision Behavior"
+    }
+  },
+
+
+  "Basic Slash" :{
+    "lifeTime": 0.15,
+    "scale": 5.0,
+    "texturePath": "Media/Assets/Projectiles/sword_slash.png",
+
+    "collisionBehavior": {
+      "type": "Melee Collision Behavior"
+    },
+    "animation" : {
+      "type": "Slash Projectile Animation",
+      "texture": "Media/Assets/Projectiles/sword_slash.png",
+      "imageCount" : { "x": 3, "y": 1 },
+      "switchTime" : 0.05,
+      "scale": 5.0
     }
   }
 }

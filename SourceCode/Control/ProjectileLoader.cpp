@@ -32,9 +32,6 @@ Projectile2* ProjectileLoader::LoadProjectile(const std::string& name, sf::Vecto
     // optional movement
     if (j.contains("movement")) {
         sf::Vector2f endPos = EndPosition;
-        if (j["movement"].contains("targetPosition"))
-            endPos = { j["movement"]["targetPosition"]["x"], j["movement"]["targetPosition"]["y"] };
-
         builder.withMovement(
             StrategyFactory::createMovement(
                 j["movement"], mState, position, endPos

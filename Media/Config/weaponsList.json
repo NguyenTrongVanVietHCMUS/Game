@@ -6,7 +6,7 @@
     "behavior": {
       "type": "Ranged Weapon Behavior",
       "projectileSpeed": 1200.0,
-      "spreadAngle": 0.0,
+      "spreadAngle": 20.0,
       "Projectile": "PurpleBullet"
     },
 
@@ -61,12 +61,13 @@
     },
     "cooldownTime": 0.5,
     "behavior": {
-      "type": "Melee Weapon Behavior"
+      "type": "Melee Weapon Behavior",
+      "Projectile": "Basic Slash"
     },
     "animation": {
       "type": "Sword Animation",
       "totalTime": 0.2,
-      "scale": -0.8,
+      "scale": -10.0,
       "texture": "Media/Assets/Weapons/sword/Sword.png",
       "startAngle": -90.0,
       "endAngle": 90.0,
