@@ -34,6 +34,8 @@ private:
     void Update(sf::Time dt);
     void Render();
     void registerStates();
+    template <typename ResourceType, typename Identifier>
+        void load(Identifier id, const std::string& path);
 private :
     sf::RenderWindow window;
     

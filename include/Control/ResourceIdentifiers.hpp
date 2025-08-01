@@ -17,10 +17,15 @@ namespace Textures
 		Boar,
 		GoblinShooter,
 		SwordMinion,
+		BlunderbussPistolMinion,
+		RifleMinion,
 
-
-		AK_47,
+		BlunderbussPistolMinionBlunderbussPistol,
 		SwordMinionSword,
+		RifleMinionRifle, 
+		AK_47,
+
+
 		Buttons,
 		ExtraButtons,
 		Explosion,

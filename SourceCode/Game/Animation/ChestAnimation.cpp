@@ -109,7 +109,7 @@ void ChestAnimation::draw(sf::RenderTarget& target, sf::RenderStates states) con
 	states.texture = bottom; // Set the texture for the bottom sprite
 	target.draw(*bottomSprite, states);
 
-	if(items){
+	if(state==End&&items){
 		states.texture = items->getTexture(); // Set the texture for the items sprite
 		target.draw(*itemsSprite, states);
 	}

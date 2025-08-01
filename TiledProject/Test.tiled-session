@@ -11,7 +11,7 @@
     "fileStates": {
         "": {
             "dynamicWrapping": false,
-            "scaleInDock": 1,
+            "scaleInDock": 0.125,
             "scaleInEditor": 0.25
         },
         "#Map Tileset": {
@@ -22,11 +22,11 @@
             "scaleInEditor": 4
         },
         "C:/Users/billy/Downloads/temp.json": {
-            "scale": 0.33,
+            "scale": 0.25,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 693.9393939393938,
-                "y": 439.3939393939394
+                "x": 384,
+                "y": -376
             }
         },
         "C:/Users/billy/Downloads/temp.json#Death": {
@@ -37,6 +37,15 @@
         },
         "C:/Users/billy/Downloads/temp.json#Sword Minion2": {
             "scaleInDock": 0.0625
+        },
+        "C:/Users/billy/Downloads/temp.json#ezgif.com-gif-to-sprite-converter (3)": {
+            "scaleInDock": 0.125
+        },
+        "C:/Users/billy/Downloads/temp.json#ezgif.com-gif-to-sprite-converter (4)": {
+            "scaleInDock": 0.33
+        },
+        "C:/Users/billy/Downloads/temp.json#ezgif.com-gif-to-sprite-converter (5)": {
+            "scaleInDock": 0.33
         },
         "D:/HCMUS/3Semester/Project/Game/Media/Assets/Maps/Dungeon/Jungle/startingroom.json": {
             "scale": 0.47887228260869563,
@@ -171,8 +180,8 @@
             "scale": 0.125,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 688,
-                "y": 680
+                "x": 692,
+                "y": 684
             }
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/bossroom.json#GroundTiles": {
@@ -920,11 +929,11 @@
     "project": "Test.tiled-project",
     "property.type": "object",
     "recentFiles": [
+        "C:/Users/billy/Downloads/temp.json",
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/startingroom.json",
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/roomweapon.json",
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathwaytobossroom.json",
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/bossroom.json",
-        "C:/Users/billy/Downloads/temp.json",
         "V:/Game/Media/Assets/Maps/Lobby/lobby.json",
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/room3.json",
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/set.json",

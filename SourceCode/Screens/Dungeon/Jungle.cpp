@@ -4,6 +4,9 @@
 #include<Object/Mob/Boar.hpp> 
 #include<Object/Mob/GoblinShooter.hpp>
 #include<Object/Mob/SwordMinion.hpp>
+#include<Object/Mob/BlunderbussPistolMinion.hpp>
+#include<Object/Mob/RifleMinion.hpp>
+
 Jungle::Jungle(StateStack& stack,Context context):
     State(stack,context)
 {         
@@ -13,6 +16,8 @@ Jungle::Jungle(StateStack& stack,Context context):
     map->entities.push_back(new Boar(map->startingPoint,this)); // Add a Boar entity to the 
     map->entities.push_back(new GoblinShooter(map->startingPoint,this)); 
     map->entities.push_back(new SwordMinion(map->startingPoint, this));
+	map->entities.push_back(new BlunderbussPistolMinion(map->startingPoint, this));
+	map->entities.push_back(new RifleMinion(map->startingPoint, this));
     context.music->play(Music::Jungle);
     map->setWeaponLoader(weaponLoader); // Set the weapon loader for the map
 

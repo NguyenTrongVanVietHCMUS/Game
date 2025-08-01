@@ -1,5 +1,10 @@
 #include "Book/Game.hpp"
 // Constructor
+template <typename Resource, typename Identifier>
+void Game::load(Identifier id, const std::string& filename)
+{
+	ResourceManager::getInstance().load<Resource>(id, filename);
+}
 Game::Game()
 : 
     window(sf::VideoMode(width, height), "Live Knight", sf::Style::Close | sf::Style::Titlebar|sf::Style::Resize),
@@ -14,28 +19,32 @@ Game::Game()
 		window.setFramerateLimit(60); // Limit to 60 FPS
 		{
 			// load textures 
-			ResourceManager::getInstance().load<sf::Texture>(Textures::ID::Knight, "Media/Assets/Characters/Knight/knight_1.png");
-			ResourceManager::getInstance().load<sf::Texture>(Textures::ID::Boar, "Media/Assets/Mobs/Boar/NormalBoar.png"); 
-			ResourceManager::getInstance().load<sf::Texture>(Textures::ID::GoblinShooter, "Media/Assets/Mobs/GoblinShooter/GoblinShooter.png");
-			ResourceManager::getInstance().load<sf::Texture>(Textures::ID::SwordMinion, "Media/Assets/TileSets/Enemy/SwordMinion.png");
+			//ResourceManager::getInstance().load<sf::Texture>(Textures::ID::Knight, "Media/Assets/Characters/Knight/knight_1.png");
+			load<sf::Texture>(Textures::ID::Knight, "Media/Assets/Characters/Knight/knight_1.png");
+			load<sf::Texture>(Textures::ID::Boar, "Media/Assets/Mobs/Boar/NormalBoar.png"); 
+			load<sf::Texture>(Textures::ID::GoblinShooter, "Media/Assets/Mobs/GoblinShooter/GoblinShooter.png");
+			load<sf::Texture>(Textures::ID::SwordMinion, "Media/Assets/TileSets/Enemy/SwordMinion.png");
+			load<sf::Texture>(Textures::ID::BlunderbussPistolMinion, "Media/Assets/TileSets/Enemy/BlunderbussPistolMinion.png");
+			load<sf::Texture>(Textures::ID::RifleMinion, "Media/Assets/TileSets/Enemy/RifleMinion.png");
 
-			ResourceManager::getInstance().load<sf::Texture>(Textures::ID::SwordMinionSword, "Media/Assets/TileSets/Weapons/SwordMinionSword.png");
-			ResourceManager::getInstance().load<sf::Texture>(Textures::ID::bomb, "Media/Assets/Projectiles/bomb.png");
-			ResourceManager::getInstance().load<sf::Texture>(Textures::ID::AK_47, "Media/Assets/Weapons/gun/AK_47.png");
+			load<sf::Texture>(Textures::ID::bomb, "Media/Assets/Projectiles/bomb.png");
+			load<sf::Texture>(Textures::ID::AK_47, "Media/Assets/Weapons/gun/AK_47.png");
+			load<sf::Texture>(Textures::ID::SwordMinionSword, "Media/Assets/Weapons/Sword/SwordMinionSword.png");
+			load<sf::Texture>(Textures::ID::BlunderbussPistolMinionBlunderbussPistol, "Media/Assets/Weapons/gun/BlunderbussPistolMinionBlunderbussPistol.png");
+			load<sf::Texture>(Textures::ID::RifleMinionRifle, "Media/Assets/Weapons/gun/RifleMinionRifle.png");
 
+			load<sf::Texture>(Textures::ID::HeartIcon, "Media/Assets/TileSets/HUD/hearticon.png");
+			load<sf::Texture>(Textures::ID::ShieldIcon, "Media/Assets/TileSets/HUD/shieldicon.png");
+			load<sf::Texture>(Textures::ID::ManaIcon, "Media/Assets/TileSets/HUD/manaicon.png");
+			load<sf::Texture>(Textures::ID::FuryIcon, "Media/Assets/TileSets/HUD/furyicon.png");
+			load<sf::Texture>(Textures::ID::ManaIcon, "Media/Assets/TileSets/HUD/manabar.png");
 
-			ResourceManager::getInstance().load<sf::Texture>(Textures::ID::HeartIcon, "Media/Assets/TileSets/HUD/hearticon.png");
-			ResourceManager::getInstance().load<sf::Texture>(Textures::ID::ShieldIcon, "Media/Assets/TileSets/HUD/shieldicon.png");
-			ResourceManager::getInstance().load<sf::Texture>(Textures::ID::ManaIcon, "Media/Assets/TileSets/HUD/manaicon.png");
-			ResourceManager::getInstance().load<sf::Texture>(Textures::ID::FuryIcon, "Media/Assets/TileSets/HUD/furyicon.png");
-			ResourceManager::getInstance().load<sf::Texture>(Textures::ID::ManaIcon, "Media/Assets/TileSets/HUD/manabar.png");
-
-			ResourceManager::getInstance().load<sf::Texture>(Textures::ID::HeartBar, "Media/Assets/TileSets/HUD/heartbar.png");
-			ResourceManager::getInstance().load<sf::Texture>(Textures::ID::HUDBar, "Media/Assets/TileSets/HUD/bar.png");
-			ResourceManager::getInstance().load<sf::Texture>(Textures::ID::ShieldBar, "Media/Assets/TileSets/HUD/shieldbar.png");
-			ResourceManager::getInstance().load<sf::Texture>(Textures::ID::ManaBar, "Media/Assets/TileSets/HUD/manabar.png");
-			ResourceManager::getInstance().load<sf::Texture>(Textures::ID::FuryBar, "Media/Assets/TileSets/HUD/furybar.png");
-			ResourceManager::getInstance().load<sf::Texture>(Textures::ID::EmptyBar, "Media/Assets/TileSets/HUD/emptybar.png");
+			load<sf::Texture>(Textures::ID::HeartBar, "Media/Assets/TileSets/HUD/heartbar.png");
+			load<sf::Texture>(Textures::ID::HUDBar, "Media/Assets/TileSets/HUD/bar.png");
+			load<sf::Texture>(Textures::ID::ShieldBar, "Media/Assets/TileSets/HUD/shieldbar.png");
+			load<sf::Texture>(Textures::ID::ManaBar, "Media/Assets/TileSets/HUD/manabar.png");
+			load<sf::Texture>(Textures::ID::FuryBar, "Media/Assets/TileSets/HUD/furybar.png");
+			load<sf::Texture>(Textures::ID::EmptyBar, "Media/Assets/TileSets/HUD/emptybar.png");
 
 
 		}
@@ -43,15 +52,15 @@ Game::Game()
 		{
 			// load maps 
 
-			ResourceManager::getInstance().load<TileMap>(Map::ID::Title, "Media/Assets/Maps/Title/title.world");
-			ResourceManager::getInstance().load<TileMap>(Map::ID::Lobby, "Media/Assets/Maps/Lobby/lobby.world");
-			ResourceManager::getInstance().load<TileMap>(Map::ID::Jungle, "Media/Assets/Maps/Dungeon/Jungle/jungle.world");
+			load<TileMap>(Map::ID::Title, "Media/Assets/Maps/Title/title.world");
+			load<TileMap>(Map::ID::Lobby, "Media/Assets/Maps/Lobby/lobby.world");
+			load<TileMap>(Map::ID::Jungle, "Media/Assets/Maps/Dungeon/Jungle/jungle.world");
 		}
 
 		{
 			// load fonts 
-			ResourceManager::getInstance().load<sf::Font>(Fonts::ID::Main, "Media/Fonts/Sansation.ttf");
-			ResourceManager::getInstance().load<sf::Font>(Fonts::ID::Title, "Media/Fonts/PressStart2P_Regular.ttf");
+			load<sf::Font>(Fonts::ID::Main, "Media/Fonts/Sansation.ttf");
+			load<sf::Font>(Fonts::ID::Title, "Media/Fonts/PressStart2P_Regular.ttf");
 
 		}
 
