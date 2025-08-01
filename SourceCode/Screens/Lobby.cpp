@@ -1,6 +1,8 @@
 #include <Screens/Lobby.hpp>
 #include<Object/Character/Knight.hpp>
-#include<Object/Mob/Boar.hpp> 
+#include<Object/Mob/MadScientist.hpp>
+#include<Object/Mob/RifleMinion.hpp>
+#include<Object/Mob/GoblinExecutor.hpp>
 #include<Control/ResourceManager.hpp> 
 Lobby::Lobby(StateStack& stack,Context context):
     State(stack,context) 
@@ -9,6 +11,8 @@ Lobby::Lobby(StateStack& stack,Context context):
     map->entities.push_back(new Knight(map->startingPoint, this, &map->camera)); // Adjusted to match the new Knight constructor
     map->setWeaponLoader(weaponLoader); // Set the weapon loader for the map
     statPlayer.setPlayer(map->getPlayer()); 
+    map->entities.push_back(new MadScientist(map->startingPoint, this));
+    map->entities.push_back(new GoblinExecutor(map->startingPoint, this));
 }
 
 Lobby::~Lobby()

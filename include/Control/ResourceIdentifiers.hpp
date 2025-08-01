@@ -16,13 +16,23 @@ namespace Textures
 		Knight,
 		Boar,
 		GoblinShooter,
+		GoblinExecutor,
+		GoblinMageSorcerer,
+		GoblinMageRoyal,
+		GoblinSupport,
+		GoblinWarrior,
+
 		SwordMinion,
 		BlunderbussPistolMinion,
 		RifleMinion,
+		MadScientist,
+
+		Crowbar,
+		SwordMinionSword,
+		GoblinExecutorWeapon,
 
 		BlunderbussPistolMinionBlunderbussPistol,
-		SwordMinionSword,
-		RifleMinionRifle, 
+		RifleMinionRifle,
 		AK_47,
 
 
