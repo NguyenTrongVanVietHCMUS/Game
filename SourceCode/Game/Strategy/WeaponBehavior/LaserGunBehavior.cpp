@@ -22,7 +22,7 @@ void laserGunBehavior::activate(Weapon2& self, Entity* target) {
             target->position,
             Worldmap,
             "Media/Assets/Projectiles/Laser.png", // Path to the projectile texture
-            std::make_unique<LaserAimMovement>(0.1f, SpawnPosition, raycast.position, Worldmap), // Laser beam movement strategy
+            std::make_unique<LaserAimMovement>(0.0f, SpawnPosition, raycast.position, Worldmap), // Laser beam movement strategy
             nullptr
         );
         std::cerr << "Creating laser aim animation.\n";

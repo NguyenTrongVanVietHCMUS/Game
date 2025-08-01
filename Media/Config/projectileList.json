@@ -1,0 +1,34 @@
+{
+  "PurpleBullet": {
+    "lifeTime": 3.0,
+    "scale": 0.8,
+    "texturePath": "Media/Assets/Projectiles/PurpleBullet.png",
+
+    "movement": {
+      "type": "Follow Movement",
+      "speed": 400.0,
+      "criticalAngle": 30.0,
+      "targetPosition": { "x": 500.0, "y": 300.0 }
+    },
+
+    "collisionBehavior": {
+      "type": "Projectile Collision Behavior"
+    }
+  },
+  "GoblinBullet": {
+    "lifeTime": 15.0,
+    "scale": 0.8,
+    "texturePath": "Media/Assets/Projectiles/PurpleBullet.png",
+
+    "movement": {
+      "type": "Follow Movement",
+      "speed": 1000.0,
+      "criticalAngle": 50.0,
+      "targetPosition": { "x": 500.0, "y": 300.0 }
+    },
+
+    "collisionBehavior": {
+      "type": "Projectile Collision Behavior"
+    }
+  }
+}
