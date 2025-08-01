@@ -39,6 +39,6 @@ void SwordAnimation::update(Weapon2& weapon, sf::Time dt) {
     sprite.setPosition(OwnerHandPosition);
 }
 
-void SwordAnimation::draw(sf::RenderTarget& target, sf::RenderStates states) {
+void SwordAnimation::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     target.draw(sprite, states); // Draw the sprite with the current rotation
 }

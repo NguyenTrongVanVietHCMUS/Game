@@ -28,11 +28,28 @@ struct IEffect
     virtual ~IEffect() = default;
 };
 
+struct WeaponComponent
+{
+    enum class ContinueMode
+    {
+        INPUT, 
+        WITH,
+        AFTER
+    };
+    virtual ~WeaponComponent() = default;
+
+    virtual void play() = 0;
+    virtual void update(Weapon2& weapon, sf::Time dt) = 0;
+    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const = 0;
+    ContinueMode continueMode = ContinueMode::AFTER; // Default continue mode is AFTER
+    sf::Time waitTime = sf::Time::Zero; // Time to wait before the next action
+};
+
 struct IBehavior
 {
 protected:
     std::string ProjectileName; // Name of the projectile
-public:
+public: 
     virtual void activate(Weapon2& weapon, Entity* target) = 0;
     virtual std::unique_ptr<IBehavior> clone() const = 0;
     virtual ~IBehavior() = default;
@@ -57,7 +74,7 @@ public:
     virtual std::unique_ptr<ICooldownBehavior> clone() const = 0;
 };
 
-class IWeaponAnimation
+class IWeaponAnimation : public WeaponComponent
 {
 protected:
     float scale = 1.0f; // Scale of the weapon animation    
@@ -75,8 +92,8 @@ public:
     void play(); // This will put CurrentTime to 0 and start the animation
     
 public:
-    virtual void update(Weapon2& weapon, sf::Time dt) {};
-    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) {};
+    void update(Weapon2& weapon, sf::Time dt) override {};
+    void draw(sf::RenderTarget& target, sf::RenderStates states) const override {};
     virtual void handleEvent(const sf::Event& event) {};
     virtual std::unique_ptr<IWeaponAnimation> clone() const = 0;
     virtual ~IWeaponAnimation() = default;
@@ -116,3 +133,4 @@ public:
         return elapsedTime < duration; // Check if the effect is still active
     }
 };
+

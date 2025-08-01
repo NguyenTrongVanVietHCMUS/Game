@@ -64,7 +64,7 @@
       "type": "Melee Weapon Behavior",
       "Projectile": "Basic Slash"
     },
-    "animation": {
+  "animation": {
       "type": "Sword Animation",
       "totalTime": 0.2,
       "scale": -1.5,
