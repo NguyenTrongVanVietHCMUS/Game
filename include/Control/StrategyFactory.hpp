@@ -81,7 +81,7 @@ private:
             {"Melee Weapon Behavior", [](const json& data, State* map){
                 return std::make_unique<MeleeWeaponBehavior>(map);
             }},
-            {"Throw Weapon Behavior", [](const json& data, State* map)
+            {"Throwing Weapon Behavior", [](const json& data, State* map)
             {
                 return std::make_unique<ThrowBehavior>(map);
             }},
@@ -106,7 +106,7 @@ private:
                     data.value("endAngle", 0.0f),
                     data.value("recoilOffset", 0.0f),
                     owner,
-                    sf::Vector2f(0.4f, 0.6f)
+                    sf::Vector2f(data.value("middlePositionX", 0.5f), data.value("middlePositionY", 0.5f))
                 );
             }},
             {"Sword Animation", [](const json& data, Entity* owner){
