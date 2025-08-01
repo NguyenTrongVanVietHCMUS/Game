@@ -24,13 +24,15 @@ void SwordAnimation::update(Weapon2& weapon, sf::Time dt) {
     float posX = weapon.getStat("TargetPosX");
     float posY = weapon.getStat("TargetPosY");
     // Get the Original Angle of the sword based on the mouse position
-    sf::Vector2f direction = owner->getPosition() - sf::Vector2f(posX, posY);
+    sf::Vector2f direction = owner->getHandPosition() - sf::Vector2f(posX, posY);
     float originalAngle = std::atan2(direction.y, direction.x) * 180.0f / 3.14159f; // Convert to degrees
-
+    
     float t = CurrentTime / TotalTime; // Normalized time [0, 1]
     float angleOffset = startAngle + t * (endAngle - startAngle); // Interpolate angle
-    sprite.setRotation(originalAngle + angleOffset); // Set the rotation of the sprite
-
+    if(abs(originalAngle) > 90.0f) {
+        sprite.setRotation(originalAngle - angleOffset); // Adjust for flipping
+    } else sprite.setRotation(originalAngle + angleOffset); // Set the rotation of the sprite;
+    weapon.setStat("OriginalAngle", originalAngle);
     // Set the position of the sprite based on the owner entity's position
     sf::Vector2f OwnerHandPosition = owner->getHandPosition();
     weapon.position = OwnerHandPosition;

@@ -11,6 +11,9 @@ SlashProjectile_MovingAnimation::SlashProjectile_MovingAnimation(sf::Texture* te
     sf::Vector2f direction = endPosition - startPosition;
     if (direction.x != 0 || direction.y != 0) {
         angle = std::atan2(direction.y, direction.x); 
+        if(std::abs(angle) > 3.14159f / 2) {
+            sprite.setScale(-scale, -scale); // Flip the sprite if the angle is more than 90 degrees
+        } else sprite.setScale(-scale, scale); // Normal scale
     }
 }
 

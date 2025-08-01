@@ -7,16 +7,14 @@ void MeleeWeaponBehavior::activate(Weapon2& self, Entity* target) {
 
     // normalize the direction vector
     sf::Vector2f SpawnerPosition = self.GetProjectileSpawnPosition();
-    sf::Vector2f direction = SpawnerPosition - sf::Vector2f(posX, posY);
+    sf::Vector2f direction = target->position - sf::Vector2f(posX, posY);
     float Angle = std::atan2(direction.y, direction.x); // Calculate the angle of the melee attack
-    // Offset the position of the projectile to be in front of the target
-    sf::Vector2f offset(25.0f * std::cos(Angle), 25.0f * std::sin(Angle)); // Offset by 50 pixels in the direction of the attack
     Projectile2 *proj;
     try {
         proj = projectileLoader.LoadProjectile(
         ProjectileName,
-        SpawnerPosition + offset, // Set the projectile's position to the spawn position with offset
-        sf::Vector2f(SpawnerPosition.x + offset.x * 2, SpawnerPosition.y + offset.y * 2) // Set the target position for the projectile
+        SpawnerPosition, 
+        sf::Vector2f(SpawnerPosition + direction) // Set the target position for the projectile
     );
     } catch (const std::exception& e) {
         std::cerr << "Error creating projectile: " << e.what() << std::endl;

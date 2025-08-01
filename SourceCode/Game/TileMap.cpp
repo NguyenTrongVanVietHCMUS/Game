@@ -341,7 +341,7 @@ bool TileMap::update(sf::Time dt)
             {
                 try
                 {
-                    chest->setItems(weaponLoader->LoadRandomWeapon());
+                    chest->setItems(weaponLoader->LoadWeapons("Sword"));
                 }
                 catch(const std::exception& e)
                 {

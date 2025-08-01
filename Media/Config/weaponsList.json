@@ -67,13 +67,14 @@
     "animation": {
       "type": "Sword Animation",
       "totalTime": 0.2,
-      "scale": -10.0,
+      "scale": -1.5,
       "texture": "Media/Assets/Weapons/sword/Sword.png",
       "startAngle": -90.0,
       "endAngle": 90.0,
       "middlePositionX": 0.2,
       "middlePositionY": 0.5
-    }
+    },
+    "scaleBulletSpawnPosition": { "x": 0.4, "y": -0.2 }
   },
 
 
