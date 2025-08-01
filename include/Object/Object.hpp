@@ -17,10 +17,11 @@ public:
     virtual void update(Entity* player)
     {
         // Check collision with player
-        if (isCollide(player))
+        if (this->isNear(player))
         {
             interactingAnimation->activate(); // Activate the interaction animation
         }
+        else interactingAnimation->deactivate(); 
 	}
     virtual bool update(sf::Time dt)
     {
