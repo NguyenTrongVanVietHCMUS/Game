@@ -18,10 +18,12 @@ MovingAnimation(texture, sf::Vector2u(1.f, 1.f), 0, position, 1.0f, middlePositi
     float distance = std::pow(endPosition.x - startPosition.x, 2) + std::pow(endPosition.y - startPosition.y, 2);
     distance = std::sqrt(distance);
     float spriteWidth = sprite.getGlobalBounds().width;
+    supportSprite.setTexture(*texture);
     scale = distance / spriteWidth;
     sprite.setScale(scale, 1.0f);
     sprite.setOrigin(0.0f, sprite.getGlobalBounds().height / 2.0f); // Center the sprite vertically
-
+    supportSprite.setScale(scale, 1.0f);
+    supportSprite.setOrigin(0.0f, supportSprite.getGlobalBounds().height / 2.0f); // Center the sprite vertically
     std::cerr << "Trying to load the ball texture." << std::endl;
     BallTexture = new sf::Texture();
     if(BallTexture->loadFromFile("Media/Assets/Projectiles/LaserBall.png")) {
@@ -40,9 +42,12 @@ void LaserAnimation::update(sf::Time dt) {
     float ScaleY = sin(elapseTime);
     float finalScale = std::abs(ScaleY); // Scale between 0.5 and 1.0
     sprite.setScale(scale, ScaleY * 3);
+    supportSprite.setScale(scale, cos(elapseTime * 1.5) * 2.5f);
     float angle = std::atan2(endPosition.y - startPosition.y, endPosition.x - startPosition.x) * 180.0f / 3.14159f; // Convert to degrees
     sprite.setRotation(angle);
     sprite.setPosition(startPosition);
+    supportSprite.setPosition(startPosition);
+    supportSprite.setRotation(angle);
     // draw the ball sprite at the end and start position
     ballSprite1.setPosition(startPosition);
     ballSprite2.setPosition(endPosition);
@@ -54,6 +59,7 @@ void LaserAnimation::update(sf::Time dt) {
 
 void LaserAnimation::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     target.draw(sprite, states);
+    target.draw(supportSprite, states);
     target.draw(ballSprite1, states);
     target.draw(ballSprite2, states);
     

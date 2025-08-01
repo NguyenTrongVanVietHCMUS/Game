@@ -197,7 +197,7 @@ private:
     sf::Vector2f endPosition;
     float elapseTime = 0.0f;
     sf::Texture* BallTexture;
-    sf::Sprite ballSprite1 , ballSprite2;
+    sf::Sprite ballSprite1 , ballSprite2 , supportSprite;
 public:
     LaserAnimation(sf::Texture *texture, sf::Vector2f startPosition, sf::Vector2f endPosition, sf::Vector2f middlePosition, sf::Vector2f& position);
     ~LaserAnimation() {

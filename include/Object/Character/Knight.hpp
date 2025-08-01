@@ -25,46 +25,34 @@ public:
             this
         );  
         statusEffect.push_back(std::make_shared<FollowCameraEffect>(cameraManager, this)); // Add follow camera effect
-
-        inventory->addWeapon(weaponLoader.LoadWeapons("AK47"), this); // Load the weapon from JSON file
-        inventory->addWeapon(weaponLoader.LoadWeapons("Sword"), this); // Load the sword weapon from JSON file
-
-        inventory->addWeapon(
-                std::make_shared<Weapon2>(
-                    "ThrowingBomb",
-                    this->position, // Position of the weapon
-                    0.5f, // Cooldown time for the weapon
-                    std::make_unique<ThrowBehavior>(state), 
-                    nullptr
-                )
-            );
-
-        inventory->addWeapon(
-             std::make_shared<Weapon2>(
-                "AK_47",
-                this->position, // Position of the weapon
-                0.1f, // Cooldown time for the weapon
-                sf::Vector2(0.6f,-0.2f),
-                std::make_unique<laserGunBehavior>(state), // Ranged weapon behavior with speed
-                std::make_unique<GunAnimation>(
-                    0.2f, // Total time for the animation
-                    0.4f, // Scale of the animation
-                    &ResourceManager::getInstance().get<sf::Texture>(Textures::ID::AK_47), // Texture for the gun animation
-                    this->position, // Position of the gun animation
-                    10.0f, // Start angle of the gun animation
-                    0.0f, // End angle of the gun animation
-                    25.0f, // Recoil offset for the gun animation
-                    this, // Owner of the gun animation
-                    sf::Vector2f(0.4f, 0.6f) // Middle position for the gun animation
-                ),
-                state
-            )
-        );
         
-        movingAnimation->speed = 285.0f; 
-        // Initialize the knight-specific properties here 
-    }   
-    ~Knight() override = default; // Default destructor    
+        try {
+            inventory->addWeapon(weaponLoader.LoadWeapons("AK47"), this); // Load the weapon from JSON file
+        } catch (const std::exception& e) {
+            std::cerr << "Failed to create inventory: " << e.what() << std::endl;
+        }
+        sf::Texture* swordTexture = new sf::Texture();
+        if (!swordTexture->loadFromFile("Media/Assets/Weapons/sword/Sword.png")) {
+            std::cerr << "Failed to load sword texture\n";
+        }
+        
+        try {
+            inventory->addWeapon(weaponLoader.LoadWeapons("ThrowBomb"), this); // Load the ThrowBomb weapon from JSON file
+        } catch (const std::exception& e) {
+            std::cerr << "Failed to load ThrowBomb weapon: " << e.what() << std::endl;
+        }
+
+        try {
+            inventory->addWeapon(weaponLoader.LoadWeapons("Laser Gun"), this); // Load the Laser Gun weapon from JSON file
+        } catch (const std::exception& e) {
+            std::cerr << "Failed to load Laser Gun weapon: " << e.what() << std::endl;
+        }
+
+        movingAnimation->speed = 285.0f;
+        // Initialize the knight-specific properties here
+        std::cerr << "Knight load successfully\n";
+    }
+    ~Knight() override = default; // Default destructor
     Hitbox getHitbox() const 
     {
         sf::Vector2f position = this->getPosition()-sf::Vector2f(22.0f,12.0f);

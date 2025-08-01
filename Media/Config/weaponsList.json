@@ -81,10 +81,44 @@
   {
     "name": "ThrowBomb",
     "position": { "x": 150, "y": 75 },
+     "cooldownTime": 0.7,
     "behavior": {
-      "type": "Throwing Bomb Behavior",
+      "type": "Throwing Weapon Behavior",
       "explosionRadius": 100.0,
       "damage": 50
+    },
+    "animation": {
+      "type": "Gun Animation",
+      "totalTime": 0.3,
+      "scale": 0.4,
+      "texture": "Media/Assets/Weapons/Gun/AK_47.png",
+      "startAngle": 10.0,
+      "endAngle": 0.0,
+      "recoilOffset": 50.0
     }
+  },
+
+
+
+  "Laser Gun":{
+    "name": "Laser Gun",
+    "position": { "x": 150, "y": 75 },
+    "cooldownTime": 0.1,
+    "behavior": {
+      "type": "Laser Weapon Behavior"
+    },
+    "animation": {
+      "type": "Gun Animation",
+      "totalTime": 0.3,
+      "scale": 0.4,
+      "texture": "Media/Assets/Weapons/Gun/AK_47.png",
+      "startAngle": 10.0,
+      "endAngle": 0.0,
+      "recoilOffset": 10.0,
+      "middlePositionX": 0.4,
+      "middlePositionY": 0.6
+      
+    },
+    "scaleBulletSpawnPosition": { "x": 0.6, "y": -0.2 }
   }
 }

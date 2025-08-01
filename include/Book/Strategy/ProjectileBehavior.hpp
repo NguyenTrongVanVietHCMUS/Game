@@ -158,7 +158,7 @@ public:
             elapsedTime = 0.0f; // Reset the timer
             auto proj = new Projectile2(
                 "LaserBeam",
-                0.2f, // Lifetime of the laser beam
+                1.6f, // Lifetime of the laser beam
                 startPosition,
                 Worldmap,
                 "Media/Assets/Projectiles/Laser.png", // Path to the laser beam texture
