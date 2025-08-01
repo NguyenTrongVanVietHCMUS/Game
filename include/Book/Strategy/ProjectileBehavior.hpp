@@ -9,6 +9,12 @@ private:
     float speedX, speedY;
     float speed;
 public:
+    StraightMovement(float speed, sf::Vector2f StartPosition, sf::Vector2f EndPosition)
+        : speed(speed)
+    {
+        sf::Vector2f direction = EndPosition - StartPosition;
+        setDirection(direction);
+    }
     StraightMovement(float speedX, float speedY) : speedX(speedX), speedY(speedY) {}
     StraightMovement(float speed) : speed(speed) {}
     void update(Projectile2& projectile, const sf::Time &dt) override

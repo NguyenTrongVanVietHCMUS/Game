@@ -35,34 +35,17 @@ public:
         if (!swordTexture->loadFromFile("Media/Assets/Weapons/sword/Sword.png")) {
             std::cerr << "Failed to load sword texture\n";
         }
-        inventory->addWeapon(
-            std::make_shared<Weapon2>(
-                "Sword",
-                this->position, // Position of the weapon
-                0.5f, // Cooldown time for the weapon
-                std::make_unique<MeleeWeaponBehavior>(state), // Melee weapon behavior with speed
-                std::make_unique<SwordAnimation>(
-                    0.2f, // Total time for the animation
-                    -0.8f, // Scale of the animation
-                    swordTexture, // Texture for the sword animation
-                    this->position, // Position of the sword animation
-                    -90.0f, // Start angle of the sword animation
-                    90.0f, // End angle of the sword animation
-                    this, // Owner of the sword animation
-                    sf::Vector2f(0.2f, 0.5f) // Middle position for the sword animation
-                )
-            )
-        );
+        inventory->addWeapon(weaponLoader.LoadWeapons("Sword"), this); // Load the sword weapon from JSON file
 
         inventory->addWeapon(
-            std::make_shared<Weapon2>(
-                "ThrowingBomb",
-                this->position, // Position of the weapon
-                0.5f, // Cooldown time for the weapon
-                std::make_unique<ThrowBehavior>(state), // Throw behavior
-                nullptr
-            )
-        );
+                std::make_shared<Weapon2>(
+                    "ThrowingBomb",
+                    this->position, // Position of the weapon
+                    0.5f, // Cooldown time for the weapon
+                    std::make_unique<ThrowBehavior>(state), // Throw behavior
+                    nullptr
+                )
+            );
 
         inventory->addWeapon(
              std::make_shared<Weapon2>(

@@ -77,6 +77,17 @@ private:
                 return std::make_unique<RangedWeaponBehavior>(map,
                     data.value("projectileSpeed", 500.0f),
                     data.value("spreadAngle", 0.0f));
+            }},
+            {"Melee Weapon Behavior", [](const json& data, State* map){
+                return std::make_unique<MeleeWeaponBehavior>(map);
+            }},
+            {"Throw Weapon Behavior", [](const json& data, State* map)
+            {
+                return std::make_unique<ThrowBehavior>(map);
+            }},
+            {"Laser Weapon Behavior", [](const json& data, State* map)
+            {
+                return std::make_unique<laserGunBehavior>(map);
             }}
         };
         return registry;
@@ -97,6 +108,19 @@ private:
                     owner,
                     sf::Vector2f(0.4f, 0.6f)
                 );
+            }},
+            {"Sword Animation", [](const json& data, Entity* owner){
+                return std::make_unique<SwordAnimation>(
+                    data.at("totalTime").get<float>(),
+                    data.at("scale").get<float>(),
+                    getTexture(data.at("texture").get<std::string>()),
+                    owner? owner->getHandPosition() : sf::Vector2f{0.0f, 0.0f},
+                    data.value("startAngle", 0.0f),
+                    data.value("endAngle", 0.0f),
+                    owner,
+                    sf::Vector2f(data.value("middlePositionX", 0.5f), data.value("middlePositionY", 0.5f))
+                );
+
             }}
         };
         return registry;
@@ -112,6 +136,37 @@ private:
                     endPos,
                     map,
                     data.value("criticalAngle", 60.0f)
+                );
+            }},
+            {"Straight Movement", [](const json& data, State* map, sf::Vector2f startPos, sf::Vector2f endPos){
+                return std::make_unique<StraightMovement>(
+                    data.value("Speed", 500.0f),
+                    startPos,
+                    endPos
+                );
+            }},
+            {"Throw Movement", [](const json& data, State* map, sf::Vector2f startPos, sf::Vector2f endPos){
+                return std::make_unique<ThrowMovement>(
+                    data.value("FlyTime", 500.0f),
+                    startPos,
+                    endPos,
+                    data.value("Scale", 1.0f),
+                    map
+                );
+
+            }},
+            {"Laser Beam Movement", [](const json& data, State* map, sf::Vector2f startPos, sf::Vector2f endPos){
+                return std::make_unique<LaserBeamMovement>(
+                    data.value("HitCycle", 0.5f)
+                );
+
+            }},
+            {"Laser Aim Movement", [](const json& data, State* map, sf::Vector2f startPos, sf::Vector2f endPos){
+                return std::make_unique<LaserAimMovement>(
+                    data.value("AimTime", 1.0f),
+                    startPos,
+                    endPos,
+                    map
                 );
             }}
         };

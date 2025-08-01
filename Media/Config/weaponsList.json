@@ -49,5 +49,42 @@
     "cooldownTime": 1.0,
 
     "scaleBulletSpawnPosition": { "x": 0.6, "y": -0.2 }
+  },
+
+
+  
+  "Sword": {
+      "name": "Sword",
+    "position": {
+      "x": 100.0,
+      "y": 200.0
+    },
+    "cooldownTime": 0.5,
+    "behavior": {
+      "type": "Melee Weapon Behavior"
+    },
+    "animation": {
+      "type": "Sword Animation",
+      "totalTime": 0.2,
+      "scale": -0.8,
+      "texture": "Media/Assets/Weapons/sword/Sword.png",
+      "startAngle": -90.0,
+      "endAngle": 90.0,
+      "middlePositionX": 0.2,
+      "middlePositionY": 0.5
+    }
+  },
+
+
+
+  "ThrowBomb" : 
+  {
+    "name": "ThrowBomb",
+    "position": { "x": 150, "y": 75 },
+    "behavior": {
+      "type": "Throwing Bomb Behavior",
+      "explosionRadius": 100.0,
+      "damage": 50
+    }
   }
 }
