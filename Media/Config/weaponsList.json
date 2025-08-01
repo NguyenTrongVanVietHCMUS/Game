@@ -1,7 +1,10 @@
 {
   "AK47": {
     "name": "AK47",
-    "position": { "x": 150, "y": 75 },
+    "position": {
+      "x": 150,
+      "y": 75
+    },
 
     "behavior": {
       "type": "Ranged Weapon Behavior",
@@ -22,16 +25,22 @@
 
     "cooldownTime": 0.15,
 
-    "scaleBulletSpawnPosition": { "x": 0.6, "y": -0.2 }
+    "scaleBulletSpawnPosition": {
+      "x": 0.6,
+      "y": -0.2
+    }
   },
-  
+
   "GoblinGun": {
     "name": "GoblinGun",
-    "position": { "x": 150, "y": 75 },
+    "position": {
+      "x": 150,
+      "y": 75
+    },
 
     "behavior": {
       "type": "Ranged Weapon Behavior",
-    "projectileSpeed": 1200.0,
+      "projectileSpeed": 1200.0,
       "spreadAngle": 0.0,
       "Projectile": "GoblinBullet"
     },
@@ -48,13 +57,78 @@
 
     "cooldownTime": 1.0,
 
-    "scaleBulletSpawnPosition": { "x": 0.6, "y": -0.2 }
+    "scaleBulletSpawnPosition": {
+      "x": 0.6,
+      "y": -0.2
+    }
+  },
+
+  "MinionRifle": {
+    "name": "MinionRifle",
+    "position": {
+      "x": 150,
+      "y": 75
+    },
+
+    "behavior": {
+      "type": "Ranged Weapon Behavior",
+      "projectileSpeed": 1200.0,
+      "spreadAngle": 0.0,
+      "Projectile": "GoblinBullet"
+    },
+
+    "animation": {
+      "type": "Gun Animation",
+      "totalTime": 0.3,
+      "scale": 0.4,
+      "texture": "Media/Assets/Weapons/Gun/MinionRifle.png",
+      "startAngle": 10.0,
+      "endAngle": 0.0,
+      "recoilOffset": 10.0
+    },
+
+    "cooldownTime": 1.0,
+
+    "scaleBulletSpawnPosition": {
+      "x": 0.6,
+      "y": -0.2
+    }
+  },
+  "BlunderbussPistol": {
+    "name": "BlunderbussPistol",
+    "position": {
+      "x": 150,
+      "y": 75
+    },
+
+    "behavior": {
+      "type": "Ranged Weapon Behavior",
+      "projectileSpeed": 1200.0,
+      "spreadAngle": 0.0,
+      "Projectile": "GoblinBullet"
+    },
+
+    "animation": {
+      "type": "Gun Animation",
+      "totalTime": 0.3,
+      "scale": 0.4,
+      "texture": "Media/Assets/Weapons/Gun/BlunderbussPistol.png",
+      "startAngle": 10.0,
+      "endAngle": 0.0,
+      "recoilOffset": 10.0
+    },
+
+    "cooldownTime": 1.0,
+
+    "scaleBulletSpawnPosition": {
+      "x": 0.6,
+      "y": -0.2
+    }
   },
 
 
-  
   "Sword": {
-      "name": "Sword",
+    "name": "Sword",
     "position": {
       "x": 100.0,
       "y": 200.0
@@ -73,15 +147,121 @@
       "middlePositionX": 0.2,
       "middlePositionY": 0.5
     }
+  },    
+  "MinionSword": {
+    "name": "MinionSword",
+    "position": {
+      "x": 100.0,
+      "y": 200.0
+    },
+    "cooldownTime": 0.5,
+    "behavior": {
+      "type": "Melee Weapon Behavior"
+    },
+    "animation": {
+      "type": "Sword Animation",
+      "totalTime": 0.2,
+      "scale": -0.3,
+      "texture": "Media/Assets/Weapons/sword/MinionSword.png",
+      "startAngle": -90.0,
+      "endAngle": 90.0,
+      "middlePositionX": 0.2,
+      "middlePositionY": 0.5
+    }
+  },
+  "Crowbar": {
+    "name": "Crowbar",
+    "position": {
+      "x": 100.0,
+      "y": 200.0
+    },
+    "cooldownTime": 0.5,
+    "behavior": {
+      "type": "Melee Weapon Behavior"
+    },
+    "animation": {
+      "type": "Sword Animation",
+      "totalTime": 0.2,
+      "scale": -0.8,
+      "texture": "Media/Assets/Weapons/sword/Crowbar.png",
+      "startAngle": -90.0,
+      "endAngle": 90.0,
+      "middlePositionX": 0.2,
+      "middlePositionY": 0.5
+    }
+  },
+  "GoblinExecutorWeapon": {
+    "name": "GoblinExecutorWeapon",
+    "position": {
+      "x": 100.0,
+      "y": 200.0
+    },
+    "cooldownTime": 0.5,
+    "behavior": {
+      "type": "Melee Weapon Behavior"
+    },
+    "animation": {
+      "type": "Sword Animation",
+      "totalTime": 0.2,
+      "scale": -0.8,
+      "texture": "Media/Assets/Weapons/sword/GoblinExecutorWeapon.png",
+      "startAngle": -90.0,
+      "endAngle": 90.0,
+      "middlePositionX": 0.2,
+      "middlePositionY": 0.5
+    }
+  },
+  "LongLongSword": {
+    "name": "LongLongSword",
+    "position": {
+      "x": 100.0,
+      "y": 200.0
+    },
+    "cooldownTime": 0.5,
+    "behavior": {
+      "type": "Melee Weapon Behavior"
+    },
+    "animation": {
+      "type": "Sword Animation",
+      "totalTime": 0.2,
+      "scale": -0.8,
+      "texture": "Media/Assets/Weapons/sword/LongLongSword.png",
+      "startAngle": -90.0,
+      "endAngle": 90.0,
+      "middlePositionX": 0.2,
+      "middlePositionY": 0.5
+    }
+  },
+  "LongSword": {
+    "name": "LongSword",
+    "position": {
+      "x": 100.0,
+      "y": 200.0
+    },
+    "cooldownTime": 0.5,
+    "behavior": {
+      "type": "Melee Weapon Behavior"
+    },
+    "animation": {
+      "type": "Sword Animation",
+      "totalTime": 0.2,
+      "scale": -0.8,
+      "texture": "Media/Assets/Weapons/sword/LongSword.png",
+      "startAngle": -90.0,
+      "endAngle": 90.0,
+      "middlePositionX": 0.2,
+      "middlePositionY": 0.5
+    }
   },
 
 
-
-  "ThrowBomb" : 
-  {
+  "ThrowBomb": {
     "name": "ThrowBomb",
-    "position": { "x": 150, "y": 75 },
-     "cooldownTime": 0.7,
+    "position": {
+      "x": 150,
+      "y": 75
+    },
+    "cooldownTime": 0.7,
     "behavior": {
       "type": "Throwing Weapon Behavior",
       "explosionRadius": 100.0,
@@ -100,9 +280,12 @@
 
 
 
-  "Laser Gun":{
+  "Laser Gun": {
     "name": "Laser Gun",
-    "position": { "x": 150, "y": 75 },
+    "position": {
+      "x": 150,
+      "y": 75
+    },
     "cooldownTime": 0.1,
     "behavior": {
       "type": "Laser Weapon Behavior"
@@ -117,8 +300,11 @@
       "recoilOffset": 10.0,
       "middlePositionX": 0.4,
       "middlePositionY": 0.6
-      
+
     },
-    "scaleBulletSpawnPosition": { "x": 0.6, "y": -0.2 }
+    "scaleBulletSpawnPosition": {
+      "x": 0.6,
+      "y": -0.2
+    }
   }
 }

@@ -48,7 +48,7 @@ public:
             std::cerr << "Failed to load Laser Gun weapon: " << e.what() << std::endl;
         }
 
-        movingAnimation->speed = 285.0f;
+        movingAnimation->speed = 600.0f;
         // Initialize the knight-specific properties here
         std::cerr << "Knight load successfully\n";
     }

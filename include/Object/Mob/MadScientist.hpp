@@ -8,6 +8,7 @@
 #include<memory>
 #include<Book/AIEnemy.hpp>
 #include<Book/Enemy.hpp>
+
 class MadScientist : public Enemy
 {
 private:
@@ -15,29 +16,12 @@ private:
 public:
     MadScientist(sf::Vector2f position, State* state) : Enemy("MadScientist", position)
     {
+        WeaponLoader weaponLoader(state);
         sightRange = 250.f;
         movingAnimation = std::make_unique<ShortRangeMob_MovingAnimation>(&ResourceManager::getInstance().get<sf::Texture>(Textures::ID::MadScientist), sf::Vector2u(8, 3), 0.1f, this->position, 2.2, this);
-        movingAnimation->speed = 175.0f;
+        movingAnimation->speed = 400.0f;
         aiEnemy = std::make_unique<AIHighRangeEnemy>();
-        inventory->addWeapon(
-            std::make_shared<Weapon2>(
-                "MadScientistSword",
-                this->position, // Position of the weapon
-                1.0f, // cooldowntime
-                sf::Vector2(0.5f, -0.2f), // The Scale position of the bullet spawner
-                std::make_unique<MeleeWeaponBehavior>(state), // Ranged weapon behavior with speed
-                std::make_unique<SwordAnimation>(
-                    0.2f, // Total time for the animation
-                    -0.3f, // Scale of the animation
-                    &ResourceManager::getInstance().get<sf::Texture>(Textures::ID::Crowbar), // Texture for the gun animation
-                    this->position, // Position of the gun animation
-                    -90.0f, // Start angle of the sword animation
-                    90.0f, // End angle of the sword animation
-                    this, // Owner of the gun animation
-                    sf::Vector2f(0.1f, 0.1f) // Middle position for the gun animation
-                )
-            )
-        );
+        inventory->addWeapon(WeaponLoader(state).LoadWeapons("Crowbar"), this);
     }
 
     ~MadScientist() override = default; // Default destructor    

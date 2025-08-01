@@ -5,6 +5,8 @@
 #include<Control/ResourceManager.hpp>
 #include<Control/State.hpp>
 #include<Book/Inventory.hpp>
+#include<Control/WeaponLoader.hpp>
+
 class AIEnemy; 
 class Enemy : public Entity
 {

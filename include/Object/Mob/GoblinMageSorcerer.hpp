@@ -3,26 +3,25 @@
 #include<Book/Utility.hpp>
 #include<Book/Character.hpp>
 #include<Book/MovingAnimation.hpp>
-#include<Book/Strategy/WeaponBehavior.hpp>
-#include<Book/Strategy/WeaponAnimation.hpp>
 #include<memory>
+#include<Control/WeaponLoader.hpp>
 
-class BlunderbussPistolMinion : public Enemy
+class GoblinMageSorcerer : public Enemy
 {
 private:
     float sightRange;
 public:
-    BlunderbussPistolMinion(sf::Vector2f position, State* state) : Enemy("BlunderbussPistolMinion", position)
+    GoblinMageSorcerer(sf::Vector2f position, State* state) : Enemy("GoblinMageSorcerer", position)
     {
-        WeaponLoader weaponLoader(state);
-        sightRange = 350.f;
-        movingAnimation = std::make_unique<ShortRangeMob_MovingAnimation>(&ResourceManager::getInstance().get<sf::Texture>(Textures::ID::BlunderbussPistolMinion), sf::Vector2u(8, 3), 0.1f, this->position, 0.4f, this);
-        movingAnimation->speed = 80.0f;
+        WeaponLoader weaponLoader(state); 
+        sightRange = 250.f;
+        movingAnimation = std::make_unique<HighRangeMob_MovingAnimation>(&ResourceManager::getInstance().get<sf::Texture>(Textures::ID::GoblinMageSorcerer), sf::Vector2u(8, 3), 0.1f, this->position, 2.5f, this);
+        movingAnimation->speed = 125.0f;
         aiEnemy = std::make_unique<AIHighRangeEnemy>();
-		inventory->addWeapon(weaponLoader.LoadWeapons("BlunderbussPistol"), this);
+        inventory->addWeapon(WeaponLoader(state).LoadWeapons("GoblinGun"), this);
     }
 
-    ~BlunderbussPistolMinion() override = default; // Default destructor    
+    ~GoblinMageSorcerer() override = default; // Default destructor    
     Hitbox getHitbox() const
     {
         sf::Vector2f position = this->getPosition() - sf::Vector2f(22.0f, 12.0f);

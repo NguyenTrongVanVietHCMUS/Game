@@ -14,29 +14,12 @@ private:
 public:
     RifleMinion(sf::Vector2f position, State* state) : Enemy("RifleMinion", position)
     {
+        WeaponLoader weaponLoader(state);
         sightRange = 600.f;
         movingAnimation = std::make_unique<ShortRangeMob_MovingAnimation>(&ResourceManager::getInstance().get<sf::Texture>(Textures::ID::RifleMinion), sf::Vector2u(8, 3), 0.1f, this->position, 0.4f, this);
         movingAnimation->speed = 120.0f;
         aiEnemy = std::make_unique<AIHighRangeEnemy>();
-        inventory->addWeapon(
-            std::make_shared<Weapon2>(
-                "RifleMinionSword",
-                this->position, // Position of the weapon
-                1.0f, // cooldowntime
-                sf::Vector2(0.5f, -0.2f), // The Scale position of the bullet spawner
-                std::make_unique<RangedWeaponBehavior>(state,500.0f,20.0f), // Ranged weapon behavior with speed
-                std::make_unique<SwordAnimation>(
-                    0.2f, // Total time for the animation
-                    -0.3f, // Scale of the animation
-                    &ResourceManager::getInstance().get<sf::Texture>(Textures::ID::RifleMinionRifle), // Texture for the gun animation
-                    this->position, // Position of the gun animation
-                    -90.0f, // Start angle of the sword animation
-                    90.0f, // End angle of the sword animation
-                    this, // Owner of the gun animation
-                    sf::Vector2f(0.1f, 0.1f) // Middle position for the gun animation
-                )
-            )
-        );
+        inventory->addWeapon(WeaponLoader(state).LoadWeapons("MinionRifle"), this);
     }
 
     ~RifleMinion() override = default; // Default destructor    
