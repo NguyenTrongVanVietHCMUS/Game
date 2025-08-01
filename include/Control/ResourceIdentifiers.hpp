@@ -27,6 +27,7 @@ namespace Textures
 		RifleMinion,
 		MadScientist,
 
+		Sword,
 		Crowbar,
 		SwordMinionSword,
 		GoblinExecutorWeapon,

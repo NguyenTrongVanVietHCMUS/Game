@@ -25,16 +25,8 @@ public:
             this
         );  
         statusEffect.push_back(std::make_shared<FollowCameraEffect>(cameraManager, this)); // Add follow camera effect
-        
-        try {
-            inventory->addWeapon(weaponLoader.LoadWeapons("AK47"), this); // Load the weapon from JSON file
-        } catch (const std::exception& e) {
-            std::cerr << "Failed to create inventory: " << e.what() << std::endl;
-        }
-        sf::Texture* swordTexture = new sf::Texture();
-        if (!swordTexture->loadFromFile("Media/Assets/Weapons/sword/Sword.png")) {
-            std::cerr << "Failed to load sword texture\n";
-        }
+
+        inventory->addWeapon(weaponLoader.LoadWeapons("AK47"), this); // Load the weapon from JSON file
         inventory->addWeapon(weaponLoader.LoadWeapons("Sword"), this); // Load the sword weapon from JSON file
 
         inventory->addWeapon(
@@ -42,7 +34,7 @@ public:
                     "ThrowingBomb",
                     this->position, // Position of the weapon
                     0.5f, // Cooldown time for the weapon
-                    std::make_unique<ThrowBehavior>(state), // Throw behavior
+                    std::make_unique<ThrowBehavior>(state), 
                     nullptr
                 )
             );
