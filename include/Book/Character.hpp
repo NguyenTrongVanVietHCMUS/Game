@@ -6,12 +6,21 @@
 #include<Book/Inventory.hpp>
 #include<Book/StrategyClass.hpp>
 #include<Control/CameraManager.hpp>
+#include<Book/EntityComponent.hpp>
 #include<Book/Strategy/StatusEffect/CameraEffect.hpp>
 class MovingAnimation;
+
+
 class Character : public Entity
 {
 protected:
     float pickupRange = 150.0f;
+
+protected:
+    
+
+    EntityAttributeActionComponent attributes;
+
 protected: 
     virtual sf::Vector2f getHandPosition()const; 
 protected : 
@@ -29,11 +38,15 @@ public :
     virtual bool handleEvent(const sf::Event& event,sf::RenderWindow* window) ;  
     virtual bool update(sf::Time dt) ; 
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const; 
-    
+
+
 	virtual int getMaxHealth() const;
 	virtual int getMaxMana() const;
     virtual int getMaxShield() const;
     virtual int getHealth(); 
     virtual int getMana(); 
     virtual int getShield();
+
+public:
+    void setAttribute(CharacterResourceType type, float current, float max);
 };
