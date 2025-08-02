@@ -12,6 +12,7 @@ Character::Character(
     inventory = std::make_shared<Inventory>(); // Initialize the inventory
     map = state;
     this->cameraManager = cameraManager;
+    this->updateRange = 1000.0f; // Set the update range for the character
 }
 
 Character::~Character()

@@ -49,4 +49,5 @@ public :
 
 public:
     void setAttribute(CharacterResourceType type, float current, float max);
+    float updateRange;
 };
