@@ -74,6 +74,11 @@ public:
     }
     void collide(const Entity* other) override final 
     {
+        if (auto projectile = dynamic_cast<const Projectile2*>(other)) {
+            if (projectile->type == Entity::Type::EnemyProjectile) {
+                attributes.TakeDamage(static_cast<int>(projectile->getAttribute("Damage")));
+            }
+        }
         movingAnimation->handleCollision(other); 
 	}
 };
