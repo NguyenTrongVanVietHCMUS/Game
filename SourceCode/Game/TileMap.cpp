@@ -456,7 +456,7 @@ void TileMap::handleCollision()
     
     for(auto& entity : entities){
         if(player){
-            float updateRange = player->updateRange;
+            float updateRange = player->updateRange * 1.5f;
             float distance = sqrt(pow(entity->getPosition().x - player->getPosition().x, 2) + pow(entity->getPosition().y - player->getPosition().y, 2));
             if(distance < updateRange){
                 updateEntities.push_back(entity);

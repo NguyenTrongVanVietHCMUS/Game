@@ -28,24 +28,9 @@ struct IEffect
     virtual ~IEffect() = default;
 };
 
-struct WeaponComponent
-{
-    enum class ContinueMode
-    {
-        INPUT, 
-        WITH,
-        AFTER
-    };
-    virtual ~WeaponComponent() = default;
 
-    virtual void play() = 0;
-    virtual void update(Weapon2& weapon, sf::Time dt) = 0;
-    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const = 0;
-    ContinueMode continueMode = ContinueMode::AFTER; // Default continue mode is AFTER
-    sf::Time waitTime = sf::Time::Zero; // Time to wait before the next action
-};
 
-struct IBehavior
+struct IBehavior 
 {
 protected:
     std::string ProjectileName; // Name of the projectile
@@ -74,7 +59,7 @@ public:
     virtual std::unique_ptr<ICooldownBehavior> clone() const = 0;
 };
 
-class IWeaponAnimation : public WeaponComponent
+class IWeaponAnimation
 {
 protected:
     float scale = 1.0f; // Scale of the weapon animation    
@@ -92,8 +77,8 @@ public:
     void play(); // This will put CurrentTime to 0 and start the animation
     
 public:
-    void update(Weapon2& weapon, sf::Time dt) override {};
-    void draw(sf::RenderTarget& target, sf::RenderStates states) const override {};
+    virtual void update(Weapon2& weapon, sf::Time dt)  {};
+    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const  {};
     virtual void handleEvent(const sf::Event& event) {};
     virtual std::unique_ptr<IWeaponAnimation> clone() const = 0;
     virtual ~IWeaponAnimation() = default;
@@ -101,6 +86,10 @@ public:
 public:
     sf::Texture* getTexture() const {
         return texture; // Return the texture of the weapon animation
+    }
+
+    bool isDone() const {
+        return CurrentTime >= TotalTime; // Check if the animation is done
     }
 
 public:
