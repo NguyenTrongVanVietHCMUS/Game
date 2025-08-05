@@ -29,7 +29,8 @@
 
     "collisionBehavior": {
       "type": "Projectile Collision Behavior"
-    }
+    },
+    "Damage": 10.0
   },
 
 

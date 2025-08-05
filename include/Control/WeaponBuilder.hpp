@@ -12,6 +12,7 @@ class WeaponBuilder
     std::unique_ptr<IBehavior> _behavior = nullptr;
     std::unique_ptr<IWeaponAnimation> _animation = nullptr;
     std::unique_ptr<ICooldownBehavior> _cooldownBehavior = nullptr;
+    std::unique_ptr<AdvanceWeaponComponent> _advanceComponent = nullptr; // Advanced weapon component for combo attacks
     sf::Vector2f            _scaleBulletSpawnPosition = sf::Vector2f(0, 0); // Position where the bullet spawns based on the weapon's scale
 
     State*                  _worldmap;
@@ -45,6 +46,11 @@ public:
         _cooldownBehavior = std::make_unique<BasicCooldownBehavior>(cooldownTime);
         return *this;
     }
+    WeaponBuilder& withAdvanceComponent(std::unique_ptr<AdvanceWeaponComponent> advanceComponent)
+    {
+        _advanceComponent = std::move(advanceComponent);
+        return *this;
+    }
 
     WeaponBuilder& withMap(State* worldmap)
     {
@@ -66,6 +72,7 @@ public:
             _position,
             std::move(_behavior),
             std::move(_animation),
+            std::move(_advanceComponent),
             std::move(_cooldownBehavior),
             _scaleBulletSpawnPosition,
             _worldmap

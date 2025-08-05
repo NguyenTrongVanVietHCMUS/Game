@@ -1,5 +1,5 @@
 #include <Book/Weapon2.hpp>
-
+#include <Book/AdvancedWeaponComponent.hpp>
 void Weapon2::setBehavior(std::unique_ptr<IBehavior> newBehavior)
 {
     if (newBehavior) {
@@ -109,6 +109,9 @@ void Weapon2::switchHold( bool ishold, Entity* owner)
             if (animation) {
                 animation->SetOwner(owner); // Set the owner for the animation
             }
+            if(advanceComponent) {
+                advanceComponent->setOwner(owner); // Set the owner for the advanced component
+            }
         }
         return; // No change in hold state
     }
@@ -120,6 +123,9 @@ void Weapon2::switchHold( bool ishold, Entity* owner)
                 if(animation) {
                     animation->SetOwner(owner); // Set the owner for the animation
                 }   
+                if(advanceComponent) {
+                    advanceComponent->setOwner(owner); // Set the owner for the advanced component
+                }
             }
         } else {
             this->setStat("TargetPosX", this->getPosition().x + 10);
@@ -128,6 +134,10 @@ void Weapon2::switchHold( bool ishold, Entity* owner)
             {
                 animation->update(*this, sf::seconds(0)); // Update the animation to the current state
             }
+            if(advanceComponent) {
+                advanceComponent->update(sf::seconds(0)); // Update the advanced component to the current state
+            }
+            
             CurrentMap->pushEntity(this->shared_from_this());
         }
     }
