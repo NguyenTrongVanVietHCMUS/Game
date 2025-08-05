@@ -1132,18 +1132,6 @@
                  "width":32,
                  "x":928,
                  "y":512
-                }, 
-                {
-                 "gid":30,
-                 "height":110.25,
-                 "id":211,
-                 "name":"Cage",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":100.75,
-                 "x":660.791666666667,
-                 "y":182.875
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1152,7 +1140,7 @@
          "y":0
         }],
  "nextlayerid":3,
- "nextobjectid":212,
+ "nextobjectid":343,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",
@@ -1314,62 +1302,31 @@
              "width":1
             },
          "margin":0,
-         "name":"Object",
+         "name":"Walls",
          "spacing":0,
-         "tilecount":3,
-         "tileheight":70,
+         "tilecount":6,
+         "tileheight":400,
          "tiles":[
                 {
-                 "id":0,
-                 "image":"..\/..\/..\/TileSets\/Cage\/BrokenTop.png",
-                 "imageheight":66,
-                 "imagewidth":54,
-                 "objectgroup":
-                    {
-                     "draworder":"index",
-                     "id":2,
-                     "name":"",
-                     "objects":[
-                            {
-                             "height":30.5401662049862,
-                             "id":1,
-                             "name":"",
-                             "rotation":0,
-                             "type":"",
-                             "visible":true,
-                             "width":51.9806094182826,
-                             "x":1.24653739612188,
-                             "y":35.2770083102493
-                            }],
-                     "opacity":1,
-                     "type":"objectgroup",
-                     "visible":true,
-                     "x":0,
-                     "y":0
-                    },
-                 "type":"Object"
-                }, 
-                {
                  "id":1,
-                 "image":"..\/..\/..\/TileSets\/Cage\/Bottom.png",
-                 "imageheight":70,
-                 "imagewidth":56,
+                 "image":"..\/..\/..\/TileSets\/Walls\/BrickWall.png",
+                 "imageheight":48,
+                 "imagewidth":32,
                  "objectgroup":
                     {
                      "draworder":"index",
-                     "id":2,
                      "name":"",
                      "objects":[
                             {
-                             "height":32.1606648199446,
+                             "height":32,
                              "id":1,
                              "name":"",
                              "rotation":0,
                              "type":"",
                              "visible":true,
-                             "width":52.4792243767313,
-                             "x":1.99445983379501,
-                             "y":36.1495844875346
+                             "width":32,
+                             "x":0,
+                             "y":16
                             }],
                      "opacity":1,
                      "type":"objectgroup",
@@ -1381,9 +1338,96 @@
                 }, 
                 {
                  "id":2,
-                 "image":"..\/..\/..\/TileSets\/Cage\/Top.png",
-                 "imageheight":70,
-                 "imagewidth":56,
+                 "image":"..\/..\/..\/TileSets\/Walls\/TreeWall.png",
+                 "imageheight":50,
+                 "imagewidth":32,
+                 "objectgroup":
+                    {
+                     "draworder":"index",
+                     "name":"",
+                     "objects":[
+                            {
+                             "height":32,
+                             "id":1,
+                             "name":"",
+                             "rotation":0,
+                             "type":"",
+                             "visible":true,
+                             "width":32,
+                             "x":0,
+                             "y":18
+                            }],
+                     "opacity":1,
+                     "type":"objectgroup",
+                     "visible":true,
+                     "x":0,
+                     "y":0
+                    },
+                 "type":"Object"
+                }, 
+                {
+                 "id":3,
+                 "image":"..\/..\/..\/TileSets\/Walls\/WoodBrick.png",
+                 "imageheight":51,
+                 "imagewidth":32,
+                 "objectgroup":
+                    {
+                     "draworder":"index",
+                     "name":"",
+                     "objects":[
+                            {
+                             "height":32,
+                             "id":1,
+                             "name":"",
+                             "rotation":0,
+                             "type":"",
+                             "visible":true,
+                             "width":30.8182,
+                             "x":1.09091,
+                             "y":16.8173
+                            }],
+                     "opacity":1,
+                     "type":"objectgroup",
+                     "visible":true,
+                     "x":0,
+                     "y":0
+                    },
+                 "type":"Object"
+                }, 
+                {
+                 "id":4,
+                 "image":"..\/..\/..\/TileSets\/Walls\/BrickWall2.png",
+                 "imageheight":47,
+                 "imagewidth":32,
+                 "objectgroup":
+                    {
+                     "draworder":"index",
+                     "name":"",
+                     "objects":[
+                            {
+                             "height":32,
+                             "id":1,
+                             "name":"",
+                             "rotation":0,
+                             "type":"",
+                             "visible":true,
+                             "width":32,
+                             "x":0,
+                             "y":15
+                            }],
+                     "opacity":1,
+                     "type":"objectgroup",
+                     "visible":true,
+                     "x":0,
+                     "y":0
+                    },
+                 "type":"Object"
+                }, 
+                {
+                 "id":5,
+                 "image":"..\/..\/..\/TileSets\/Objects\/Crate.png",
+                 "imageheight":400,
+                 "imagewidth":268,
                  "objectgroup":
                     {
                      "draworder":"index",
@@ -1391,15 +1435,45 @@
                      "name":"",
                      "objects":[
                             {
-                             "height":11.9667590027701,
+                             "height":221.926,
                              "id":1,
                              "name":"",
                              "rotation":0,
                              "type":"",
                              "visible":true,
-                             "width":11.0941828254848,
-                             "x":11.8421052631579,
-                             "y":3.2409972299169
+                             "width":266.469,
+                             "x":1.2373,
+                             "y":178.79
+                            }],
+                     "opacity":1,
+                     "type":"objectgroup",
+                     "visible":true,
+                     "x":0,
+                     "y":0
+                    },
+                 "type":"Object"
+                }, 
+                {
+                 "id":6,
+                 "image":"..\/..\/..\/TileSets\/Objects\/barrel.png",
+                 "imageheight":81,
+                 "imagewidth":55,
+                 "objectgroup":
+                    {
+                     "draworder":"index",
+                     "id":2,
+                     "name":"",
+                     "objects":[
+                            {
+                             "height":37.0909,
+                             "id":1,
+                             "name":"",
+                             "rotation":0,
+                             "type":"",
+                             "visible":true,
+                             "width":52.9091,
+                             "x":1.27273,
+                             "y":42.9091
                             }],
                      "opacity":1,
                      "type":"objectgroup",
@@ -1409,7 +1483,7 @@
                     },
                  "type":"Object"
                 }],
-         "tilewidth":56
+         "tilewidth":268
         }],
  "tilewidth":32,
  "type":"map",
