@@ -17,6 +17,10 @@ void InteractingAnimation::deactivate()
 {
 
 }
+void InteractingAnimation::update(sf::Time dt)
+{
+	// do nothing 
+}
 void InteractingAnimation::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	

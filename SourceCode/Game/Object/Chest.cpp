@@ -17,6 +17,15 @@ Chest::Chest(sf::Vector2f position, Hitbox hitbox , float scalex, float scaley, 
 		this, scalex, scaley, items
 	);
 }
+void Chest::update(Entity* player)
+{
+	// Check collision with player
+	if (this->isNear(player))
+	{
+		interactingAnimation->activate(); // Activate the interaction animation
+	}
+	else interactingAnimation->deactivate();
+}
 void Chest::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {	
 	interactingAnimation->draw(target, states);

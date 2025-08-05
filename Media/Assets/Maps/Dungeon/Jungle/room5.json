@@ -1132,6 +1132,18 @@
                  "width":32,
                  "x":928,
                  "y":512
+                }, 
+                {
+                 "gid":30,
+                 "height":110.25,
+                 "id":211,
+                 "name":"Cage",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":100.75,
+                 "x":660.791666666667,
+                 "y":182.875
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1140,7 +1152,7 @@
          "y":0
         }],
  "nextlayerid":3,
- "nextobjectid":209,
+ "nextobjectid":212,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",
@@ -1291,6 +1303,113 @@
                  "type":"Object"
                 }],
          "tilewidth":32
+        }, 
+        {
+         "columns":0,
+         "firstgid":30,
+         "grid":
+            {
+             "height":1,
+             "orientation":"orthogonal",
+             "width":1
+            },
+         "margin":0,
+         "name":"Object",
+         "spacing":0,
+         "tilecount":3,
+         "tileheight":70,
+         "tiles":[
+                {
+                 "id":0,
+                 "image":"..\/..\/..\/TileSets\/Cage\/BrokenTop.png",
+                 "imageheight":66,
+                 "imagewidth":54,
+                 "objectgroup":
+                    {
+                     "draworder":"index",
+                     "id":2,
+                     "name":"",
+                     "objects":[
+                            {
+                             "height":30.5401662049862,
+                             "id":1,
+                             "name":"",
+                             "rotation":0,
+                             "type":"",
+                             "visible":true,
+                             "width":51.9806094182826,
+                             "x":1.24653739612188,
+                             "y":35.2770083102493
+                            }],
+                     "opacity":1,
+                     "type":"objectgroup",
+                     "visible":true,
+                     "x":0,
+                     "y":0
+                    },
+                 "type":"Object"
+                }, 
+                {
+                 "id":1,
+                 "image":"..\/..\/..\/TileSets\/Cage\/Bottom.png",
+                 "imageheight":70,
+                 "imagewidth":56,
+                 "objectgroup":
+                    {
+                     "draworder":"index",
+                     "id":2,
+                     "name":"",
+                     "objects":[
+                            {
+                             "height":32.1606648199446,
+                             "id":1,
+                             "name":"",
+                             "rotation":0,
+                             "type":"",
+                             "visible":true,
+                             "width":52.4792243767313,
+                             "x":1.99445983379501,
+                             "y":36.1495844875346
+                            }],
+                     "opacity":1,
+                     "type":"objectgroup",
+                     "visible":true,
+                     "x":0,
+                     "y":0
+                    },
+                 "type":"Object"
+                }, 
+                {
+                 "id":2,
+                 "image":"..\/..\/..\/TileSets\/Cage\/Top.png",
+                 "imageheight":70,
+                 "imagewidth":56,
+                 "objectgroup":
+                    {
+                     "draworder":"index",
+                     "id":2,
+                     "name":"",
+                     "objects":[
+                            {
+                             "height":11.9667590027701,
+                             "id":1,
+                             "name":"",
+                             "rotation":0,
+                             "type":"",
+                             "visible":true,
+                             "width":11.0941828254848,
+                             "x":11.8421052631579,
+                             "y":3.2409972299169
+                            }],
+                     "opacity":1,
+                     "type":"objectgroup",
+                     "visible":true,
+                     "x":0,
+                     "y":0
+                    },
+                 "type":"Object"
+                }],
+         "tilewidth":56
         }],
  "tilewidth":32,
  "type":"map",

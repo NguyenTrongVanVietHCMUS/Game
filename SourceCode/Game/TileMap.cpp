@@ -5,6 +5,8 @@
 #include<Book/Enemy.hpp>
 #include<Object/Decorator.hpp>
 #include<Object/Chest/Chest.hpp>
+#include<Object/Chest/Cage.hpp>
+#include<Object/Floor/SpikeFloor.hpp>
 #include <Control/WeaponLoader.hpp>
 #include <Control/WeaponBuilder.hpp>
 
@@ -81,7 +83,7 @@ bool TileMap::load(const std::string& jsonFile,int x , int y,int height, int wid
             {
                 if (!tiles.contains("objectgroup"))
                 {
-                    std::cerr << "WRONG " << std::endl;
+                    abort(); 
                 }
                 else std::cerr << "RIGHT " << std::endl;
                 Tileset tileset;
@@ -247,6 +249,33 @@ bool TileMap::load(const std::string& jsonFile,int x , int y,int height, int wid
                                 scaley
                             )
                         );
+                    }
+                    else if (objectData["name"] == "Cage")
+                    {
+						float scalex = float(objectData["width"]) / tile.tileWidth;
+						float scaley = float(objectData["height"]) / tile.tileHeight;
+                        
+                        layer->entities.push_back(
+                            new Cage(
+                                sf::Vector2f(objectData["x"] + x, objectData["y"] + y - float(objectData["height"])),
+                                sf::FloatRect(x + objectData["x"] + tile.hitbox.hitbox.left * scalex, y + objectData["y"] - objectData["height"] + tile.hitbox.hitbox.top * scaley, tile.hitbox.hitbox.width* scalex, tile.hitbox.hitbox.height* scaley),
+                                scalex,
+                                scaley)
+                        );
+                    }
+                    else if (objectData["name"] == "SpikeFloor")
+                    {
+                        float scalex = float(objectData["width"]) / tile.tileWidth;
+                        float scaley = float(objectData["height"]) / tile.tileHeight;
+                        layer->entities.push_back(
+                            new SpikeFloor
+                            (
+                                sf::Vector2f(objectData["x"] + x, objectData["y"] + y - float(objectData["height"])),
+                                sf::FloatRect(x + objectData["x"] + tile.hitbox.hitbox.left * scalex, y + objectData["y"] - objectData["height"] + tile.hitbox.hitbox.top * scaley, tile.hitbox.hitbox.width * scalex, tile.hitbox.hitbox.height * scaley),
+                                scalex,
+                                scaley
+                            )
+						);
                     }
                     else
                     {

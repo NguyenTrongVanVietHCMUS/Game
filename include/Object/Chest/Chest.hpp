@@ -13,6 +13,7 @@ public:
 	Chest(sf::Vector2f position, Hitbox hitbox, float scalex, float scaley, WeaponLoader& weaponLoader);
 
 	// I need weapon loader to load random weapon
+	virtual void update(Entity* player);
 	virtual void collide(Entity* entity);
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 

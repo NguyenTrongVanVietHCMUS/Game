@@ -6,8 +6,7 @@
 class Object : public Entity
 {
 protected : 
-	std::unique_ptr<InteractingAnimation> interactingAnimation; // Animation for interaction
-    bool isCollideWithPlayer; 
+	std::unique_ptr<InteractingAnimation> interactingAnimation; 
 public:
     
     Object(std::string name,sf::Vector2f position, Hitbox hitbox, float scalex, float scaley) :Entity(name, position, hitbox)
@@ -16,12 +15,7 @@ public:
     }
     virtual void update(Entity* player)
     {
-        // Check collision with player
-        if (this->isNear(player))
-        {
-            interactingAnimation->activate(); // Activate the interaction animation
-        }
-        else interactingAnimation->deactivate(); 
+        // if base is called  mean that update doesnt base on player 
 	}
     virtual bool update(sf::Time dt)
     {

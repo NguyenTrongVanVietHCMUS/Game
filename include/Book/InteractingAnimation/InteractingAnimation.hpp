@@ -18,6 +18,6 @@ public :
 	~InteractingAnimation();
 	virtual void activate(); 
 	virtual void deactivate(); 
-	virtual void update(sf::Time dt) { std::cout << "WRONG" << std::endl; }; // Update the animation state
+	virtual void update(sf::Time dt); // Update the animation state
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 };
