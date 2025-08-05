@@ -1,6 +1,5 @@
 #include <Screens/Lobby.hpp>
 #include<Object/Character/Knight.hpp>
-#include<Object/Mob/Boar.hpp> 
 #include<Control/ResourceManager.hpp> 
 Lobby::Lobby(StateStack& stack,Context context):
     State(stack,context) 

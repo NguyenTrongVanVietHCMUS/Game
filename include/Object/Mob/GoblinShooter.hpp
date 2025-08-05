@@ -10,7 +10,7 @@ class GoblinShooter : public Enemy
 {
 private : 
     float sightRange; 
-public:
+public: 
     GoblinShooter(sf::Vector2f position,State* state) : Enemy("GoblinShooter", position)
     {
         sightRange = 1250.f; 

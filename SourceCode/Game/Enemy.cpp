@@ -6,6 +6,7 @@ Enemy::Enemy(
 ) :Entity(name, position)
 {
     type = Entity::Type::Enemy; // Set the type of the 
+
 }
 
 Enemy::~Enemy()

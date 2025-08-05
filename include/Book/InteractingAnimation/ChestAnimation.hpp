@@ -24,6 +24,7 @@ public:
 	ChestAnimation(Object* owner, float scalex, float scaley, std::shared_ptr<Weapon2> items);
 	~ChestAnimation(); 
 	virtual void activate();
+	virtual void deactivate();
 	virtual void update(sf::Time dt);
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 public:

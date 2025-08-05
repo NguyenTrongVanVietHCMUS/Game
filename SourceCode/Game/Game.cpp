@@ -24,15 +24,27 @@ Game::Game()
 			load<sf::Texture>(Textures::ID::Knight, "Media/Assets/Characters/Knight/knight_1.png");
 			load<sf::Texture>(Textures::ID::Boar, "Media/Assets/Mobs/Boar/NormalBoar.png"); 
 			load<sf::Texture>(Textures::ID::GoblinShooter, "Media/Assets/Mobs/GoblinShooter/GoblinShooter.png");
-			load<sf::Texture>(Textures::ID::SwordMinion, "Media/Assets/TileSets/Enemy/SwordMinion.png");
-			load<sf::Texture>(Textures::ID::BlunderbussPistolMinion, "Media/Assets/TileSets/Enemy/BlunderbussPistolMinion.png");
-			load<sf::Texture>(Textures::ID::RifleMinion, "Media/Assets/TileSets/Enemy/RifleMinion.png");
+			load<sf::Texture>(Textures::ID::GoblinExecutor, "Media/Assets/Mobs/Enemy/GoblinExecutor.png");
+			load<sf::Texture>(Textures::ID::GoblinMageRoyal, "Media/Assets/Mobs/Enemy/GoblinMageRoyal.png");
+			load<sf::Texture>(Textures::ID::GoblinMageSorcerer, "Media/Assets/Mobs/Enemy/GoblinMageSorcerer.png");
+			load<sf::Texture>(Textures::ID::GoblinMageRoyal, "Media/Assets/Mobs/Enemy/GoblinMageRoyal.png");
+			load<sf::Texture>(Textures::ID::GoblinSupport, "Media/Assets/Mobs/Enemy/GoblinSupport.png");
+			load<sf::Texture>(Textures::ID::GoblinWarrior, "Media/Assets/Mobs/Enemy/GoblinWarrior.png");
 
+			load<sf::Texture>(Textures::ID::MadScientist, "Media/Assets/Mobs/Enemy/MadScientist.png");
+			
+
+
+			load<sf::Texture>(Textures::ID::SwordMinion, "Media/Assets/Mobs/Enemy/SwordMinion.png");
+			load<sf::Texture>(Textures::ID::BlunderbussPistolMinion, "Media/Assets/Mobs/Enemy/BlunderbussPistolMinion.png");
+			load<sf::Texture>(Textures::ID::RifleMinion, "Media/Assets/Mobs/Enemy/RifleMinion.png");
+
+			load<sf::Texture>(Textures::ID::GoblinExecutorWeapon,"Media/Assets/Weapons/Sword/GoblinExecutorWeapon.png");
+			load<sf::Texture>(Textures::ID::Crowbar, "Media/Assets/Weapons/Sword/Crowbar.png");
 			load<sf::Texture>(Textures::ID::bomb, "Media/Assets/Projectiles/bomb.png");
 			load<sf::Texture>(Textures::ID::AK_47, "Media/Assets/Weapons/gun/AK_47.png");
 			load<sf::Texture>(Textures::ID::SwordMinionSword, "Media/Assets/Weapons/Sword/SwordMinionSword.png");
 			load<sf::Texture>(Textures::ID::BlunderbussPistolMinionBlunderbussPistol, "Media/Assets/Weapons/gun/BlunderbussPistolMinionBlunderbussPistol.png");
-			load<sf::Texture>(Textures::ID::RifleMinionRifle, "Media/Assets/Weapons/gun/RifleMinionRifle.png");
 
 			load<sf::Texture>(Textures::ID::HeartIcon, "Media/Assets/TileSets/HUD/hearticon.png");
 			load<sf::Texture>(Textures::ID::ShieldIcon, "Media/Assets/TileSets/HUD/shieldicon.png");

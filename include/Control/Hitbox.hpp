@@ -26,4 +26,5 @@ public:
             hitbox.left + hitbox.width < other.hitbox.left + other.hitbox.width
             );
     }
+    void extend(float len);
 }; 

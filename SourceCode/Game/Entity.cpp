@@ -71,3 +71,10 @@ sf::Vector2f Entity::getHandPosition()const
 {
     return position - sf::Vector2f(0,28);
 }
+bool Entity::isNear(Entity* other) const
+{
+    if (other == nullptr) return false;
+    Hitbox myhitbox = this->getHitbox(); 
+    myhitbox.extend(5); 
+    return myhitbox.isCollide(other->getHitbox()); 
+}

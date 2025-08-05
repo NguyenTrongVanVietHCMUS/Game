@@ -7,6 +7,7 @@ Cage::Cage(sf::Vector2f position, Hitbox hitbox, float scalex, float scaley) : O
 	interactingAnimation = std::make_unique<CageAnimation>(
 		this, scalex, scaley
 	);
+	
 }
 void Cage::update(Entity* player)
 {

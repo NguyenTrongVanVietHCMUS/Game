@@ -43,3 +43,10 @@ void Hitbox::print()const
 {
 	std::cout << hitbox.left << " " << hitbox.top << " " << hitbox.left + hitbox.width << " " << hitbox.top + hitbox.height << std::endl;
 }
+void Hitbox::extend(float len)
+{
+    hitbox.left -= len;
+    hitbox.top -= len;
+    hitbox.width += 2 * len;
+	hitbox.height += 2 * len;
+}

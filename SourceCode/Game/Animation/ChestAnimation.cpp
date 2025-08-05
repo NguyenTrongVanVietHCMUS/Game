@@ -79,28 +79,75 @@ ChestAnimation::~ChestAnimation()
 }
 void ChestAnimation::activate()
 {
-	if (state == End)
+	if (state == Begin)
 	{
-		state = End;
+		state = Activating;
 	}
-	else state = Processing;
+	else if(state==Activating)
+	{
+		//state = Activating; 
+	}
+	else if(state == Deactivating )
+	{
+		state = Activating; 
+	}
+	else if(state == End)
+	{
+		// state = End ;
+	}
 	//state = Processing; 
+}
+void ChestAnimation::deactivate()
+{
+	if (state == Begin)
+	{
+		state = Begin;
+	}
+	else if (state == Activating)
+	{
+		state = Activating;
+	}
+	else if (state == Deactivating)
+	{
+		state = Deactivating;
+	}
+	else if (state == End)
+	{
+		state = Deactivating; 
+	}
 }
 void ChestAnimation::update(sf::Time dt)
 {
 	//std::cout << "UPDATING" << std::endl;
-	if (state == Processing)
+	if (state == Activating)
 	{
 		//std::cout << state << " " << End << std::endl;
 		sf::Vector2f L = leftSprite->getPosition();
 		L.x -= distance * dt.asSeconds();
-		leftSprite->setPosition(L);
 		sf::Vector2f R = rightSprite->getPosition();
 		R.x += distance * dt.asSeconds();
-		rightSprite->setPosition(R);
-		if ( rightSprite->getPosition().x-(leftSprite->getPosition().x+left->getSize().x*scalex)> (bottom->getSize().x-8)*scalex )
+		if ( R.x-(L.x+left->getSize().x*scalex)> (bottom->getSize().x-8)*scalex )
 		{
 			state = End;
+		}
+		leftSprite->setPosition(L);
+		rightSprite->setPosition(R);
+
+	}
+	else if (state == Deactivating)
+	{
+		sf::Vector2f L = leftSprite->getPosition();
+		L.x += distance * dt.asSeconds();
+		sf::Vector2f R = rightSprite->getPosition();
+		R.x -= distance * dt.asSeconds();
+		if (rightSprite->getPosition().x - (leftSprite->getPosition().x + left->getSize().x * scalex)<0)
+		{
+			state = Begin; 
+		}
+		else
+		{ 
+			leftSprite->setPosition(L);
+			rightSprite->setPosition(R);
 		}
 	}
 }
