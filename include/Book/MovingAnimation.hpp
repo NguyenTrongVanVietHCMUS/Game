@@ -158,6 +158,7 @@ class SlashProjectile_MovingAnimation : public MovingAnimation
     float angle = 0.5f; // Angle for the projectile movement
 public:
     SlashProjectile_MovingAnimation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f& position, float scale,float Angle = 0.5f, sf::Vector2f middlePosition = sf::Vector2f(0.5f, 1));
+    SlashProjectile_MovingAnimation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f& position, float scale, sf::Vector2f startPosition, sf::Vector2f endPosition, sf::Vector2f middlePosition = sf::Vector2f(0.5f, 1));
     ~SlashProjectile_MovingAnimation();
     virtual void update(sf::Time dt);
     virtual void handleEvent(const sf::Event& event, sf::RenderWindow* window);

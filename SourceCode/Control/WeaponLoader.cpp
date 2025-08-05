@@ -25,17 +25,10 @@ std::shared_ptr<Weapon2> WeaponLoader::LoadWeapons(std::string weaponName) {
                                                   sf::Vector2f(weaponData[weaponName]["position"]["x"], weaponData[weaponName]["position"]["y"]), 
                                                   mState);
     if (weaponData[weaponName].contains("behavior")) {
-        Projectile2 *projectile = nullptr;
-        if(weaponData[weaponName]["behavior"].contains("Projectile")) {
-            projectile = projectileLoader.LoadProjectile(
-                weaponData[weaponName]["behavior"]["Projectile"].get<std::string>(),
-                sf::Vector2f(weaponData[weaponName]["position"]["x"], weaponData[weaponName]["position"]["y"]),
-                sf::Vector2f(0, 0) // Default end position, can be adjusted later
-            );
-        }
+        
         auto behavior = StrategyFactory::createBehavior(weaponData[weaponName]["behavior"], mState);
-        if (projectile) {
-            behavior->setProjectile(projectile);
+        if (weaponData[weaponName]["behavior"].contains("Projectile")) {
+            behavior->setProjectile(weaponData[weaponName]["behavior"]["Projectile"].get<std::string>());
         }
         builder.withBehavior(std::move(behavior));
     }
@@ -51,10 +44,18 @@ std::shared_ptr<Weapon2> WeaponLoader::LoadWeapons(std::string weaponName) {
             weaponData[weaponName]["scaleBulletSpawnPosition"]["y"]
         ));
     }
+
+    std::shared_ptr<Weapon2> weapon = builder.build();
+
+    // If the weapon has an advanced component, load it
+    if (weaponData[weaponName].contains("ComboPath")) {
+        std::unique_ptr<AdvanceWeaponComponent> advanceComponent = std::make_unique<AdvanceWeaponComponent>(weapon, nullptr);
+        advanceComponent->loadFromJson(weaponData[weaponName]["ComboPath"], mState, nullptr);
+    }
+
     file.close(); // Close the file after reading
     // Build and return the weapon
-    return builder.build();
-
+    return weapon;
 }
 
 std::shared_ptr<Weapon2> WeaponLoader::LoadRandomWeapon() {

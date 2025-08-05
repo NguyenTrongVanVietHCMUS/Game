@@ -6,6 +6,8 @@
 #include "Control/WeaponBuilder.hpp"
 #include "Control/StrategyFactory.hpp"
 #include <Control/State.hpp>
+#include <Book/AdvancedWeaponComponent.hpp>
+
 using json = nlohmann::json;
 class WeaponLoader
 {

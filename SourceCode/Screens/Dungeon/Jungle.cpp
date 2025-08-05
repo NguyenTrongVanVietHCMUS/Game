@@ -20,7 +20,7 @@ Jungle::Jungle(StateStack& stack,Context context):
     map->entities.push_back(new Knight(map->startingPoint, this, &map->camera)); 
     
  //   map->entities.push_back(new Boar(map->startingPoint,this)); // Add a Boar entity to the 
- //   map->entities.push_back(new GoblinShooter(map->startingPoint,this)); 
+    map->entities.push_back(new GoblinShooter(map->startingPoint,this)); 
     //map->entities.push_back(new SwordMinion(map->startingPoint, this));
 	//map->entities.push_back(new BlunderbussPistolMinion(map->startingPoint, this));
 	//map->entities.push_back(new RifleMinion(map->startingPoint, this));
@@ -28,7 +28,7 @@ Jungle::Jungle(StateStack& stack,Context context):
 	//map->entities.push_back(new GoblinMageRoyal(map->startingPoint, this));
 	//map->entities.push_back(new GoblinMageSorcerer(map->startingPoint, this));
 	//map->entities.push_back(new GoblinSupport(map->startingPoint, this));
-	map->entities.push_back(new GoblinWarrior(map->startingPoint, this));
+	//map->entities.push_back(new GoblinWarrior(map->startingPoint, this));
 	//map->entities.push_back(new GoblinExecutor(map->startingPoint, this));
 	//map->entities.push_back(new MadScientist(map->startingPoint, this));
     context.music->play(Music::Jungle);

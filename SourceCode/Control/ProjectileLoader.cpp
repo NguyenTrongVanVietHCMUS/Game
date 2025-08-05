@@ -28,19 +28,16 @@ Projectile2* ProjectileLoader::LoadProjectile(const std::string& name, sf::Vecto
     auto builder = ProjectileBuilder::create(
         name, lifeTime, position, scale, texPath, mState
     );
-
     // optional movement
     if (j.contains("movement")) {
         sf::Vector2f endPos = EndPosition;
-        if (j["movement"].contains("targetPosition"))
-            endPos = { j["movement"]["targetPosition"]["x"], j["movement"]["targetPosition"]["y"] };
-
         builder.withMovement(
             StrategyFactory::createMovement(
                 j["movement"], mState, position, endPos
             )
         );
     }
+
 
     // optional collision
     if (j.contains("collisionBehavior")) {
@@ -55,6 +52,10 @@ Projectile2* ProjectileLoader::LoadProjectile(const std::string& name, sf::Vecto
         );
     }
     std::cerr << "Projectile loaded: " << name << std::endl;
+    if(j.contains("Damage"))
+    {
+        proj->setAttribute("Damage", j["Damage"].get<float>());
+    }
     in.close();
     return proj;
 }

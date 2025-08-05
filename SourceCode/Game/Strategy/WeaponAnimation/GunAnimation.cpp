@@ -41,6 +41,6 @@ void GunAnimation::update(Weapon2& weapon, sf::Time dt) {
     sprite.setPosition(PositionX, PositionY);
 }
 
-void GunAnimation::draw(sf::RenderTarget& target, sf::RenderStates states) {
+void GunAnimation::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     target.draw(sprite, states); // Draw the sprite with the current rotation
 }

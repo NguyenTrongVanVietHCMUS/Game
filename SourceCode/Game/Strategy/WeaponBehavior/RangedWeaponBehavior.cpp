@@ -1,7 +1,9 @@
 #include<Book/Strategy/WeaponBehavior.hpp>
+#include <Control/ProjectileLoader.hpp>
 void RangedWeaponBehavior::activate(Weapon2& self, Entity* target){
         float posX = self.getStat("TargetPosX");
         float posY = self.getStat("TargetPosY");
+        ProjectileLoader projectileLoader(Worldmap);
         // normalize the direction vector
         sf::Vector2f SpawnPosition = self.GetProjectileSpawnPosition();
         sf::Vector2f direction =  sf::Vector2f(posX, posY) - SpawnPosition;
@@ -17,8 +19,13 @@ void RangedWeaponBehavior::activate(Weapon2& self, Entity* target){
         float len = std::sqrt(RotatedDirection.x * RotatedDirection.x + RotatedDirection.y * RotatedDirection.y);
         float projectileSpeedX = projectileSpeed * (RotatedDirection.x / len),
               projectileSpeedY = projectileSpeed * (RotatedDirection.y / len);
-
-        auto proj = projectile->clone(sf::Vector2f(projectileSpeedX, projectileSpeedY));
+        Projectile2 *proj = nullptr;
+        try{
+            proj = projectileLoader.LoadProjectile(ProjectileName, SpawnPosition, sf::Vector2f(projectileSpeedX + SpawnPosition.x, projectileSpeedY + SpawnPosition.y));
+        } catch (const std::exception& e) {
+            std::cerr << "Error creating projectile: " << e.what() << std::endl;
+            return; // Exit if projectile creation fails
+        }
         proj->position = SpawnPosition; // Set the projectile's position to the spawn position
         std::cerr << "Spawn Bullet\n";
         proj->type = self.ProjectileTypeTransform(target); // Transform the projectile type based on the target type

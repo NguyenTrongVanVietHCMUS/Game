@@ -12,6 +12,7 @@ Character::Character(
     inventory = std::make_shared<Inventory>(); // Initialize the inventory
     map = state;
     this->cameraManager = cameraManager;
+    this->updateRange = 1000.0f; // Set the update range for the character
 }
 
 Character::~Character()
@@ -101,12 +102,18 @@ bool Character::update(sf::Time dt)
     movingAnimation->update(dt); // Update the animation
     inventory->update(dt); // Update the inventory
     updateHitboxOnPosition(); // Update the hitbox position based on the entity's current position
-
+    attributes.update(dt); // Update the entity's attributes
     return false;
 }
 void Character::collide(const Entity* other)
 {    
-    movingAnimation->handleCollision(other); 
+    movingAnimation->handleCollision(other);
+    
+    if(auto projectile = dynamic_cast<const Projectile2*>(other)) {
+        if(projectile->type == Entity::Type::EnemyProjectile) {
+            attributes.TakeDamage(static_cast<int>(projectile->getAttribute("Damage")));
+        }
+    }
 }
 sf::Vector2f Character::getHandPosition()const
 {
@@ -114,26 +121,32 @@ sf::Vector2f Character::getHandPosition()const
 }
 int Character::getMaxHealth()const
 {
-    return 10; // Maximum health value
-}   
-int Character::getMaxMana()const 
+    return attributes.getMaxHealth();
+}
+int Character::getMaxMana()const
 {
-	return 120; // Maximum mana value    
+	return attributes.getMaxMana();
 }
 int Character::getMaxShield()const
 {
-	return 3; // Maximum shield value  
+	return attributes.getMaxShield();
 }
 
 int Character::getHealth()
 {
-    return 10; 
+    return attributes.getHealth();
 }
 int Character::getMana()
 {
-    return 35; 
+    return attributes.getMana();
 }   
 int Character::getShield()
 {
-    return 2; 
+    return attributes.getShield();
+}
+
+
+void Character::setAttribute(CharacterResourceType type, float current, float max)
+{
+    attributes.setAttribute(type, current, max);
 }

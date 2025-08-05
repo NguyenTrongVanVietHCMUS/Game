@@ -58,6 +58,10 @@ public:
         // Calculate the direction vector and set the speed components
         sf::Vector2f direction = endPosition - startPosition;
         float length = std::sqrt(direction.x * direction.x + direction.y * direction.y);
+        std::cerr << "FollowMovement: Start Position: " << startPosition.x << ", " << startPosition.y << std::endl;
+        std::cerr << "FollowMovement: End Position: " << endPosition.x << ", " << endPosition.y << std::endl;
+        std::cerr << "FollowMovement: Direction: " << direction.x << ", " << direction.y << std::endl;
+        std::cerr << "FollowMovement: Length: " << length << std::endl;
         if (length > 0)
         {
             speedX = (direction.x / length) * speed;

@@ -309,6 +309,19 @@ bool TileMap::load(const std::string& jsonFile,int x , int y,int height, int wid
 
 void TileMap::draw(sf::RenderTarget& target, sf::RenderStates states)const
 {
+    Character* player = getPlayer(); 
+    std::vector<Entity*> updateEntities;
+    for (auto& entity : entities)
+    {
+        if (player)
+        {
+            float distance = sqrt(pow(entity->getPosition().x - player->getPosition().x, 2) + pow(entity->getPosition().y - player->getPosition().y, 2));
+            if (distance < player->updateRange)
+            {
+                updateEntities.push_back(entity);
+            }
+        }
+    }
     //target.setView(target.getDefaultView()); // Reset the view to the default view
     /*for(auto  x :entities)
     {
@@ -322,7 +335,7 @@ void TileMap::draw(sf::RenderTarget& target, sf::RenderStates states)const
     {
         x->draw(target, states); // Draw each layer
 	}
-    for (auto& x : entities)
+    for (auto& x : updateEntities)
     {
 		x->draw(target, states); // Draw each entity
     }
@@ -358,7 +371,22 @@ bool TileMap::update(sf::Time dt)
         }
     }*/
     Character* player = getPlayer(); 
-    for (auto& x : entities)
+    std::vector<Entity*> updateEntities;
+    for (auto& entity : entities)
+    {
+        if (player)
+        {
+            float distance = sqrt(pow(entity->getPosition().x - player->getPosition().x, 2) + pow(entity->getPosition().y - player->getPosition().y, 2));
+            if (distance < player->updateRange)
+            {
+                updateEntities.push_back(entity);
+            } else if (entity->type == Entity::Type::AllyProjectile || entity->type == Entity::Type::EnemyProjectile)
+            {
+                PopQueueEntities.push_back(entity); // Remove projectiles that are out of range
+            } 
+        }
+    }
+    for (auto& x : updateEntities)
     {
         if (auto enemy = dynamic_cast<Enemy*>(x))
         {
@@ -370,7 +398,7 @@ bool TileMap::update(sf::Time dt)
             {
                 try
                 {
-                    chest->setItems(weaponLoader->LoadRandomWeapon());
+                    chest->setItems(weaponLoader->LoadWeapons("Sword"));
                 }
                 catch(const std::exception& e)
                 {
@@ -380,8 +408,8 @@ bool TileMap::update(sf::Time dt)
             }
         }
     }
-    for (auto& x : entities)x->update(dt); 
-    for (auto& x : entities)
+    for (auto& x : updateEntities)x->update(dt);
+    for (auto& x : updateEntities)
     {
         if (auto object = dynamic_cast<Object*>(x))
         {
@@ -454,10 +482,22 @@ void TileMap::updateQueueEntities()
 void TileMap::handleCollision()
 {
     //// entities intersect with entities 
+    std::vector<Entity*> updateEntities;
 	std::vector<std::pair<Entity*, Entity*>> collision; // To avoid checking the same pair twice
-    for(auto& entity : entities)if(entity->movable())
+    Character* player = getPlayer();
+    
+    for(auto& entity : entities){
+        if(player){
+            float updateRange = player->updateRange * 1.5f;
+            float distance = sqrt(pow(entity->getPosition().x - player->getPosition().x, 2) + pow(entity->getPosition().y - player->getPosition().y, 2));
+            if(distance < updateRange){
+                updateEntities.push_back(entity);
+            }
+        } else updateEntities.push_back(entity);
+    }
+    for(auto& entity : updateEntities)if(entity->movable())
     {
-        for (auto& other : entities)if(!other->movable())
+        for (auto& other : updateEntities)if(!other->movable())
         {
             if (isCollide(entity, other))
             {
@@ -466,22 +506,22 @@ void TileMap::handleCollision()
             }
         }
 	}
-	for (int i = 0; i < entities.size(); i++)if (entities[i]->movable())
+	for (int i = 0; i < updateEntities.size(); i++)if (updateEntities[i]->movable())
     {
-		for (int j = i + 1; j < entities.size(); j++)if (entities[j]->movable())
+		for (int j = i + 1; j < updateEntities.size(); j++)if (updateEntities[j]->movable())
         {
-            if(isCollide(entities[i],entities[j])) 
+            if(isCollide(updateEntities[i],updateEntities[j])) 
             {
-				entities[i]->collide(entities[j]);
-                entities[j]->collide(entities[i]);
+				updateEntities[i]->collide(updateEntities[j]);
+                updateEntities[j]->collide(updateEntities[i]);
             }
 		}
     }
 
 
-    for (auto& entity : entities)if (entity->movable())
+    for (auto& entity : updateEntities)if (entity->movable())
     {
-        for (auto& other : entities)if (!other->movable())
+        for (auto& other : updateEntities)if (!other->movable())
         {
             if (isCollide(entity, other))
             {

@@ -28,19 +28,21 @@ struct IEffect
     virtual ~IEffect() = default;
 };
 
-struct IBehavior
+
+
+struct IBehavior 
 {
 protected:
-    Projectile2* projectile = nullptr;
-public:
+    std::string ProjectileName; // Name of the projectile
+public: 
     virtual void activate(Weapon2& weapon, Entity* target) = 0;
     virtual std::unique_ptr<IBehavior> clone() const = 0;
     virtual ~IBehavior() = default;
 
 public:
-    void setProjectile(Projectile2* proj) {
-        std::cerr << "Setting projectile for behavior: "<< std::endl;
-        projectile = proj; // Set the projectile for the behavior
+    void setProjectile(std::string ProjectileName) {
+        std::cerr << "Setting projectile for behavior: " << ProjectileName << std::endl;
+        this->ProjectileName = ProjectileName; // Set the projectile for the behavior
     }
 };
 
@@ -75,8 +77,8 @@ public:
     void play(); // This will put CurrentTime to 0 and start the animation
     
 public:
-    virtual void update(Weapon2& weapon, sf::Time dt) {};
-    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) {};
+    virtual void update(Weapon2& weapon, sf::Time dt)  {};
+    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const  {};
     virtual void handleEvent(const sf::Event& event) {};
     virtual std::unique_ptr<IWeaponAnimation> clone() const = 0;
     virtual ~IWeaponAnimation() = default;
@@ -84,6 +86,10 @@ public:
 public:
     sf::Texture* getTexture() const {
         return texture; // Return the texture of the weapon animation
+    }
+
+    bool isDone() const {
+        return CurrentTime >= TotalTime; // Check if the animation is done
     }
 
 public:
@@ -116,3 +122,4 @@ public:
         return elapsedTime < duration; // Check if the effect is still active
     }
 };
+
