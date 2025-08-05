@@ -5,6 +5,8 @@
 #include <Book/Entity.hpp>
 #include <Control/State.hpp>
 #include <Control/State.hpp>
+
+class AdvanceWeaponComponent;
 class Weapon2 : public Entity
 {
 private:
@@ -12,6 +14,7 @@ private:
     std::unique_ptr<IBehavior> behavior; // Strategy for weapon behavior
     std::unique_ptr<IWeaponAnimation> animation; // Animation for the weapon
     std::unique_ptr<ICooldownBehavior> cooldownBehavior; // Cooldown behavior for the weapon
+    std::unique_ptr<AdvanceWeaponComponent> advanceComponent = nullptr; // Advanced weapon component for combo attacks
     sf::Vector2f ScaleBulletSpawnPosition = sf::Vector2f(0, 0); // Position where the bullet spawns based on the weapon's scale
     sf::Vector2f OriginalBulletSpawnPosition;
     bool ishold = true;
@@ -21,7 +24,7 @@ public:
     Weapon2(std::string nam, sf::Vector2f position,
         std::unique_ptr<IBehavior> behavior = nullptr, std::unique_ptr<IWeaponAnimation> animation = nullptr, State* map = nullptr)
         : behavior(std::move(behavior)), animation(std::move(animation)), Entity(name, position), cooldownBehavior(std::make_unique<BasicCooldownBehavior>(1.0f)), CurrentMap(map){};
-
+    
     Weapon2(std::string name, sf::Vector2f position,
         std::unique_ptr<IBehavior> behavior, std::unique_ptr<IWeaponAnimation> animation,
         std::unique_ptr<ICooldownBehavior> cooldownBehavior, State* map = nullptr)
@@ -40,7 +43,12 @@ public:
         std::unique_ptr<IBehavior> behavior, std::unique_ptr<IWeaponAnimation> animation,
         std::unique_ptr<ICooldownBehavior> cooldownBehavior, sf::Vector2f scaleBulletSpawnPosition, State* map = nullptr)
         : behavior(std::move(behavior)), animation(std::move(animation)), cooldownBehavior(std::move(cooldownBehavior)), Entity(name, position), ScaleBulletSpawnPosition(scaleBulletSpawnPosition), CurrentMap(map) {};
- 
+    
+    Weapon2(std::string name, sf::Vector2f position,
+    std::unique_ptr<IBehavior> behavior, std::unique_ptr<IWeaponAnimation> animation, std::unique_ptr<AdvanceWeaponComponent> advanceComponent, 
+    std::unique_ptr<ICooldownBehavior> cooldownBehavior, sf::Vector2f scaleBulletSpawnPosition, State* map = nullptr)
+    : behavior(std::move(behavior)), animation(std::move(animation)), advanceComponent(std::move(advanceComponent)), cooldownBehavior(std::move(cooldownBehavior)), Entity(name, position), ScaleBulletSpawnPosition(scaleBulletSpawnPosition), CurrentMap(map) {};
+
     Entity::Type ProjectileTypeTransform(Entity* entity) const;
     void setBehavior(std::unique_ptr<IBehavior> newBehavior);
     void setStat(const std::string& statName, float value);

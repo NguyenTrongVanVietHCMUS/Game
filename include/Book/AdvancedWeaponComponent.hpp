@@ -1,58 +1,69 @@
 #pragma once
-#include <Book/StrategyClass.hpp>
-#include <Book/Utility.hpp>
-#include <Control/State.hpp>
-class Weapon2;
-enum class ContinueMode {
-    AFTER,  // Continue after the current action
-    WAITING_INPUT
+#include <vector>
+#include <memory>
+#include <functional>
+#include <string>
+#include <iostream>
+#include <SFML/System.hpp>
+#include <SFML/Graphics.hpp>
+#include <nlohmann/json.hpp>
+#include "Weapon2.hpp"        
+#include "Entity.hpp"
+
+enum class NextType {
+    After,
+    With,
+    WaitingInput
 };
 
-struct ComboNode
-{
-    std::unique_ptr<IBehavior> behavior; // Behavior to execute
-    std::unique_ptr<IWeaponAnimation> animation; // Animation to play
+struct ComboNode {
+    std::unique_ptr<IBehavior> behavior;
+    std::unique_ptr<IWeaponAnimation> animation;
+    NextType nextType = NextType::After;
 
-    // Waiting input
+    // for WaitingInput
     float inputWindow = 0.0f;
-    bool isInputActive = false; // Whether input is active
-    void inputActive() {isInputActive = true;} // Reset input window when input is active
-    bool animationFinished() const {
-        return animation->isDone();
-    }
-    float requiredDelay = 0.0f; // Required delay before the next action
-    float maxGap = 0.1f; // Maximum gap allowed between actions
+    std::function<bool()> inputCheck; // returns true when continuation input is detected
 
-    bool started = false; // Whether the combo has started
-    float inputTimer = 0.0f; // Timer for input window
-    ContinueMode continueMode = ContinueMode::AFTER; // Default continue mode is AFTER
+    // for After: optional delay before advancing, and max gap before reset
+    float requiredDelay = 0.0f;
+    float maxGap = 0.2f; // if next doesn't start within this after requiredDelay, reset
 
-    void init()
-    {
-        inputTimer = 0.0f; // Reset input timer
-        started = false; // Reset started state
-        isInputActive = false; // Reset input active state
-    }
+    // internal state
+    bool started = false;
+    bool animationFinished = false;
+    float postFinishTimer = 0.0f;
+    float inputTimer = 0.0f;
+
+    std::function<void()> onEnter; // optional hook
 };
 
-
-class AdvancedWeaponComponent 
-{
+class AdvanceWeaponComponent {
 public:
-    AdvancedWeaponComponent(Weapon2* weapon, Entity* owner);
+    AdvanceWeaponComponent(std::shared_ptr<Weapon2> weapon, Entity* owner);
 
-    void loadFromJson(const nlohmann::json& data, State *map, Entity* owner);
-    void update(sf::Time dt);
+    // load combo sequence from JSON using your strategy factory
+    void loadFromJson(const nlohmann::json& comboJson, State* map, Entity* owner);
+    // per-frame update
+    void update(const sf::Time& dt);
+    // external trigger for input (alternative to polling inside inputCheck)
     void signalInput();
     void resetCombo();
+    // optional: draw current animation
     void draw(sf::RenderTarget& target, sf::RenderStates states) const;
-
+    void setOwner(Entity* newOwner);
 private:
     void advanceToNext();
 
-private:
-    std::vector<ComboNode> comboNodes; // List of combo nodes
-    std::vector<ComboNode>::iterator currentComboNode; // Current combo node being executed
-    Weapon2* weapon;
-    Entity* owner;
+    std::vector<ComboNode> sequence;
+    size_t currentIndex = 0;
+
+    bool comboActive = false;
+    bool waitingForInput = false;
+
+    std::shared_ptr<Weapon2> weapon = nullptr;
+    Entity* owner = nullptr;
+
+    // buffered input flag (for manual signalInput)
+    bool inputSignaled = false;
 };

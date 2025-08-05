@@ -351,7 +351,10 @@ bool TileMap::update(sf::Time dt)
             if (distance < player->updateRange)
             {
                 updateEntities.push_back(entity);
-            }
+            } else if (entity->type == Entity::Type::AllyProjectile || entity->type == Entity::Type::EnemyProjectile)
+            {
+                PopQueueEntities.push_back(entity); // Remove projectiles that are out of range
+            } 
         }
     }
     for (auto& x : updateEntities)

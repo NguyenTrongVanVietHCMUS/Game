@@ -1,89 +1,174 @@
 #include <Book/AdvancedWeaponComponent.hpp>
-#include <Book/Weapon2.hpp>
+#include <Control/StrategyFactory.hpp>
+AdvanceWeaponComponent::AdvanceWeaponComponent(std::shared_ptr<Weapon2> weapon_, Entity* owner_)
+    : weapon(weapon_), owner(owner_) {}
 
-AdvancedWeaponComponent::AdvancedWeaponComponent(Weapon2* weapon, Entity* owner)
-    : weapon(weapon), owner(owner)
-{
-    // Constructor logic if needed
+void AdvanceWeaponComponent::loadFromJson(const nlohmann::json& comboJson, State* map, Entity* owner) {
+    sequence.clear();
+    currentIndex = 0;
+    comboActive = true;
+    waitingForInput = false;
+    inputSignaled = false;
+
+    for (const auto& nodeJson : comboJson.at("combo")) {
+        ComboNode node;
+
+        // Behavior
+        if (nodeJson.contains("behavior")) {
+            node.behavior = StrategyFactory::createBehavior(nodeJson.at("behavior"), map);
+        }
+
+        // Animation
+        if (nodeJson.contains("animation")) {
+            node.animation = StrategyFactory::createAnimation(nodeJson.at("animation"), owner);
+        }
+
+        // NextType
+        std::string nt = nodeJson.value("nextType", "After");
+        if (nt == "After") node.nextType = NextType::After;
+        else if (nt == "With") node.nextType = NextType::With;
+        else if (nt == "WaitingInput") node.nextType = NextType::WaitingInput;
+
+        // Timing fields
+        node.requiredDelay = nodeJson.value("delay", 0.0f);
+        node.maxGap = nodeJson.value("maxGap", 0.2f);
+
+        if (node.nextType == NextType::WaitingInput) {
+            node.inputWindow = nodeJson.value("inputWindow", 0.5f);
+            std::string inputName = nodeJson.value("input", "");
+
+            // Example inputCheck: replace with your real input system.
+            node.inputCheck = [this, inputName]() -> bool {
+                // placeholder: you would check actual input state here, e.g. Input::isPressed(inputName)
+                if (inputSignaled) {
+                    inputSignaled = false;
+                    return true;
+                }
+                return false;
+            };
+        }
+
+        // Optional onEnter hook from JSON could be added here if needed
+
+        sequence.push_back(std::move(node));
+    }
 }
 
+void AdvanceWeaponComponent::update(const sf::Time& dt) {
+    if (sequence.empty()) return;
+    if (!comboActive) return;
 
-void AdvancedWeaponComponent::loadFromJson(const nlohmann::json& data, State* map, Entity* owner)
-{
-    // Load the component from JSON data
-    // This could include loading combo nodes, behaviors, animations, etc.
-}
+    ComboNode& node = sequence[currentIndex];
 
-void AdvancedWeaponComponent::update(sf::Time dt)
-{
-    // Update the current combo node if it exists
-    if (currentComboNode != comboNodes.end()) {
-        if(currentComboNode->animationFinished())
-        {
-            if(currentComboNode->continueMode == ContinueMode::WAITING_INPUT) {
-                currentComboNode->inputTimer += dt.asSeconds();
-                if (currentComboNode->inputTimer > currentComboNode->inputWindow) {
+    if (!node.started) {
+        // Enter node
+        if (node.onEnter) node.onEnter();
+
+        if (node.behavior) {
+            // Example: activate behavior; adapt signature as needed
+            node.behavior->activate(*weapon, owner);
+        }
+        if (node.animation) {
+            node.animation->play();
+        }
+        node.started = true;
+        node.animationFinished = false;
+        node.postFinishTimer = 0.0f;
+        node.inputTimer = 0.0f;
+        waitingForInput = false;
+    }
+
+    // Update animation
+    if (node.animation) {
+        node.animation->update(*weapon, dt);
+        // Here you need a way to detect finished: assuming animation has TotalTime and current time inside.
+        // Placeholder: you could expose a method isDone() in concrete animations.
+        // For simplicity, let's assume animationFinished is set externally or inferred; so here we simulate:
+        // (In real code replace with actual check)
+        // e.g., animationDone = dynamic_cast<YourConcreteAnimation*>(node.animation.get())->isFinished();
+        // For now, we fake it by checking an internal timer stored in animation if accessible.
+    }
+
+    // Simplified: assume animation is finished if we somehow detect it. For demonstration, skip.
+    bool animationDone = node.animation->isDone(); // you must set this in your real animation when complete
+
+    switch (node.nextType) {
+        case NextType::After:
+            if (animationDone) {
+                node.postFinishTimer += dt.asSeconds();
+                if (node.postFinishTimer >= node.requiredDelay) {
+                    // advance immediately after requiredDelay
+                    advanceToNext();
+                } else if (node.postFinishTimer > node.requiredDelay + node.maxGap) {
                     resetCombo();
                 }
-                return;
+            }
+            break;
+        case NextType::With:
+            // Start next immediately (no need to wait for finish)
+            advanceToNext();
+            break;
+        case NextType::WaitingInput:
+            if (!waitingForInput) {
+                if (animationDone) {
+                    waitingForInput = true;
+                    node.inputTimer = 0.0f;
+                }
             } else {
-                advanceToNext();
+                node.inputTimer += dt.asSeconds();
+                if (node.inputCheck && node.inputCheck()) {
+                    advanceToNext();
+                } else if (node.inputTimer > node.inputWindow) {
+                    resetCombo();
+                }
             }
-        } else {
-            // Update the current combo node's animation and behavior
-            currentComboNode->animation->update(*weapon, dt);
-            currentComboNode->behavior->activate(*weapon, owner);
-            
-            // Handle input window and timing logic
-            currentComboNode->inputTimer += dt.asSeconds();
-            if (currentComboNode->inputTimer > currentComboNode->inputWindow) {
-                // If input window is exceeded, reset or advance
-                advanceToNext();
-            }
+            break;
+    }
+}
+
+void AdvanceWeaponComponent::advanceToNext() {
+    // Reset state of current node so if we loop it behaves
+    if (currentIndex + 1 >= sequence.size()) {
+        // Reached end: reset or stop
+        resetCombo();
+        return;
+    }
+    currentIndex++;
+    sequence[currentIndex].started = false;
+    waitingForInput = false;
+}
+
+void AdvanceWeaponComponent::signalInput() {
+    inputSignaled = true;
+}
+
+void AdvanceWeaponComponent::resetCombo() {
+    currentIndex = 0;
+    comboActive = true;
+    waitingForInput = false;
+    inputSignaled = false;
+    for (auto& node : sequence) {
+        node.started = false;
+        node.animationFinished = false;
+        node.postFinishTimer = 0.0f;
+        node.inputTimer = 0.0f;
+    }
+}
+
+void AdvanceWeaponComponent::draw(sf::RenderTarget& target, sf::RenderStates states) const {
+    if (sequence.empty()) return;
+    const ComboNode& node = sequence[currentIndex];
+    if (node.animation) {
+        node.animation->draw(target, states);
+    }
+}
+
+
+void AdvanceWeaponComponent::setOwner(Entity* newOwner) {
+    owner = newOwner;
+    for (auto& node : sequence) {
+        if (node.animation) {
+            node.animation->SetOwner(newOwner);
         }
-    }
-
-    // Update the weapon and owner if needed
-    weapon->update(dt);
-    owner->update(dt);
-}
-
-void AdvancedWeaponComponent::signalInput()
-{
-    // Signal input to the current combo node
-    if (currentComboNode != comboNodes.end()) {
-        currentComboNode->inputActive(); // Reset input window
-        currentComboNode->started = true; // Mark the combo as started
-    }
-}
-void AdvancedWeaponComponent::resetCombo()
-{
-    // Reset the combo to the first node
-    currentComboNode = comboNodes.begin();
-    if (currentComboNode != comboNodes.end()) {
-        currentComboNode->inputTimer = 0.0f; // Reset input timer
-        currentComboNode->started = false; // Reset started state
-        currentComboNode->isInputActive = false; // Reset input active state
-    }
-}
-
-void AdvancedWeaponComponent::draw(sf::RenderTarget& target, sf::RenderStates states) const
-{
-    // Draw the current combo node's animation if it exists
-    if (currentComboNode != comboNodes.end() && currentComboNode->animation) {
-        currentComboNode->animation->draw(target, states);
-    }
-}
-
-void AdvancedWeaponComponent::advanceToNext()
-{
-    // Move to the next combo node
-    if (currentComboNode != comboNodes.end()) {
-        ++currentComboNode; // Advance to the next node
-    }
-
-    // If we reach the end of the combo, reset or handle accordingly
-    if (currentComboNode == comboNodes.end()) {
-        resetCombo(); // Reset to the beginning or handle end of combo logic
     }
 }

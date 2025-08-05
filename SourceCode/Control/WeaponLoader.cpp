@@ -44,10 +44,18 @@ std::shared_ptr<Weapon2> WeaponLoader::LoadWeapons(std::string weaponName) {
             weaponData[weaponName]["scaleBulletSpawnPosition"]["y"]
         ));
     }
+
+    std::shared_ptr<Weapon2> weapon = builder.build();
+
+    // If the weapon has an advanced component, load it
+    if (weaponData[weaponName].contains("ComboPath")) {
+        std::unique_ptr<AdvanceWeaponComponent> advanceComponent = std::make_unique<AdvanceWeaponComponent>(weapon, nullptr);
+        advanceComponent->loadFromJson(weaponData[weaponName]["ComboPath"], mState, nullptr);
+    }
+
     file.close(); // Close the file after reading
     // Build and return the weapon
-    return builder.build();
-
+    return weapon;
 }
 
 std::shared_ptr<Weapon2> WeaponLoader::LoadRandomWeapon() {

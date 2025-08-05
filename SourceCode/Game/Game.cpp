@@ -91,6 +91,8 @@ void Game::Run()
     while (window.isOpen())
     {       
         timeSinceLastUpdate += clock.restart();
+		float dt = timeSinceLastUpdate.asSeconds();
+		//std::cerr << "FPS : " << 1.0f / dt << std::endl;
 		Update(sf::Time::Zero); // Initial update to set up the game state
         while (timeSinceLastUpdate > TimePerFrame)
         {
@@ -116,7 +118,7 @@ void Game::PollEvents()
 }
 
 void Game::Update(sf::Time dt)
-{
+{	
     stateStack.update(dt) ;
 }
 
