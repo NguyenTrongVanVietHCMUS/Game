@@ -1,9 +1,10 @@
 #include <Book/AdvancedWeaponComponent.hpp>
 #include <Control/StrategyFactory.hpp>
+#include <Book/Weapon2.hpp>
 AdvanceWeaponComponent::AdvanceWeaponComponent(std::shared_ptr<Weapon2> weapon_, Entity* owner_)
     : weapon(weapon_), owner(owner_) {}
 
-void AdvanceWeaponComponent::loadFromJson(const nlohmann::json& comboJson, State* map, Entity* owner) {
+bool AdvanceWeaponComponent::loadFromJson(const nlohmann::json& comboJson, State* map, Entity* owner) {
     sequence.clear();
     currentIndex = 0;
     comboActive = true;

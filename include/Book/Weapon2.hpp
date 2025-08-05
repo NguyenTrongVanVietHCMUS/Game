@@ -4,9 +4,7 @@
 #include <Book/Strategy/CooldownBehavior.hpp>
 #include <Book/Entity.hpp>
 #include <Control/State.hpp>
-#include <Control/State.hpp>
-
-class AdvanceWeaponComponent;
+#include <Book/AdvancedWeaponComponent.hpp>
 class Weapon2 : public Entity
 {
 private:
@@ -48,6 +46,8 @@ public:
     std::unique_ptr<IBehavior> behavior, std::unique_ptr<IWeaponAnimation> animation, std::unique_ptr<AdvanceWeaponComponent> advanceComponent, 
     std::unique_ptr<ICooldownBehavior> cooldownBehavior, sf::Vector2f scaleBulletSpawnPosition, State* map = nullptr)
     : behavior(std::move(behavior)), animation(std::move(animation)), advanceComponent(std::move(advanceComponent)), cooldownBehavior(std::move(cooldownBehavior)), Entity(name, position), ScaleBulletSpawnPosition(scaleBulletSpawnPosition), CurrentMap(map) {};
+
+    ~Weapon2() = default;
 
     Entity::Type ProjectileTypeTransform(Entity* entity) const;
     void setBehavior(std::unique_ptr<IBehavior> newBehavior);
