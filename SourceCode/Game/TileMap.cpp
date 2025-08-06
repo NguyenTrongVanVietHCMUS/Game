@@ -26,7 +26,7 @@ bool TileMap::loadFromFile(const std::string& jsonFile)
     File = jsonFile ; 
     std::ifstream file(jsonFile) ;  
     if(!file.is_open())return false ;
-
+    std::cerr << "Loading tilemap from file: " << jsonFile << std::endl;
     json datafile ; 
     file >> datafile  ; 
     for(auto &data: datafile["maps"] )
@@ -391,21 +391,6 @@ bool TileMap::update(sf::Time dt)
         if (auto enemy = dynamic_cast<Enemy*>(x))
         {
             enemy->update(player, dt); 
-        }
-        if (auto chest = dynamic_cast<Chest*>(x))
-        {
-            if (!chest->isItemAdded())
-            {
-                try
-                {
-                    chest->setItems(weaponLoader->LoadWeapons("Sword"));
-                }
-                catch(const std::exception& e)
-                {
-                    std::cerr << e.what() << '\n';
-                }
-                
-            }
         }
     }
     for (auto& x : updateEntities)x->update(dt);

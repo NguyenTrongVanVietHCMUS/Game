@@ -57,6 +57,8 @@ Projectile2* ProjectileLoader::LoadProjectile(const std::string& name, sf::Vecto
         proj->setAttribute("Damage", j["Damage"].get<float>());
     }
     in.close();
+
+    std::cerr << "Projectile loaded: " << name << " with lifeTime: " << lifeTime << std::endl;
     return proj;
 }
 

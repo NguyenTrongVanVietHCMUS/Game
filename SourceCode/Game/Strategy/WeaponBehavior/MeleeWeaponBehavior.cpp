@@ -22,7 +22,14 @@ void MeleeWeaponBehavior::activate(Weapon2& self, Entity* target) {
     }
     
     proj->type = self.ProjectileTypeTransform(target); // Transform the projectile type based on the target type
+    
     proj->updateHitboxOnPosition(); // Update the hitbox position based on the entity's current position
+   
     proj->update(sf::seconds(0)); // Initialize the projectile's animation
-    Worldmap->pushEntity(proj);
+    std::cerr << "Projectile created: " << ProjectileName << " at address: " << Worldmap << std::endl;
+    if(Worldmap) 
+    {
+        Worldmap->pushEntity(proj);
+    }
+    std::cerr << "Melee attack activated: " << ProjectileName << '\n';
 } 

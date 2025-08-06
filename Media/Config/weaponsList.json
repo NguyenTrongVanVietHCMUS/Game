@@ -149,8 +149,7 @@
       "middlePositionY": 0.5
     },
     "scaleBulletSpawnPosition": { "x": 0.4, "y": -0.2 }
-    }
-  },    
+    },
   "MinionSword": {
     "name": "MinionSword",
     "position": {

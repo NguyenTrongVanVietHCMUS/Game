@@ -4,18 +4,13 @@
 #include <Control/State.hpp>
 std::shared_ptr<Weapon2> WeaponLoader::LoadWeapons(std::string weaponName) {
     ProjectileLoader projectileLoader(mState);
-    std::cerr << "Loading weapon: " << weaponName << std::endl;
     std::ifstream file = std::ifstream(filePath);
     if (!file.is_open()) {
         std::cerr << "Failed to open weapon file: " << weaponName << std::endl;
         throw std::runtime_error("Failed to open weapon file: " + weaponName);
     }
-    std::cerr << "Weapon file opened successfully.\n";
     json weaponData;
     file >> weaponData;
-
-    // get the weapon data by name
-    std::cerr << "Loading weapon: " << weaponName << std::endl;
     if (!weaponData.contains(weaponName)) {
         throw std::runtime_error("Weapon not found: " + weaponName);
     }

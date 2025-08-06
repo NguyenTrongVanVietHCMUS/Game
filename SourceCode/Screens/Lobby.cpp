@@ -1,6 +1,7 @@
 #include <Screens/Lobby.hpp>
 #include<Object/Character/Knight.hpp>
 #include<Control/ResourceManager.hpp> 
+#include<Object/Chest/Chest.hpp>
 Lobby::Lobby(StateStack& stack,Context context):
     State(stack,context) 
 {         
@@ -8,6 +9,17 @@ Lobby::Lobby(StateStack& stack,Context context):
     map->entities.push_back(new Knight(map->startingPoint, this, &map->camera)); // Adjusted to match the new Knight constructor
     map->setWeaponLoader(weaponLoader); // Set the weapon loader for the map
     statPlayer.setPlayer(map->getPlayer()); 
+    if (map){
+		for (auto& x : map->entities)
+		{
+			if (auto chest = dynamic_cast<Chest*>(x))
+			{
+				std::cerr << "Chest found in state: " << this << std::endl;
+				chest->setItems(weaponLoader->LoadRandomWeapon()); // Set a random weapon for the chest
+			}
+		}
+	}
+
 }
 
 Lobby::~Lobby()
