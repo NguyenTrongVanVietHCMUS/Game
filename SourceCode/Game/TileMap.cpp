@@ -348,6 +348,7 @@ bool TileMap::handleEvent(const sf::Event& event,sf::RenderWindow* window)
     {
         if (auto character = dynamic_cast<Character*>(x))
         {
+            if(character->isDeath()) continue; // Skip handling events for dead characters
             character->handleEvent(event, window);
         }
     }
@@ -386,6 +387,8 @@ bool TileMap::update(sf::Time dt)
             } 
         }
     }
+    
+    if(player && player->isDeath()) player = nullptr;
     for (auto& x : updateEntities)
     {
         if (auto enemy = dynamic_cast<Enemy*>(x))

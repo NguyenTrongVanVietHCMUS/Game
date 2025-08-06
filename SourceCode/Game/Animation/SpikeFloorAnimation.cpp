@@ -49,7 +49,6 @@ void SpikeFloorAnimation::draw(sf::RenderTarget& target, sf::RenderStates states
 	{
 		states.texture = inactive; // Set the texture to inactive
 		target.draw(*inactiveSprite, states);
-		std::cout << "Drawing inactive sprite" << std::endl;
 	}
 	else if (state == End)
 	{

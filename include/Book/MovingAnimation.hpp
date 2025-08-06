@@ -2,7 +2,7 @@
 #include<Book/Utility.hpp>
 #include<Book/Entity.hpp>
 #include<Book/Inventory.hpp>
-
+#include<Book/EntityComponent.hpp>
 
 class MovingAnimation : public sf::Drawable
 {
@@ -118,8 +118,9 @@ private:
     int distancefromground = 0; 
     bool moveX; 
     bool moveY;
+    EntityAttributeActionComponent *attribute;
 public :
-    Character_MovingAnimation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f& position, float scale, Entity* entity ,sf::Vector2f middlePosition = sf::Vector2f(0.5f, 1)); // Constructor with parameters
+    Character_MovingAnimation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f& position, float scale, Entity* entity ,sf::Vector2f middlePosition = sf::Vector2f(0.5f, 1), EntityAttributeActionComponent* attribute = nullptr); // Constructor with parameters
     ~Character_MovingAnimation();
     virtual void update(sf::Time dt);
     virtual void handleEvent(const sf::Event& event,sf::RenderWindow* window);

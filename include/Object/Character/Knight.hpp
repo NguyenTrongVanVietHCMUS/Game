@@ -22,7 +22,9 @@ public:
             0.1f,  // Switch time for the animation
             this->position, 
             2.1f, // Scale of the animation,
-            this
+            this,
+            sf::Vector2f(0.5f, 1), // Middle position for the animation
+            &attributes // Pass the attributes to the moving animation
         );  
         statusEffect.push_back(std::make_shared<FollowCameraEffect>(cameraManager, this)); // Add follow camera effect
         

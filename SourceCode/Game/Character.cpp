@@ -150,3 +150,8 @@ void Character::setAttribute(CharacterResourceType type, float current, float ma
 {
     attributes.setAttribute(type, current, max);
 }
+
+bool Character::isDeath() const
+{
+    return attributes.isDeath();
+}

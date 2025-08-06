@@ -79,3 +79,7 @@ void EntityAttributeActionComponent::updateShieldRegen(sf::Time dt) {
 void EntityAttributeActionComponent::setAttribute(CharacterResourceType type, float current, float max) {
     attributes[type] = EntityResource(current, max);
 }
+
+bool EntityAttributeActionComponent::isDeath() const {
+    return attributes.at(CharacterResourceType::Health).isEmpty();
+}
