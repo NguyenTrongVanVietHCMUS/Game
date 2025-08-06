@@ -1,5 +1,6 @@
 #include <Book/Strategy/ProjectileBehavior.hpp>
 #include <Book/Strategy/CollisionBehavior.hpp>
+#include <Control/ProjectileLoader.hpp>
 void ThrowMovement::update(Projectile2& projectile, const sf::Time& dt)
 {
     // Update the position of the projectile based on its speed and the elapsed time
@@ -18,30 +19,11 @@ void ThrowMovement::update(Projectile2& projectile, const sf::Time& dt)
     // If the projectile has fallen below its initial height, reset it
     if (CurrentHeight < 0.0f) {
         isActive = false; 
-        auto proj = new Projectile2(
-            "Explosion",
-            0.45f, // as seconds
-            projectile.position,
-            Worldmap,
-            "Media/Assets/Projectiles/sword_slash.png", // Path to the projectile texture
-            nullptr, // No movement for melee
-            std::make_unique<MeleeCollisionBehavior>(Worldmap), // Melee collision behavior
-            nullptr
+        auto proj = ProjectileLoader(Worldmap).LoadProjectile(
+            "Explosion basic",
+            projectile.getPosition(), 
+            projectile.getPosition() + sf::Vector2f(speedX, speedY) // Set the target position for the explosion
         );
-
-        sf::Texture* texture = new sf::Texture();
-        if(!texture->loadFromFile("Media/Assets/Projectiles/image.png")) {
-            throw std::runtime_error("Failed to load explosion texture");
-        }
-        std::unique_ptr<MovingAnimation> movingAnimation = std::make_unique<Explosion_Animation>(
-            texture,
-            sf::Vector2u(3,3), // Assuming the explosion texture has 4x2 frames
-            0.05f, // Switch time for the animation
-            proj->position, 
-            2.0f, // Scale of the animation
-            sf::Vector2f(0.5f, 0.5f) // Middle position for the animation
-        );
-        proj->setMovingAnimation(std::move(movingAnimation));
         proj->update(sf::seconds(0)); // Initialize the projectile's animation
         Worldmap->pushEntity(proj);
         return;

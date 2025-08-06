@@ -51,5 +51,22 @@
       "middlePositionX": 0.5,
       "middlePositionY": 0.5
     }
+  },
+  "Explosion basic": {
+    "lifeTime" : 0.45,
+    "scale" : 2.0,
+    "texturePath" : "Media/Assets/Projectiles/image.png",
+    "animation" : {
+      "type": "Explosion Animation",
+      "texture": "Media/Assets/Projectiles/image.png",
+      "imageCount" : { "x": 3, "y": 3 },
+      "switchTime" : 0.05,
+      "scale": 2.0,
+      "middlePositionX": 0.5,
+      "middlePositionY": 0.5
+    },
+    "collisionBehavior": {
+      "type": "Melee Collision Behavior"
+    }
   }
 }
