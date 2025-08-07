@@ -13,6 +13,7 @@
 #include<Object/Mob/BlunderbussPistolMinion.hpp>
 #include<Object/Mob/RifleMinion.hpp>
 #include<Object/Chest/Chest.hpp>
+#include <Object/Chest/ExplosiveBarrel.hpp>
 Jungle::Jungle(StateStack& stack,Context context):
     State(stack,context)
 {         
@@ -42,7 +43,10 @@ Jungle::Jungle(StateStack& stack,Context context):
 			{
 				std::cerr << "Chest found in state: " << this << std::endl;
 				chest->setItems(weaponLoader->LoadRandomWeapon()); // Set a random weapon for the chest
-			}
+			} else if (auto explosiveBarrel = dynamic_cast<ExplosiveBarrel*>(x))
+            {
+                explosiveBarrel->setMap(this); // Set the current map for the explosive barrel
+            }
 		}
 	}
 }

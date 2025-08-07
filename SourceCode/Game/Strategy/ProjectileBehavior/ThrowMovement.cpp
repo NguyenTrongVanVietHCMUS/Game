@@ -24,6 +24,7 @@ void ThrowMovement::update(Projectile2& projectile, const sf::Time& dt)
             projectile.getPosition(), 
             projectile.getPosition() + sf::Vector2f(speedX, speedY) // Set the target position for the explosion
         );
+        proj->type = projectile.type; // Set the type of the projectile
         proj->update(sf::seconds(0)); // Initialize the projectile's animation
         Worldmap->pushEntity(proj);
         return;
