@@ -17,7 +17,7 @@ private:
     std::unordered_map<std::string, float> attributes; // Additional stats for the projectile
     std::string texturePath;
     State* currentMap; // Pointer to the current map or state
-
+    
 private: 
     float debounceTime = 1.0f;
     std::vector<const Entity*> collidedEntitiesFlag;
@@ -50,4 +50,7 @@ public:
     void collide(const Entity* other) override;
 
     Projectile2* clone(sf::Vector2f direction)const;
+
+public:
+    bool HitboxMode = true;
 };

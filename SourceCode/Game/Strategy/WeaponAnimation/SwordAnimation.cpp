@@ -1,5 +1,7 @@
 #include <Book/Strategy/WeaponAnimation.hpp>
 #include <Book/Weapon2.hpp>
+#include <Book/Enemy.hpp>
+#include <Book/Character.hpp>
 // ------------------------- SWORD ANIMATION -------------------------
 
 SwordAnimation::SwordAnimation(float TotalTime, float scale, sf::Texture* texture, 
@@ -23,6 +25,31 @@ void SwordAnimation::update(Weapon2& weapon, sf::Time dt) {
 
     float posX = weapon.getStat("TargetPosX");
     float posY = weapon.getStat("TargetPosY");
+
+
+    if(owner != nullptr)
+    {
+        if(auto enemy = dynamic_cast<Enemy*>(owner))
+        {
+            if(enemy->isDeath())
+            {
+                sprite.setColor(sf::Color(100.0f, 100.0f, 100.0f)); // Change color to red if the owner is dead
+            } else
+            {
+                sprite.setColor(sf::Color(255.0f, 255.0f, 255.0f)); // Reset color if the owner is not dead
+            }
+        }
+        if(auto character = dynamic_cast<Character*>(owner))
+        {
+            if(character->isDeath())
+            {
+                sprite.setColor(sf::Color(100.0f, 100.0f, 100.0f)); // Change color to red if the owner is dead
+            } else
+            {
+                sprite.setColor(sf::Color(255.0f, 255.0f, 255.0f)); // Reset color if the owner is not dead
+            }
+        }
+    }
     // Get the Original Angle of the sword based on the mouse position
     sf::Vector2f direction = owner->getHandPosition() - sf::Vector2f(posX, posY);
     float originalAngle = std::atan2(direction.y, direction.x) * 180.0f / 3.14159f; // Convert to degrees

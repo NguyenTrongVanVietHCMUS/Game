@@ -164,7 +164,10 @@ private:
             }},
             {"Laser Beam Movement", [](const json& data, State* map, sf::Vector2f startPos, sf::Vector2f endPos){
                 return std::make_unique<LaserBeamMovement>(
-                    data.value("HitCycle", 0.5f)
+                    data.value("HitCycle", 0.5f),
+                    startPos,
+                    endPos,
+                    map
                 );
 
             }},

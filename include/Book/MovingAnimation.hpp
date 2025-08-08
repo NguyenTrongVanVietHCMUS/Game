@@ -219,9 +219,6 @@ private:
 public:
     LaserAnimation(sf::Texture *texture, sf::Vector2f startPosition, sf::Vector2f endPosition, sf::Vector2f middlePosition, sf::Vector2f& position);
     ~LaserAnimation() {
-        if (texture) {
-            delete texture; // Clean up the texture if it was dynamically allocated
-        }
         if (BallTexture) {
             delete BallTexture; // Clean up the ball texture if it was dynamically allocated
         }

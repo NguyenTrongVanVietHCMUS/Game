@@ -82,7 +82,18 @@ bool Projectile2::update(sf::Time dt)
     setAttribute("CurrentLifeTime", CurrentLifeTime); // Update the current lifetime attribute
     if (movingAnimation) {
         movingAnimation->update(dt); // Update the moving animation if it exists
-        hitbox.hitbox = movingAnimation->getBoundingBox(); // Update the hitbox based on the moving animation
+
+        if(HitboxMode){
+            hitbox.hitbox = movingAnimation->getBoundingBox(); // Update the hitbox based on the moving animation
+        } else 
+        {
+            hitbox.hitbox = sf::FloatRect(
+                -100.0f,
+                -100.0f,
+                0.0f,
+                0.0f
+            );
+        }
     }
     // for every collided Entities
 
@@ -123,9 +134,9 @@ void Projectile2::draw(sf::RenderTarget& target, sf::RenderStates states) const
     if(movingAnimation) {
         
         movingAnimation->draw(target, states); // Draw the moving animation if it exists
-        hitbox.draw(target, states); //Draw the hitbox for debugging purposes
+       // hitbox.draw(target, states); //Draw the hitbox for debugging purposes
     } else {
-        hitbox.draw(target, states); // Draw the hitbox for debugging purposes
+       // hitbox.draw(target, states); // Draw the hitbox for debugging purposes
         target.draw(sprite, states);  
         
     }

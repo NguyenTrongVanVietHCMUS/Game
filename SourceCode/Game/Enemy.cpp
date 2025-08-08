@@ -35,7 +35,8 @@ void Enemy::update(Entity* target, sf::Time dt)
     {
         movingAnimation->setState(MovingAnimation::State::DEATH);
         movingAnimation->update(dt); // Update the death animation
-        elapseDeathTime += dt.asSeconds();
+        
+        inventory->update(dt); // Update the inventory
     } else
     { 
         aiEnemy->update(this, target, dt);
@@ -61,5 +62,10 @@ void Enemy::shoot(Entity* target,sf::Time dt)
 
 bool Enemy::isAllowClean()
 {
-    return elapseDeathTime >= despawnDeathTime;
+    return false;
+}
+
+bool Enemy::isDeath()
+{
+    return attributes.isDeath();
 }

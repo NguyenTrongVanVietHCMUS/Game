@@ -37,4 +37,5 @@ public:
     virtual void shoot(Entity* target,sf::Time dt); 
 public:
     virtual bool isAllowClean();
+    virtual bool isDeath();
 };
