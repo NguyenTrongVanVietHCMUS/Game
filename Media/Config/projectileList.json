@@ -6,15 +6,15 @@
 
     "movement": {
       "type": "Follow Movement",
-      "speed": 1000.0,
-      "criticalAngle": 60.0,
+      "speed": 500.0,
+      "criticalAngle": 200.0,
       "targetPosition": { "x": 500.0, "y": 300.0 }
     },
 
     "collisionBehavior": {
       "type": "Projectile Collision Behavior"
     },
-    "Damage" : 10.0
+    "Damage" : 1.0
   },
   "GoblinBullet": {
     "lifeTime": 15.0,

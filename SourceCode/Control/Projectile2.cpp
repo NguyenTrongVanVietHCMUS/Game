@@ -106,10 +106,7 @@ void Projectile2::collide(const Entity* other)
         if (AllowCollide(const_cast<Entity*>(other))) {
             collisionStrategy->collide(*this, other);
             collidedEntitiesFlag.push_back(other);
-            if(other->name == "Knight")
-            {
-                std::cerr << "Projectile collided with Knight" << std::endl;
-            }
+    
         }
     }
 }

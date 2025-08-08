@@ -90,3 +90,16 @@ public:
         return std::make_unique<laserGunBehavior>(*this);
     }
 };
+
+class BalanceSpreadBehavior : public IBehavior
+{
+private:
+    int numBullet;
+    State* Worldmap;
+public:
+    BalanceSpreadBehavior(State* worldmap, int numBullet) : numBullet(numBullet), Worldmap(worldmap) {}
+    void activate(Weapon2& self, Entity* target) override;
+    std::unique_ptr<IBehavior> clone() const override {
+        return std::make_unique<BalanceSpreadBehavior>(*this);
+    }
+};

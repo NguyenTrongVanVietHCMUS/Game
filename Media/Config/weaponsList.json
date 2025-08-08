@@ -7,10 +7,11 @@
     },
 
     "behavior": {
-      "type": "Ranged Weapon Behavior",
+      "type": "Balance Spread Behavior",
       "projectileSpeed": 1200.0,
       "spreadAngle": 20.0,
-      "Projectile": "PurpleBullet"
+      "Projectile": "PurpleBullet",
+      "numBullet": 10
     },
 
     "animation": {
