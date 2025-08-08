@@ -16,6 +16,23 @@
     },
     "Damage" : 1.0
   },
+  "Magic Bullet": {
+    "lifeTime": 3.0,
+    "scale": 2.0,
+    "texturePath": "Media/Assets/Projectiles/MagicBullet.png",
+
+    "movement": {
+      "type": "Follow Movement",
+      "speed": 500.0,
+      "criticalAngle": 200.0,
+      "targetPosition": { "x": 500.0, "y": 300.0 }
+    },
+
+    "collisionBehavior": {
+      "type": "Projectile Collision Behavior"
+    },
+    "Damage" : 1.0
+  },
   "GoblinBullet": {
     "lifeTime": 15.0,
     "scale": 0.8,

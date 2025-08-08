@@ -70,7 +70,9 @@ bool Projectile2::update(sf::Time dt)
             return true; // Indicate that the projectile should be removed
         }
     }
-
+    // if get CurrentAngle from attribute
+    float currentAngle = getAttribute("CurrentAngle") * 180.0f / 3.14f;
+    sprite.setRotation(currentAngle);
 
     sprite.setPosition(getPosition()); // Update the sprite position to match the projectile's position
 

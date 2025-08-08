@@ -46,7 +46,16 @@ public:
         } catch (const std::exception& e) {
             std::cerr << "Failed to load Laser Gun weapon: " << e.what() << std::endl;
         }
-
+        try
+        {
+            inventory->addWeapon(weaponLoader.LoadWeapons("Staff"), this); 
+        }
+        catch(const std::exception& e)
+        {
+            std::cerr << e.what() << '\n';
+        }
+        
+        
         movingAnimation->speed = 600.0f;
         // Initialize the knight-specific properties here
         std::cerr << "Knight load successfully\n";

@@ -16,6 +16,8 @@ void FollowMovement::update(Projectile2& projectile, const sf::Time &dt)
     {
         projectile.position.x += speedX * dt.asSeconds();
         projectile.position.y += speedY * dt.asSeconds();
+        float CurrentAngle = std::atan2(speedY, speedX);
+        projectile.setAttribute("CurrentAngle", CurrentAngle);
         projectile.updateHitboxOnPosition();
         return; // No target found
     }
@@ -51,6 +53,7 @@ void FollowMovement::update(Projectile2& projectile, const sf::Time &dt)
 
     // Apply new angle
     float newAngle = currentAngle + deltaAngle;
+    projectile.setAttribute("CurrentAngle", newAngle);
     speedX = std::cos(newAngle) * speed;
     speedY = std::sin(newAngle) * speed;
 
