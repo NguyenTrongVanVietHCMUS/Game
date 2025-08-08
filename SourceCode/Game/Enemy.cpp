@@ -16,7 +16,15 @@ Enemy::~Enemy()
 }
 void Enemy::collide(const Entity* other)
 {
-    movingAnimation->handleCollision(other);
+    if (auto projectile = dynamic_cast<const Projectile2*>(other)) {
+            if (projectile->type == Entity::Type::EnemyProjectile || projectile->type == Entity::Type::Projectile) {
+                if(projectile->AllowCollide(this)){
+                    attributes.TakeDamage(static_cast<int>(projectile->getAttribute("Damage")));
+                    movingAnimation->handleCollision(other);
+                }
+            }
+        } else movingAnimation->handleCollision(other);
+        
 }
 void Enemy::update(Entity* target, sf::Time dt)
 {

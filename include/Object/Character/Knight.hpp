@@ -78,7 +78,9 @@ public:
     {
         if (auto projectile = dynamic_cast<const Projectile2*>(other)) {
             if (projectile->type == Entity::Type::EnemyProjectile || projectile->type == Entity::Type::Projectile) {
-                attributes.TakeDamage(static_cast<int>(projectile->getAttribute("Damage")));
+                if(projectile->AllowCollide(this)){
+                    attributes.TakeDamage(static_cast<int>(projectile->getAttribute("Damage")));
+                }
             }
         }
         movingAnimation->handleCollision(other); 

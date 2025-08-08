@@ -22,9 +22,9 @@ public:
             std::cerr << "Enemy projectile hit ally\n";
             Worldmap->popEntity(&self); // Remove the projectile from the worldmap
         }
-        else if(self.type == Entity::Type::AllyProjectile && other->type == Entity::Type::Object)
+        else if(other->type == Entity::Type::Object)
         {
-            std::cerr << "Ally projectile hit object\n";
+            
             Worldmap->popEntity(&self); // Remove the projectile from the worldmap
             return ;
         }

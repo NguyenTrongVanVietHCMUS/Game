@@ -103,11 +103,21 @@ public:
 
 public:
     sf::FloatRect getBoundingBox() const {
-        return sprite.getGlobalBounds();
+        sf::FloatRect boundingBox = sprite.getGlobalBounds();
+        // shrink it a bit
+        boundingBox.left += boundingBox.width * (1 - shrinkScaleSize) / 2;
+        boundingBox.top += boundingBox.height * (1 - shrinkScaleSize) / 2;
+        boundingBox.width *= shrinkScaleSize;
+        boundingBox.height *= shrinkScaleSize;
+        return boundingBox;
     }
+    void setState(State newState);
+
 protected: 
     Direction direction;
     virtual void setSpritePosition(); 
+
+    float shrinkScaleSize = 0.8f;
 };
 
 class Character_MovingAnimation : public MovingAnimation 
@@ -124,6 +134,7 @@ private:
     bool moveX; 
     bool moveY;
     EntityAttributeActionComponent *attribute;
+    
 public :
     Character_MovingAnimation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f& position, float scale, Entity* entity ,sf::Vector2f middlePosition = sf::Vector2f(0.5f, 1), EntityAttributeActionComponent* attribute = nullptr); // Constructor with parameters
     ~Character_MovingAnimation();

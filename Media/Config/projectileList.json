@@ -68,6 +68,6 @@
     "collisionBehavior": {
       "type": "Melee Collision Behavior"
     },
-    "Damage" : 1000.0
+    "Damage" : 20.0
   }
 }

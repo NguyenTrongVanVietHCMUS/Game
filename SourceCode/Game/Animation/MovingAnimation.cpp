@@ -122,3 +122,8 @@ void MovingAnimation::setSpriteRotation(float angle)
 {
     sprite.setRotation(angle); // Set the rotation of the sprite
 }
+
+void MovingAnimation::setState(State newState)
+{
+    state = newState;
+}

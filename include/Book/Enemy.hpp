@@ -6,7 +6,7 @@
 #include<Control/State.hpp>
 #include<Book/Inventory.hpp>
 #include<Control/WeaponLoader.hpp>
-
+#include<Book/EntityComponent.hpp>
 class AIEnemy; 
 class Enemy : public Entity
 {
@@ -15,6 +15,8 @@ protected:
     std::unique_ptr<AIEnemy>aiEnemy; 
     std::unique_ptr<MovingAnimation>movingAnimation;
     std::shared_ptr<Inventory> inventory = std::make_shared<Inventory>();
+
+    EntityAttributeActionComponent attributes;
 public:
     Enemy(std::string name, sf::Vector2f position);
     ~Enemy();
