@@ -47,18 +47,92 @@
         "C:/Users/billy/Downloads/temp.json#ezgif.com-gif-to-sprite-converter (5)": {
             "scaleInDock": 0.33
         },
+        "D:/HCMUS/3Semester/Project/Game/Media/Assets/Maps/Dungeon/Jungle/battleroom1.json": {
+            "scale": 0.45803571428571427,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 558.9083820662767,
+                "y": 558.9083820662768
+            }
+        },
+        "D:/HCMUS/3Semester/Project/Game/Media/Assets/Maps/Dungeon/Jungle/battleroom1.json#GroundTiles": {
+            "scaleInDock": 1
+        },
+        "D:/HCMUS/3Semester/Project/Game/Media/Assets/Maps/Dungeon/Jungle/battleroom1.json#Object": {
+            "scaleInDock": 1
+        },
+        "D:/HCMUS/3Semester/Project/Game/Media/Assets/Maps/Dungeon/Jungle/battleroom1.json#Objects": {
+            "scaleInDock": 1
+        },
+        "D:/HCMUS/3Semester/Project/Game/Media/Assets/Maps/Dungeon/Jungle/battleroom1.json#Walls": {
+            "scaleInDock": 1
+        },
+        "D:/HCMUS/3Semester/Project/Game/Media/Assets/Maps/Dungeon/Jungle/chestroom.json": {
+            "scale": 0.6970108695652174,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 367.28265107212474,
+                "y": 239.59454191033134
+            }
+        },
+        "D:/HCMUS/3Semester/Project/Game/Media/Assets/Maps/Dungeon/Jungle/room1.json": {
+            "scale": 0.7342708333333333,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 239.69357355653287,
+                "y": 240.37452120868207
+            }
+        },
+        "D:/HCMUS/3Semester/Project/Game/Media/Assets/Maps/Dungeon/Jungle/room1.json#MossyStoneBricks": {
+            "scaleInDock": 1
+        },
+        "D:/HCMUS/3Semester/Project/Game/Media/Assets/Maps/Dungeon/Jungle/room1.json#Statues": {
+            "scaleInDock": 1
+        },
+        "D:/HCMUS/3Semester/Project/Game/Media/Assets/Maps/Dungeon/Jungle/room1.json#treew2all": {
+            "scaleInDock": 1
+        },
+        "D:/HCMUS/3Semester/Project/Game/Media/Assets/Maps/Dungeon/Jungle/roomweapon.json": {
+            "scale": 0.5244791666666667,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 335.5710029791459,
+                "y": 607.269116186693
+            }
+        },
+        "D:/HCMUS/3Semester/Project/Game/Media/Assets/Maps/Dungeon/Jungle/roomweapon.json#GroundTiles": {
+            "scaleInDock": 1
+        },
+        "D:/HCMUS/3Semester/Project/Game/Media/Assets/Maps/Dungeon/Jungle/roomweapon.json#Walls": {
+            "scaleInDock": 1
+        },
+        "D:/HCMUS/3Semester/Project/Game/Media/Assets/Maps/Dungeon/Jungle/set.json": {
+            "scale": 0.8875432525951557,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 288.43664717348923,
+                "y": 178.58284600389862
+            }
+        },
+        "D:/HCMUS/3Semester/Project/Game/Media/Assets/Maps/Dungeon/Jungle/set.json#chest": {
+            "scaleInDock": 1
+        },
         "D:/HCMUS/3Semester/Project/Game/Media/Assets/Maps/Dungeon/Jungle/startingroom.json": {
             "scale": 0.47887228260869563,
             "selectedLayer": 0,
             "viewCenter": {
                 "x": 367.5301461200171,
-                "y": 2156.107249255214
+                "y": 1338.561498084835
             }
         },
         "D:/HCMUS/3Semester/Project/Game/Media/Assets/Maps/Dungeon/Jungle/startingroom.json#GroundTiles": {
             "scaleInDock": 1
         },
+        "D:/HCMUS/3Semester/Project/Game/Media/Assets/Maps/Dungeon/Jungle/startingroom.json#Object": {
+            "scaleInDock": 1
+        },
         "D:/HCMUS/3Semester/Project/Game/Media/Assets/Maps/Dungeon/Jungle/startingroom.json#Walls": {
+            "dynamicWrapping": true,
             "scaleInDock": 1
         },
         "D:/HCMUS/3Semester/Project/Game/Media/Assets/Maps/Lobby/big.tmj": {

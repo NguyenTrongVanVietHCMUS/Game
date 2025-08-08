@@ -47,7 +47,7 @@ void Entity::updateHitboxOnPosition()
 }
 bool Entity::movable()const
 {
-	return type == Entity::Type::Ally || type == Entity::Type::Enemy || type == Entity::Type::AllyProjectile || type == Entity::Type::EnemyProjectile;
+	return type == Entity::Type::Ally || type == Entity::Type::Enemy || type == Entity::Type::AllyProjectile || type == Entity::Type::EnemyProjectile || type == Entity::Type::Projectile;
 }
 float Entity::getRange()const
 {   
