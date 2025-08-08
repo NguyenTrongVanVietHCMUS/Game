@@ -14,13 +14,7 @@ void ExplosiveBarrel::collide(const Entity* entity)
 {
     if (entity->type == Entity::Type::EnemyProjectile || entity->type == Entity::Type::AllyProjectile || entity->type == Entity::Type::Projectile)
     {
-        if(CurrentMap)
-        {
-            Projectile2* explosion = projLoader->LoadProjectile("Explosion basic", getPosition(), entity->getPosition());
-            explosion->type = Entity::Type::Projectile;
-            CurrentMap->pushEntity(explosion);
-            CurrentMap->popEntityNoDelete(this);
-        }
+        isActive = true;
     }
 }
 
@@ -28,6 +22,7 @@ void ExplosiveBarrel::setMap(State* map)
 {
     CurrentMap = map;
     projLoader = new ProjectileLoader(map); 
+    isActive = false;
 }
 
 ExplosiveBarrel::~ExplosiveBarrel()
@@ -35,4 +30,19 @@ ExplosiveBarrel::~ExplosiveBarrel()
     if (projLoader) {
         delete projLoader; // Clean up the projectile loader
     }
+}
+
+bool ExplosiveBarrel::update(sf::Time dt)
+{
+    if (isActive)
+    {
+        if(CurrentMap)
+        {
+            Projectile2* explosion = projLoader->LoadProjectile("Explosion basic", getPosition(), getPosition() + sf::Vector2f(0.5f,0.5f));
+            explosion->type = Entity::Type::Projectile;
+            CurrentMap->pushEntity(explosion);
+            CurrentMap->popEntityNoDelete(this);
+        }
+    }
+    return true;
 }

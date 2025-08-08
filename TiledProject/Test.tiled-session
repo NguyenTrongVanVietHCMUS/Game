@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "V:/Game/Media/Assets/Maps/Dungeon/Jungle/room6.json",
+    "activeFile": "D:/HCMUS/3Semester/Project/Game/Media/Assets/Maps/Dungeon/Jungle/startingroom.json",
     "expandedProjectPaths": [
         "."
     ],
@@ -118,17 +118,18 @@
             "scaleInDock": 1
         },
         "D:/HCMUS/3Semester/Project/Game/Media/Assets/Maps/Dungeon/Jungle/startingroom.json": {
-            "scale": 0.47887228260869563,
-            "selectedLayer": 0,
+            "scale": 0.75,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 367.5301461200171,
-                "y": 1338.561498084835
+                "x": 276,
+                "y": 68.66666666666669
             }
         },
         "D:/HCMUS/3Semester/Project/Game/Media/Assets/Maps/Dungeon/Jungle/startingroom.json#GroundTiles": {
             "scaleInDock": 1
         },
         "D:/HCMUS/3Semester/Project/Game/Media/Assets/Maps/Dungeon/Jungle/startingroom.json#Object": {
+            "dynamicWrapping": false,
             "scaleInDock": 1
         },
         "D:/HCMUS/3Semester/Project/Game/Media/Assets/Maps/Dungeon/Jungle/startingroom.json#Walls": {
@@ -1018,36 +1019,28 @@
     "map.tileWidth": 240,
     "map.width": 8,
     "openFiles": [
-        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/startingroom.json",
-        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/roomweapon.json",
-        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathwaytobossroom.json",
-        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/bossroom.json",
-        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/room2.json",
-        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/battleroom1.json",
-        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway2.json",
-        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/room5.json",
-        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/room6.json",
-        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway3.json",
-        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/room7.json",
-        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/chestroom2.json",
-        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway1.json",
-        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway7.json"
+        "D:/HCMUS/3Semester/Project/Game/Media/Assets/Maps/Dungeon/Jungle/startingroom.json",
+        "D:/HCMUS/3Semester/Project/Game/Media/Assets/Maps/Dungeon/Jungle/battleroom1.json",
+        "D:/HCMUS/3Semester/Project/Game/Media/Assets/Maps/Dungeon/Jungle/chestroom.json",
+        "D:/HCMUS/3Semester/Project/Game/Media/Assets/Maps/Dungeon/Jungle/room1.json",
+        "D:/HCMUS/3Semester/Project/Game/Media/Assets/Maps/Dungeon/Jungle/roomweapon.json",
+        "D:/HCMUS/3Semester/Project/Game/Media/Assets/Maps/Dungeon/Jungle/set.json"
     ],
     "project": "Test.tiled-project",
     "property.type": "object",
     "recentFiles": [
+        "D:/HCMUS/3Semester/Project/Game/Media/Assets/Maps/Dungeon/Jungle/set.json",
+        "D:/HCMUS/3Semester/Project/Game/Media/Assets/Maps/Dungeon/Jungle/roomweapon.json",
+        "D:/HCMUS/3Semester/Project/Game/Media/Assets/Maps/Dungeon/Jungle/room1.json",
+        "D:/HCMUS/3Semester/Project/Game/Media/Assets/Maps/Dungeon/Jungle/chestroom.json",
+        "D:/HCMUS/3Semester/Project/Game/Media/Assets/Maps/Dungeon/Jungle/battleroom1.json",
+        "D:/HCMUS/3Semester/Project/Game/Media/Assets/Maps/Dungeon/Jungle/startingroom.json",
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/startingroom.json",
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/roomweapon.json",
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathwaytobossroom.json",
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/bossroom.json",
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway7.json",
-        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway1.json",
-        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/chestroom2.json",
-        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/room7.json",
-        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway3.json",
-        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/room6.json",
-        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/room5.json",
-        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway2.json"
+        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway1.json"
     ],
     "tileset.embedInMap": true,
     "tileset.lastUsedFilter": "All Files (*)",

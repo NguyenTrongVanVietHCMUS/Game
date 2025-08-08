@@ -522,17 +522,17 @@ void TileMap::handleCollision()
     }
 
 
-    // for (auto& entity : updateEntities)if (entity->movable())
-    // {
-    //     for (auto& other : updateEntities)if (!other->movable())
-    //     {
-    //         if (isCollide(entity, other))
-    //         {
-    //             other->collide(entity);
-    //             entity->collide(other);
-    //         }
-    //     }
-    // }
+    for (auto& entity : updateEntities)if (entity->movable())
+    {
+        for (auto& other : updateEntities)if (!other->movable())
+        {
+            if (isCollide(entity, other))
+            {
+                other->collide(entity);
+                entity->collide(other);
+            }
+        }
+    }
 
     // Handle potential aftermath of collisions here
 }

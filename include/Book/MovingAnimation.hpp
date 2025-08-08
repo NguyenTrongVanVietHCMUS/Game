@@ -100,6 +100,11 @@ public:
     virtual sf::Vector2f getHandPosition()const;
     void setSpriteScale(float scale);
     void setSpriteRotation(float angle);
+
+public:
+    sf::FloatRect getBoundingBox() const {
+        return sprite.getGlobalBounds();
+    }
 protected: 
     Direction direction;
     virtual void setSpritePosition(); 
