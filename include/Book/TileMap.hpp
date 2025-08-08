@@ -147,6 +147,9 @@ private:
     bool isCollide(Entity* entity1, Entity* entity2) const {
         return entity1->getHitbox().hitbox.intersects(entity2->getHitbox().hitbox);
 	}
+    bool isBodyCollide(Entity* entity1, Entity* entity2) const {
+        return entity1->getBodyHitbox().hitbox.intersects(entity2->getBodyHitbox().hitbox);
+    }
     void handleCollision(); 
 private: 
     std::string File;

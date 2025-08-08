@@ -8,8 +8,8 @@ SpikeFloor::SpikeFloor(sf::Vector2f position, Hitbox hitbox, float scalex, float
 		this, scalex, scaley
 	);
 }
-void SpikeFloor::collide(Entity* other)
-{
-	
-}
 
+void SpikeFloor::bodyCollide(Entity* entity)
+{
+
+}

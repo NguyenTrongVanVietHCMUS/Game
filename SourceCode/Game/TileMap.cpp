@@ -495,6 +495,42 @@ void TileMap::handleCollision()
             }
         } else updateEntities.push_back(entity);
     }
+    for (auto& entity : updateEntities)if (entity->movable())
+    {
+        for (auto& other : updateEntities)if (!other->movable())
+        {
+            if (isBodyCollide(entity, other))
+            {
+                other->bodyCollide(entity);
+                entity->bodyCollide(other);
+            }
+        }
+    }
+    for (int i = 0; i < updateEntities.size(); i++)if (updateEntities[i]->movable())
+    {
+        for (int j = i + 1; j < updateEntities.size(); j++)if (updateEntities[j]->movable())
+        {
+            if (isBodyCollide(updateEntities[i], updateEntities[j]))
+            {
+                updateEntities[i]->bodyCollide(updateEntities[j]);
+                updateEntities[j]->bodyCollide(updateEntities[i]);
+            }
+        }
+    }
+
+
+    for (auto& entity : updateEntities)if (entity->movable())
+    {
+        for (auto& other : updateEntities)if (!other->movable())
+        {
+            if (isBodyCollide(entity, other))
+            {
+                other->bodyCollide(entity);
+                entity->bodyCollide(other);
+            }
+        }
+    }
+
     for(auto& entity : updateEntities)if(entity->movable())
     {
         for (auto& other : updateEntities)if(!other->movable())

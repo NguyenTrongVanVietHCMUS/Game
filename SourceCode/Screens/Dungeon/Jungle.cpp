@@ -64,7 +64,7 @@ bool Jungle::handleEvent(const sf::Event& event)
             requestStackPop(); 
             requestStackPush(States::Title); // Push the Title state when Escape is pressed
         }
-        if(event.key.code==sf::Keyboard::Enter)
+        if(event.key.code==sf::Keyboard::Enter)    
         {
             requestStackPop() ; 
             requestStackPush(States::Lobby) ; 

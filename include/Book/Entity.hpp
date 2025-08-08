@@ -32,11 +32,13 @@ public :
     std::string name ; 
     sf::Vector2f position; // Position of the entity
     Hitbox hitbox ;  
+    Hitbox bodyHitbox ; 
     virtual bool handleEvent(const sf::Event& event, sf::RenderWindow* window);
     virtual bool update(sf::Time dt)  ;
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states)const ; // Draw the entity
     void attachChild(Ptr child); 
     virtual Hitbox getHitbox()const ; // Get the hitbox of the entity
+    virtual Hitbox getBodyHitbox() const; 
 public :
     // utility functions
     void updateHitboxOnPosition();
@@ -50,10 +52,11 @@ public :
         // std::cerr << "Get position : " << position.x << ", " << position.y << std::endl; 
         return position;
      }
-    sf::Vector2f getDirection() const { return sf::Vector2f(0.45f, 0.45f); } // Placeholder for direction
-
+    sf::Vector2f getDirection() const { return sf::Vector2f(0.45f, 0.45f); } // Placeholder for direction ; 
     virtual void collide(const Entity* other) ;
-    bool isCollide(const Entity* other)const; 
+	virtual void bodyCollide(const Entity* other);
+    bool isCollide(const Entity* other)const;
+    bool isBodyCollide(const Entity* other)const;
     bool operator<(const Entity& other)const{
         return getHitbox().hitbox.top + getHitbox().hitbox.height < other.getHitbox().hitbox.top + other.getHitbox().hitbox.height||(
             getHitbox().hitbox.top + getHitbox().hitbox.height == other.getHitbox().hitbox.top + other.getHitbox().hitbox.height &&

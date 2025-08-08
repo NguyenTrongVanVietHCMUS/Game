@@ -17,6 +17,13 @@ void Cage::update(Entity* player)
 		interactingAnimation->activate(); // Activate the interaction animation
 	}
 }
+Hitbox Cage::getBodyHitbox() const
+{
+	sf::Vector2f position = this->getPosition() - sf::Vector2f(22.0f, 60.0f);
+	Hitbox tempHitbox;
+	tempHitbox.hitbox = sf::FloatRect(position.x, position.y, 50, 60);
+	return tempHitbox; // Return the body hitbox of the cage
+}
 void Cage::activate()
 {
 	interactingAnimation->activate();

@@ -35,15 +35,23 @@ bool Entity::update(sf::Time dt)
 void Entity::draw(sf::RenderTarget& target, sf::RenderStates states)const 
 {
     hitbox.draw(target,states) ;  
+    bodyHitbox.draw(target, states); 
 }
 Hitbox Entity::getHitbox() const
 {
     return hitbox ;
 }
+Hitbox Entity::getBodyHitbox() const
+{
+    assert(hitbox.isExist());
+    if (bodyHitbox.isExist())return bodyHitbox; 
+    return getHitbox(); 
+}
 
 void Entity::updateHitboxOnPosition()
 {
     hitbox.hitbox = sf::FloatRect(position.x - hitbox.hitbox.width / 2, position.y - hitbox.hitbox.height, hitbox.hitbox.width, hitbox.hitbox.height);
+	if(bodyHitbox.isExist())bodyHitbox.hitbox = sf::FloatRect(position.x - bodyHitbox.hitbox.width / 2, position.y - bodyHitbox.hitbox.height, bodyHitbox.hitbox.width, bodyHitbox.hitbox.height);
 }
 bool Entity::movable()const
 {
@@ -61,10 +69,19 @@ bool Entity::inRange(const Entity* other)const
 }
 bool Entity::isCollide(const Entity* other)const
 {
-    return this->getHitbox().isCollide(other->getHitbox());  
+    return this->getHitbox().isCollide(other->getHitbox());
+}
+bool Entity::isBodyCollide(const Entity* other) const
+{
+    if (!bodyHitbox.isExist()) return hitbox.isCollide(other->getBodyHitbox()); // If body hitbox does not exist, return false
+    return bodyHitbox.isCollide(other->getBodyHitbox());
 }
 void Entity::collide(const Entity* other)
 {   
+    // do nothing for now ; 
+}
+void Entity::bodyCollide(const Entity* other)
+{
     // do nothing for now ; 
 }
 sf::Vector2f Entity::getHandPosition()const

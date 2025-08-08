@@ -10,6 +10,7 @@ private:
 	bool itemAdded = false;
 public:
 	Cage(sf::Vector2f position, Hitbox hibox, float scalex, float scaley);
+	virtual Hitbox getBodyHitbox() const override;
 	virtual void activate();
 	virtual void deactivate();
 	virtual void collide(Entity* entity);

@@ -11,7 +11,7 @@ class AIEnemy;
 class Enemy : public Entity
 {
 protected:
-    float range; 
+    float sightRange; 
     std::unique_ptr<AIEnemy>aiEnemy; 
     std::unique_ptr<MovingAnimation>movingAnimation;
     std::shared_ptr<Inventory> inventory = std::make_shared<Inventory>();
@@ -22,14 +22,45 @@ public:
 
     virtual void collide(const Entity* other);
     virtual void update(Entity* target , sf::Time dt);
-    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override
+    virtual Hitbox getHitbox() const
     {
-        movingAnimation->draw(target, states);
-        //inventory->draw(target, states); 
-        hitbox.draw(target, states); // Draw the 
+        sf::Vector2f position = this->getPosition() - sf::Vector2f(22.0f, 12.0f);
+        Hitbox tempHitbox;
+        tempHitbox.hitbox = sf::FloatRect(position.x, position.y, 50, 12);
+        return tempHitbox; // Return the hitbox of the boar
+    }
+    virtual Hitbox getBodyHitbox() const override
+    {
+        sf::Vector2f position = this->getPosition() - sf::Vector2f(22.0f, 60.0f);
+        Hitbox tempHitbox;
+        tempHitbox.hitbox = sf::FloatRect(position.x, position.y, 50, 60);
+        return tempHitbox; // Return the body hitbox of the knight  
     }
 public:
     virtual void chase(Entity* target,sf::Time dt);
     virtual void wander(sf::Time dt); 
     virtual void shoot(Entity* target,sf::Time dt); 
+
+    virtual float getRange()const final
+    {
+        return sightRange;
+    }
+    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override
+    {
+        movingAnimation->draw(target, states);
+        inventory->draw(target, states);
+        
+        /*getHitbox().draw(target, states);
+        getBodyHitbox().draw(target, states); */
+        
+        sf::RectangleShape hitbox(sf::Vector2f(getHitbox().hitbox.width, getHitbox().hitbox.height));
+        hitbox.setPosition(sf::Vector2f(getHitbox().hitbox.left, getHitbox().hitbox.top));
+        hitbox.setFillColor(sf::Color(255, 0, 0, 128)); // semi-transparent red for visibility
+        target.draw(hitbox, states); // Draw the hitbox shape
+
+        sf::RectangleShape bodyHitbox(sf::Vector2f(getBodyHitbox().hitbox.width, getBodyHitbox().hitbox.height));
+        bodyHitbox.setPosition(sf::Vector2f(getBodyHitbox().hitbox.left, getBodyHitbox().hitbox.top));
+        bodyHitbox.setFillColor(sf::Color(0, 255, 0, 100)); // semi-transparent red for visibility
+        target.draw(bodyHitbox, states); // Draw the hitbox shape
+    }
 };
