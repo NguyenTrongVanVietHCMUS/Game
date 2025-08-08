@@ -13,7 +13,8 @@
 
     "collisionBehavior": {
       "type": "Projectile Collision Behavior"
-    }
+    },
+    "Damage" : 10.0
   },
   "GoblinBullet": {
     "lifeTime": 15.0,
@@ -22,8 +23,8 @@
 
     "movement": {
       "type": "Follow Movement",
-      "speed": 1000.0,
-      "criticalAngle": 50.0,
+      "speed": 300.0,
+      "criticalAngle": 100.0,
       "targetPosition": { "x": 500.0, "y": 300.0 }
     },
 
@@ -50,7 +51,8 @@
       "scale": 7.5,
       "middlePositionX": 0.5,
       "middlePositionY": 0.5
-    }
+    },
+    "Damage": 200.0
   },
   "Explosion basic": {
     "lifeTime" : 0.45,

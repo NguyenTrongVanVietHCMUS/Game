@@ -55,7 +55,7 @@
       "recoilOffset": 10.0
     },
 
-    "cooldownTime": 1.0,
+    "cooldownTime": 0.2,
 
     "scaleBulletSpawnPosition": {
       "x": 0.6,

@@ -7,41 +7,51 @@ MovingAnimation::~MovingAnimation()
 void MovingAnimation::update(sf::Time dt)
 {
     oldPosition = position;
-    if (BIT(mask, UP))
+    if(state == DEATH)
     {
-        position.y -= speed * dt.asSeconds();
-    }
-    if (BIT(mask, DOWN))
-    {
-        position.y += speed * dt.asSeconds();
-    }
-    if (BIT(mask, LEFT))
-    {
-        position.x -= speed * dt.asSeconds();
-    }
-    if (BIT(mask, RIGHT))
-    {
-        position.x += speed * dt.asSeconds();
-    }
-
-    if (position == oldPosition) {
-        state = IDLE;
-    }
-    else
-    {
-        state = MOVING;
-    }
-    if (mask)
-    {
+        currentImage.x = 0;
+        currentImage.y = 2; // Assuming row 2 is for death animation
+        uvRect.top = currentImage.y * uvRect.height;
+        uvRect.left = currentImage.x * uvRect.width;
+        setSpritePosition();
+        sprite.setColor(sf::Color(100, 100, 100));
+    } else {
+        sprite.setColor(sf::Color::White);
+        if (BIT(mask, UP))
+        {
+            position.y -= speed * dt.asSeconds();
+        }
+        if (BIT(mask, DOWN))
+        {
+            position.y += speed * dt.asSeconds();
+        }
         if (BIT(mask, LEFT))
         {
-            sprite.setScale(-scale, scale);
+            position.x -= speed * dt.asSeconds();
         }
-        else {
-            sprite.setScale(scale, scale);
+        if (BIT(mask, RIGHT))
+        {
+            position.x += speed * dt.asSeconds();
+        }
+
+        if (position == oldPosition) {
+            state = IDLE;
+        }
+        else
+        {
+            state = MOVING;
+        }
+        if (mask)
+        {
+            if (BIT(mask, LEFT))
+            {
+                sprite.setScale(-scale, scale);
+            }
+            else {
+                sprite.setScale(scale, scale);
+            }
         }
     }
-
     currentImage.y = state;
 
     totalTime += dt.asSeconds();
@@ -54,6 +64,10 @@ void MovingAnimation::update(sf::Time dt)
         {
             currentImage.x = 0;
         }
+    }
+    if(state == DEATH)
+    {
+        currentImage.x = 0; // Reset to the first frame of death animation
     }
     uvRect.left = currentImage.x * uvRect.width;
     uvRect.top = currentImage.y * uvRect.height;

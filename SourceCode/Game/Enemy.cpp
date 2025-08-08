@@ -16,8 +16,10 @@ Enemy::~Enemy()
 }
 void Enemy::collide(const Entity* other)
 {
+    if(attributes.isDeath())
+        return; // If the enemy is dead, do not handle collisions
     if (auto projectile = dynamic_cast<const Projectile2*>(other)) {
-            if (projectile->type == Entity::Type::EnemyProjectile || projectile->type == Entity::Type::Projectile) {
+            if (projectile->type == Entity::Type::AllyProjectile || projectile->type == Entity::Type::Projectile) {
                 if(projectile->AllowCollide(this)){
                     attributes.TakeDamage(static_cast<int>(projectile->getAttribute("Damage")));
                     movingAnimation->handleCollision(other);
@@ -28,7 +30,18 @@ void Enemy::collide(const Entity* other)
 }
 void Enemy::update(Entity* target, sf::Time dt)
 {
-    aiEnemy->update(this, target, dt);
+    
+    if(attributes.isDeath())
+    {
+        movingAnimation->setState(MovingAnimation::State::DEATH);
+        movingAnimation->update(dt); // Update the death animation
+        elapseDeathTime += dt.asSeconds();
+    } else
+    { 
+        aiEnemy->update(this, target, dt);
+        elapseDeathTime = 0.0f;
+    }
+
 }
 void Enemy::chase(Entity* target , sf::Time dt)
 {
@@ -44,4 +57,9 @@ void Enemy::shoot(Entity* target,sf::Time dt)
 {
     inventory->shoot(this,target);  
     inventory->update(dt); 
+}
+
+bool Enemy::isAllowClean()
+{
+    return elapseDeathTime >= despawnDeathTime;
 }

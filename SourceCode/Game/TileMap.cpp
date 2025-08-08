@@ -406,7 +406,8 @@ bool TileMap::update(sf::Time dt)
     {
         if (auto enemy = dynamic_cast<Enemy*>(x))
         {
-            enemy->update(player, dt); 
+            if(!enemy->isAllowClean()) enemy->update(player, dt);
+            else PopQueueEntitiesNoDelete.push_back(enemy);
         }
     }
     for (auto& x : updateEntities)x->update(dt);

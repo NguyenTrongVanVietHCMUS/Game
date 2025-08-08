@@ -55,12 +55,10 @@ void State::handleCollision()
 
 void State::pushEntity(Entity* entity)
 {
-	std::cerr << "Pushing entity: " << std::endl;
 	if (map)
 	{
 		map->PushQueueEntities.push_back(entity);
 	}
-	std::cerr << "Entity pushed: " << entity->name << std::endl;
 }
 
 void State::pushEntity(std::shared_ptr<Entity> entity)

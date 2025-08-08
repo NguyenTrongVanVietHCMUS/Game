@@ -77,8 +77,10 @@ void Character_MovingAnimation::update(sf::Time dt)
     oldPosition = position;
     if (attribute && attribute->isDeath())
     {
+        sprite.setColor(sf::Color(100, 100, 100)); // Set the sprite color to gray if the entity is dead
         state = DEATH; // Set the state to DEATH if the entity is dead
     } else {
+        sprite.setColor(sf::Color::White); // Reset the sprite color to white if the entity is not dead
         if (BIT(mask, UP))
         {
             position.y -= speed * dt.asSeconds();
