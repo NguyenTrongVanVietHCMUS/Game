@@ -40,15 +40,15 @@
 
     "movement": {
       "type": "Follow Movement",
-      "speed": 300.0,
-      "criticalAngle": 100.0,
+      "speed": 1000.0,
+      "criticalAngle": 200.0,
       "targetPosition": { "x": 500.0, "y": 300.0 }
     },
 
     "collisionBehavior": {
       "type": "Projectile Collision Behavior"
     },
-    "Damage": 20.0
+    "Damage": 1.0
   },
 
 

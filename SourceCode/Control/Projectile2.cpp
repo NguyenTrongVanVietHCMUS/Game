@@ -228,3 +228,7 @@ Projectile2* Projectile2::clone(sf::Vector2f direction) const {
     }
     return proj;
 }
+
+void Projectile2::selfDelete() {
+    currentMap->popEntity(this); 
+}

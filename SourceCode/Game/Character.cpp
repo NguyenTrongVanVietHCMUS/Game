@@ -79,13 +79,13 @@ bool Character::handleEvent(const sf::Event& event,sf::RenderWindow*window)
         if(event.key.code == sf::Keyboard::Space)
         {
             if (cameraManager) {
-                cameraManager->applyEffect(new ShakeCameraEffect(1.0f, cameraManager, 10.0f)); // Apply a shake effect to the camera
+                cameraManager->applyEffect(new ShakeCameraEffect(1.0f, cameraManager, 10.0f)); 
             }
         }
         if(event.key.code == sf::Keyboard::C)
         {
             if(cameraManager) {
-                cameraManager->applyEffect(new DarknessCameraEffect(100.0f, cameraManager)); // Apply a zoom effect to the camera
+                cameraManager->applyEffect(new DarknessCameraEffect(100.0f, cameraManager)); 
             }
         }
     }

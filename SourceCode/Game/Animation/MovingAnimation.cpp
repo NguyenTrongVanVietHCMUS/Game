@@ -1,5 +1,5 @@
 #include<Book/MovingAnimation.hpp>
-
+#include<Book/Projectile2.hpp>
 MovingAnimation::~MovingAnimation()
 {
     
@@ -51,6 +51,8 @@ void MovingAnimation::update(sf::Time dt)
                 sprite.setScale(scale, scale);
             }
         }
+        position += CurrentKnockbackForce * dt.asSeconds(); // Apply knockback force
+        CurrentKnockbackForce = CurrentKnockbackForce - CurrentKnockbackForce * KnockbackResistance * dt.asSeconds(); // Reduce knockback force over time
     }
     currentImage.y = state;
 
@@ -140,4 +142,18 @@ void MovingAnimation::setSpriteRotation(float angle)
 void MovingAnimation::setState(State newState)
 {
     state = newState;
+}
+
+void MovingAnimation::Knockback(sf::Vector2f force)
+{
+    CurrentKnockbackForce = force;
+    setSpritePosition(); // Update the sprite position after knockback
+}
+
+void MovingAnimation::Knockback(Projectile2* projectile)
+{
+    if (projectile)
+    {
+        std::cerr << "Knockback from projectile: " << projectile->name << std::endl;
+    }
 }

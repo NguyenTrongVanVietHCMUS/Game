@@ -4,8 +4,13 @@
 #include<Book/Inventory.hpp>
 #include<Book/EntityComponent.hpp>
 
+
+class Projectile2;
 class MovingAnimation : public sf::Drawable
 {
+protected:
+    sf::Vector2f CurrentKnockbackForce = sf::Vector2f(0,0); // Current knockback force applied to the entity
+    float KnockbackResistance = 0.8f; // Resistance to knockback, 0 means no resistance, 1 means full resistance
 public :
     Entity* entity; 
     sf::Sprite sprite; 
@@ -97,6 +102,8 @@ public:
     virtual void handleCollision(const Entity* other) {} // Handle collision with another entity
     virtual void chase(Entity* target,sf::Time dt); 
     virtual void wander(sf::Time dt); 
+    virtual void Knockback(sf::Vector2f force);// Handle knockback effect
+    virtual void Knockback(Projectile2* projectile);
     virtual sf::Vector2f getHandPosition()const;
     void setSpriteScale(float scale);
     void setSpriteRotation(float angle);

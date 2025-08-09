@@ -41,7 +41,17 @@ private:
     State* Worldmap;
 public:
     MeleeCollisionBehavior(State* worldmap) : Worldmap(worldmap) {}
-    void collide(Entity& self, const Entity* other) override {}
+    void collide(Entity& self, const Entity* other) override {
+        // safe cast const pointer other to non-const pointer
+        Entity* nonConstOther = const_cast<Entity*>(other);
+        if (self.type == Entity::Type::AllyProjectile && other->type == Entity::Type::EnemyProjectile) {
+            std::cerr << "Ally projectile hit enemy\n";
+            Worldmap->popEntity(nonConstOther); // Remove the projectile from the worldmap
+        } else if (self.type == Entity::Type::EnemyProjectile && other->type == Entity::Type::AllyProjectile) {
+            std::cerr << "Enemy projectile hit ally\n";
+            Worldmap->popEntity(nonConstOther); // Remove the projectile from the worldmap
+        }
+    }
 
     std::unique_ptr<ICollision> clone() const override {
         return std::make_unique<MeleeCollisionBehavior>(*this);

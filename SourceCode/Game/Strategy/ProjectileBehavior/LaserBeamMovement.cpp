@@ -9,9 +9,8 @@ void LaserBeamMovement::update(Projectile2& projectile, const sf::Time& dt) {
         elapsedTime = 0;
         Raycaster raycaster(Worldmap);
         std::set<Entity*> hitEntities = raycaster.castGetEntities(startPosition, endPosition);
-        std::cerr << "Size of hit : " << hitEntities.size() << '\n';
+
         for(Entity* entity : hitEntities) {
-            std::cerr << "Hitting entity: " << entity->name << std::endl;
             entity->collide(&projectile);
         }
     }

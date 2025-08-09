@@ -52,5 +52,7 @@ public:
     Projectile2* clone(sf::Vector2f direction)const;
 
 public:
+    void selfDelete();
+public:
     bool HitboxMode = true;
 };
