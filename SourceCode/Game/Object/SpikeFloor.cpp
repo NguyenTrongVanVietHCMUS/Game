@@ -11,5 +11,12 @@ SpikeFloor::SpikeFloor(sf::Vector2f position, Hitbox hitbox, float scalex, float
 
 void SpikeFloor::bodyCollide(Entity* entity)
 {
+	if (entity->type == Entity::Type::Ally)
+	{
 
+	}
+}
+bool SpikeFloor::passAble() const
+{
+	return true; 
 }

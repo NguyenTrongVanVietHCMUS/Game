@@ -164,7 +164,7 @@ void Character_MovingAnimation::handleCollision(const Entity* other)
     {
         getshot(other); 
 	}
-    if (other->type == Entity::Type::Object)
+    if (other->type == Entity::Type::Object&&!other->passAble())
     {
         sf::Vector2f temp = position;
         sf::Vector2f res = oldPosition;

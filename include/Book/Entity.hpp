@@ -64,6 +64,7 @@ public :
             getHitbox().hitbox.left + getHitbox().hitbox.width < other.getHitbox().hitbox.left + other.getHitbox().hitbox.width
         );
     }
+    virtual bool passAble()const; 
     virtual bool isNear(Entity* other)const; 
     virtual sf::Vector2f getHandPosition()const; 
 };
