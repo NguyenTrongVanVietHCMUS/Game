@@ -68,14 +68,28 @@ public:
         tempHitbox.hitbox = sf::FloatRect(position.x, position.y, 50, 12);
         return tempHitbox; // Return the hitbox of the knight
     }
+    Hitbox getBodyHitbox() const override
+    {
+        sf::Vector2f position = this->getPosition()-sf::Vector2f(22.0f,60.0f);
+        Hitbox tempHitbox;
+        tempHitbox.hitbox = sf::FloatRect(position.x, position.y, 50, 60);
+		return tempHitbox; // Return the body hitbox of the knight
+    }
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override
     {
         movingAnimation->draw(target, states);
+        
+		sf::RectangleShape bodyHitboxShape(sf::Vector2f(getBodyHitbox().hitbox.width, getBodyHitbox().hitbox.height));
+		bodyHitboxShape.setPosition(sf::Vector2f(getBodyHitbox().hitbox.left, getBodyHitbox().hitbox.top));
+		bodyHitboxShape.setFillColor(sf::Color(0, 255, 0, 100)); // Semi-transparent green color for the body hitbox
+		target.draw(bodyHitboxShape, states); // Draw the body hitbox shape
         
         sf::RectangleShape hitboxshape(sf::Vector2f(getHitbox().hitbox.width, getHitbox().hitbox.height));
         hitboxshape.setPosition(sf::Vector2f(getHitbox().hitbox.left, getHitbox().hitbox.top));
 		hitboxshape.setFillColor(sf::Color(255, 0, 0, 100)); // Semi-transparent red color for the hitbox
         target.draw(hitboxshape, states); // Draw the hitbox shape
+
+
         inventory->draw(target, states); // Draw the inventory
         sf::CircleShape circle(3);
         circle.setPosition(getHandPosition());

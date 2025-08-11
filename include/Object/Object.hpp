@@ -17,6 +17,14 @@ public:
     {
         // if base is called  mean that update doesnt base on player 
 	}
+    virtual void collide(Entity* entity) 
+    {
+
+    }
+    virtual void bodyCollide(Entity* entity)
+    {
+        // do nothing 
+	}
     virtual bool update(sf::Time dt)
     {
 		//std::cout << "Update Object: " << name << std::endl;

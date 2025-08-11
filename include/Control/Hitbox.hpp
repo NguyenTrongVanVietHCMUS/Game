@@ -4,6 +4,7 @@
 class Hitbox :public sf::Drawable
 {
 private : 
+    bool exist = false; 
     bool intersect(float l, float r, float t, float p)const
     {
         assert(l <= r && t <= p); 
@@ -11,9 +12,10 @@ private :
     }
 public:
     Hitbox(); // Constructor with default position
-    Hitbox(sf::FloatRect rect) : hitbox(rect) {} // Constructor with a rectangle
+    Hitbox(sf::FloatRect rect) : hitbox(rect) { exist = true; } // Constructor with a rectangle
     ~Hitbox();
     sf::FloatRect hitbox; // Hitbox of the entity
+	bool isExist() const { return exist; } // Check if the hitbox exists
     void print()const;
     bool isCollide(const Hitbox& other) const;
     void draw(sf::RenderTarget& target, sf::RenderStates states) const; // Draw the hitbo
