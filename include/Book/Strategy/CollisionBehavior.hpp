@@ -25,9 +25,6 @@ public:
             } else if(projectile->type == Entity::Type::Projectile && (other->type == Entity::Type::Enemy || other->type == Entity::Type::Ally)) {
                 nonConstOther->takeDamage(static_cast<int>(projectile->getAttribute("Damage")));
                 Worldmap->popEntity(&self); // Remove the projectile from the worldmap
-            } else if (other->type == Entity::Type::EnemyProjectile || other->type == Entity::Type::AllyProjectile) {
-                // Handle collision with other projectiles
-                Worldmap->popEntity(nonConstOther); // Remove the projectile from the worldmap
             } else if (other->type == Entity::Type::Object) {
                 // Handle collision with objects
                 Worldmap->popEntity(&self); // Remove the projectile from the worldmap
