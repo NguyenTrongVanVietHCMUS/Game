@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "V:/Game/Media/Assets/Maps/Dungeon/Jungle/room2.json",
+    "activeFile": "V:/Game/Media/Assets/Maps/Dungeon/Jungle/room6.json",
     "expandedProjectPaths": [
         "."
     ],
@@ -130,8 +130,8 @@
             "scale": 0.25,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": -222,
-                "y": -252
+                "x": 542,
+                "y": 558
             }
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/battleroom1.json#GroundTiles": {
@@ -241,8 +241,8 @@
             "scale": 0.0625,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": -7128,
-                "y": -4384
+                "x": 368,
+                "y": 104
             }
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway1.json#GroundTiles": {
@@ -294,8 +294,8 @@
             "scale": 0.25,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 454,
-                "y": 420
+                "x": 140,
+                "y": 318
             }
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway3.json#GroundTiles": {
@@ -367,8 +367,8 @@
             "scale": 0.25,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": -90,
-                "y": 996
+                "x": 368,
+                "y": 110
             }
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway8.json#GroundTiles": {
@@ -456,8 +456,8 @@
             "scale": 0.25,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 582,
-                "y": -1660
+                "x": 242,
+                "y": 238
             }
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/room2.json#GroundTiles": {
@@ -537,11 +537,11 @@
             "expandedObjectLayers": [
                 2
             ],
-            "scale": 0.5,
+            "scale": 1.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 449,
-                "y": 463
+                "x": 459,
+                "y": 464.3333333333333
             }
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/room6.json#GroundTiles": {
@@ -564,8 +564,8 @@
             "scale": 0.25,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": -286,
-                "y": 1124
+                "x": 464,
+                "y": 462
             }
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/room7.json#GroundTiles": {
@@ -615,8 +615,8 @@
             "scale": 0.25,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 1250,
-                "y": -444
+                "x": 370,
+                "y": 366
             }
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/startingroom.json#GroundTiles": {
@@ -957,7 +957,8 @@
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/room7.json",
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/chestroom2.json",
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway1.json",
-        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway7.json"
+        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway7.json",
+        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway8.json"
     ],
     "project": "Test.tiled-project",
     "property.type": "object",
@@ -970,10 +971,10 @@
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/battleroom1.json",
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway2.json",
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/room5.json",
+        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway8.json",
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway7.json",
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway1.json",
-        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/chestroom2.json",
-        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/room7.json"
+        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/chestroom2.json"
     ],
     "tileset.embedInMap": true,
     "tileset.lastUsedFilter": "All Files (*)",
