@@ -43,8 +43,8 @@ Game::Game()
 			load<sf::Texture>(Textures::ID::Crowbar, "Media/Assets/Weapons/Sword/Crowbar.png");
 			load<sf::Texture>(Textures::ID::bomb, "Media/Assets/Projectiles/bomb.png");
 			load<sf::Texture>(Textures::ID::AK_47, "Media/Assets/Weapons/gun/AK_47.png");
-			load<sf::Texture>(Textures::ID::SwordMinionSword, "Media/Assets/Weapons/Sword/SwordMinionSword.png");
-			load<sf::Texture>(Textures::ID::BlunderbussPistolMinionBlunderbussPistol, "Media/Assets/Weapons/gun/BlunderbussPistolMinionBlunderbussPistol.png");
+			load<sf::Texture>(Textures::ID::SwordMinionSword, "Media/Assets/Weapons/Sword/MinionSword.png");
+			load<sf::Texture>(Textures::ID::BlunderbussPistolMinionBlunderbussPistol, "Media/Assets/Weapons/gun/BlunderbussPistol.png");
 
 			load<sf::Texture>(Textures::ID::HeartIcon, "Media/Assets/TileSets/HUD/hearticon.png");
 			load<sf::Texture>(Textures::ID::ShieldIcon, "Media/Assets/TileSets/HUD/shieldicon.png");

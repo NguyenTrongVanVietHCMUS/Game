@@ -1,7 +1,7 @@
 #include<Book/MovingAnimation.hpp>
 
-Character_MovingAnimation::Character_MovingAnimation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f& position, float scale, Entity* entity, sf::Vector2f middlePosition)
-    :MovingAnimation(texture, imageCount, switchTime, position, scale, middlePosition)
+Character_MovingAnimation::Character_MovingAnimation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f& position, float scale, Entity* entity, sf::Vector2f middlePosition, EntityAttributeActionComponent* attribute)
+    :MovingAnimation(texture, imageCount, switchTime, position, scale, middlePosition), attribute(attribute)
 {
     this->entity = entity; 
 	direction = rand() % 2 == 0 ? LEFT : RIGHT; // Randomly set the initial direction
@@ -75,30 +75,35 @@ void Character_MovingAnimation::handleEvent(const sf::Event& event,sf::RenderWin
 void Character_MovingAnimation::update(sf::Time dt)
 {
     oldPosition = position;
-    if (BIT(mask, UP))
+    if (attribute && attribute->isDeath())
     {
-        position.y -= speed * dt.asSeconds();
-    }
-    if (BIT(mask, DOWN))
-    {
-        position.y += speed * dt.asSeconds();
-    }
-    if (BIT(mask, LEFT))
-    {
-        position.x -= speed * dt.asSeconds();
-    }
-    if (BIT(mask, RIGHT))
-    {
-        position.x += speed * dt.asSeconds();
-    }
-    if ((BIT(mask, UP) != BIT(mask, DOWN)) || (BIT(mask, LEFT) != BIT(mask, RIGHT)))
-    {
-        state = MOVING; // Moving state
-    }
-    else
-    {
-        state = IDLE; // Idle state
-    }
+        state = DEATH; // Set the state to DEATH if the entity is dead
+    } else {
+        if (BIT(mask, UP))
+        {
+            position.y -= speed * dt.asSeconds();
+        }
+        if (BIT(mask, DOWN))
+        {
+            position.y += speed * dt.asSeconds();
+        }
+        if (BIT(mask, LEFT))
+        {
+            position.x -= speed * dt.asSeconds();
+        }
+        if (BIT(mask, RIGHT))
+        {
+            position.x += speed * dt.asSeconds();
+        }
+        if ((BIT(mask, UP) != BIT(mask, DOWN)) || (BIT(mask, LEFT) != BIT(mask, RIGHT)))
+        {
+            state = MOVING; // Moving state
+        }
+        else
+        {
+            state = IDLE; // Idle state
+        }
+    }   
     // update the rotation base on position of 
     if (direction == LEFT)
     {
@@ -130,6 +135,7 @@ void Character_MovingAnimation::update(sf::Time dt)
             currentImage.x = 0;
         }
     }
+    if(state == DEATH) currentImage.x = 0; // Reset the animation frame when in death state
     uvRect.left = currentImage.x * uvRect.width;
     uvRect.top = currentImage.y * uvRect.height;
     setSpritePosition();

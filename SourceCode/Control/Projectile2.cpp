@@ -71,6 +71,7 @@ bool Projectile2::update(sf::Time dt)
         }
     }
 
+
     sprite.setPosition(getPosition()); // Update the sprite position to match the projectile's position
 
     for (const auto& effect : trailStrategies) {
@@ -79,6 +80,7 @@ bool Projectile2::update(sf::Time dt)
     setAttribute("CurrentLifeTime", CurrentLifeTime); // Update the current lifetime attribute
     if (movingAnimation) {
         movingAnimation->update(dt); // Update the moving animation if it exists
+        hitbox.hitbox = movingAnimation->getBoundingBox(); // Update the hitbox based on the moving animation
     }
     // Handle collision if a collision strategy is set
     return true;

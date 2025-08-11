@@ -18,6 +18,8 @@ State::State(StateStack& stack, Context context)
 , mContext(context)
 {
 	weaponLoader = new WeaponLoader(this); // Initialize the weapon loader with the current state
+	std::cerr << "State created: " << this << " -------------------- " << std::endl;
+	
 }
 
 State::~State()
@@ -53,10 +55,12 @@ void State::handleCollision()
 
 void State::pushEntity(Entity* entity)
 {
+	std::cerr << "Pushing entity: " << std::endl;
 	if (map)
 	{
 		map->PushQueueEntities.push_back(entity);
 	}
+	std::cerr << "Entity pushed: " << entity->name << std::endl;
 }
 
 void State::pushEntity(std::shared_ptr<Entity> entity)
@@ -124,6 +128,7 @@ Entity* State::GetClosestItem(sf::Vector2f position) const
 {
 	float ClosestDistance = 10000.0f; // Define a distance threshold for "closest"
 	Entity* closestEntity = nullptr;
+	std::cerr << "Address of the state : " << this << std::endl;
 	if(map)
 	{
 		for(const auto& entity : map->entities)

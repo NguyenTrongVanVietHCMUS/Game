@@ -41,7 +41,6 @@ public:
 
 public:
     void setProjectile(std::string ProjectileName) {
-        std::cerr << "Setting projectile for behavior: " << ProjectileName << std::endl;
         this->ProjectileName = ProjectileName; // Set the projectile for the behavior
     }
 };

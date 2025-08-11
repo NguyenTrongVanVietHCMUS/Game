@@ -51,7 +51,6 @@ Projectile2* ProjectileLoader::LoadProjectile(const std::string& name, sf::Vecto
             StrategyFactory::createMovingAnimation(j["animation"], proj->position, StartPosition, EndPosition)
         );
     }
-    std::cerr << "Projectile loaded: " << name << std::endl;
     if(j.contains("Damage"))
     {
         proj->setAttribute("Damage", j["Damage"].get<float>());

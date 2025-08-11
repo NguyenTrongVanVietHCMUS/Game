@@ -10,6 +10,7 @@ struct EntityResource{
 
     void setCurrent(float value) {
         current = value;
+        current = std::max(-0.001f, current); // Ensure current is not negative
     }
 
     void setMax(float value) {
@@ -79,7 +80,8 @@ public:
     virtual void TakeDamage(int damage);
     virtual void Heal(int amount);
 
-
+    // additional method for flag
+    virtual bool isDeath() const;
     // update
     virtual void update(sf::Time dt);
 };

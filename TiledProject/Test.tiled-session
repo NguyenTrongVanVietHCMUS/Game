@@ -11,7 +11,7 @@
     "fileStates": {
         "": {
             "dynamicWrapping": false,
-            "scaleInDock": 0.25,
+            "scaleInDock": 0.33,
             "scaleInEditor": 1
         },
         "#Map Tileset": {
@@ -181,11 +181,11 @@
             "expandedObjectLayers": [
                 2
             ],
-            "scale": 0.75,
+            "scale": 0.25,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 688.6666666666666,
-                "y": 688.6666666666665
+                "x": 872,
+                "y": 1840
             }
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/bossroom.json#GroundTiles": {
@@ -367,8 +367,8 @@
             "scale": 0.25,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 368,
-                "y": 110
+                "x": 1352,
+                "y": -944
             }
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway8.json#GroundTiles": {
@@ -401,11 +401,11 @@
             "expandedObjectLayers": [
                 3
             ],
-            "scale": 0.125,
+            "scale": 0.25,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 108,
-                "y": 524
+                "x": 264,
+                "y": 464
             }
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathwaytobossroom.json#GroundTiles": {
@@ -537,11 +537,11 @@
             "expandedObjectLayers": [
                 2
             ],
-            "scale": 1.5,
+            "scale": 0.25,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 459,
-                "y": 464.3333333333333
+                "x": 2280,
+                "y": -592
             }
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/room6.json#GroundTiles": {
@@ -564,8 +564,8 @@
             "scale": 0.25,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 464,
-                "y": 462
+                "x": 616,
+                "y": -592
             }
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/room7.json#GroundTiles": {

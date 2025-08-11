@@ -7,9 +7,9 @@
 #include<Object/Chest/Chest.hpp>
 #include<Object/Chest/Cage.hpp>
 #include<Object/Floor/SpikeFloor.hpp>
+#include<Object/Chest/ExplosiveBarrel.hpp>
 #include <Control/WeaponLoader.hpp>
 #include <Control/WeaponBuilder.hpp>
-
 TileMap::TileMap()
 {
 
@@ -26,7 +26,7 @@ bool TileMap::loadFromFile(const std::string& jsonFile)
     File = jsonFile ; 
     std::ifstream file(jsonFile) ;  
     if(!file.is_open())return false ;
-
+    std::cerr << "Loading tilemap from file: " << jsonFile << std::endl;
     json datafile ; 
     file >> datafile  ; 
     for(auto &data: datafile["maps"] )
@@ -249,6 +249,19 @@ bool TileMap::load(const std::string& jsonFile,int x , int y,int height, int wid
                                 scaley
                             )
                         );
+                    } else if (objectData["name"] == "ExplosiveBarrel")
+                    {
+                        float scalex = float(objectData["width"]) / tile.tileWidth;
+                        float scaley = float(objectData["height"]) / tile.tileHeight;
+                        layer->entities.push_back(
+                            new ExplosiveBarrel
+                            (
+                                sf::Vector2f(objectData["x"] + x, objectData["y"] + y - float(objectData["height"])),
+                                sf::FloatRect(x + objectData["x"] + tile.hitbox.hitbox.left * scalex, y + objectData["y"] - objectData["height"] + tile.hitbox.hitbox.top * scaley, tile.hitbox.hitbox.width * scalex, tile.hitbox.hitbox.height * scaley),
+                                scalex,
+                                scaley
+                            )
+                        );
                     }
                     else if (objectData["name"] == "Cage")
                     {
@@ -348,6 +361,7 @@ bool TileMap::handleEvent(const sf::Event& event,sf::RenderWindow* window)
     {
         if (auto character = dynamic_cast<Character*>(x))
         {
+            if(character->isDeath()) continue; // Skip handling events for dead characters
             character->handleEvent(event, window);
         }
     }
@@ -386,26 +400,13 @@ bool TileMap::update(sf::Time dt)
             } 
         }
     }
+    
+    if(player && player->isDeath()) player = nullptr;
     for (auto& x : updateEntities)
     {
         if (auto enemy = dynamic_cast<Enemy*>(x))
         {
             enemy->update(player, dt); 
-        }
-        if (auto chest = dynamic_cast<Chest*>(x))
-        {
-            if (!chest->isItemAdded())
-            {
-                try
-                {
-                    chest->setItems(weaponLoader->LoadWeapons("Sword"));
-                }
-                catch(const std::exception& e)
-                {
-                    std::cerr << e.what() << '\n';
-                }
-                
-            }
         }
     }
     for (auto& x : updateEntities)x->update(dt);
@@ -438,7 +439,7 @@ void TileMap::updateQueueEntities()
     {
         if (entity)
         {
-            std::cerr << "pushing entity :" << entity->name << ' ' << entity->position.x << ' ' << entity->position.y << '\n';
+            //std::cerr << "pushing entity :" << entity->name << ' ' << entity->position.x << ' ' << entity->position.y << '\n';
             entities.push_back(entity);
         }
     }
@@ -450,7 +451,7 @@ void TileMap::updateQueueEntities()
         auto it = std::find(entities.begin(), entities.end(), entity);
         if (it != entities.end())
         {
-            std::cerr << "entity pop\n";
+            //std::cerr << "entity pop\n";
             entities.erase(it);
         }
     }
@@ -459,7 +460,7 @@ void TileMap::updateQueueEntities()
     {
         if (entity)
         {
-            std::cerr << "Deleting entity: " << entity->name << " at position: " << entity->position.x << ", " << entity->position.y << std::endl;
+            //std::cerr << "Deleting entity: " << entity->name << " at position: " << entity->position.x << ", " << entity->position.y << std::endl;
             delete entity; // Clean up the entity if it was dynamically allocated
         }
     }
@@ -537,6 +538,7 @@ void TileMap::handleCollision()
         {
             if (isCollide(entity, other))
             {
+                //std::cerr << "Collision detected between " << entity->name << " and " << other->name << std::endl;
                 other->collide(entity); 
                 entity->collide(other); 
             }
@@ -548,6 +550,7 @@ void TileMap::handleCollision()
         {
             if(isCollide(updateEntities[i],updateEntities[j])) 
             {
+                //std::cerr << "Collision detected between " << updateEntities[i]->name << " and " << updateEntities[j]->name << std::endl;
 				updateEntities[i]->collide(updateEntities[j]);
                 updateEntities[j]->collide(updateEntities[i]);
             }

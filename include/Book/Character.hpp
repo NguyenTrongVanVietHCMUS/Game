@@ -46,6 +46,7 @@ public :
     virtual int getHealth(); 
     virtual int getMana(); 
     virtual int getShield();
+    virtual bool isDeath() const;
 
 public:
     void setAttribute(CharacterResourceType type, float current, float max);

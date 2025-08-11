@@ -15,6 +15,7 @@ public :
     {
 		EnemyProjectile, 
         AllyProjectile,
+        Projectile,
         Enemy, 
         Ally, 
         Entity,

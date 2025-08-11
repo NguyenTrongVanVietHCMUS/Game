@@ -6,8 +6,7 @@ Explosion_Animation::Explosion_Animation(sf::Texture* texture, sf::Vector2u imag
 
 Explosion_Animation::~Explosion_Animation()
 {
-    delete texture; // Clean up the texture if it was dynamically allocated
-    // Destructor logic if needed
+
 }
 
 void Explosion_Animation::update(sf::Time dt)
@@ -27,7 +26,7 @@ void Explosion_Animation::update(sf::Time dt)
 
     uvRect.top = currentImage.y * uvRect.height;
     uvRect.left = currentImage.x * uvRect.width;
-    std::cerr << "Explosion position: " << position.x << ", " << position.y << std::endl;
+    //std::cerr << "Explosion position: " << position.x << ", " << position.y << std::endl;
     setSpritePosition();
 }
 
