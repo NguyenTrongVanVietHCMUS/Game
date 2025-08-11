@@ -22,6 +22,12 @@ public:
             } else if(projectile->type == Entity::Type::AllyProjectile && other->type == Entity::Type::Enemy) {
                 nonConstOther->takeDamage(static_cast<int>(projectile->getAttribute("Damage")));
                 Worldmap->popEntity(&self);
+            } else if(projectile->type == Entity::Type::Projectile && (other->type == Entity::Type::Enemy || other->type == Entity::Type::Ally)) {
+                nonConstOther->takeDamage(static_cast<int>(projectile->getAttribute("Damage")));
+                Worldmap->popEntity(&self); // Remove the projectile from the worldmap
+            } else if (other->type == Entity::Type::EnemyProjectile || other->type == Entity::Type::AllyProjectile) {
+                // Handle collision with other projectiles
+                Worldmap->popEntity(nonConstOther); // Remove the projectile from the worldmap
             } else if (other->type == Entity::Type::Object) {
                 // Handle collision with objects
                 Worldmap->popEntity(&self); // Remove the projectile from the worldmap
@@ -52,14 +58,13 @@ public:
             Worldmap->popEntity(nonConstOther); // Remove the projectile from the worldmap
         }
 
-        if(auto projectile = dynamic_cast<const Projectile2*>(other)) {
+        if(auto projectile = dynamic_cast<const Projectile2*>(&self)) {
             if (projectile->type == Entity::Type::EnemyProjectile && other->type == Entity::Type::Ally) {
                 nonConstOther->takeDamage(static_cast<int>(projectile->getAttribute("Damage")));
             } else if (projectile->type == Entity::Type::AllyProjectile && other->type == Entity::Type::Enemy) {
                 nonConstOther->takeDamage(static_cast<int>(projectile->getAttribute("Damage")));
-            } else if (other->type == Entity::Type::Object) {
-                // Handle collision with objects
-                Worldmap->popEntity(nonConstOther); // Remove the projectile from the worldmap
+            } else if (projectile->type == Entity::Type::Projectile && (other->type == Entity::Type::Enemy || other->type == Entity::Type::Ally)) {
+                nonConstOther->takeDamage(static_cast<int>(projectile->getAttribute("Damage")));
                 return;
             }
         }
