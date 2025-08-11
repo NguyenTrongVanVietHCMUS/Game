@@ -2,6 +2,7 @@
 #include<Book/Utility.hpp>
 #include<Book/Entity.hpp>
 #include<Control/State.hpp>
+#include <set>
 struct RaycastHit{
     Entity* entity = nullptr; // Pointer to the entity hit by the raycast
     sf::Vector2f position; // Position of the hit
@@ -18,6 +19,9 @@ public:
     RaycastHit cast(const sf::Vector2f& origin, 
                      const sf::Vector2f& direction, 
                     float maxDistance = 2000.0f) const;
+
+    std::set<Entity*> castGetEntities(const sf::Vector2f& startPosition, 
+                                          const sf::Vector2f& endPosition) const;
 
 private:
     bool intersectAABB(const sf::FloatRect& rect, 

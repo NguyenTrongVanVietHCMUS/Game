@@ -58,10 +58,7 @@ public:
         // Calculate the direction vector and set the speed components
         sf::Vector2f direction = endPosition - startPosition;
         float length = std::sqrt(direction.x * direction.x + direction.y * direction.y);
-        std::cerr << "FollowMovement: Start Position: " << startPosition.x << ", " << startPosition.y << std::endl;
-        std::cerr << "FollowMovement: End Position: " << endPosition.x << ", " << endPosition.y << std::endl;
-        std::cerr << "FollowMovement: Direction: " << direction.x << ", " << direction.y << std::endl;
-        std::cerr << "FollowMovement: Length: " << length << std::endl;
+    
         if (length > 0)
         {
             speedX = (direction.x / length) * speed;
@@ -127,16 +124,12 @@ class LaserBeamMovement : public IMovement
 private:
     float HitCycle;
     float elapsedTime = 0.0f;
+    State* Worldmap = nullptr;
+    sf::Vector2f startPosition, endPosition;
 public:
-    LaserBeamMovement(float hitCycle) : HitCycle(hitCycle) {}
+    LaserBeamMovement(float hitCycle, sf::Vector2f startPosition, sf::Vector2f endPosition, State* worldmap) : HitCycle(hitCycle), startPosition(startPosition), endPosition(endPosition), Worldmap(worldmap) {}
 
-    void update(Projectile2& projectile, const sf::Time& dt) override {
-        elapsedTime += dt.asSeconds();
-        if (elapsedTime >= HitCycle) {
-            elapsedTime = 0.0f; // Reset the timer
-        }
-
-    }
+    void update(Projectile2& projectile, const sf::Time& dt) override;
 
     std::unique_ptr<IMovement> clone() const override {
         return std::make_unique<LaserBeamMovement>(*this);
@@ -154,39 +147,7 @@ public:
     LaserAimMovement(float aimTime, sf::Vector2f startPosition, sf::Vector2f endPosition, State* worldmap)
         : aimTime(aimTime), startPosition(startPosition), endPosition(endPosition), Worldmap(worldmap) {}
 
-    void update(Projectile2& projectile, const sf::Time& dt) override {
-        elapsedTime += dt.asSeconds();
-        if (elapsedTime >= aimTime) {
-            // Logic for when the laser beam is ready to fire
-            aimTime = 1000000.0f;
-            elapsedTime = 0.0f; // Reset the timer
-            auto proj = new Projectile2(
-                "LaserBeam",
-                1.6f, // Lifetime of the laser beam
-                startPosition,
-                Worldmap,
-                "Media/Assets/Projectiles/Laser.png", // Path to the laser beam texture
-                std::make_unique<LaserBeamMovement>(0.1f), // Movement strategy for the laser beam
-                nullptr, // No collision strategy for the laser beam
-                nullptr
-            );
-            sf::Texture* texture = new sf::Texture();
-            if (!texture->loadFromFile("Media/Assets/Projectiles/Laser.png")) {
-                throw std::runtime_error("Failed to load laser beam texture");
-            }
-            std::unique_ptr<MovingAnimation> animation = std::make_unique<LaserAnimation>(
-                texture,
-                startPosition,
-                endPosition,
-                sf::Vector2f(0.5f, 0.5f),
-                proj->position
-            );
-            proj->setMovingAnimation(std::move(animation));
-            proj->type = projectile.type;
-            proj->update(sf::seconds(0)); // Initialize the projectile's animation
-            Worldmap->pushEntity(proj); // Add the laser beam to the world map
-        }
-    }
+    void update(Projectile2& projectile, const sf::Time& dt) override;
 
     std::unique_ptr<IMovement> clone() const override {
         return std::make_unique<LaserAimMovement>(*this);

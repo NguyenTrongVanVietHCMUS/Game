@@ -7,6 +7,7 @@ Character_MovingAnimation::Character_MovingAnimation(sf::Texture* texture, sf::V
 	direction = rand() % 2 == 0 ? LEFT : RIGHT; // Randomly set the initial direction
     moveX = 1;
     moveY = 1;
+    KnockbackResistance = 10.0f;
 }
 
 Character_MovingAnimation::~Character_MovingAnimation()
@@ -34,6 +35,10 @@ void Character_MovingAnimation::handleEvent(const sf::Event& event,sf::RenderWin
         if(event.key.code==sf::Keyboard::D)
         {
             mask = BIT_SET(mask,RIGHT) ; 
+        }
+        if(event.key.code==sf::Keyboard::P)
+        {
+            Knockback(sf::Vector2f(1000, 0)); // Example knockback force
         }
     }
     
@@ -77,8 +82,10 @@ void Character_MovingAnimation::update(sf::Time dt)
     oldPosition = position;
     if (attribute && attribute->isDeath())
     {
+        sprite.setColor(sf::Color(100, 100, 100)); // Set the sprite color to gray if the entity is dead
         state = DEATH; // Set the state to DEATH if the entity is dead
     } else {
+        sprite.setColor(sf::Color::White); // Reset the sprite color to white if the entity is not dead
         if (BIT(mask, UP))
         {
             position.y -= speed * dt.asSeconds();
@@ -103,6 +110,8 @@ void Character_MovingAnimation::update(sf::Time dt)
         {
             state = IDLE; // Idle state
         }
+        position += CurrentKnockbackForce * dt.asSeconds(); // Apply knockback force
+        CurrentKnockbackForce = CurrentKnockbackForce - CurrentKnockbackForce * KnockbackResistance * dt.asSeconds(); // Reduce knockback force over time
     }   
     // update the rotation base on position of 
     if (direction == LEFT)

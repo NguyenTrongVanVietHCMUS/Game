@@ -14,7 +14,7 @@ std::shared_ptr<Weapon2> WeaponLoader::LoadWeapons(std::string weaponName) {
     if (!weaponData.contains(weaponName)) {
         throw std::runtime_error("Weapon not found: " + weaponName);
     }
-
+    std::cerr << "Start building weapon : " << weaponName << std::endl;
     // Create a WeaponBuilder instance
     WeaponBuilder builder = WeaponBuilder::create(weaponData[weaponName]["name"].get<std::string>(), 
                                                   sf::Vector2f(weaponData[weaponName]["position"]["x"], weaponData[weaponName]["position"]["y"]), 
@@ -39,7 +39,7 @@ std::shared_ptr<Weapon2> WeaponLoader::LoadWeapons(std::string weaponName) {
             weaponData[weaponName]["scaleBulletSpawnPosition"]["y"]
         ));
     }
-
+    
     std::shared_ptr<Weapon2> weapon = builder.build();
 
     // If the weapon has an advanced component, load it

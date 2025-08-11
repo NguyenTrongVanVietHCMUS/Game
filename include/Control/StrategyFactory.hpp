@@ -88,7 +88,14 @@ private:
             {"Laser Weapon Behavior", [](const json& data, State* map)
             {
                 return std::make_unique<laserGunBehavior>(map);
-            }}
+            }},
+            {
+                "Balance Spread Behavior", [](const json& data, State* map)
+                {
+                    return std::make_unique<BalanceSpreadBehavior>(map,
+                        data.value("numBullet", 4));
+                }
+            }
         };
         return registry;
     }
@@ -157,7 +164,10 @@ private:
             }},
             {"Laser Beam Movement", [](const json& data, State* map, sf::Vector2f startPos, sf::Vector2f endPos){
                 return std::make_unique<LaserBeamMovement>(
-                    data.value("HitCycle", 0.5f)
+                    data.value("HitCycle", 0.5f),
+                    startPos,
+                    endPos,
+                    map
                 );
 
             }},
@@ -177,8 +187,6 @@ private:
     {
         static CollisionBehaviorFactoryMap registry{
             {"Projectile Collision Behavior", [](const json& data, State* map){
-
-                std::cerr << "Creating ProjectileCollisionBehavior " << std::endl;
                 return std::make_unique<ProjectileCollisionBehavior>(map);
             }},
             {"Melee Collision Behavior", [](const json& data, State* map){

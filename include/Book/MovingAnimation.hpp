@@ -4,8 +4,13 @@
 #include<Book/Inventory.hpp>
 #include<Book/EntityComponent.hpp>
 
+
+class Projectile2;
 class MovingAnimation : public sf::Drawable
 {
+protected:
+    sf::Vector2f CurrentKnockbackForce = sf::Vector2f(0,0); // Current knockback force applied to the entity
+    float KnockbackResistance = 0.8f; // Resistance to knockback, 0 means no resistance, 1 means full resistance
 public :
     Entity* entity; 
     sf::Sprite sprite; 
@@ -97,17 +102,29 @@ public:
     virtual void handleCollision(const Entity* other) {} // Handle collision with another entity
     virtual void chase(Entity* target,sf::Time dt); 
     virtual void wander(sf::Time dt); 
+    virtual void Knockback(sf::Vector2f force);// Handle knockback effect
+    virtual void Knockback(Projectile2* projectile);
     virtual sf::Vector2f getHandPosition()const;
     void setSpriteScale(float scale);
     void setSpriteRotation(float angle);
 
 public:
     sf::FloatRect getBoundingBox() const {
-        return sprite.getGlobalBounds();
+        sf::FloatRect boundingBox = sprite.getGlobalBounds();
+        // shrink it a bit
+        boundingBox.left += boundingBox.width * (1 - shrinkScaleSize) / 2;
+        boundingBox.top += boundingBox.height * (1 - shrinkScaleSize) / 2;
+        boundingBox.width *= shrinkScaleSize;
+        boundingBox.height *= shrinkScaleSize;
+        return boundingBox;
     }
+    void setState(State newState);
+
 protected: 
     Direction direction;
     virtual void setSpritePosition(); 
+
+    float shrinkScaleSize = 0.8f;
 };
 
 class Character_MovingAnimation : public MovingAnimation 
@@ -124,6 +141,7 @@ private:
     bool moveX; 
     bool moveY;
     EntityAttributeActionComponent *attribute;
+    
 public :
     Character_MovingAnimation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f& position, float scale, Entity* entity ,sf::Vector2f middlePosition = sf::Vector2f(0.5f, 1), EntityAttributeActionComponent* attribute = nullptr); // Constructor with parameters
     ~Character_MovingAnimation();
@@ -208,9 +226,6 @@ private:
 public:
     LaserAnimation(sf::Texture *texture, sf::Vector2f startPosition, sf::Vector2f endPosition, sf::Vector2f middlePosition, sf::Vector2f& position);
     ~LaserAnimation() {
-        if (texture) {
-            delete texture; // Clean up the texture if it was dynamically allocated
-        }
         if (BallTexture) {
             delete BallTexture; // Clean up the ball texture if it was dynamically allocated
         }

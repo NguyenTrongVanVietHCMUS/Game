@@ -70,7 +70,9 @@ bool Projectile2::update(sf::Time dt)
             return true; // Indicate that the projectile should be removed
         }
     }
-
+    // if get CurrentAngle from attribute
+    float currentAngle = getAttribute("CurrentAngle") * 180.0f / 3.14f;
+    sprite.setRotation(currentAngle);
 
     sprite.setPosition(getPosition()); // Update the sprite position to match the projectile's position
 
@@ -80,18 +82,51 @@ bool Projectile2::update(sf::Time dt)
     setAttribute("CurrentLifeTime", CurrentLifeTime); // Update the current lifetime attribute
     if (movingAnimation) {
         movingAnimation->update(dt); // Update the moving animation if it exists
-        hitbox.hitbox = movingAnimation->getBoundingBox(); // Update the hitbox based on the moving animation
+
+        if(HitboxMode){
+            hitbox.hitbox = movingAnimation->getBoundingBox(); // Update the hitbox based on the moving animation
+        } else 
+        {
+            hitbox.hitbox = sf::FloatRect(
+                -100.0f,
+                -100.0f,
+                0.0f,
+                0.0f
+            );
+        }
     }
-    // Handle collision if a collision strategy is set
+    // for every collided Entities
+
+    for (auto entity : collidedEntitiesFlag) {
+        collidedEntities[entity] = debounceTime;
+    }
+    collidedEntitiesFlag.clear(); // Clear the flag after processing
+    for (auto it = collidedEntities.begin(); it != collidedEntities.end(); ) {
+        it->second -= dt.asSeconds(); // Decrease the debounce timer
+        if (it->second <= 0) {
+            it = collidedEntities.erase(it); // Remove expired entities
+        } else {
+            ++it;
+        }
+    }
+
     return true;
 }
 
 void Projectile2::collide(const Entity* other)
 {
     if (collisionStrategy) {
-        sf::Vector2f collisionPoint = this->getPosition(); // Assuming the collision point is the projectile's position
-        collisionStrategy->collide(*this, other);
+        if (AllowCollide(const_cast<Entity*>(other))) {
+            collisionStrategy->collide(*this, other);
+            collidedEntitiesFlag.push_back(other);
+    
+        }
     }
+}
+
+bool Projectile2::AllowCollide(Entity* other) const
+{
+    return collidedEntities.find(other) == collidedEntities.end();
 }
 
 void Projectile2::draw(sf::RenderTarget& target, sf::RenderStates states) const
@@ -99,9 +134,9 @@ void Projectile2::draw(sf::RenderTarget& target, sf::RenderStates states) const
     if(movingAnimation) {
         
         movingAnimation->draw(target, states); // Draw the moving animation if it exists
-        hitbox.draw(target, states); //Draw the hitbox for debugging purposes
+       // hitbox.draw(target, states); //Draw the hitbox for debugging purposes
     } else {
-        hitbox.draw(target, states); // Draw the hitbox for debugging purposes
+       // hitbox.draw(target, states); // Draw the hitbox for debugging purposes
         target.draw(sprite, states);  
         
     }
@@ -192,4 +227,8 @@ Projectile2* Projectile2::clone(sf::Vector2f direction) const {
         proj->trailStrategies.push_back(effect->clone());
     }
     return proj;
+}
+
+void Projectile2::selfDelete() {
+    currentMap->popEntity(this); 
 }

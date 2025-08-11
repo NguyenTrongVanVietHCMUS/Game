@@ -79,13 +79,13 @@ bool Character::handleEvent(const sf::Event& event,sf::RenderWindow*window)
         if(event.key.code == sf::Keyboard::Space)
         {
             if (cameraManager) {
-                cameraManager->applyEffect(new ShakeCameraEffect(1.0f, cameraManager, 10.0f)); // Apply a shake effect to the camera
+                cameraManager->applyEffect(new ShakeCameraEffect(1.0f, cameraManager, 10.0f)); 
             }
         }
         if(event.key.code == sf::Keyboard::C)
         {
             if(cameraManager) {
-                cameraManager->applyEffect(new DarknessCameraEffect(100.0f, cameraManager)); // Apply a zoom effect to the camera
+                cameraManager->applyEffect(new DarknessCameraEffect(100.0f, cameraManager)); 
             }
         }
     }
@@ -108,12 +108,6 @@ bool Character::update(sf::Time dt)
 void Character::collide(const Entity* other)
 {    
     movingAnimation->handleCollision(other);
-    
-    if(auto projectile = dynamic_cast<const Projectile2*>(other)) {
-        if(projectile->type == Entity::Type::EnemyProjectile || projectile->type == Entity::Type::Projectile) {
-            attributes.TakeDamage(static_cast<int>(projectile->getAttribute("Damage")));
-        }
-    }
 }
 sf::Vector2f Character::getHandPosition()const
 {
@@ -154,4 +148,12 @@ void Character::setAttribute(CharacterResourceType type, float current, float ma
 bool Character::isDeath() const
 {
     return attributes.isDeath();
+}
+
+void Character::takeDamage(int damage)
+{
+    attributes.TakeDamage(damage);
+    if (isDeath()) {   
+        attributes.TakeDamage(attributes.getHealth()); 
+    }
 }

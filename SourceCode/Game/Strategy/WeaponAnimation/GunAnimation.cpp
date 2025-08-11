@@ -1,5 +1,7 @@
 #include <Book/Strategy/WeaponAnimation.hpp>
 #include <Book/Weapon2.hpp>
+#include <Book/Enemy.hpp>
+#include <Book/Character.hpp>
 GunAnimation::GunAnimation(float TotalTime, float scale, sf::Texture* texture, 
                              const sf::Vector2f& position, float startAngle, float endAngle,
                              float recoilOffset, Entity* owner,
@@ -14,7 +16,30 @@ void GunAnimation::update(Weapon2& weapon, sf::Time dt) {
     if (CurrentTime >= TotalTime) {
         CurrentTime = TotalTime; // Clamp to TotalTime
     }
-    
+    if(owner != nullptr)
+    {
+        if(auto enemy = dynamic_cast<Enemy*>(owner))
+        {
+        
+            if(enemy->isDeath())
+            {
+                sprite.setColor(sf::Color(100.0f, 100.0f, 100.0f)); // Change color to red if the owner is dead
+            } else
+            {
+                sprite.setColor(sf::Color(255.0f, 255.0f, 255.0f)); // Reset color if the owner is not dead
+            }
+        }
+        if(auto character = dynamic_cast<Character*>(owner))
+        {
+            if(character->isDeath())
+            {
+                sprite.setColor(sf::Color(100.0f, 100.0f, 100.0f)); // Change color to red if the owner is dead
+            } else
+            {
+                sprite.setColor(sf::Color(255.0f, 255.0f, 255.0f)); // Reset color if the owner is not dead
+            }
+        }
+    }
     float posX = weapon.getStat("TargetPosX");
     float posY = weapon.getStat("TargetPosY");
     

@@ -47,12 +47,12 @@ protected:
     std::unordered_map<CharacterResourceType, EntityResource> attributes{
         {CharacterResourceType::Health, EntityResource(100, 100)},
         {CharacterResourceType::Mana, EntityResource(100, 100)},
-        {CharacterResourceType::Shield, EntityResource(0, 50)}
+        {CharacterResourceType::Shield, EntityResource(50, 50)}
     };
     float elapseTime = 0.0f;
     float elapseTimeShield = 0.0f; 
     float TimeToRegenShield = 5.0f; 
-    float TimeShieldRegenRate = 1.0f;
+    float TimeShieldRegenRate = 0.1f;
     void updateShieldRegen(sf::Time dt);
 public:
     EntityAttributeActionComponent() = default;

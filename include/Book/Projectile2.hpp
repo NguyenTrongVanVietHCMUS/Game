@@ -4,6 +4,7 @@
 #include <Control/State.hpp>
 #include <Book/MovingAnimation.hpp>
 #include <Control/State.hpp>
+#include <set>
 class Projectile2 : public Entity
 {
 private:
@@ -16,6 +17,11 @@ private:
     std::unordered_map<std::string, float> attributes; // Additional stats for the projectile
     std::string texturePath;
     State* currentMap; // Pointer to the current map or state
+    
+private: 
+    float debounceTime = 1.0f;
+    std::vector<const Entity*> collidedEntitiesFlag;
+    std::unordered_map<const Entity*, float> collidedEntities;
 public:
 
     // Basic constructor for builder
@@ -39,8 +45,14 @@ public:
     float getAttribute(const std::string& attributeName) const;
 
     bool update(sf::Time dt) override;
+    bool AllowCollide(Entity* other) const;
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
     void collide(const Entity* other) override;
 
     Projectile2* clone(sf::Vector2f direction)const;
+
+public:
+    void selfDelete();
+public:
+    bool HitboxMode = true;
 };

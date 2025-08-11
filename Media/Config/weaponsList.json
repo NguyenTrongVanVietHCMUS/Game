@@ -55,7 +55,7 @@
       "recoilOffset": 10.0
     },
 
-    "cooldownTime": 1.0,
+    "cooldownTime": 0.1,
 
     "scaleBulletSpawnPosition": {
       "x": 0.6,
@@ -307,6 +307,34 @@
     "scaleBulletSpawnPosition": {
       "x": 0.6,
       "y": -0.2
+    }
+  },
+  "Staff": {
+    "name": "Staff",
+    "position": {
+      "x": 150,
+      "y": 75
+    },
+    "cooldownTime": 0.5,
+    "behavior": {
+      "type": "Balance Spread Behavior",
+      "numBullet": 20,
+      "Projectile": "Magic Bullet"
+    },
+    "animation": {
+      "type": "Gun Animation",
+      "totalTime": 0.3,
+      "scale": 3.0,
+      "texture": "Media/Assets/Weapons/Staff/Staff.png",
+      "startAngle": 10.0,
+      "endAngle": 0.0,
+      "recoilOffset": 10.0,
+      "middlePositionX": 0.2,
+      "middlePositionY": 0.5
+    },
+    "scaleBulletSpawnPosition": {
+      "x": 0.7,
+      "y": 0.3
     }
   }
 }

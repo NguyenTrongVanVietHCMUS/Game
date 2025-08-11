@@ -55,12 +55,10 @@ void State::handleCollision()
 
 void State::pushEntity(Entity* entity)
 {
-	std::cerr << "Pushing entity: " << std::endl;
 	if (map)
 	{
 		map->PushQueueEntities.push_back(entity);
 	}
-	std::cerr << "Entity pushed: " << entity->name << std::endl;
 }
 
 void State::pushEntity(std::shared_ptr<Entity> entity)
@@ -79,10 +77,7 @@ void State::popEntity(Entity* entity)
 		if (entity && std::find(map->PopQueueEntities.begin(), map->PopQueueEntities.end(), entity) == map->PopQueueEntities.end())
 		{
 			map->PopQueueEntities.push_back(entity);
-		} else 
-		{
-			std::cerr << "Entity already in PopQueueEntities or is null." << std::endl;
-		}
+		} 
 	}
 }
 

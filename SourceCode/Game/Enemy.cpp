@@ -16,11 +16,26 @@ Enemy::~Enemy()
 }
 void Enemy::collide(const Entity* other)
 {
+    if(attributes.isDeath())
+        return; // If the enemy is dead, do not handle collisions
     movingAnimation->handleCollision(other);
+        
 }
 void Enemy::update(Entity* target, sf::Time dt)
 {
-    aiEnemy->update(this, target, dt);
+    
+    if(attributes.isDeath())
+    {
+        movingAnimation->setState(MovingAnimation::State::DEATH);
+        movingAnimation->update(dt); // Update the death animation
+        
+        inventory->update(dt); // Update the inventory
+    } else
+    { 
+        aiEnemy->update(this, target, dt);
+        elapseDeathTime = 0.0f;
+    }
+
 }
 void Enemy::chase(Entity* target , sf::Time dt)
 {
@@ -36,4 +51,24 @@ void Enemy::shoot(Entity* target,sf::Time dt)
 {
     inventory->shoot(this,target);  
     inventory->update(dt); 
+}
+
+bool Enemy::isAllowClean()
+{
+    return false;
+}
+
+bool Enemy::isDeath()
+{
+    return attributes.isDeath();
+}
+
+void Enemy::takeDamage(int damage)
+{
+  
+    attributes.TakeDamage(damage);
+    if (isDeath()) {
+        movingAnimation->setState(MovingAnimation::State::DEATH);
+        movingAnimation->update(sf::seconds(0)); 
+    }
 }

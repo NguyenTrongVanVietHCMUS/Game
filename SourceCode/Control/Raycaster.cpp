@@ -32,14 +32,16 @@ RaycastHit Raycaster::cast(
 
         // 5) Check each entity’s AABB for containment
         for (Entity* e : entities) {
-            const sf::FloatRect& r = e->hitbox.hitbox;
-            if (r.contains(sampleX, sampleY)) {
-                // We’ve hit something!
-                hit.entity   = e;
-                hit.position = { sampleX, sampleY };
-                hit.distance = std::hypot(sampleX - origin.x,
-                                           sampleY - origin.y);
-                return hit;
+            if(e->type == Entity::Type::Object){
+                const sf::FloatRect& r = e->hitbox.hitbox;
+                if (r.contains(sampleX, sampleY)) {
+                    // We’ve hit something!
+                    hit.entity   = e;
+                    hit.position = { sampleX, sampleY };
+                    hit.distance = std::hypot(sampleX - origin.x,
+                                            sampleY - origin.y);
+                    return hit;
+                }
             }
         }
 
@@ -57,6 +59,56 @@ RaycastHit Raycaster::cast(
     hit.distance = maxDistance;
     return hit;
 }
+
+std::set<Entity*> Raycaster::castGetEntities(const sf::Vector2f& startPosition,
+                                                const sf::Vector2f& endPosition) const{
+   RaycastHit hit;
+
+
+    // 2) Convert origin and end to integer pixel coords
+    int x0 = static_cast<int>(std::floor(startPosition.x));
+    int y0 = static_cast<int>(std::floor(startPosition.y));
+    int x1 = static_cast<int>(std::floor(endPosition.x));
+    int y1 = static_cast<int>(std::floor(endPosition.y));
+
+    // 3) Bresenham setup
+    int dx =  std::abs(x1 - x0);
+    int dy = -std::abs(y1 - y0);
+    int sx = x0 < x1 ? 1 : -1;
+    int sy = y0 < y1 ? 1 : -1;
+    int err = dx + dy;
+
+    // 4) Step along the line
+    std::vector<Entity*> entities = currentWorld->GetEntities();
+    std::set<Entity*> hitEntities; 
+    while (true) {
+        // World‐space sample point (center of pixel)
+        float sampleX = x0 + 0.5f;
+        float sampleY = y0 + 0.5f;
+
+        // 5) Check each entity’s AABB for containment
+        for (Entity* e : entities) {
+    
+            const sf::FloatRect& r = e->getHitbox().hitbox;
+            if (r.contains(sampleX, sampleY)) {
+                if(e->type == Entity::Type::Ally || e->type == Entity::Type::Enemy) {
+                    hitEntities.insert(e);
+                } 
+            }
+        }
+
+        // 6) If we’ve reached the end pixel, stop
+        if (x0 == x1 && y0 == y1) break;
+
+        // 7) Advance Bresenham error and coords
+        int e2 = 2 * err;
+        if (e2 >= dy) { err += dy; x0 += sx; }
+        if (e2 <= dx) { err += dx; y0 += sy; }
+    }
+
+    return hitEntities;
+}
+
 
 bool Raycaster::intersectAABB(const sf::FloatRect& rect, 
                             const sf::Vector2f& rayOrigin, 

@@ -6,7 +6,7 @@
 #include<Control/State.hpp>
 #include<Book/Inventory.hpp>
 #include<Control/WeaponLoader.hpp>
-
+#include<Book/EntityComponent.hpp>
 class AIEnemy; 
 class Enemy : public Entity
 {
@@ -15,6 +15,9 @@ protected:
     std::unique_ptr<AIEnemy>aiEnemy; 
     std::unique_ptr<MovingAnimation>movingAnimation;
     std::shared_ptr<Inventory> inventory = std::make_shared<Inventory>();
+    float elapseDeathTime = 0.0f;
+    float despawnDeathTime = 3.0f;
+    EntityAttributeActionComponent attributes;
 public:
     Enemy(std::string name, sf::Vector2f position);
     ~Enemy();
@@ -40,6 +43,9 @@ public:
     virtual void chase(Entity* target,sf::Time dt);
     virtual void wander(sf::Time dt); 
     virtual void shoot(Entity* target,sf::Time dt); 
+public:
+    virtual bool isAllowClean();
+    virtual bool isDeath();
 
     virtual float getRange()const final
     {
@@ -63,4 +69,7 @@ public:
         bodyHitbox.setFillColor(sf::Color(0, 255, 0, 100)); // semi-transparent red for visibility
         target.draw(bodyHitbox, states); // Draw the hitbox shape
     }
+
+    void takeDamage(int damage) override;
+
 };
