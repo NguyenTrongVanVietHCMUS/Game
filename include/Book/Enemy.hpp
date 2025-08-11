@@ -69,4 +69,7 @@ public:
         bodyHitbox.setFillColor(sf::Color(0, 255, 0, 100)); // semi-transparent red for visibility
         target.draw(bodyHitbox, states); // Draw the hitbox shape
     }
+
+    void takeDamage(int damage) override;
+
 };

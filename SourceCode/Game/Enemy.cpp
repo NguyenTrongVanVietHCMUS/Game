@@ -18,14 +18,7 @@ void Enemy::collide(const Entity* other)
 {
     if(attributes.isDeath())
         return; // If the enemy is dead, do not handle collisions
-    if (auto projectile = dynamic_cast<const Projectile2*>(other)) {
-            if (projectile->type == Entity::Type::AllyProjectile || projectile->type == Entity::Type::Projectile) {
-                if(projectile->AllowCollide(this)){
-                    attributes.TakeDamage(static_cast<int>(projectile->getAttribute("Damage")));
-                    movingAnimation->handleCollision(other);
-                }
-            }
-        } else movingAnimation->handleCollision(other);
+    movingAnimation->handleCollision(other);
         
 }
 void Enemy::update(Entity* target, sf::Time dt)
@@ -68,4 +61,14 @@ bool Enemy::isAllowClean()
 bool Enemy::isDeath()
 {
     return attributes.isDeath();
+}
+
+void Enemy::takeDamage(int damage)
+{
+  
+    attributes.TakeDamage(damage);
+    if (isDeath()) {
+        movingAnimation->setState(MovingAnimation::State::DEATH);
+        movingAnimation->update(sf::seconds(0)); 
+    }
 }

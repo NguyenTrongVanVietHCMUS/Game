@@ -12,6 +12,15 @@ void LaserBeamMovement::update(Projectile2& projectile, const sf::Time& dt) {
 
         for(Entity* entity : hitEntities) {
             entity->collide(&projectile);
+            if(entity->type == Entity::Type::Enemy && projectile.type == Entity::Type::AllyProjectile) {
+                // Apply damage to the entity
+                int damage = static_cast<int>(projectile.getAttribute("Damage"));
+                entity->takeDamage(damage);
+            } else if(entity->type == Entity::Type::Ally && projectile.type == Entity::Type::EnemyProjectile) {
+                // Apply damage to the entity
+                int damage = static_cast<int>(projectile.getAttribute("Damage"));
+                entity->takeDamage(damage);
+            }
         }
     }
 }

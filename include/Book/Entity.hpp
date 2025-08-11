@@ -67,4 +67,9 @@ public :
     virtual bool passAble()const; 
     virtual bool isNear(Entity* other)const; 
     virtual sf::Vector2f getHandPosition()const; 
+
+
+public:
+    // extra method 
+    virtual void takeDamage(int damage) {}; 
 };

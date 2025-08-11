@@ -48,6 +48,8 @@ public :
     virtual int getShield();
     virtual bool isDeath() const;
 
+    void takeDamage(int damage) override;
+
 public:
     void setAttribute(CharacterResourceType type, float current, float max);
     float updateRange;
