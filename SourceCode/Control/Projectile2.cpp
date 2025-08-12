@@ -113,7 +113,7 @@ bool Projectile2::update(sf::Time dt)
     return true;
 }
 
-void Projectile2::collide(const Entity* other)
+void Projectile2::collide(Entity* other)
 {
     if (collisionStrategy) {
         if (AllowCollide(const_cast<Entity*>(other))) {

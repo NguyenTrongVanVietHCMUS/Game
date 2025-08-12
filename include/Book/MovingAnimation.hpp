@@ -176,7 +176,6 @@ public:
     void getshot(const Entity* other);
    
 };
-
 class SlashProjectile_MovingAnimation : public MovingAnimation
 {
     float angle = 0.5f; // Angle for the projectile movement

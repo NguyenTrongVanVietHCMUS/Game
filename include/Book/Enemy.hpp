@@ -23,7 +23,7 @@ public:
     ~Enemy();
 public:
 
-    virtual void collide(const Entity* other);
+    virtual void collide(Entity* other);
     virtual void update(Entity* target , sf::Time dt);
     virtual Hitbox getHitbox() const
     {

@@ -9,6 +9,10 @@ InteractingAnimation::~InteractingAnimation()
 {
 
 }
+bool InteractingAnimation::canActivate() 
+{
+	return true;  
+}
 void InteractingAnimation::activate()
 {
 

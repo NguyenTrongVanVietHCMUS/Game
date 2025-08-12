@@ -11,11 +11,14 @@
     "fileStates": {
         "": {
             "dynamicWrapping": false,
-            "scaleInDock": 0.33,
+            "scaleInDock": 1,
             "scaleInEditor": 1
         },
         "#Map Tileset": {
             "scaleInDock": 1
+        },
+        "#a": {
+            "dynamicWrapping": true
         },
         "#chest": {
             "dynamicWrapping": true,
@@ -184,8 +187,8 @@
             "scale": 0.25,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 872,
-                "y": 1840
+                "x": 690,
+                "y": 686
             }
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/bossroom.json#GroundTiles": {
@@ -367,8 +370,8 @@
             "scale": 0.25,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 1352,
-                "y": -944
+                "x": 368,
+                "y": 110
             }
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway8.json#GroundTiles": {
@@ -404,8 +407,8 @@
             "scale": 0.25,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 264,
-                "y": 464
+                "x": 110,
+                "y": 526
             }
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathwaytobossroom.json#GroundTiles": {
@@ -534,15 +537,15 @@
             "scaleInDock": 2
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/room6.json": {
-            "expandedObjectLayers": [
-                2
-            ],
-            "scale": 0.25,
+            "scale": 0.75,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 2280,
-                "y": -592
+                "x": 387.99999999999994,
+                "y": 2850.6666666666665
             }
+        },
+        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/room6.json#GoblinPriest": {
+            "dynamicWrapping": false
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/room6.json#GroundTiles": {
             "dynamicWrapping": false,
@@ -564,8 +567,8 @@
             "scale": 0.25,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 616,
-                "y": -592
+                "x": 464,
+                "y": 462
             }
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/room7.json#GroundTiles": {
@@ -931,7 +934,7 @@
         }
     },
     "last.externalTilesetPath": "V:/Game/Media/Assets/TileSets",
-    "last.imagePath": "V:/Game/Media/Assets/TileSets/Objects",
+    "last.imagePath": "V:/Game/Media/Assets/Mobs/GoblinPriest",
     "last.worldFilePath": "V:/Game/Media/Assets/Maps/Dungeon/Jungle",
     "loadedWorlds": [
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/jungle.world",

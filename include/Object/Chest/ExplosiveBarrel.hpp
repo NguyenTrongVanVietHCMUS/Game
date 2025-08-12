@@ -18,7 +18,7 @@ private:
 public: 
 	ExplosiveBarrel(sf::Vector2f position,Hitbox hibox ,float scalex , float scaley); 
 	~ExplosiveBarrel();
-	void collide(const Entity* entity) override;
+	void collide(Entity* entity) override;
 	bool update(sf::Time dt) override;
 public:
 	void setMap(State* map);

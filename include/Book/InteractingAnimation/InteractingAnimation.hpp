@@ -16,6 +16,7 @@ protected :
 public :
 	InteractingAnimation(Object* owner); 
 	~InteractingAnimation();
+	virtual bool canActivate() ; // Check if the animation can be activated
 	virtual void activate(); 
 	virtual void deactivate(); 
 	virtual void update(sf::Time dt); // Update the animation state

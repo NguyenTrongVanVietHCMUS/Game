@@ -11,9 +11,7 @@ Hitbox::~Hitbox()
 }
 bool Hitbox::isCollide(const Hitbox& other) const
 {
-    return intersect(hitbox.left,hitbox.left+hitbox.width,other.hitbox.left,other.hitbox.left+other.hitbox.width)
-        &&
-        intersect(hitbox.top, hitbox.top + hitbox.height, other.hitbox.top, other.hitbox.top + other.hitbox.height);
+    return hitbox.intersects(other.hitbox); 
 }
 void Hitbox::draw(sf::RenderTarget& target, sf::RenderStates states) const 
 {
@@ -23,7 +21,14 @@ void Hitbox::draw(sf::RenderTarget& target, sf::RenderStates states) const
     shape.setFillColor(sf::Color(255, 0, 0, 128)); // semi-transparent red for visibility
     target.draw(shape, states); // Draw the hitbox shape
 }
-
+void Hitbox::draw(sf::RenderTarget& target, sf::RenderStates states,sf::Color color) const
+{
+    // Draw the hitbox as a rectangle shape for visualization
+    sf::RectangleShape shape(sf::Vector2f(hitbox.width, hitbox.height));
+    shape.setPosition(hitbox.left, hitbox.top);
+    shape.setFillColor(color); // semi-transparent red for visibility
+    target.draw(shape, states); // Draw the hitbox shape
+}
 
 // Note: The velocity member variable should be defined in the Entity class
 

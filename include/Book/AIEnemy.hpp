@@ -20,3 +20,8 @@ class AIHighRangeEnemy : public AIEnemy
 public : 
 	void update(Enemy* enemy, Entity* target, sf::Time dt); 
 };
+class AIZulan :public AIEnemy
+{
+public : 
+	void update(Enemy* enemy, Entity* target, sf::Time dt);
+};

@@ -145,10 +145,10 @@ private:
     std::vector<std::vector<Tileset>> tilesets;
     bool load(const std::string& jsonFile, int x, int y, int height, int width); 
     bool isCollide(Entity* entity1, Entity* entity2) const {
-        return entity1->getHitbox().hitbox.intersects(entity2->getHitbox().hitbox);
+        return entity1->getHitbox().isCollide(entity2->getHitbox());
 	}
     bool isBodyCollide(Entity* entity1, Entity* entity2) const {
-        return entity1->getBodyHitbox().hitbox.intersects(entity2->getBodyHitbox().hitbox);
+        return entity1->getBodyHitbox().isCollide(entity2->getBodyHitbox());
     }
     void handleCollision(); 
 private: 

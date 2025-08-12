@@ -74,7 +74,8 @@ Game::Game()
 			// load fonts 
 			load<sf::Font>(Fonts::ID::Main, "Media/Fonts/Sansation.ttf");
 			load<sf::Font>(Fonts::ID::Title, "Media/Fonts/PressStart2P_Regular.ttf");
-
+			load<sf::Font>(Fonts::ID::HUDFont, "Media/Fonts/Jersey10-Regular.ttf");
+			load<sf::Font>(Fonts::ID::PIXEL, "Media/Fonts/Pixelon.ttf");
 		}
 
 		{

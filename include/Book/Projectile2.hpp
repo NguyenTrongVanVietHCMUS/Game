@@ -47,7 +47,7 @@ public:
     bool update(sf::Time dt) override;
     bool AllowCollide(Entity* other) const;
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
-    void collide(const Entity* other) override;
+    void collide(Entity* other) override;
 
     Projectile2* clone(sf::Vector2f direction)const;
 

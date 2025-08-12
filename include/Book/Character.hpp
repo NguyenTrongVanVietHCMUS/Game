@@ -34,7 +34,7 @@ public :
     ~Character(); 
 public : 
     //SkillHolder skillHolder;
-    virtual void collide(const Entity*other); 
+    virtual void collide(Entity*other); 
     virtual bool handleEvent(const sf::Event& event,sf::RenderWindow* window) ;  
     virtual bool update(sf::Time dt) ; 
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const; 

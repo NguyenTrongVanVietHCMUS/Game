@@ -17,8 +17,14 @@ public:
     sf::FloatRect hitbox; // Hitbox of the entity
 	bool isExist() const { return exist; } // Check if the hitbox exists
     void print()const;
+    void set(const Hitbox& hitbox)
+    {
+        this->hitbox = hitbox.hitbox; 
+        exist = true; 
+    }
     bool isCollide(const Hitbox& other) const;
     void draw(sf::RenderTarget& target, sf::RenderStates states) const; // Draw the hitbo
+    void draw(sf::RenderTarget& target, sf::RenderStates states, sf::Color color) const; 
     void update(sf::Time dt);
     void update(const sf::Sprite& sprite); // Set the size of the hitbox based on 
     bool operator<(const Hitbox& other)const

@@ -10,7 +10,7 @@ ExplosiveBarrel::ExplosiveBarrel(sf::Vector2f position, Hitbox hitbox, float sca
     );
 }
 
-void ExplosiveBarrel::collide(const Entity* entity)
+void ExplosiveBarrel::collide(Entity* entity)
 {
     if (entity->type == Entity::Type::EnemyProjectile || entity->type == Entity::Type::AllyProjectile || entity->type == Entity::Type::Projectile)
     {
