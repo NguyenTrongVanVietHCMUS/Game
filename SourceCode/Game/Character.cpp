@@ -163,7 +163,7 @@ void Character::knockBack(sf::Vector2f force)
     movingAnimation->Knockback(force);
 }
 
-void Character::knockBack(const Projectile2* projectile, float Force)
+void Character::knockBack(const Projectile2* projectile, float Force, Entity *other)
 {
-    movingAnimation->Knockback(projectile, Force);
+    movingAnimation->Knockback(projectile, Force, other);
 }

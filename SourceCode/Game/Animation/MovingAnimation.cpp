@@ -150,11 +150,11 @@ void MovingAnimation::Knockback(sf::Vector2f force)
     setSpritePosition(); // Update the sprite position after knockback
 }
 
-void MovingAnimation::Knockback(const Projectile2* projectile, float Force)
+void MovingAnimation::Knockback(const Projectile2* projectile, float Force, Entity *other)
 {
     if (projectile)
     {
-        sf::Vector2f direction = projectile->getProjDirection();
+        sf::Vector2f direction = projectile->getProjDirection(other);
         // normalize the direction
         float length = std::sqrt(direction.x * direction.x + direction.y * direction.y);
         if (length != 0)

@@ -73,5 +73,5 @@ public:
     // extra method 
     virtual void takeDamage(int damage) {}; 
     virtual void knockBack(sf::Vector2f force) {};
-    virtual void knockBack(const Projectile2* projectile, float Force = 1000.0f) {};
+    virtual void knockBack(const Projectile2* projectile, float Force = 1000.0f, Entity *other = nullptr) {};
 };

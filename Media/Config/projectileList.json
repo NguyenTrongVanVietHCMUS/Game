@@ -22,7 +22,7 @@
     "texturePath": "Media/Assets/Projectiles/FlySword.png",
 
     "movement": {
-      "type": "Follow Movement",
+      "type": "Straight Movement",
       "speed": 250.0,
       "criticalAngle": 200.0,
       "targetPosition": { "x": 500.0, "y": 300.0 }
@@ -69,7 +69,7 @@
       "middlePositionX": 0.5,
       "middlePositionY": 0.5
     },
-    "Damage": 200.0
+    "Damage": 10.0
   },
   "Explosion basic": {
     "lifeTime" : 0.45,

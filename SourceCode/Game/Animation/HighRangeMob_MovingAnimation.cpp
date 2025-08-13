@@ -12,7 +12,7 @@ HighRangeMob_MovingAnimation::~HighRangeMob_MovingAnimation()
 }
 void HighRangeMob_MovingAnimation::getshot(const Entity* other)
 {
-    position.y -= 10;
+    //position.y -= 10;
     setSpritePosition();
 }
 
