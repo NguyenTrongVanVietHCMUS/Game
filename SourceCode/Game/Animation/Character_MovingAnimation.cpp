@@ -110,8 +110,13 @@ void Character_MovingAnimation::update(sf::Time dt)
         {
             state = IDLE; // Idle state
         }
-        position += CurrentKnockbackForce * dt.asSeconds(); // Apply knockback force
+        float ForceLimit = 500.0f;
+        
+        position += 
+            sf::Vector2f(std::max(std::min(CurrentKnockbackForce.x ,ForceLimit), -ForceLimit)* dt.asSeconds(),
+                        std::max(std::min(CurrentKnockbackForce.y ,ForceLimit), -ForceLimit)* dt.asSeconds()); // Apply knockback force
         CurrentKnockbackForce = CurrentKnockbackForce - CurrentKnockbackForce * KnockbackResistance * dt.asSeconds(); // Reduce knockback force over time
+
     }   
     // update the rotation base on position of 
     if (direction == LEFT)

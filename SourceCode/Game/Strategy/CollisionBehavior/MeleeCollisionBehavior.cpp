@@ -20,6 +20,7 @@ void MeleeCollisionBehavior::collide(Entity& self, const Entity* other) {
             nonConstOther->takeDamage(static_cast<int>(projectile->getAttribute("Damage")));
         } else if (projectile->type == Entity::Type::Projectile && (other->type == Entity::Type::Enemy || other->type == Entity::Type::Ally)) {
             nonConstOther->takeDamage(static_cast<int>(projectile->getAttribute("Damage")));
+            nonConstOther->knockBack(projectile, 5000.0f, nonConstOther);
             return;
         }
     }

@@ -51,7 +51,11 @@ void MovingAnimation::update(sf::Time dt)
                 sprite.setScale(scale, scale);
             }
         }
-        position += CurrentKnockbackForce * dt.asSeconds(); // Apply knockback force
+        float ForceLimit = 500.0f;
+        
+        position += 
+            sf::Vector2f(std::max(std::min(CurrentKnockbackForce.x ,ForceLimit), -ForceLimit)* dt.asSeconds(),
+                        std::max(std::min(CurrentKnockbackForce.y ,ForceLimit), -ForceLimit)* dt.asSeconds()); // Apply knockback force
         CurrentKnockbackForce = CurrentKnockbackForce - CurrentKnockbackForce * KnockbackResistance * dt.asSeconds(); // Reduce knockback force over time
     }
     currentImage.y = state;
@@ -146,7 +150,7 @@ void MovingAnimation::setState(State newState)
 
 void MovingAnimation::Knockback(sf::Vector2f force)
 {
-    CurrentKnockbackForce = force;
+    CurrentKnockbackForce += force;
     setSpritePosition(); // Update the sprite position after knockback
 }
 
@@ -161,7 +165,6 @@ void MovingAnimation::Knockback(const Projectile2* projectile, float Force, Enti
         {
             direction /= length;
         }
-        CurrentKnockbackForce = direction * Force;
-        Knockback(CurrentKnockbackForce);
+        CurrentKnockbackForce += direction * Force;
     }
 }

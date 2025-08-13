@@ -8,11 +8,14 @@ void ProjectileCollisionBehavior::collide(Entity& self,const Entity* other) {
             if(projectile->type == Entity::Type::EnemyProjectile && other->type == Entity::Type::Ally) {
                 nonConstOther->takeDamage(static_cast<int>(projectile->getAttribute("Damage")));
                 Worldmap->popEntity(&self);
+                nonConstOther->knockBack(projectile, 200.0f, nonConstOther);
             } else if(projectile->type == Entity::Type::AllyProjectile && other->type == Entity::Type::Enemy) {
                 nonConstOther->takeDamage(static_cast<int>(projectile->getAttribute("Damage")));
                 Worldmap->popEntity(&self);
+                nonConstOther->knockBack(projectile, 1000.0f, nonConstOther);
             } else if(projectile->type == Entity::Type::Projectile && (other->type == Entity::Type::Enemy || other->type == Entity::Type::Ally)) {
                 nonConstOther->takeDamage(static_cast<int>(projectile->getAttribute("Damage")));
+                nonConstOther->knockBack(projectile, 1000.0f, nonConstOther);
                 Worldmap->popEntity(&self); // Remove the projectile from the worldmap
             } else if (other->type == Entity::Type::Object) {
                 // Handle collision with objects
