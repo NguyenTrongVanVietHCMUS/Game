@@ -27,7 +27,6 @@ void RangedWeaponBehavior::activate(Weapon2& self, Entity* target){
             return; // Exit if projectile creation fails
         }
         proj->position = SpawnPosition; // Set the projectile's position to the spawn position
-        std::cerr << "Spawn Bullet\n";
         proj->type = self.ProjectileTypeTransform(target); // Transform the projectile type based on the target type
         proj->update(sf::seconds(0)); // Initialize the projectile's animation
         Worldmap->pushEntity(proj);

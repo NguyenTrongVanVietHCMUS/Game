@@ -22,6 +22,9 @@ public:
             } else if(projectile->type == Entity::Type::AllyProjectile && other->type == Entity::Type::Enemy) {
                 nonConstOther->takeDamage(static_cast<int>(projectile->getAttribute("Damage")));
                 Worldmap->popEntity(&self);
+            } else if(projectile->type == Entity::Type::Projectile && (other->type == Entity::Type::Enemy || other->type == Entity::Type::Ally)) {
+                nonConstOther->takeDamage(static_cast<int>(projectile->getAttribute("Damage")));
+                Worldmap->popEntity(&self); // Remove the projectile from the worldmap
             } else if (other->type == Entity::Type::Object) {
                 // Handle collision with objects
                 Worldmap->popEntity(&self); // Remove the projectile from the worldmap
@@ -58,11 +61,8 @@ public:
                 nonConstOther->takeDamage(static_cast<int>(projectile->getAttribute("Damage")));
             } else if (projectile->type == Entity::Type::AllyProjectile && other->type == Entity::Type::Enemy) {
                 nonConstOther->takeDamage(static_cast<int>(projectile->getAttribute("Damage")));
-                nonConstOther->knockBack(projectile, 1000.0f);
-            } else if (other->type == Entity::Type::Object) {
-                // Handle collision with objects
-
-                Worldmap->popEntity(nonConstOther); // Remove the projectile from the worldmap
+            } else if (projectile->type == Entity::Type::Projectile && (other->type == Entity::Type::Enemy || other->type == Entity::Type::Ally)) {
+                nonConstOther->takeDamage(static_cast<int>(projectile->getAttribute("Damage")));
                 return;
             }
         }
