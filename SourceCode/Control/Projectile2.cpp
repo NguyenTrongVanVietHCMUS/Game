@@ -232,3 +232,15 @@ Projectile2* Projectile2::clone(sf::Vector2f direction) const {
 void Projectile2::selfDelete() {
     currentMap->popEntity(this); 
 }
+
+sf::Vector2f Projectile2::getProjDirection(Entity *other) const {
+    if (movementStrategy) {
+        return movementStrategy->getDirection();
+    }
+    if(other)
+    {
+        return other->getPosition() - position;
+    }
+    std::cerr << "Warning: No movement strategy set and no entity to calculate. RETURN THE DIRECTION TO THE RIGHT\n";
+    return sf::Vector2f(0.0f, 5.0f);
+}

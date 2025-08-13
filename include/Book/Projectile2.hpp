@@ -50,7 +50,7 @@ public:
     void collide(const Entity* other) override;
 
     Projectile2* clone(sf::Vector2f direction)const;
-
+    sf::Vector2f getProjDirection(Entity *other = nullptr) const;
 public:
     void selfDelete();
 public:

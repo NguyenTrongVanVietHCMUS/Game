@@ -3,7 +3,7 @@
 #include<Control/Hitbox.hpp>
 #include<memory>
 
-
+class Projectile2;
 class Entity:public sf::Drawable, public std::enable_shared_from_this<Entity>
 {
 
@@ -72,4 +72,6 @@ public :
 public:
     // extra method 
     virtual void takeDamage(int damage) {}; 
+    virtual void knockBack(sf::Vector2f force) {};
+    virtual void knockBack(const Projectile2* projectile, float Force = 1000.0f) {};
 };

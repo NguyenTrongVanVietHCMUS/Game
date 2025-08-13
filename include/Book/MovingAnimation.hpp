@@ -103,7 +103,7 @@ public:
     virtual void chase(Entity* target,sf::Time dt); 
     virtual void wander(sf::Time dt); 
     virtual void Knockback(sf::Vector2f force);// Handle knockback effect
-    virtual void Knockback(Projectile2* projectile);
+    virtual void Knockback(const Projectile2* projectile, float Force = 1000.0f);
     virtual sf::Vector2f getHandPosition()const;
     void setSpriteScale(float scale);
     void setSpriteRotation(float angle);

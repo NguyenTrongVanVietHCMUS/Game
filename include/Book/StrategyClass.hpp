@@ -12,6 +12,7 @@ public:
     virtual std::unique_ptr<IMovement> clone() const = 0;
     virtual ~IMovement() = default;
     virtual void setDirection(sf::Vector2f direction) {};
+    virtual sf::Vector2f getDirection() const = 0;
 };
 
 struct ICollision

@@ -157,3 +157,13 @@ void Character::takeDamage(int damage)
         attributes.TakeDamage(attributes.getHealth()); 
     }
 }
+
+void Character::knockBack(sf::Vector2f force)
+{
+    movingAnimation->Knockback(force);
+}
+
+void Character::knockBack(const Projectile2* projectile, float Force)
+{
+    movingAnimation->Knockback(projectile, Force);
+}

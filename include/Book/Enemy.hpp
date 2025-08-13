@@ -71,5 +71,6 @@ public:
     }
 
     void takeDamage(int damage) override;
-
+    void knockBack(sf::Vector2f force) override;
+    void knockBack(const Projectile2* projectile, float Force = 1000.0f) override;
 };

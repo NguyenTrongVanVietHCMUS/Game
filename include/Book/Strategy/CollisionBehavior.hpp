@@ -52,13 +52,16 @@ public:
             Worldmap->popEntity(nonConstOther); // Remove the projectile from the worldmap
         }
 
-        if(auto projectile = dynamic_cast<const Projectile2*>(other)) {
+        if(auto projectile = dynamic_cast<const Projectile2*>(&self)) {
             if (projectile->type == Entity::Type::EnemyProjectile && other->type == Entity::Type::Ally) {
+                nonConstOther->knockBack(projectile, 1000.0f);
                 nonConstOther->takeDamage(static_cast<int>(projectile->getAttribute("Damage")));
             } else if (projectile->type == Entity::Type::AllyProjectile && other->type == Entity::Type::Enemy) {
                 nonConstOther->takeDamage(static_cast<int>(projectile->getAttribute("Damage")));
+                nonConstOther->knockBack(projectile, 1000.0f);
             } else if (other->type == Entity::Type::Object) {
                 // Handle collision with objects
+
                 Worldmap->popEntity(nonConstOther); // Remove the projectile from the worldmap
                 return;
             }

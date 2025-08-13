@@ -40,6 +40,11 @@ public:
             speedY = (direction.y / length) * speed;
         }
     }
+
+    sf::Vector2f getDirection() const override
+    {
+        return sf::Vector2f(speedX, speedY);
+    }
 };
 
 class FollowMovement : public IMovement
@@ -83,6 +88,10 @@ public:
             speedY = (direction.y / length) * speed;
         }
     }
+    sf::Vector2f getDirection() const override
+    {
+        return sf::Vector2f(speedX, speedY);
+    }
 };
 
 class ThrowMovement : public IMovement
@@ -117,6 +126,11 @@ public:
     std::unique_ptr<IMovement> clone() const override{
         return std::make_unique<ThrowMovement>(*this);
     }
+
+    sf::Vector2f getDirection() const override
+    {
+        return sf::Vector2f(speedX, speedY);
+    }
 };
 
 class LaserBeamMovement : public IMovement
@@ -133,6 +147,11 @@ public:
 
     std::unique_ptr<IMovement> clone() const override {
         return std::make_unique<LaserBeamMovement>(*this);
+    }
+
+    sf::Vector2f getDirection() const override
+    {
+        return (endPosition - startPosition);
     }
 };
 
@@ -151,5 +170,10 @@ public:
 
     std::unique_ptr<IMovement> clone() const override {
         return std::make_unique<LaserAimMovement>(*this);
+    }
+
+    sf::Vector2f getDirection() const override
+    {
+        return (endPosition - startPosition);
     }
 };
