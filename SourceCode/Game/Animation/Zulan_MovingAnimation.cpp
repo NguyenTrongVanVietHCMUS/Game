@@ -27,17 +27,18 @@ Zulan_MovingAnimation::Zulan_MovingAnimation(sf::Vector2f& position, float scale
 	bodySprite.setOrigin(body.getSize().x / 2.f, body.getSize().y / 2.f);
 	furyRingSprite.setOrigin(furyRing.getSize().x / 2.f, furyRing.getSize().y / 2.f);
 	furyBodySprite.setOrigin(furyBody.getSize().x / 2.f, furyBody.getSize().y / 2.f);
-
+    jump = 1; 
+    center = 0; 
     setSpritePosition();
 
 }
 void Zulan_MovingAnimation::setSpritePosition()
 {
-    ringSprite.setPosition(sf::Vector2f(position.x,position.y-15)); 
+    ringSprite.setPosition(sf::Vector2f(position.x, position.y - center * 3));
     bodySprite.setPosition(position);
-    furyRingSprite.setPosition(position); 
-	furyBodySprite.setPosition(position);
-    deathSprite.setPosition(position); 
+    furyRingSprite.setPosition(sf::Vector2f(position.x, position.y - center * 3));
+    furyBodySprite.setPosition(position);
+    deathSprite.setPosition(position);
 }
 Zulan_MovingAnimation::~Zulan_MovingAnimation()
 {
@@ -45,27 +46,40 @@ Zulan_MovingAnimation::~Zulan_MovingAnimation()
 }
 void Zulan_MovingAnimation::update(sf::Time dt)
 {
-    elapsedTime += dt;
+    elapsedTime += dt; 
+    if (elapsedTime.asSeconds()>0.3)
+    {
+        elapsedTime = sf::Time::Zero; 
+        center += jump; 
+        if (center == 2)jump = -1; 
+        if (center == 0) jump = 1; 
+    }
 	auto zulan = dynamic_cast<Zulan*>(entity);
     float num  = 1e9; 
     if(!zulan->isFury())
     {
-        if (elapsedTime.asMicroseconds() > 0)
-        {
-            elapsedTime = sf::Time::Zero;
-            ringSprite.rotate(39.f);
-            furyRingSprite.rotate(39.f);
-        }
+        ringSprite.rotate(39.f);
+        furyRingSprite.rotate(39.f);
     }
     else
     {
-        if(elapsedTime.asMilliseconds() >0)
-        {
-            elapsedTime = sf::Time::Zero;
-            furyRingSprite.rotate(41.f);
-            ringSprite.rotate(41.f);
-		}
+        furyRingSprite.rotate(41.f);
+        ringSprite.rotate(41.f);
     }
+    if(position.x<oldPosition.x)
+    {
+        ringSprite.setScale(-scale, scale);
+        furyRingSprite.setScale(-scale, scale);
+        bodySprite.setScale(-scale, scale);
+        furyBodySprite.setScale(-scale, scale);
+    }
+    else
+    {
+        ringSprite.setScale(scale, scale);
+        furyRingSprite.setScale(scale, scale);
+        bodySprite.setScale(scale, scale);
+        furyBodySprite.setScale(scale, scale);
+	}
 }
 void Zulan_MovingAnimation::getshot(const Entity* other)
 {

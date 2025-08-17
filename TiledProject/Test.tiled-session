@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "V:/Game/Media/Assets/Maps/Dungeon/Jungle/room6.json",
+    "activeFile": "",
     "expandedProjectPaths": [
         "."
     ],
@@ -18,7 +18,8 @@
             "scaleInDock": 1
         },
         "#a": {
-            "dynamicWrapping": true
+            "dynamicWrapping": true,
+            "scaleInDock": 0.125
         },
         "#chest": {
             "dynamicWrapping": true,
@@ -974,9 +975,9 @@
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/battleroom1.json",
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway2.json",
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/room5.json",
-        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway8.json",
-        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway7.json",
-        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway1.json",
+        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/room6.json",
+        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway3.json",
+        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/room7.json",
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/chestroom2.json"
     ],
     "tileset.embedInMap": true,

@@ -4,6 +4,8 @@
 class Zulan_MovingAnimation :public MovingAnimation
 {
 private : 
+    int jump ; 
+    int center ; 
     sf::Time elapsedTime = sf::Time::Zero; 
     sf::Texture death,ring,body,furyRing,furyBody; 
 	sf::Sprite deathSprite, ringSprite,bodySprite,furyRingSprite,furyBodySprite;
