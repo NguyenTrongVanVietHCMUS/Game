@@ -166,7 +166,7 @@ private:
     State* Worldmap = nullptr;
 public:
     LaserAimMovement(float aimTime, sf::Vector2f startPosition, sf::Vector2f endPosition, State* worldmap)
-        : aimTime(aimTime), startPosition(startPosition), endPosition(endPosition), Worldmap(worldmap) {}
+        : aimTime(aimTime), startPosition(startPosition), endPosition(endPosition), Worldmap(worldmap), elapsedTime(aimTime) {}
 
     void update(Projectile2& projectile, const sf::Time& dt) override;
 
@@ -177,5 +177,27 @@ public:
     sf::Vector2f getDirection() const override
     {
         return (endPosition - startPosition);
+    }
+};
+
+class HoldLaserBeamMovement : public IMovement
+{
+private:
+    Weapon2& weapon;
+    float aimTime;
+    float elapsedTime;
+    State* Worldmap = nullptr;
+public:
+
+    void update(Projectile2& projectile, const sf::Time& dt) override;
+    HoldLaserBeamMovement(float aimTime, Weapon2& weapon, State* worldmap)
+        : aimTime(aimTime), weapon(weapon), Worldmap(worldmap), elapsedTime(0.0f) {}
+
+    std::unique_ptr<IMovement> clone() const override {
+        return std::make_unique<HoldLaserBeamMovement>(*this);
+    }
+    sf::Vector2f getDirection() const override
+    {
+        return weapon.getDirection(); // Use the weapon's direction
     }
 };

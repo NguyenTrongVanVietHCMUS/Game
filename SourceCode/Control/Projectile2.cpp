@@ -35,6 +35,11 @@ void Projectile2::setMovingAnimation(std::unique_ptr<MovingAnimation> animation)
 {
     if (animation) {
         movingAnimation = std::move(animation);
+        if(movingAnimation){
+            if(auto laserAnimation = dynamic_cast<LaserAnimation*>(movingAnimation.get())) {
+                laserAnimation->setOwner(this); // Set the owner of the laser animation to this projectile
+            }
+        }
     }
 }
 
@@ -96,9 +101,20 @@ bool Projectile2::update(sf::Time dt)
         }
     }
     // for every collided Entities
+    if(movingAnimation)
+    {
+        if(auto laserAnimation = dynamic_cast<LaserAnimation*>(movingAnimation.get())) {
+            // Do nothing
+        } else {
+            for (auto entity : collidedEntitiesFlag) {
+            collidedEntities[entity] = debounceTime;
+        }
+        }
 
-    for (auto entity : collidedEntitiesFlag) {
-        collidedEntities[entity] = debounceTime;
+    } else {
+        for (auto entity : collidedEntitiesFlag) {
+            collidedEntities[entity] = debounceTime;
+        }
     }
     collidedEntitiesFlag.clear(); // Clear the flag after processing
     for (auto it = collidedEntities.begin(); it != collidedEntities.end(); ) {
@@ -178,7 +194,6 @@ Projectile2::Projectile2(std::string name, float lifeTime, sf::Vector2f position
 Projectile2::Projectile2(std::string name,float LifeTime,sf::Vector2f position, float scale, State* CurrentMap, std::string texturePath,
 std::unique_ptr<IMovement> movement, std::unique_ptr<ICollision> collision, std::unique_ptr<MovingAnimation> animation)
 : Entity(name, position), movementStrategy(std::move(movement)), collisionStrategy(std::move(collision)), currentMap(CurrentMap), movingAnimation(std::move(animation)) {
-    // Load the projectile texture
     if (!texture.loadFromFile(texturePath)) {
         throw std::runtime_error("Failed to load projectile texture");
     }   
@@ -191,6 +206,12 @@ std::unique_ptr<IMovement> movement, std::unique_ptr<ICollision> collision, std:
     
     sprite.setOrigin(texture.getSize().x / 2.f, texture.getSize().y);
     sprite.setScale(scale, scale); // Set the scale of the sprite
+    // Try cast Moving animation to Laser beam animation
+    if (movingAnimation) {
+        if (auto laserAnimation = dynamic_cast<LaserAnimation*>(movingAnimation.get())) {
+            laserAnimation->setOwner(this);
+        } 
+    } 
 }
 
 
@@ -209,6 +230,12 @@ std::unique_ptr<IMovement> movement, std::unique_ptr<ICollision> collision , std
     // set origin hitbox to center of the sprite
     
     sprite.setOrigin(texture.getSize().x / 2.f, texture.getSize().y);
+    if (movingAnimation) {
+        if (auto laserAnimation = dynamic_cast<LaserAnimation*>(movingAnimation.get())) {
+            std::cerr << "Projectile2: Moving animation is a LaserAnimation." << std::endl;
+            laserAnimation->setOwner(this);
+        } else std::cerr << "Projectile2: Moving animation is not a LaserAnimation." << std::endl;
+    }
 }
 
 Projectile2* Projectile2::clone(sf::Vector2f direction) const {

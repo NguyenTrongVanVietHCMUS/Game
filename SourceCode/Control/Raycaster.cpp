@@ -8,7 +8,19 @@ RaycastHit Raycaster::cast(
     RaycastHit hit;
 
     // 1) Compute end point of the ray in world‐space
-    sf::Vector2f end = origin + direction * maxDistance;
+    // normalize the direction vector
+    float length = std::hypot(direction.x, direction.y);
+    sf::Vector2f end;
+    if(length > 0.0f)
+    {
+        // Normalize the direction vector
+        sf::Vector2f normalizedDirection = direction / length;
+        // Scale it to the maximum distance
+        end = origin + normalizedDirection * maxDistance;
+    } else {
+        // If the direction is zero, return the origin as the end point
+        end = origin + direction * maxDistance;
+    }
 
     // 2) Convert origin and end to integer pixel coords
     int x0 = static_cast<int>(std::floor(origin.x));
@@ -92,6 +104,7 @@ std::set<Entity*> Raycaster::castGetEntities(const sf::Vector2f& startPosition,
             const sf::FloatRect& r = e->getHitbox().hitbox;
             if (r.contains(sampleX, sampleY)) {
                 if(e->type == Entity::Type::Ally || e->type == Entity::Type::Enemy) {
+                   
                     hitEntities.insert(e);
                 } 
             }

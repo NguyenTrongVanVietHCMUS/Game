@@ -288,9 +288,9 @@
       "x": 150,
       "y": 75
     },
-    "cooldownTime": 0.1,
+    "cooldownTime": 5.0,
     "behavior": {
-      "type": "Laser Weapon Behavior"
+      "type": "Hold Laser Gun Behavior"
     },
     "animation": {
       "type": "Gun Animation",

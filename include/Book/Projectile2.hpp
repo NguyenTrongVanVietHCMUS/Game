@@ -31,14 +31,14 @@ public:
         std::unique_ptr<IMovement> movement = nullptr, std::unique_ptr<ICollision> collision = nullptr, std::unique_ptr<MovingAnimation> animation = nullptr);
 
     Projectile2(std::string name,float LifeTime,sf::Vector2f position, float scale, State* CurrentMap, std::string texturePath,
-    std::unique_ptr<IMovement> movement = nullptr, std::unique_ptr<ICollision> collision = nullptr, std::unique_ptr<MovingAnimation> animation = nullptr);
+        std::unique_ptr<IMovement> movement = nullptr, std::unique_ptr<ICollision> collision = nullptr, std::unique_ptr<MovingAnimation> animation = nullptr);
     
     void setBehavior(std::unique_ptr<IMovement> movement, std::unique_ptr<ICollision> collision);
     void setMovement(std::unique_ptr<IMovement> movement);
     void setCollision(std::unique_ptr<ICollision> collision);
     void setMovingAnimation(std::unique_ptr<MovingAnimation> animation);
     void addTrailEffect(std::unique_ptr<IEffect> effect);
-
+    
     void setSpriteScale(float scale);
     void setSpriteRotation(float angle);
     void setAttribute(const std::string& attributeName, float value);

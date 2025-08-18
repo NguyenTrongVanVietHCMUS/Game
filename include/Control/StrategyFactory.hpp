@@ -95,6 +95,12 @@ private:
                     return std::make_unique<BalanceSpreadBehavior>(map,
                         data.value("numBullet", 4));
                 }
+            },
+            {
+                "Hold Laser Gun Behavior", [](const json& data, State* map)
+                {
+                    return std::make_unique<HoldLaserGunBehavior>(map);
+                }
             }
         };
         return registry;

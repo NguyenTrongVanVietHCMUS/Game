@@ -1,17 +1,6 @@
 #include <Book/MovingAnimation.hpp>
 #include <Book/Projectile2.hpp>
-void laserAimAnimation::draw(sf::RenderTarget& target, sf::RenderStates states)const {
-
-    sf::Vertex line[] = {
-        sf::Vertex(BeginPosition, sf::Color::Red),
-        sf::Vertex(TargetPosition, sf::Color::Red)
-    };
-    line[0].color = sf::Color::Red;
-    line[1].color = sf::Color::Red;
-    target.draw(line, 2, sf::Lines);
-}
-
-void LaserAnimation::ReCalculateScale(){
+void HoldLaserAnimation::ReCalculateScale(){
     if(owner)
     {
         startPosition =
@@ -22,38 +11,42 @@ void LaserAnimation::ReCalculateScale(){
             , owner->getAttribute("End Position Y"));
         float distance = std::pow(endPosition.x - startPosition.x, 2) + std::pow(endPosition.y - startPosition.y, 2);
         distance = std::sqrt(distance);
-        // get sprite width before scaling
-        float spriteWidth = sprite.getLocalBounds().width;
+        float spriteWidth = sprite.getGlobalBounds().width;
         scale = distance / spriteWidth;
         sprite.setScale(scale, 1.0f);
         supportSprite.setScale(scale, 1.0f);
+    } else
+    {
+        std::cerr << "WARNING : HoldLaserAnimation owner is null." << std::endl;
     }
     
 }
 
-LaserAnimation::LaserAnimation(sf::Texture *texture, sf::Vector2f startPosition, sf::Vector2f endPosition, sf::Vector2f middlePosition, sf::Vector2f& position)
-: startPosition(startPosition), endPosition(endPosition),
+HoldLaserAnimation::HoldLaserAnimation(sf::Texture *texture, sf::Vector2f middlePosition, sf::Vector2f& position)
+: startPosition(startPosition), endPosition(endPosition), owner(owner),
 MovingAnimation(texture, sf::Vector2u(1.f, 1.f), 0, position, 1.0f, middlePosition) {
     float distance = std::pow(endPosition.x - startPosition.x, 2) + std::pow(endPosition.y - startPosition.y, 2);
     distance = std::sqrt(distance);
     float spriteWidth = sprite.getGlobalBounds().width;
     supportSprite.setTexture(*texture);
     scale = distance / spriteWidth;
-    std::cerr << "First scale: " << scale << ' ' <<distance << ' ' << spriteWidth << ' ' << std::endl;
     sprite.setScale(scale, 1.0f);
     sprite.setOrigin(0.0f, sprite.getGlobalBounds().height / 2.0f); // Center the sprite vertically
     supportSprite.setScale(scale, 1.0f);
     supportSprite.setOrigin(0.0f, supportSprite.getGlobalBounds().height / 2.0f); // Center the sprite vertically
+    std::cerr << "Trying to load the ball texture." << std::endl;
     BallTexture = new sf::Texture();
     if(BallTexture->loadFromFile("Media/Assets/Projectiles/LaserBall.png")) {
+        std::cerr << "Ball texture loaded successfully." << std::endl;
         ballSprite1.setTexture(*BallTexture);
         ballSprite2.setTexture(*BallTexture);
     } else {
         std::cerr << "Failed to load LaserBall texture." << std::endl;
     }
+    std::cerr << "Ball texture loaded successfully." << std::endl;
 }
 
-void LaserAnimation::update(sf::Time dt) {
+void HoldLaserAnimation::update(sf::Time dt) {
 
     ReCalculateScale();
     elapseTime += dt.asMilliseconds();
@@ -75,7 +68,7 @@ void LaserAnimation::update(sf::Time dt) {
     ballSprite2.setPosition(endPosition.x - std::abs(ballSprite2.getGlobalBounds().width / 2), endPosition.y - std::abs(ballSprite2.getGlobalBounds().height / 2));
 }
 
-void LaserAnimation::draw(sf::RenderTarget& target, sf::RenderStates states) const {
+void HoldLaserAnimation::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     target.draw(sprite, states);
     target.draw(supportSprite, states);
     target.draw(ballSprite1, states);

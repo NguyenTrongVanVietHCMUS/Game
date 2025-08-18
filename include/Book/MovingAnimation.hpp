@@ -223,6 +223,7 @@ private:
     float elapseTime = 0.0f;
     sf::Texture* BallTexture;
     sf::Sprite ballSprite1 , ballSprite2 , supportSprite;
+    Projectile2* owner = nullptr; // Pointer to the owner projectile
 public:
     LaserAnimation(sf::Texture *texture, sf::Vector2f startPosition, sf::Vector2f endPosition, sf::Vector2f middlePosition, sf::Vector2f& position);
     ~LaserAnimation() {
@@ -232,4 +233,37 @@ public:
     }
     void update(sf::Time dt) override;
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+
+public:
+    void ReCalculateScale();
+    void setOwner(Projectile2* projectile) {
+        owner = projectile;
+    }
 }; 
+
+class HoldLaserAnimation : public MovingAnimation
+{
+private:
+    sf::Vector2f startPosition;
+    sf::Vector2f endPosition;
+    float elapseTime = 0.0f;
+    sf::Texture* BallTexture;
+    sf::Sprite ballSprite1 , ballSprite2 , supportSprite;
+    Projectile2* owner; // Pointer to the owner projectile
+
+    void ReCalculateScale();
+public:
+    HoldLaserAnimation(sf::Texture *texture, sf::Vector2f middlePosition, sf::Vector2f& position);
+    ~HoldLaserAnimation() {
+        if (BallTexture) {
+            delete BallTexture; // Clean up the ball texture if it was dynamically allocated
+        }
+    }
+    void update(sf::Time dt) override;
+    void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+  
+public:
+    void setOwner(Projectile2* projectile) {
+        owner = projectile;
+    }
+};
