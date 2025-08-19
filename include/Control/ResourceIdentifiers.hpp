@@ -21,7 +21,6 @@ namespace Textures
 		GoblinMageRoyal,
 		GoblinSupport,
 		GoblinWarrior,
-
 		SwordMinion,
 		BlunderbussPistolMinion,
 		RifleMinion,
@@ -69,7 +68,9 @@ namespace Fonts
 	enum ID
 	{
 		Title,
+		HUDFont,
 		Main,
+		PIXEL,
 	};
 }
 

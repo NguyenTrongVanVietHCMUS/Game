@@ -14,7 +14,7 @@ Enemy::~Enemy()
 {
     // Destructor logic if needed
 }
-void Enemy::collide(const Entity* other)
+void Enemy::collide(Entity* other)
 {
     if(attributes.isDeath())
         return; // If the enemy is dead, do not handle collisions

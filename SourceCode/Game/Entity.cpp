@@ -34,8 +34,8 @@ bool Entity::update(sf::Time dt)
 }
 void Entity::draw(sf::RenderTarget& target, sf::RenderStates states)const 
 {
-    hitbox.draw(target,states) ;  
-    bodyHitbox.draw(target, states); 
+    bodyHitbox.draw(target, states, sf::Color(50, 200, 50, 128));
+    hitbox.draw(target,states,sf::Color(200, 54, 50, 128)) ;
 }
 Hitbox Entity::getHitbox() const
 {
@@ -76,11 +76,11 @@ bool Entity::isBodyCollide(const Entity* other) const
     if (!bodyHitbox.isExist()) return hitbox.isCollide(other->getBodyHitbox()); // If body hitbox does not exist, return false
     return bodyHitbox.isCollide(other->getBodyHitbox());
 }
-void Entity::collide(const Entity* other)
+void Entity::collide(Entity* other)
 {   
     // do nothing for now ; 
 }
-void Entity::bodyCollide(const Entity* other)
+void Entity::bodyCollide(Entity* other)
 {
     // do nothing for now ; 
 }

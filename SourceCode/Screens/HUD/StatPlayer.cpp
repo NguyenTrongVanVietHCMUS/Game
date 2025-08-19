@@ -88,9 +88,60 @@ void StatPlayer::draw(sf::RenderTarget& target, sf::RenderStates states)const
 	manabar.setPosition(sf::Vector2f(50, 90)); // Set the position for the mana bar
 	target.draw(manabar, states);
 
+	{
 
+		sf::Text middleSlash; 
+		middleSlash.setFont(ResourceManager::getInstance().get<sf::Font>(Fonts::ID::HUDFont)); // Get the default font
+		middleSlash.setString("/"); // Set the middle slash text
+		middleSlash.setCharacterSize(24); // Set the character size for the middle slash
+		middleSlash.setFillColor(sf::Color::White); 
+		middleSlash.setOrigin(middleSlash.getLocalBounds().width / 2.f, middleSlash.getLocalBounds().height / 2.f); // Set the origin to the center of the middle slash)
+		middleSlash.setPosition(sf::Vector2f(122,19)); // Set the position for the middle slash
+		target.draw(middleSlash, states); 
+		middleSlash.setPosition(sf::Vector2f(122, 49)); // Set the position for the middle slash
+		target.draw(middleSlash, states);
+		middleSlash.setPosition(sf::Vector2f(122, 79)); // Set the position for the middle slash
+		target.draw(middleSlash, states);
 
+		sf::Text health; 
+		health.setFont(ResourceManager::getInstance().get<sf::Font>(Fonts::ID::PIXEL)); // Get the default font
+		health.setString(std::to_string(player->getHealth())); // Set the health text
+		health.setCharacterSize(22); // Set the character size for the health text
+		health.setFillColor(sf::Color::White);
+		health.setOrigin(health.getLocalBounds().width, health.getLocalBounds().height / 2.f); // Set the origin to the center of the health text
+		health.setPosition(sf::Vector2f(115, 22)); // Set the position for the health text
+		target.draw(health, states);
+		health.setString(std::to_string(player->getMaxHealth())); 
+		health.setOrigin(0, health.getLocalBounds().height / 2.f); // Set the origin to the center of the health text
+		health.setPosition(sf::Vector2f(130, 22)); // Set the position for the health text
+		target.draw(health, states);
 
+		sf::Text shield; 
+		shield.setFont(ResourceManager::getInstance().get<sf::Font>(Fonts::ID::PIXEL)); // Get the default font
+		shield.setString(std::to_string(player->getShield())); // Set the shield text
+		shield.setCharacterSize(22); // Set the character size for the shield text
+		shield.setFillColor(sf::Color::White);
+		shield.setOrigin(shield.getLocalBounds().width, shield.getLocalBounds().height / 2.f); // Set the origin to the center of the shield text
+		shield.setPosition(sf::Vector2f(115, 52)); // Set the position for the shield text
+		target.draw(shield, states);
+		shield.setString(std::to_string(player->getMaxShield()));
+		shield.setOrigin(0, shield.getLocalBounds().height / 2.f); // Set the origin to the center of the shield text
+		shield.setPosition(sf::Vector2f(130, 52)); // Set the position for the shield text
+		target.draw(shield, states);
+		sf::Text mana;
+		mana.setFont(ResourceManager::getInstance().get<sf::Font>(Fonts::ID::PIXEL)); // Get the default font
+		mana.setString(std::to_string(player->getMana())); // Set the mana text
+		mana.setCharacterSize(22); // Set the character size for the mana text
+		mana.setFillColor(sf::Color::White);
+		mana.setOrigin(mana.getLocalBounds().width, mana.getLocalBounds().height / 2.f); // Set the origin to the center of the mana text
+		mana.setPosition(sf::Vector2f(115, 82)); // Set the position for the mana text
+		target.draw(mana, states);
+		mana.setString(std::to_string(player->getMaxMana())); // Set the mana text
+		mana.setOrigin(0, mana.getLocalBounds().height / 2.f); // Set the origin to the center of the mana text
+		mana.setPosition(sf::Vector2f(130, 82)); // Set the position for the mana text
+		target.draw(mana, states);
+
+	}
 	target.setView(view);
 }
 //states.texture = &tilesets[i].texture; // Set the texture for the current tileset

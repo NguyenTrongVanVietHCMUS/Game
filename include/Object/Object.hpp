@@ -6,9 +6,8 @@
 class Object : public Entity
 {
 protected : 
-	std::unique_ptr<InteractingAnimation> interactingAnimation; 
+	std::unique_ptr<InteractingAnimation> interactingAnimation;
 public:
-    
     Object(std::string name,sf::Vector2f position, Hitbox hitbox, float scalex, float scaley) :Entity(name, position, hitbox)
     {
         type = Entity::Type::Object;
@@ -34,6 +33,7 @@ public:
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const
     {
 		interactingAnimation->draw(target, states); 
+        Entity::draw(target, states); 
         // do nothing 
     }
 };

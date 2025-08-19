@@ -14,6 +14,8 @@
 #include<Object/Mob/RifleMinion.hpp>
 #include<Object/Chest/Chest.hpp>
 #include <Object/Chest/ExplosiveBarrel.hpp>
+#include<Boss/GoblinPriest.hpp>
+#include<Boss/Zulan.hpp> 
 Jungle::Jungle(StateStack& stack,Context context):
     State(stack,context)
 {         
@@ -21,7 +23,7 @@ Jungle::Jungle(StateStack& stack,Context context):
     map->entities.push_back(new Knight(map->startingPoint, this, &map->camera)); 
     
  //   map->entities.push_back(new Boar(map->startingPoint,this)); // Add a Boar entity to the 
-    map->entities.push_back(new GoblinShooter(map->startingPoint,this)); 
+    //map->entities.push_back(new GoblinShooter(map->startingPoint,this)); 
     //map->entities.push_back(new SwordMinion(map->startingPoint, this));
 	//map->entities.push_back(new BlunderbussPistolMinion(map->startingPoint, this));
 	//map->entities.push_back(new RifleMinion(map->startingPoint, this));
@@ -32,6 +34,8 @@ Jungle::Jungle(StateStack& stack,Context context):
 	//map->entities.push_back(new GoblinWarrior(map->startingPoint, this));
 	//map->entities.push_back(new GoblinExecutor(map->startingPoint, this));
 	//map->entities.push_back(new MadScientist(map->startingPoint, this));
+	//map->entities.push_back(new GoblinPriest(map->startingPoint, this)); // Add a Goblin Priest entity to the map
+	map->entities.push_back(new Zulan(map->startingPoint, this)); // Add a Zulan entity to the map
     context.music->play(Music::Jungle);
     map->setWeaponLoader(weaponLoader); // Set the weapon loader for the map
 

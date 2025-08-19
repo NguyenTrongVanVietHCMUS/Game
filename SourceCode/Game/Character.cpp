@@ -105,7 +105,7 @@ bool Character::update(sf::Time dt)
     attributes.update(dt); // Update the entity's attributes
     return false;
 }
-void Character::collide(const Entity* other)
+void Character::collide(Entity* other)
 {    
     movingAnimation->handleCollision(other);
 }

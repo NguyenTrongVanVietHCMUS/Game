@@ -79,16 +79,9 @@ public:
     {
         movingAnimation->draw(target, states);
         
-		sf::RectangleShape bodyHitboxShape(sf::Vector2f(getBodyHitbox().hitbox.width, getBodyHitbox().hitbox.height));
-		bodyHitboxShape.setPosition(sf::Vector2f(getBodyHitbox().hitbox.left, getBodyHitbox().hitbox.top));
-		bodyHitboxShape.setFillColor(sf::Color(0, 255, 0, 100)); // Semi-transparent green color for the body hitbox
-		target.draw(bodyHitboxShape, states); // Draw the body hitbox shape
-        
-        sf::RectangleShape hitboxshape(sf::Vector2f(getHitbox().hitbox.width, getHitbox().hitbox.height));
-        hitboxshape.setPosition(sf::Vector2f(getHitbox().hitbox.left, getHitbox().hitbox.top));
-		hitboxshape.setFillColor(sf::Color(255, 0, 0, 100)); // Semi-transparent red color for the hitbox
-        target.draw(hitboxshape, states); // Draw the hitbox shape
-
+		getBodyHitbox().draw(target, states, sf::Color(50, 200, 50, 128)); // Draw the body hitbox of the knight
+		
+        getHitbox().draw(target, states, sf::Color(200, 50, 50, 128)); // Draw the hitbox of the knight
 
         inventory->draw(target, states); // Draw the inventory
         sf::CircleShape circle(3);
@@ -97,8 +90,12 @@ public:
         // Draw the circle at the hand position for debugging purposes
         target.draw(circle, states);
     }
-    void collide(const Entity* other) override final 
+    void collide(Entity* other) override final 
     {
         movingAnimation->handleCollision(other); 
 	}
+    void bodyCollide(Entity* other)override final
+    {
+        // here is right ; 
+    }
 };
