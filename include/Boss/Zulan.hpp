@@ -8,6 +8,8 @@
 #include<Book/MovingAnimation/Zulan_MovingAnimation.hpp>
 #include<memory>
 #include<Book/AIEnemy.hpp>
+
+
 class Zulan : public Enemy
 {
 private:
@@ -16,6 +18,7 @@ public:
     Zulan(sf::Vector2f position, State* state) : Enemy("Zulan", position)
     {
         sightRange = 350.f;
+        inventory->addWeapon(WeaponLoader(state).LoadWeapons("Zulan Laser"));
         movingAnimation = std::make_unique<Zulan_MovingAnimation>(this->position, 3, this);
         movingAnimation->speed = 80.0f;
         aiEnemy = std::make_unique<AIZulan>();
