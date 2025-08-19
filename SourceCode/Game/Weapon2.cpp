@@ -25,6 +25,8 @@ void Weapon2::activate(Entity*target)
 {
     if( cooldownBehavior && !cooldownBehavior->isReady()) {
         return; // If the weapon is on cooldown, do not activate
+
+    // Play âm thanh ở đây
     } else {
         cooldownBehavior->reset(); // Reset cooldown if ready
     }
@@ -67,7 +69,6 @@ sf::Vector2f Weapon2::GetProjectileSpawnPosition() const
 {
     return OriginalBulletSpawnPosition;
 }
-
 
 void Weapon2::UpdateBulletSpawnPosition() {
     // Update the bullet spawn position based on the weapon's position and scale bullet spawn and original rotation
@@ -141,4 +142,9 @@ void Weapon2::switchHold( bool ishold, Entity* owner)
             CurrentMap->pushEntity(this->shared_from_this());
         }
     }
+}
+
+
+void Weapon2::setSound(std::string soundPath) {
+    std::cerr << "Sound set : "<< soundPath << std::endl;
 }

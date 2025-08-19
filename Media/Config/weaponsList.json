@@ -22,7 +22,7 @@
       "endAngle": 0.0,
       "recoilOffset": 10.0
     },
-
+    "SoundPath": "This is test path",
     "cooldownTime": 0.15,
 
     "scaleBulletSpawnPosition": {
@@ -374,7 +374,7 @@
       "x": 150,
       "y": 75
     },
-    "cooldownTime": 5.0,
+    "cooldownTime": 9.0,
     "behavior": {
       "type": "Hold Laser Gun Behavior"
     },

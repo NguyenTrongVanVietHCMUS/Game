@@ -14,7 +14,7 @@ class WeaponBuilder
     std::unique_ptr<ICooldownBehavior> _cooldownBehavior = nullptr;
     std::unique_ptr<AdvanceWeaponComponent> _advanceComponent = nullptr; // Advanced weapon component for combo attacks
     sf::Vector2f            _scaleBulletSpawnPosition = sf::Vector2f(0, 0); // Position where the bullet spawns based on the weapon's scale
-
+    std::string            _soundPath = "Nothing"; // Path to the sound file for the weapon
     State*                  _worldmap;
 
     WeaponBuilder(std::string name, sf::Vector2f position, State* worldmap = nullptr)
@@ -58,6 +58,12 @@ public:
         return *this;
     }
 
+    WeaponBuilder& withSoundPath(const std::string& soundPath)
+    {
+        _soundPath = soundPath;
+        return *this;
+    }
+
     WeaponBuilder& withScaleBulletSpawnPosition(sf::Vector2f scaleBulletSpawnPosition)
     {
         _scaleBulletSpawnPosition = scaleBulletSpawnPosition;
@@ -67,7 +73,7 @@ public:
     std::shared_ptr<Weapon2> build()
     {
 
-        return std::make_shared<Weapon2>(
+        std::shared_ptr<Weapon2> weapon = std::make_shared<Weapon2>(
             _name,
             _position,
             std::move(_behavior),
@@ -77,5 +83,11 @@ public:
             _scaleBulletSpawnPosition,
             _worldmap
         );
+        if(_soundPath != "Nothing")
+        {
+            weapon->setSound(_soundPath); // Set the sound path for the weapon
+            _soundPath = "Nothing"; // Reset the sound path after setting it
+        }
+        return weapon;
     }
 };

@@ -27,6 +27,13 @@ std::shared_ptr<Weapon2> WeaponLoader::LoadWeapons(std::string weaponName) {
         }
         builder.withBehavior(std::move(behavior));
     }
+
+    if(weaponData[weaponName].contains("SoundPath")) {
+        std::string soundPath = weaponData[weaponName]["SoundPath"].get<std::string>();
+        if (!soundPath.empty()) {
+            builder.withSoundPath(soundPath);
+        }
+    }
     if (weaponData[weaponName].contains("animation")) {
         builder.withAnimation(StrategyFactory::createAnimation(weaponData[weaponName]["animation"], nullptr));
     }
