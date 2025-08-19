@@ -49,6 +49,7 @@ public:
 
     virtual float getRange()const final
     {
+        std::cerr << "Enemy getRange called, returning sightRange: " << sightRange << std::endl;
         return sightRange;
     }
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override

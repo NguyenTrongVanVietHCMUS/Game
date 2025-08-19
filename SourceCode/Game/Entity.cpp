@@ -65,6 +65,7 @@ bool Entity::inRange(const Entity* other)const
 {
     if (other == nullptr)return false; 
 	float distance = std::pow(position.x - other->getPosition().x, 2) + std::pow(position.y - other->getPosition().y, 2);
+    std::cerr << "Distance to other entity: " << distance << ' ' << std::pow(this->getRange(), 2) << std::endl;
     return distance <= std::pow(this->getRange(), 2);
 }
 bool Entity::isCollide(const Entity* other)const

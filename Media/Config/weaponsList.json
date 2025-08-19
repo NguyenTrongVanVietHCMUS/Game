@@ -298,8 +298,8 @@
     "animation": {
       "type": "Gun Animation",
       "totalTime": 0.3,
-      "scale": 0.4,
-      "texture": "Media/Assets/Weapons/Gun/AK_47.png",
+      "scale": 0.35,
+      "texture": "Media/Assets/Weapons/LazerGun/XRay.png",
       "startAngle": 10.0,
       "endAngle": 0.0,
       "recoilOffset": 10.0,
@@ -369,7 +369,7 @@
     }
   },
   "Zulan Laser": {
-    "name": "Laser Gun",
+    "name": "Zulan Laser",
     "position": {
       "x": 150,
       "y": 75
@@ -391,8 +391,8 @@
 
     },
     "scaleBulletSpawnPosition": {
-      "x": 0.6,
-      "y": -0.2
+      "x": 0.0,
+      "y": 0.0
     }
   }
 }

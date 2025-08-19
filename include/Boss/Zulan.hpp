@@ -12,13 +12,11 @@
 
 class Zulan : public Enemy
 {
-private:
-    float sightRange;
 public:
     Zulan(sf::Vector2f position, State* state) : Enemy("Zulan", position)
     {
         sightRange = 350.f;
-        inventory->addWeapon(WeaponLoader(state).LoadWeapons("Zulan Laser"));
+        inventory->addWeapon(WeaponLoader(state).LoadWeapons("Zulan Laser"), this);
         movingAnimation = std::make_unique<Zulan_MovingAnimation>(this->position, 3, this);
         movingAnimation->speed = 80.0f;
         aiEnemy = std::make_unique<AIZulan>();
@@ -56,5 +54,23 @@ public:
         inventory->shoot(this, target);
         //movingAnimation->update(dt); 
         inventory->update(dt);
+    }
+
+    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override
+    {
+        movingAnimation->draw(target, states);
+        
+        /*getHitbox().draw(target, states);
+        getBodyHitbox().draw(target, states); */
+        
+        sf::RectangleShape hitbox(sf::Vector2f(getHitbox().hitbox.width, getHitbox().hitbox.height));
+        hitbox.setPosition(sf::Vector2f(getHitbox().hitbox.left, getHitbox().hitbox.top));
+        hitbox.setFillColor(sf::Color(255, 0, 0, 128)); // semi-transparent red for visibility
+        target.draw(hitbox, states); // Draw the hitbox shape
+
+        sf::RectangleShape bodyHitbox(sf::Vector2f(getBodyHitbox().hitbox.width, getBodyHitbox().hitbox.height));
+        bodyHitbox.setPosition(sf::Vector2f(getBodyHitbox().hitbox.left, getBodyHitbox().hitbox.top));
+        bodyHitbox.setFillColor(sf::Color(0, 255, 0, 100)); // semi-transparent red for visibility
+        target.draw(bodyHitbox, states); // Draw the hitbox shape
     }
 };

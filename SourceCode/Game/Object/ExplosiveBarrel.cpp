@@ -38,7 +38,7 @@ bool ExplosiveBarrel::update(sf::Time dt)
     {
         if(CurrentMap)
         {
-            Projectile2* explosion = projLoader->LoadProjectile("Explosion basic", getPosition(), getPosition() + sf::Vector2f(0.5f,0.5f));
+            Projectile2* explosion = projLoader->LoadProjectile("Explosion Barrel", getPosition(), getPosition() + sf::Vector2f(0.5f,0.5f));
             explosion->type = Entity::Type::Projectile;
             CurrentMap->pushEntity(explosion);
             CurrentMap->popEntityNoDelete(this);
