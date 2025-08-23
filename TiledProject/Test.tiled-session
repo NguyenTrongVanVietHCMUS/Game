@@ -11,7 +11,7 @@
     "fileStates": {
         "": {
             "dynamicWrapping": false,
-            "scaleInDock": 1,
+            "scaleInDock": 0.75,
             "scaleInEditor": 1
         },
         "#Map Tileset": {
@@ -137,8 +137,8 @@
             "scale": 0.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": -1046,
-                "y": 896
+                "x": -998,
+                "y": 1752
             }
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/battleroom1.json#GroundTiles": {
@@ -470,11 +470,11 @@
             "expandedObjectLayers": [
                 2
             ],
-            "scale": 0.5,
+            "scale": 1,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 669,
-                "y": -524
+                "x": 335,
+                "y": -734
             }
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/room2.json#GroundTiles": {
@@ -530,11 +530,11 @@
             "expandedObjectLayers": [
                 2
             ],
-            "scale": 0.33,
+            "scale": 0.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": -283.33333333333326,
-                "y": 1169.6969696969697
+                "x": -906,
+                "y": 560
             }
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/room5.json#GroundTiles": {
@@ -644,11 +644,11 @@
             "expandedObjectLayers": [
                 2
             ],
-            "scale": 0.5,
+            "scale": 1,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 426,
-                "y": 704
+                "x": 463,
+                "y": 1258
             }
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/startingroom.json#GroundTiles": {
