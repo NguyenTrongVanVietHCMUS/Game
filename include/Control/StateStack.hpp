@@ -5,9 +5,6 @@
 
 #include "SFML/System/NonCopyable.hpp"
 #include "SFML/System/Time.hpp"
-
-#include "Screens/Lobby.hpp"
-
 #include <vector>
 #include <utility>
 #include <functional>

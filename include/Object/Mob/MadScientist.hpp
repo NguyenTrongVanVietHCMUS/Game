@@ -11,8 +11,7 @@
 
 class MadScientist : public Enemy
 {
-private:
-    float sightRange;
+
 public:
     MadScientist(sf::Vector2f position, State* state) : Enemy("MadScientist", position)
     {

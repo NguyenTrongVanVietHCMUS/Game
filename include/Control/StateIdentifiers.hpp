@@ -9,6 +9,7 @@ namespace States
 		Jungle,
 		Pause,
 		Settings,
+		GameOver, 
 		SettingOnlyAudio,
 		ChessGame1Player,
 		ChessGame2Players,

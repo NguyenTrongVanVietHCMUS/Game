@@ -71,6 +71,7 @@ namespace Fonts
 		HUDFont,
 		Main,
 		PIXEL,
+		PixelGame,
 	};
 }
 

@@ -10,8 +10,7 @@
 #include<Book/Enemy.hpp>
 class GoblinSupport : public Enemy
 {
-private:
-    float sightRange;
+
 public:
     GoblinSupport(sf::Vector2f position, State* state) : Enemy("GoblinSupport", position)
     {

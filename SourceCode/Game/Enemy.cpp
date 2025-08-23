@@ -40,6 +40,8 @@ void Enemy::update(Entity* target, sf::Time dt)
 void Enemy::chase(Entity* target , sf::Time dt)
 {
     movingAnimation->chase(target,dt); 
+    inventory->AimAt(position - sf::Vector2f(0, 100)); 
+    inventory->update(dt);
 }
 void Enemy::wander(sf::Time dt)
 {

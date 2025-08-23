@@ -9,8 +9,6 @@
 
 class BlunderbussPistolMinion : public Enemy
 {
-private:
-    float sightRange;
 public:
     BlunderbussPistolMinion(sf::Vector2f position, State* state) : Enemy("BlunderbussPistolMinion", position)
     {
