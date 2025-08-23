@@ -8,6 +8,8 @@
 class Weapon2 : public Entity
 {
 private:
+	sf::SoundBuffer soundBuffer; // Sound buffer for the weapon
+    sf::Sound sound; 
     std::unordered_map<std::string, float> stats;
     std::unique_ptr<IBehavior> behavior; // Strategy for weapon behavior
     std::unique_ptr<IWeaponAnimation> animation; // Animation for the weapon

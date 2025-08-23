@@ -83,7 +83,7 @@ public:
             _scaleBulletSpawnPosition,
             _worldmap
         );
-        if(_soundPath != "Nothing")
+        //if(_soundPath != "Nothing")
         {
             weapon->setSound(_soundPath); // Set the sound path for the weapon
             _soundPath = "Nothing"; // Reset the sound path after setting it

@@ -35,7 +35,7 @@ Jungle::Jungle(StateStack& stack,Context context):
 	//map->entities.push_back(new GoblinExecutor(map->startingPoint, this));
 	//map->entities.push_back(new MadScientist(map->startingPoint, this));
 	//map->entities.push_back(new GoblinPriest(map->startingPoint, this)); // Add a Goblin Priest entity to the map
-	map->entities.push_back(new Zulan(map->startingPoint, this)); // Add a Zulan entity to the map
+    map->initEntities(this); 
     context.music->play(Music::Jungle);
     map->setWeaponLoader(weaponLoader); // Set the weapon loader for the map
 

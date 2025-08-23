@@ -3,9 +3,8 @@
  "infinite":false,
  "layers":[
         {
-         "class":"Floor",
-         "id":2,
-         "image":"LobbyFloor.png",
+         "id":11,
+         "image":"..\/..\/TileSets\/lobby.png",
          "imageheight":672,
          "imagewidth":1216,
          "name":"Image Layer 1",
@@ -16,27 +15,27 @@
          "y":0
         }, 
         {
-         "data":[5, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 6,
-            3, 13, 13, 13, 13, 15, 15, 15, 15, 15, 13, 13, 13, 13, 16, 13, 16, 13, 16, 13, 13, 13, 13, 13, 13, 13, 13, 15, 13, 13, 13, 13, 16, 13, 13, 13, 13, 3,
-            3, 16, 13, 16, 16, 13, 13, 16, 13, 13, 13, 13, 16, 16, 13, 14, 14, 16, 16, 16, 16, 13, 16, 13, 16, 13, 16, 16, 16, 16, 13, 16, 16, 16, 13, 16, 13, 3,
-            3, 13, 16, 16, 16, 16, 13, 16, 13, 13, 14, 16, 16, 16, 14, 13, 13, 13, 13, 13, 16, 16, 14, 16, 16, 16, 16, 13, 15, 16, 13, 16, 16, 16, 16, 13, 13, 3,
-            3, 13, 13, 13, 13, 13, 13, 16, 16, 16, 13, 13, 13, 13, 13, 13, 16, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 16, 13, 13, 3,
-            3, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 3,
-            9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9,
-            3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
-            3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
-            3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7,
-            3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
-            9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
-            3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
-            3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
-            3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
-            3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3],
+         "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 3, 6, 5, 3, 2, 5, 5, 2, 4, 2, 6, 6, 4, 5, 3, 5, 4, 3, 6, 5, 3, 4, 5, 2, 2, 2, 2, 5, 3, 2, 4, 3, 4, 6, 3, 3, 0,
+            0, 5, 3, 5, 5, 6, 6, 3, 4, 5, 6, 4, 5, 6, 4, 2, 3, 3, 4, 3, 5, 3, 5, 6, 5, 3, 6, 6, 6, 6, 2, 5, 6, 5, 2, 2, 4, 0,
+            0, 3, 5, 4, 5, 3, 4, 5, 5, 4, 4, 5, 6, 3, 3, 5, 4, 4, 4, 6, 3, 4, 6, 4, 4, 5, 2, 6, 2, 6, 4, 3, 2, 6, 6, 6, 4, 0,
+            0, 4, 5, 3, 3, 6, 6, 4, 6, 3, 3, 3, 2, 4, 2, 3, 4, 2, 2, 6, 6, 6, 6, 2, 3, 2, 4, 2, 6, 6, 6, 3, 2, 3, 5, 6, 6, 0,
+            0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
+            0, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 0,
+            0, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 0,
+            0, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 0,
+            0, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 0,
+            8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8,
+            8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8,
+            8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8,
+            8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8,
+            0, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 0,
+            0, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 0,
+            0, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 0,
+            0, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 0,
+            0, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 0,
+            0, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 0,
+            0, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 0],
          "height":21,
          "id":1,
          "name":"Tile Layer 1",
@@ -104,158 +103,13 @@
                  "type":"Collider",
                  "visible":true,
                  "width":1185.33333333333,
-                 "x":30.6666666666667,
-                 "y":0
-                }, 
-                {
-                 "gid":20,
-                 "height":109,
-                 "id":112,
-                 "name":"taskboard",
-                 "properties":[
-                        {
-                         "name":"hitbox",
-                         "type":"object",
-                         "value":114
-                        }],
-                 "rotation":0,
-                 "type":"Object",
-                 "visible":true,
-                 "width":134.333333333333,
-                 "x":178.666666666667,
-                 "y":187
-                }, 
-                {
-                 "height":36,
-                 "id":114,
-                 "name":"",
-                 "rotation":0,
-                 "type":"hitbox",
-                 "visible":true,
-                 "width":134.666666666667,
-                 "x":178.666666666667,
-                 "y":149.333333333333
-                }, 
-                {
-                 "gid":21,
-                 "height":39,
-                 "id":120,
-                 "name":"chest",
-                 "properties":[
-                        {
-                         "name":"hitbox",
-                         "type":"object",
-                         "value":133
-                        }],
-                 "rotation":0,
-                 "type":"Object",
-                 "visible":true,
-                 "width":45.5,
-                 "x":427.833333333333,
-                 "y":191.166666666667
-                }, 
-                {
-                 "gid":22,
-                 "height":66.3333333333334,
-                 "id":122,
-                 "name":"bookpile",
-                 "properties":[
-                        {
-                         "name":"hitbox",
-                         "type":"object",
-                         "value":129
-                        }],
-                 "rotation":0,
-                 "type":"Object",
-                 "visible":true,
-                 "width":53.3333333333333,
-                 "x":349,
-                 "y":652.666666666667
-                }, 
-                {
-                 "gid":23,
-                 "height":58,
-                 "id":123,
-                 "name":"trashcan",
-                 "properties":[
-                        {
-                         "name":"hitbox",
-                         "type":"object",
-                         "value":131
-                        }],
-                 "rotation":0,
-                 "type":"Object",
-                 "visible":true,
-                 "width":38,
-                 "x":44.8181818181818,
-                 "y":655.818181818182
-                }, 
-                {
-                 "gid":24,
-                 "height":82,
-                 "id":127,
-                 "name":"fishtank",
-                 "properties":[
-                        {
-                         "name":"hitbox",
-                         "type":"object",
-                         "value":130
-                        }],
-                 "rotation":0,
-                 "type":"Object",
-                 "visible":true,
-                 "width":154,
-                 "x":1031.66666666667,
-                 "y":672.666666666667
-                }, 
-                {
-                 "height":69.3333333333334,
-                 "id":129,
-                 "name":"",
-                 "rotation":0,
-                 "type":"hitbox",
-                 "visible":true,
-                 "width":55.3333333333334,
-                 "x":347.166666666667,
-                 "y":584.666666666667
-                }, 
-                {
-                 "height":40.6666666666667,
-                 "id":130,
-                 "name":"",
-                 "rotation":0,
-                 "type":"hitbox",
-                 "visible":true,
-                 "width":155.333333333333,
-                 "x":1030,
-                 "y":633.333333333333
-                }, 
-                {
-                 "height":21.4545454545454,
-                 "id":131,
-                 "name":"",
-                 "rotation":0,
-                 "type":"hitbox",
-                 "visible":true,
-                 "width":38,
-                 "x":44.7272727272727,
-                 "y":634.545454545455
-                }, 
-                {
-                 "height":21.5,
-                 "id":133,
-                 "name":"",
-                 "rotation":0,
-                 "type":"hitbox",
-                 "visible":true,
-                 "width":43,
-                 "x":429,
-                 "y":169.5
+                 "x":31.6666666666667,
+                 "y":2
                 }, 
                 {
                  "height":0,
                  "id":140,
-                 "name":"startingpoint",
+                 "name":"StartingPoint",
                  "point":true,
                  "rotation":0,
                  "type":"Point",
@@ -263,6 +117,150 @@
                  "width":0,
                  "x":693,
                  "y":370
+                }, 
+                {
+                 "gid":9,
+                 "height":83.6666666666666,
+                 "id":146,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":63.6666666666667,
+                 "x":252,
+                 "y":632
+                }, 
+                {
+                 "gid":14,
+                 "height":74.6666666666666,
+                 "id":147,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":55.3333333333333,
+                 "x":32,
+                 "y":672
+                }, 
+                {
+                 "gid":11,
+                 "height":84.1666666666667,
+                 "id":148,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":155.5,
+                 "x":1027.83333333333,
+                 "y":675.333333333333
+                }, 
+                {
+                 "gid":10,
+                 "height":39.3333333333334,
+                 "id":149,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":43.3333333333333,
+                 "x":440.333333333333,
+                 "y":192
+                }, 
+                {
+                 "gid":13,
+                 "height":95,
+                 "id":150,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":141,
+                 "x":184.333333333333,
+                 "y":194.333333333333
+                }, 
+                {
+                 "gid":20,
+                 "height":88.3333333333334,
+                 "id":151,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":184.333333333333,
+                 "x":386.333333333333,
+                 "y":625.666666666667
+                }, 
+                {
+                 "gid":21,
+                 "height":79,
+                 "id":153,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":88.3333333333335,
+                 "x":930.999999999999,
+                 "y":512
+                }, 
+                {
+                 "gid":22,
+                 "height":141.333333333333,
+                 "id":154,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":126.5,
+                 "x":25.6666666666667,
+                 "y":194.333333333333
+                }, 
+                {
+                 "gid":23,
+                 "height":70.3333333333333,
+                 "id":155,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":128,
+                 "x":921.666666666667,
+                 "y":120.666666666667
+                }, 
+                {
+                 "gid":24,
+                 "height":71.3333333333333,
+                 "id":156,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":77.3333333333334,
+                 "x":823.333333333333,
+                 "y":186.666666666667
+                }, 
+                {
+                 "gid":25,
+                 "height":79,
+                 "id":157,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":75,
+                 "x":737,
+                 "y":187
+                }, 
+                {
+                 "gid":26,
+                 "height":51,
+                 "id":159,
+                 "name":"Chest",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":58,
+                 "x":448,
+                 "y":288
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -270,30 +268,30 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":10,
- "nextobjectid":141,
+ "nextlayerid":12,
+ "nextobjectid":161,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",
  "tileheight":32,
  "tilesets":[
         {
-         "columns":3,
+         "columns":1,
          "firstgid":1,
-         "image":"Wallset.png",
-         "imageheight":128,
-         "imagewidth":96,
+         "image":"..\/..\/TileSets\/LowerWall.png",
+         "imageheight":32,
+         "imagewidth":32,
          "margin":0,
-         "name":"Wallset",
+         "name":"LowerWall",
          "spacing":0,
-         "tilecount":12,
+         "tilecount":1,
          "tileheight":32,
          "tilewidth":32
         }, 
         {
          "columns":2,
-         "firstgid":13,
-         "image":"BackgroundWall.png",
+         "firstgid":2,
+         "image":"..\/..\/TileSets\/BackgroundWall.png",
          "imageheight":96,
          "imagewidth":64,
          "margin":0,
@@ -305,80 +303,656 @@
         }, 
         {
          "columns":1,
-         "firstgid":19,
-         "image":"LowerWall.png",
+         "firstgid":8,
+         "image":"..\/..\/TileSets\/Floor (2).png",
          "imageheight":32,
          "imagewidth":32,
          "margin":0,
-         "name":"LowerWall",
+         "name":"Floor (2)",
          "spacing":0,
          "tilecount":1,
          "tileheight":32,
          "tilewidth":32
         }, 
         {
-         "columns":1,
-         "firstgid":20,
-         "image":"TaskBoard.png",
-         "imageheight":245,
-         "imagewidth":345,
+         "columns":0,
+         "firstgid":9,
+         "grid":
+            {
+             "height":1,
+             "orientation":"orthogonal",
+             "width":1
+            },
          "margin":0,
-         "name":"TaskBoard",
+         "name":"Objects",
          "spacing":0,
-         "tilecount":1,
-         "tileheight":245,
-         "tilewidth":345
-        }, 
-        {
-         "columns":1,
-         "firstgid":21,
-         "image":"Chest.png",
-         "imageheight":178,
-         "imagewidth":170,
-         "margin":0,
-         "name":"Chest",
-         "spacing":0,
-         "tilecount":1,
-         "tileheight":178,
-         "tilewidth":170
-        }, 
-        {
-         "columns":1,
-         "firstgid":22,
-         "image":"Book_Pile.png",
-         "imageheight":145,
-         "imagewidth":109,
-         "margin":0,
-         "name":"Book_Pile",
-         "spacing":0,
-         "tilecount":1,
-         "tileheight":145,
-         "tilewidth":109
-        }, 
-        {
-         "columns":1,
-         "firstgid":23,
-         "image":"TrashCan.png",
-         "imageheight":100,
-         "imagewidth":74,
-         "margin":0,
-         "name":"TrashCan",
-         "spacing":0,
-         "tilecount":1,
-         "tileheight":100,
-         "tilewidth":74
-        }, 
-        {
-         "columns":1,
-         "firstgid":24,
-         "image":"Fish_Tank.png",
-         "imageheight":372,
-         "imagewidth":468,
-         "margin":0,
-         "name":"Fish_Tank",
-         "spacing":0,
-         "tilecount":1,
+         "tilecount":21,
          "tileheight":372,
+         "tiles":[
+                {
+                 "id":0,
+                 "image":"..\/..\/TileSets\/Objects\/Book_Pile.png",
+                 "imageheight":145,
+                 "imagewidth":109,
+                 "objectgroup":
+                    {
+                     "draworder":"index",
+                     "name":"",
+                     "objects":[
+                            {
+                             "height":86.5,
+                             "id":1,
+                             "name":"",
+                             "rotation":0,
+                             "type":"",
+                             "visible":true,
+                             "width":111.5,
+                             "x":-1.5,
+                             "y":58
+                            }],
+                     "opacity":1,
+                     "type":"objectgroup",
+                     "visible":true,
+                     "x":0,
+                     "y":0
+                    },
+                 "type":"Object"
+                }, 
+                {
+                 "id":1,
+                 "image":"..\/..\/TileSets\/Objects\/Chest.png",
+                 "imageheight":178,
+                 "imagewidth":170,
+                 "objectgroup":
+                    {
+                     "draworder":"index",
+                     "name":"",
+                     "objects":[
+                            {
+                             "height":83,
+                             "id":1,
+                             "name":"",
+                             "rotation":0,
+                             "type":"",
+                             "visible":true,
+                             "width":155,
+                             "x":8,
+                             "y":86
+                            }],
+                     "opacity":1,
+                     "type":"objectgroup",
+                     "visible":true,
+                     "x":0,
+                     "y":0
+                    },
+                 "type":"Object"
+                }, 
+                {
+                 "id":2,
+                 "image":"..\/..\/TileSets\/Objects\/Fish_Tank.png",
+                 "imageheight":372,
+                 "imagewidth":468,
+                 "objectgroup":
+                    {
+                     "draworder":"index",
+                     "name":"",
+                     "objects":[
+                            {
+                             "height":93,
+                             "id":1,
+                             "name":"",
+                             "rotation":0,
+                             "type":"",
+                             "visible":true,
+                             "width":466,
+                             "x":2,
+                             "y":281
+                            }],
+                     "opacity":1,
+                     "type":"objectgroup",
+                     "visible":true,
+                     "x":0,
+                     "y":0
+                    },
+                 "type":"Object"
+                }, 
+                {
+                 "id":3,
+                 "image":"..\/..\/TileSets\/Objects\/Fountain.png",
+                 "imageheight":295,
+                 "imagewidth":215,
+                 "objectgroup":
+                    {
+                     "draworder":"index",
+                     "name":"",
+                     "objects":[
+                            {
+                             "height":205.333333333333,
+                             "id":1,
+                             "name":"",
+                             "rotation":0,
+                             "type":"",
+                             "visible":true,
+                             "width":208.666666666667,
+                             "x":-0.666666666666667,
+                             "y":80
+                            }],
+                     "opacity":1,
+                     "type":"objectgroup",
+                     "visible":true,
+                     "x":0,
+                     "y":0
+                    },
+                 "type":"Object"
+                }, 
+                {
+                 "id":4,
+                 "image":"..\/..\/TileSets\/Objects\/TaskBoard.png",
+                 "imageheight":245,
+                 "imagewidth":345,
+                 "objectgroup":
+                    {
+                     "draworder":"index",
+                     "name":"",
+                     "objects":[
+                            {
+                             "height":39.3333333333333,
+                             "id":2,
+                             "name":"",
+                             "rotation":0,
+                             "type":"",
+                             "visible":true,
+                             "width":335.333333333333,
+                             "x":8.66666666666667,
+                             "y":192
+                            }],
+                     "opacity":1,
+                     "type":"objectgroup",
+                     "visible":true,
+                     "x":0,
+                     "y":0
+                    },
+                 "type":"Object"
+                }, 
+                {
+                 "id":5,
+                 "image":"..\/..\/TileSets\/Objects\/TrashCan.png",
+                 "imageheight":100,
+                 "imagewidth":74,
+                 "objectgroup":
+                    {
+                     "draworder":"index",
+                     "name":"",
+                     "objects":[
+                            {
+                             "height":22.6666666666667,
+                             "id":1,
+                             "name":"",
+                             "rotation":0,
+                             "type":"",
+                             "visible":true,
+                             "width":59,
+                             "x":7.33333333333333,
+                             "y":76
+                            }],
+                     "opacity":1,
+                     "type":"objectgroup",
+                     "visible":true,
+                     "x":0,
+                     "y":0
+                    },
+                 "type":"Object"
+                }, 
+                {
+                 "id":6,
+                 "image":"..\/..\/TileSets\/Deco\/decorate_airbender.png",
+                 "imageheight":30,
+                 "imagewidth":76,
+                 "objectgroup":
+                    {
+                     "draworder":"index",
+                     "name":"",
+                     "objects":[
+                            {
+                             "height":16.1818181818182,
+                             "id":1,
+                             "name":"",
+                             "rotation":0,
+                             "type":"",
+                             "visible":true,
+                             "width":35.0909090909091,
+                             "x":2.54545454545455,
+                             "y":12.9090909090909
+                            }],
+                     "opacity":1,
+                     "type":"objectgroup",
+                     "visible":true,
+                     "x":0,
+                     "y":0
+                    },
+                 "type":"Object"
+                }, 
+                {
+                 "id":7,
+                 "image":"..\/..\/TileSets\/Deco\/decorate_engineer.png",
+                 "imageheight":30,
+                 "imagewidth":29,
+                 "objectgroup":
+                    {
+                     "draworder":"index",
+                     "name":"",
+                     "objects":[
+                            {
+                             "height":19.0909090909091,
+                             "id":1,
+                             "name":"",
+                             "rotation":0,
+                             "type":"",
+                             "visible":true,
+                             "width":24,
+                             "x":2.72727272727273,
+                             "y":6
+                            }],
+                     "opacity":1,
+                     "type":"objectgroup",
+                     "visible":true,
+                     "x":0,
+                     "y":0
+                    },
+                 "type":"Object"
+                }, 
+                {
+                 "id":8,
+                 "image":"..\/..\/TileSets\/Deco\/decorate_priest.png",
+                 "imageheight":37,
+                 "imagewidth":18,
+                 "objectgroup":
+                    {
+                     "draworder":"index",
+                     "name":"",
+                     "objects":[
+                            {
+                             "height":6,
+                             "id":1,
+                             "name":"",
+                             "rotation":0,
+                             "type":"",
+                             "visible":true,
+                             "width":18.5454545454545,
+                             "x":0,
+                             "y":20.9090909090909
+                            }],
+                     "opacity":1,
+                     "type":"objectgroup",
+                     "visible":true,
+                     "x":0,
+                     "y":0
+                    },
+                 "type":"Object"
+                }, 
+                {
+                 "id":9,
+                 "image":"..\/..\/TileSets\/Deco\/decorate_ranger.png",
+                 "imageheight":41,
+                 "imagewidth":62,
+                 "objectgroup":
+                    {
+                     "draworder":"index",
+                     "name":"",
+                     "objects":[
+                            {
+                             "height":8.90909090909091,
+                             "id":1,
+                             "name":"",
+                             "rotation":0,
+                             "type":"",
+                             "visible":true,
+                             "width":27.6363636363636,
+                             "x":4.36363636363636,
+                             "y":24
+                            }, 
+                            {
+                             "height":3.81818181818182,
+                             "id":2,
+                             "name":"",
+                             "rotation":0,
+                             "type":"",
+                             "visible":true,
+                             "width":9.27272727272727,
+                             "x":37.0909090909091,
+                             "y":25.4545454545455
+                            }],
+                     "opacity":1,
+                     "type":"objectgroup",
+                     "visible":true,
+                     "x":0,
+                     "y":0
+                    },
+                 "type":"Object"
+                }, 
+                {
+                 "id":10,
+                 "image":"..\/..\/TileSets\/Deco\/decorate_vampire.png",
+                 "imageheight":43,
+                 "imagewidth":23,
+                 "objectgroup":
+                    {
+                     "draworder":"index",
+                     "name":"",
+                     "objects":[
+                            {
+                             "height":8.18181818181818,
+                             "id":1,
+                             "name":"",
+                             "rotation":0,
+                             "type":"",
+                             "visible":true,
+                             "width":13.6363636363636,
+                             "x":5.09090909090909,
+                             "y":23.8181818181818
+                            }],
+                     "opacity":1,
+                     "type":"objectgroup",
+                     "visible":true,
+                     "x":0,
+                     "y":0
+                    },
+                 "type":"Object"
+                }, 
+                {
+                 "id":11,
+                 "image":"..\/..\/TileSets\/Deco\/decorate_warlock.png",
+                 "imageheight":61,
+                 "imagewidth":135,
+                 "objectgroup":
+                    {
+                     "draworder":"index",
+                     "name":"",
+                     "objects":[
+                            {
+                             "height":0,
+                             "id":9,
+                             "name":"",
+                             "rotation":0,
+                             "type":"",
+                             "visible":true,
+                             "width":0,
+                             "x":1216,
+                             "y":-16768
+                            }],
+                     "opacity":1,
+                     "type":"objectgroup",
+                     "visible":true,
+                     "x":0,
+                     "y":0
+                    },
+                 "type":"Object"
+                }, 
+                {
+                 "id":12,
+                 "image":"..\/..\/TileSets\/Deco\/TV.png",
+                 "imageheight":256,
+                 "imagewidth":256,
+                 "objectgroup":
+                    {
+                     "draworder":"index",
+                     "name":"",
+                     "objects":[
+                            {
+                             "height":156,
+                             "id":1,
+                             "name":"",
+                             "rotation":0,
+                             "type":"",
+                             "visible":true,
+                             "width":178.666666666667,
+                             "x":36,
+                             "y":98.6666666666667
+                            }],
+                     "opacity":1,
+                     "type":"objectgroup",
+                     "visible":true,
+                     "x":0,
+                     "y":0
+                    },
+                 "type":"Object"
+                }, 
+                {
+                 "id":13,
+                 "image":"..\/..\/TileSets\/Deco\/Beverage_Vending_Machine.png",
+                 "imageheight":256,
+                 "imagewidth":256,
+                 "objectgroup":
+                    {
+                     "draworder":"index",
+                     "name":"",
+                     "objects":[
+                            {
+                             "height":58,
+                             "id":1,
+                             "name":"",
+                             "rotation":0,
+                             "type":"",
+                             "visible":true,
+                             "width":143.5,
+                             "x":57,
+                             "y":194.5
+                            }],
+                     "opacity":1,
+                     "type":"objectgroup",
+                     "visible":true,
+                     "x":0,
+                     "y":0
+                    },
+                 "type":"Object"
+                }, 
+                {
+                 "id":14,
+                 "image":"..\/..\/TileSets\/Deco\/Gallery.png",
+                 "imageheight":111,
+                 "imagewidth":174,
+                 "objectgroup":
+                    {
+                     "draworder":"index",
+                     "name":"",
+                     "objects":[
+                            {
+                             "height":110,
+                             "id":1,
+                             "name":"",
+                             "rotation":0,
+                             "type":"",
+                             "visible":true,
+                             "width":174.5,
+                             "x":0,
+                             "y":0.5
+                            }],
+                     "opacity":1,
+                     "type":"objectgroup",
+                     "visible":true,
+                     "x":0,
+                     "y":0
+                    },
+                 "type":"Object"
+                }, 
+                {
+                 "id":15,
+                 "image":"..\/..\/TileSets\/Deco\/Lucky_Cat.png",
+                 "imageheight":192,
+                 "imagewidth":192,
+                 "objectgroup":
+                    {
+                     "draworder":"index",
+                     "name":"",
+                     "objects":[
+                            {
+                             "height":52.5,
+                             "id":1,
+                             "name":"",
+                             "rotation":0,
+                             "type":"",
+                             "visible":true,
+                             "width":100.5,
+                             "x":43,
+                             "y":133
+                            }],
+                     "opacity":1,
+                     "type":"objectgroup",
+                     "visible":true,
+                     "x":0,
+                     "y":0
+                    },
+                 "type":"Object"
+                }, 
+                {
+                 "id":16,
+                 "image":"..\/..\/TileSets\/Deco\/Email.png",
+                 "imageheight":192,
+                 "imagewidth":192,
+                 "objectgroup":
+                    {
+                     "draworder":"index",
+                     "name":"",
+                     "objects":[
+                            {
+                             "height":33,
+                             "id":1,
+                             "name":"",
+                             "rotation":0,
+                             "type":"",
+                             "visible":true,
+                             "width":44.5,
+                             "x":76.5,
+                             "y":153
+                            }],
+                     "opacity":1,
+                     "type":"objectgroup",
+                     "visible":true,
+                     "x":0,
+                     "y":0
+                    },
+                 "type":"Object"
+                }, 
+                {
+                 "id":17,
+                 "image":"..\/..\/TileSets\/Chest\/body.png",
+                 "imageheight":51,
+                 "imagewidth":58,
+                 "objectgroup":
+                    {
+                     "draworder":"index",
+                     "id":2,
+                     "name":"",
+                     "objects":[
+                            {
+                             "height":26.3758079409049,
+                             "id":1,
+                             "name":"",
+                             "rotation":0,
+                             "type":"",
+                             "visible":true,
+                             "width":57.9732225300092,
+                             "x":0.53554939981533,
+                             "y":22.3591874422899
+                            }],
+                     "opacity":1,
+                     "type":"objectgroup",
+                     "visible":true,
+                     "x":0,
+                     "y":0
+                    },
+                 "type":"Object"
+                }, 
+                {
+                 "id":18,
+                 "image":"..\/..\/TileSets\/Chest\/bottom.png",
+                 "imageheight":30,
+                 "imagewidth":58,
+                 "objectgroup":
+                    {
+                     "draworder":"index",
+                     "id":2,
+                     "name":"",
+                     "objects":[
+                            {
+                             "height":20.3508771929825,
+                             "id":1,
+                             "name":"",
+                             "rotation":0,
+                             "type":"",
+                             "visible":true,
+                             "width":45.7894736842105,
+                             "x":6.56048014773777,
+                             "y":4.81994459833795
+                            }],
+                     "opacity":1,
+                     "type":"objectgroup",
+                     "visible":true,
+                     "x":0,
+                     "y":0
+                    },
+                 "type":"Object"
+                }, 
+                {
+                 "id":19,
+                 "image":"..\/..\/TileSets\/Chest\/left.png",
+                 "imageheight":20,
+                 "imagewidth":23,
+                 "objectgroup":
+                    {
+                     "draworder":"index",
+                     "id":2,
+                     "name":"",
+                     "objects":[
+                            {
+                             "height":6.96214219759926,
+                             "id":1,
+                             "name":"",
+                             "rotation":0,
+                             "type":"",
+                             "visible":true,
+                             "width":11.6481994459834,
+                             "x":9.77377654662973,
+                             "y":7.76546629732225
+                            }],
+                     "opacity":1,
+                     "type":"objectgroup",
+                     "visible":true,
+                     "x":0,
+                     "y":0
+                    },
+                 "type":"Object"
+                }, 
+                {
+                 "id":20,
+                 "image":"..\/..\/TileSets\/Chest\/right.png",
+                 "imageheight":20,
+                 "imagewidth":23,
+                 "objectgroup":
+                    {
+                     "draworder":"index",
+                     "id":2,
+                     "name":"",
+                     "objects":[
+                            {
+                             "height":10.8448753462604,
+                             "id":1,
+                             "name":"",
+                             "rotation":0,
+                             "type":"",
+                             "visible":true,
+                             "width":22.2253000923361,
+                             "x":3.61495844875346,
+                             "y":7.36380424746076
+                            }],
+                     "opacity":1,
+                     "type":"objectgroup",
+                     "visible":true,
+                     "x":0,
+                     "y":0
+                    },
+                 "type":"Object"
+                }],
          "tilewidth":468
         }],
  "tilewidth":32,

@@ -57,6 +57,11 @@ bool Entity::movable()const
 {
 	return type == Entity::Type::Ally || type == Entity::Type::Enemy || type == Entity::Type::AllyProjectile || type == Entity::Type::EnemyProjectile || type == Entity::Type::Projectile;
 }
+double Entity::distanceTo(const Entity *other) const
+{
+    if (other == nullptr) return 0.0;
+    return std::sqrt(std::pow(position.x - other->getPosition().x, 2) + std::pow(position.y - other->getPosition().y, 2));
+}
 float Entity::getRange()const
 {   
 	throw std::runtime_error("getRange() not implemented for this entity type"); // Default implementation, should be overridden in derived classes

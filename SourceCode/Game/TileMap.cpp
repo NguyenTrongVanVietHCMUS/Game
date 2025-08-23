@@ -10,6 +10,21 @@
 #include<Object/Chest/ExplosiveBarrel.hpp>
 #include <Control/WeaponLoader.hpp>
 #include <Control/WeaponBuilder.hpp>
+
+#include<Object/Mob/Boar.hpp> 
+#include<Object/Mob/GoblinShooter.hpp>
+#include<Object/Mob/GoblinMageRoyal.hpp>
+#include<Object/Mob/GoblinMageSorcerer.hpp>
+#include<Object/Mob/GoblinSupport.hpp>
+#include<Object/Mob/GoblinWarrior.hpp>
+#include<Object/Mob/GoblinExecutor.hpp>
+#include<Object/Mob/MadScientist.hpp>
+#include<Object/Mob/SwordMinion.hpp>
+#include<Object/Mob/BlunderbussPistolMinion.hpp>
+#include<Object/Mob/RifleMinion.hpp>
+#include<Boss/GoblinPriest.hpp>
+#include<Boss/Zulan.hpp> 
+
 TileMap::TileMap()
 {
 
@@ -221,6 +236,58 @@ bool TileMap::load(const std::string& jsonFile,int x , int y,int height, int wid
                     {
                         startingPoint = sf::Vector2f(objectData["x"] + x, objectData["y"] + y);
                     }
+                    else if (objectData["name"] == "Zulan")
+                    {
+                        spawnPoints.push_back(std::make_pair("Zulan", sf::Vector2f(objectData["x"] + x, objectData["y"] + y)));
+                    }
+                    else if (objectData["name"] == "GoblinShooter")
+                    {
+                        spawnPoints.push_back(std::make_pair("GoblinShooter", sf::Vector2f(objectData["x"] + x, objectData["y"] + y)));
+                    }
+                    else if (objectData["name"] == "GoblinWarrior")
+                    {
+                        spawnPoints.push_back(std::make_pair("GoblinWarrior", sf::Vector2f(objectData["x"] + x, objectData["y"] + y)));
+                    }
+                    else if (objectData["name"] == "GoblinSupport")
+                    {
+                        spawnPoints.push_back(std::make_pair("GoblinSupport", sf::Vector2f(objectData["x"] + x, objectData["y"] + y)));
+                    }
+                    else if (objectData["name"] == "GoblinExecutor")
+                    {
+                        spawnPoints.push_back(std::make_pair("GoblinExecutor", sf::Vector2f(objectData["x"] + x, objectData["y"] + y)));
+                    }
+                    else if (objectData["name"] == "GoblinMageRoyal")
+                    {
+                        spawnPoints.push_back(std::make_pair("GoblinMageRoyal", sf::Vector2f(objectData["x"] + x, objectData["y"] + y)));
+                    }
+                    else if (objectData["name"] == "GoblinMageSorcerer")
+                    {
+                        spawnPoints.push_back(std::make_pair("GoblinMageSorcerer", sf::Vector2f(objectData["x"] + x, objectData["y"] + y)));
+                    }
+                    else if (objectData["name"] == "MadScientist")
+                    {
+                        spawnPoints.push_back(std::make_pair("MadScientist", sf::Vector2f(objectData["x"] + x, objectData["y"] + y)));
+                    }
+                    else if (objectData["name"] == "Boar")
+                    {
+                        spawnPoints.push_back(std::make_pair("Boar", sf::Vector2f(objectData["x"] + x, objectData["y"] + y)));
+                    }
+                    else if (objectData["name"] == "SwordMinion")
+                    {
+                        spawnPoints.push_back(std::make_pair("SwordMinion", sf::Vector2f(objectData["x"] + x, objectData["y"] + y)));
+                    }
+                    else if (objectData["name"] == "RifleMinion")
+                    {
+						spawnPoints.push_back(std::make_pair("RifleMinion", sf::Vector2f(objectData["x"] + x, objectData["y"] + y)));
+                    }
+                    else if (objectData["name"] == "BlunderbussPistolMinion")
+                    {
+						spawnPoints.push_back(std::make_pair("BlunderbussPistolMinion", sf::Vector2f(objectData["x"] + x, objectData["y"] + y)));
+                    }
+                    else if(objectData["name"] == "GoblinPriest")
+                    {
+                        spawnPoints.push_back(std::make_pair("GoblinPriest", sf::Vector2f(objectData["x"] + x, objectData["y"] + y)));
+					}
                 }
                 else 
                 {
@@ -319,7 +386,64 @@ bool TileMap::load(const std::string& jsonFile,int x , int y,int height, int wid
     sort(layers.begin(), layers.end(), [](const Layer* x, const Layer* y) {return x->area < y->area; });
     return true;
 }
-
+void TileMap::initEntities(State* state)
+{
+    for (auto [s, position] : spawnPoints)
+    {
+        if (s == "Zulan")
+        {
+            entities.push_back(new Zulan(position, state));
+        }
+        else if (s == "GoblinShooter")
+        {
+            entities.push_back(new GoblinShooter(position, state));
+        }
+        else if(s=="GoblinWarrior")
+        {
+            entities.push_back(new GoblinWarrior(position, state));
+        }
+        else if(s=="GoblinSupport")
+        {
+            entities.push_back(new GoblinSupport(position, state));
+        }
+        else if(s=="GoblinExecutor")
+        {
+            entities.push_back(new GoblinExecutor(position, state));
+        }
+        else if(s=="GoblinMageRoyal")
+        {
+            entities.push_back(new GoblinMageRoyal(position, state));
+        }
+        else if(s=="GoblinMageSorcerer")
+        {
+            entities.push_back(new GoblinMageSorcerer(position, state));
+        }
+        else if(s=="MadScientist")
+        {
+            entities.push_back(new MadScientist(position, state));
+        }
+        else if(s=="Boar")
+        {
+            entities.push_back(new Boar(position, state));
+        }
+        else if(s=="SwordMinion")
+        {
+            entities.push_back(new SwordMinion(position, state));
+        }
+        else if (s == "RifleMinion")
+        {
+            entities.push_back(new RifleMinion(position, state));
+        }
+        else if (s == "BlunderbussPistolMinion")
+        {
+            entities.push_back(new BlunderbussPistolMinion(position, state));
+		}
+        else if (s == "GoblinPriest")
+        {
+            entities.push_back(new GoblinPriest(position, state));
+        }   
+    } 
+}
 void TileMap::draw(sf::RenderTarget& target, sf::RenderStates states)const
 {
     Character* player = getPlayer(); 
@@ -335,15 +459,6 @@ void TileMap::draw(sf::RenderTarget& target, sf::RenderStates states)const
             }
         }
     }
-    //target.setView(target.getDefaultView()); // Reset the view to the default view
-    /*for(auto  x :entities)
-    {
-        if(auto character = dynamic_cast<Character*>(x))
-        {
-            sf::View view (character->getPosition(), sf::Vector2f(1216, 672));
-            target.setView(view); // Set the view to the character's position
-        }
-    }*/
     for(auto& x : layers)
     {
         x->draw(target, states); // Draw each layer

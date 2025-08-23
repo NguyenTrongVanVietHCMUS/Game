@@ -1412,6 +1412,31 @@
                  "width":32,
                  "x":448,
                  "y":65
+                }, 
+                {
+                 "height":0,
+                 "id":878,
+                 "name":"GoblinShooter",
+                 "point":true,
+                 "rotation":0,
+                 "type":"Point",
+                 "visible":true,
+                 "width":0,
+                 "x":133.333333333333,
+                 "y":339
+                },
+            
+                {
+                 "height":0,
+                 "id":879,
+                 "name":"GoblinWarrior",
+                 "point":true,
+                 "rotation":0,
+                 "type":"Point",
+                 "visible":true,
+                 "width":0,
+                 "x":362,
+                 "y":556
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1420,7 +1445,7 @@
          "y":0
         }],
  "nextlayerid":4,
- "nextobjectid":873,
+ "nextobjectid":880,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",

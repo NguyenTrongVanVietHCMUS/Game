@@ -7,6 +7,7 @@
 #include <Object/Decorator.hpp>
 #include <Control/CameraManager.hpp>
 #include <set>
+class State; 
 using json = nlohmann::json;
 
 class WeaponLoader;
@@ -140,7 +141,6 @@ class TileMap : public sf::Drawable
 {       
 private:
     void updateQueueEntities();    
-
 private:
     std::vector<std::vector<Tileset>> tilesets;
     bool load(const std::string& jsonFile, int x, int y, int height, int width); 
@@ -151,6 +151,8 @@ private:
         return entity1->getBodyHitbox().isCollide(entity2->getBodyHitbox());
     }
     void handleCollision(); 
+private : 
+    std::vector<std::pair<std::string, sf::Vector2f>> spawnPoints; 
 private: 
     std::string File;
     std::vector<Layer*> layers; 
@@ -172,7 +174,7 @@ public:
     void setWeaponLoader(WeaponLoader* weaponLoader) {
         this->weaponLoader = weaponLoader; 
     }
-
+    void initEntities(State* state); 
 
     Character* getPlayer()const;
 };

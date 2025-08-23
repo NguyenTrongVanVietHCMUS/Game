@@ -48,6 +48,7 @@ public:
     virtual float getRange()const; 
 public : 
     bool movable()const; 
+    double distanceTo(const Entity* other) const;
     // Getters and Setters
     virtual sf::Vector2f getPosition() const { 
         // std::cerr << "Get position : " << position.x << ", " << position.y << std::endl; 

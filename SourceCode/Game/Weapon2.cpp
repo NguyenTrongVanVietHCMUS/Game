@@ -25,12 +25,12 @@ void Weapon2::activate(Entity*target)
 {
     if( cooldownBehavior && !cooldownBehavior->isReady()) {
         return; // If the weapon is on cooldown, do not activate
-
     // Play âm thanh ở đây
     } else {
         cooldownBehavior->reset(); // Reset cooldown if ready
     }
     if (behavior) {
+        sound.play();
         behavior->activate(*this, target);
     }
     if( animation) {
@@ -146,5 +146,11 @@ void Weapon2::switchHold( bool ishold, Entity* owner)
 
 
 void Weapon2::setSound(std::string soundPath) {
-    std::cerr << "Sound set : "<< soundPath << std::endl;
+    if (soundPath == "Nothing")
+    {
+        return; 
+    }
+    if(!soundBuffer.loadFromFile(soundPath))abort(); // Load the sound from the specified path
+	sound.setBuffer(soundBuffer); // Set the sound buffer for the sound
+    //std::cerr << "Sound set : "<< soundPath << std::endl;
 }
