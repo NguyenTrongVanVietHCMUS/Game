@@ -15,7 +15,7 @@ class Character : public Entity
 {
 protected:
     float pickupRange = 150.0f;
-
+    bool isClickHold = false;
 protected:
     
 
