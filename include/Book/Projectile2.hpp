@@ -11,7 +11,7 @@ private:
     std::unique_ptr<IMovement> movementStrategy; // Strategy for movement
     std::unique_ptr<ICollision> collisionStrategy; // Strategy for collision handling
     std::unique_ptr<MovingAnimation> movingAnimation; // Animation for the projectile
-    std::vector<std::unique_ptr<IEffect>> trailStrategies; // Strategies for visual trails
+    std::vector<std::unique_ptr<IStatusEffect>> trailStrategies; // Strategies for visual trails
     sf::Sprite sprite; // Sprite representing the projectile
     sf::Texture texture; // Texture for the projectile sprite
     std::unordered_map<std::string, float> attributes; // Additional stats for the projectile
@@ -37,7 +37,7 @@ public:
     void setMovement(std::unique_ptr<IMovement> movement);
     void setCollision(std::unique_ptr<ICollision> collision);
     void setMovingAnimation(std::unique_ptr<MovingAnimation> animation);
-    void addTrailEffect(std::unique_ptr<IEffect> effect);
+    void addTrailEffect(std::unique_ptr<IStatusEffect> effect);
     
     void setSpriteScale(float scale);
     void setSpriteRotation(float angle);

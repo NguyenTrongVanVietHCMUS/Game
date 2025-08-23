@@ -80,9 +80,7 @@ public:
             std::move(_collision),
             std::move(_animation)
         );
-        for (auto& e : _effects) {
-            proj->addTrailEffect(std::move(e));
-        }
+
         return proj;
     }
 };

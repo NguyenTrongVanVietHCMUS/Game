@@ -18,6 +18,7 @@ private:
     sf::Vector2f ScaleBulletSpawnPosition = sf::Vector2f(0, 0); // Position where the bullet spawns based on the weapon's scale
     sf::Vector2f OriginalBulletSpawnPosition;
     bool ishold = true;
+
     State *CurrentMap = nullptr;
     void UpdateBulletSpawnPosition() ;
 public:

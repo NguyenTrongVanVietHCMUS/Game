@@ -1,5 +1,6 @@
 #include <Book/Weapon2.hpp>
 #include <Book/AdvancedWeaponComponent.hpp>
+#include <Book/Character.hpp>
 void Weapon2::setBehavior(std::unique_ptr<IBehavior> newBehavior)
 {
     if (newBehavior) {
@@ -23,12 +24,23 @@ float Weapon2::getStat(const std::string& statName) const
 
 void Weapon2::activate(Entity*target)
 {
+    
     if( cooldownBehavior && !cooldownBehavior->isReady()) {
         return; // If the weapon is on cooldown, do not activate
     // Play âm thanh ở đây
-    } else {
-        cooldownBehavior->reset(); // Reset cooldown if ready
+    } 
+
+    float ManaUsage = getStat("ManaUsage");
+    if(auto player = dynamic_cast<Character*>(target)) {
+        if(player->getMana() < ManaUsage) {
+            return; // Not enough mana to activate the weapon
+        } else {
+            player->reduceMana(ManaUsage); // Reduce the player's mana by the weapon's mana usage
+        }
     }
+    cooldownBehavior->reset(); // Reset the cooldown
+
+    
     if (behavior) {
         sound.play();
         behavior->activate(*this, target);

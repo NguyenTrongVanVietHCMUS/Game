@@ -76,7 +76,7 @@ void EntityAttributeActionComponent::updateShieldRegen(sf::Time dt) {
     }
 }
 
-void EntityAttributeActionComponent::setAttribute(CharacterResourceType type, float current, float max) {
+void EntityAttributeActionComponent::setAttribute(CharacterResourceType type, int current, int max) {
     attributes[type] = EntityResource(current, max);
 }
 

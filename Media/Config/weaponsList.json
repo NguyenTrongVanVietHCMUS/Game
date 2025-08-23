@@ -28,7 +28,8 @@
     "scaleBulletSpawnPosition": {
       "x": 0.6,
       "y": -0.2
-    }
+    },
+    "manaUsage": 2.0
   },
 
   "GoblinGun": {
@@ -292,7 +293,7 @@
       "x": 150,
       "y": 75
     },
-    "cooldownTime": 5.0,
+    "cooldownTime": 0.45,
     "behavior": {
       "type": "Hold Laser Gun Behavior"
     },

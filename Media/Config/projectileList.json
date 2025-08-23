@@ -90,7 +90,7 @@
     "Damage" : 20.0
   }, 
   "Laser Beam": {
-    "lifeTime": 5.0,
+    "lifeTime": 0.5,
     "scale": 1.0,
     "texturePath": "Media/Assets/Projectiles/Laser.png",
     "animation": {

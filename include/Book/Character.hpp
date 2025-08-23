@@ -46,6 +46,7 @@ public :
     virtual int getHealth(); 
     virtual int getMana(); 
     virtual int getShield();
+    virtual void reduceMana(int amount);
     virtual bool isDeath() const;
 
     void takeDamage(int damage) override;

@@ -162,6 +162,12 @@ void Character::takeDamage(int damage)
     }
 }
 
+void Character::reduceMana(int amount)
+{
+    int newMana = attributes.getMana() - amount;
+    attributes.setAttribute(CharacterResourceType::Mana, newMana, attributes.getMaxMana());
+}
+
 void Character::knockBack(sf::Vector2f force)
 {
     movingAnimation->Knockback(force);

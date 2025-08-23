@@ -24,7 +24,7 @@ void Projectile2::setCollision(std::unique_ptr<ICollision> collision)
     }
 }
 
-void Projectile2::addTrailEffect(std::unique_ptr<IEffect> effect)
+void Projectile2::addTrailEffect(std::unique_ptr<IStatusEffect> effect)
 {
     if (effect) {
         trailStrategies.push_back(std::move(effect));
@@ -81,9 +81,7 @@ bool Projectile2::update(sf::Time dt)
 
     sprite.setPosition(getPosition()); // Update the sprite position to match the projectile's position
 
-    for (const auto& effect : trailStrategies) {
-        effect->apply(*this);
-    }
+    
     setAttribute("CurrentLifeTime", CurrentLifeTime); // Update the current lifetime attribute
     if (movingAnimation) {
         movingAnimation->update(dt); // Update the moving animation if it exists
@@ -250,9 +248,7 @@ Projectile2* Projectile2::clone(sf::Vector2f direction) const {
     if(movingAnimation) {
         proj->movingAnimation = std::make_unique<MovingAnimation>(*movingAnimation, proj->position);
     }
-    for (const auto& effect : trailStrategies) {
-        proj->trailStrategies.push_back(effect->clone());
-    }
+
     return proj;
 }
 

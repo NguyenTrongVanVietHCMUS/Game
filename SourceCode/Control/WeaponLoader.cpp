@@ -28,6 +28,10 @@ std::shared_ptr<Weapon2> WeaponLoader::LoadWeapons(std::string weaponName) {
         builder.withBehavior(std::move(behavior));
     }
 
+    if(weaponData[weaponName].contains("manaUsage")) {
+        builder.withManaUsage(weaponData[weaponName]["manaUsage"].get<float>());
+    }
+
     if(weaponData[weaponName].contains("SoundPath")) {
         std::string soundPath = weaponData[weaponName]["SoundPath"].get<std::string>();
         if (!soundPath.empty()) {

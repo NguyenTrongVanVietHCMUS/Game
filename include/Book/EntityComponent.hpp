@@ -1,19 +1,17 @@
 #pragma once
 #include <Book/Utility.hpp>
 struct EntityResource{
-    float current = 0;
-    float max = 0;
-    EntityResource(float current, float max) : current(current), max(max) {}
+    int current = 0;
+    int max = 0;
+    EntityResource(int current, int max) : current(current), max(max) {}
     EntityResource() = default;
-    
-    
 
-    void setCurrent(float value) {
+    void setCurrent(int value) {
         current = value;
-        current = std::max(-0.001f, current); // Ensure current is not negative
+        current = std::max(0, current); // Ensure current is not negative
     }
 
-    void setMax(float value) {
+    void setMax(int value) {
         max = value;
     }
 
@@ -30,7 +28,7 @@ struct EntityResource{
         return current <= 0;
     }
 
-    void change(float value) {
+    void change(int value) {
         setCurrent(current + value);
     }
 };
@@ -66,7 +64,7 @@ public:
     virtual int getMana() const;
     virtual int getShield() const;
     virtual const EntityResource* getAttribute(CharacterResourceType type) const;
-    virtual void setAttribute(CharacterResourceType type, float current, float max);
+    virtual void setAttribute(CharacterResourceType type, int current, int max);
 
     // Setters for the attributes
     virtual void setMaxHealth(int value);

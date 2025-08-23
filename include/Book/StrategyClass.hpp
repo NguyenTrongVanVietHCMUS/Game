@@ -104,6 +104,8 @@ public:
     }
 };
 
+class CameraManager;
+
 class IStatusEffect{
 protected:
     float duration; // Duration of the effect in seconds
@@ -121,5 +123,9 @@ public:
     virtual bool isActive() const {
         return elapsedTime < duration; // Check if the effect is still active
     }
+
+
+// Trait of the class 
+    virtual void SetCamera(CameraManager* cameraManager) {};
 };
 

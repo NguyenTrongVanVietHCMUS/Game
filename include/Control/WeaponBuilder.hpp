@@ -16,7 +16,7 @@ class WeaponBuilder
     sf::Vector2f            _scaleBulletSpawnPosition = sf::Vector2f(0, 0); // Position where the bullet spawns based on the weapon's scale
     std::string            _soundPath = "Nothing"; // Path to the sound file for the weapon
     State*                  _worldmap;
-
+    float                  _manaUsage = 0.0f;
     WeaponBuilder(std::string name, sf::Vector2f position, State* worldmap = nullptr)
         : _name(std::move(name)), _position(position), _worldmap(worldmap) {}
 public:
@@ -70,6 +70,12 @@ public:
         return *this;
     }
 
+    WeaponBuilder& withManaUsage(float manaUsage)
+    {
+        _manaUsage = manaUsage;
+        return *this;
+    }
+
     std::shared_ptr<Weapon2> build()
     {
 
@@ -88,6 +94,9 @@ public:
             weapon->setSound(_soundPath); // Set the sound path for the weapon
             _soundPath = "Nothing"; // Reset the sound path after setting it
         }
+
+        weapon->setStat("ManaUsage", _manaUsage);
+        _manaUsage = 0.0f;
         return weapon;
     }
 };
