@@ -7,15 +7,15 @@ void HoldLaserBeamMovement::update(Projectile2& projectile, const sf::Time& dt)
     projectile.HitboxMode = false;
     float posX = weapon.getStat("TargetPosX");
     float posY = weapon.getStat("TargetPosY");
-    Raycaster raycaster(Worldmap);
-    sf::Vector2f spawnPosition = weapon.GetProjectileSpawnPosition();
-RaycastHit raycast = raycaster.cast(spawnPosition, sf::Vector2f(posX, posY) - spawnPosition, 1000.0f);
+    
     if(elapsedTime >= aimTime)
     {
       
         elapsedTime = 0;
         // If the weapon is set, use its direction
-        
+        Raycaster raycaster(Worldmap);
+    sf::Vector2f spawnPosition = weapon.GetProjectileSpawnPosition();
+    RaycastHit raycast = raycaster.cast(spawnPosition, sf::Vector2f(posX, posY) - spawnPosition, 1000.0f);
         
         std::set<Entity*> hitEntities = raycaster.castGetEntities(spawnPosition, raycast.position);
         
@@ -31,10 +31,10 @@ RaycastHit raycast = raycaster.cast(spawnPosition, sf::Vector2f(posX, posY) - sp
                 entity->takeDamage(damage);
             }
         }
-        
+        projectile.setAttribute("Start Position X", spawnPosition.x);
+        projectile.setAttribute("Start Position Y", spawnPosition.y);
+        projectile.setAttribute("End Position X", raycast.position.x);
+        projectile.setAttribute("End Position Y", raycast.position.y);
     }
-    projectile.setAttribute("Start Position X", spawnPosition.x);
-    projectile.setAttribute("Start Position Y", spawnPosition.y);
-    projectile.setAttribute("End Position X", raycast.position.x);
-    projectile.setAttribute("End Position Y", raycast.position.y);
+    
 }

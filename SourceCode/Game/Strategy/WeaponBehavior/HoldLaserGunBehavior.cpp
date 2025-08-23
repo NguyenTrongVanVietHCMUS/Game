@@ -7,7 +7,7 @@ void HoldLaserGunBehavior::activate(Weapon2& self, Entity* target) {
     sf::Vector2f SpawnPosition = self.GetProjectileSpawnPosition();
     // Get the target position
     Projectile2* proj = ProjectileLoader(Worldmap).LoadProjectile("Laser Beam", SpawnPosition, target->position);
-    proj->setMovement(std::make_unique<HoldLaserBeamMovement>(0.1f, self, Worldmap));
+    proj->setMovement(std::make_unique<HoldLaserBeamMovement>(0.05f, self, Worldmap));
     proj->type = self.ProjectileTypeTransform(target); // Transform the projectile type based on the target type
 
     Worldmap->pushEntity(proj);

@@ -66,6 +66,7 @@ std::shared_ptr<Weapon2> Inventory::getCurrentWeapon() const {
 
 void Inventory::update(sf::Time dt) {
     std::shared_ptr<Weapon2> currentWeapon = getCurrentWeapon();
+    std::cerr << "Updating weapon: " << (currentWeapon ? currentWeapon->name: "None") << std::endl;
     if (currentWeapon) {
         currentWeapon->update(dt);
     }
