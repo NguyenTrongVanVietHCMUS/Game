@@ -8,8 +8,6 @@
 
 class GoblinMageSorcerer : public Enemy
 {
-private:
-    float sightRange;
 public:
     GoblinMageSorcerer(sf::Vector2f position, State* state) : Enemy("GoblinMageSorcerer", position)
     {

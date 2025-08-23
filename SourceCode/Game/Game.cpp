@@ -76,6 +76,7 @@ Game::Game()
 			load<sf::Font>(Fonts::ID::Title, "Media/Fonts/PressStart2P_Regular.ttf");
 			load<sf::Font>(Fonts::ID::HUDFont, "Media/Fonts/Jersey10-Regular.ttf");
 			load<sf::Font>(Fonts::ID::PIXEL, "Media/Fonts/Pixelon.ttf");
+			load<sf::Font>(Fonts::ID::PixelGame, "Media/Fonts/Pixel Game.otf");
 		}
 
 		{
@@ -145,6 +146,7 @@ void Game::registerStates()
 	stateStack.registerState<Title>(States::Title);
 	stateStack.registerState<Lobby>(States::Lobby);
 	stateStack.registerState<Jungle>(States::Jungle);
+	stateStack.registerState<GameOver>(States::GameOver); 
 	// stateStack.registerState<PauseState>(States::Pause);
 	// stateStack.registerState<SettingsState>(States::Settings);
 	// stateStack.registerState<ChessGame1PlayerState>(States::ChessGame1Player);

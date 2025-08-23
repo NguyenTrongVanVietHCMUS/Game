@@ -11,13 +11,11 @@ class GoblinWarrior : public Enemy
 public:
     GoblinWarrior(sf::Vector2f position, State* state) : Enemy("GoblinWarrior", position)
     {
-        WeaponLoader weaponLoader(state);
         sightRange = 1000.f;
         movingAnimation = std::make_unique<ShortRangeMob_MovingAnimation>(&ResourceManager::getInstance().get<sf::Texture>(Textures::ID::GoblinWarrior), sf::Vector2u(8, 3), 0.1f, this->position, 2.3, this);
         movingAnimation->speed = 175.0f;
         aiEnemy = std::make_unique<AIShortRangeEnemy>();
         inventory->addWeapon(WeaponLoader(state).LoadWeapons("Sword"), this);
     }
-
     ~GoblinWarrior() override = default; // Default destructor    
 };

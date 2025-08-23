@@ -5,9 +5,7 @@
 #include<Book/AIEnemy.hpp>
 
 class Boar : public Enemy
-{
-private : 
-    float sightRange; 
+{ 
 public:
     Boar(sf::Vector2f position,State* states) : Enemy("Boar", position)
     {

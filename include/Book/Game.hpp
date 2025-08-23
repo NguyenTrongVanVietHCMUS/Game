@@ -16,7 +16,7 @@
 #include<Control/SoundPlayer.hpp>
 #include<Control/MusicPlayer.hpp>
 
-
+#include<Screens/GameOver.hpp>
 #include<Screens/Lobby.hpp>
 #include<Screens/Title.hpp>
 #include<Screens/Dungeon/Jungle.hpp>

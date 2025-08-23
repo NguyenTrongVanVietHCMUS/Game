@@ -9,8 +9,7 @@
 
 class RifleMinion : public Enemy
 {
-private:
-    float sightRange;
+
 public:
     RifleMinion(sf::Vector2f position, State* state) : Enemy("RifleMinion", position)
     {

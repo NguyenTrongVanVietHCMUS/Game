@@ -9,8 +9,6 @@
 
 class SwordMinion : public Enemy
 {
-private:
-    float sightRange;
 public:
     SwordMinion(sf::Vector2f position, State* state) : Enemy("SwordMinion", position)
     {
@@ -18,9 +16,9 @@ public:
         sightRange = 250.f;
         movingAnimation = std::make_unique<ShortRangeMob_MovingAnimation>(&ResourceManager::getInstance().get<sf::Texture>(Textures::ID::SwordMinion), sf::Vector2u(8, 3), 0.1f, this->position, 0.4f, this);
         movingAnimation->speed = 175.0f;
-        aiEnemy = std::make_unique<AIHighRangeEnemy>();
+        aiEnemy = std::make_unique<AIShortRangeEnemy>();
         inventory->addWeapon(WeaponLoader(state).LoadWeapons("MinionSword"), this);
     }   
 
-    ~SwordMinion() override = default; // Default destructor    
+    ~SwordMinion() override = default; 
 };

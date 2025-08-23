@@ -396,7 +396,7 @@ void TileMap::initEntities(State* state)
         }
         else if (s == "GoblinShooter")
         {
-            entities.push_back(new GoblinShooter(position, state));
+            //entities.push_back(new GoblinShooter(position, state));
         }
         else if(s=="GoblinWarrior")
         {
@@ -486,7 +486,6 @@ bool TileMap::update(sf::Time dt)
 {
     camera.update(dt); 
     //Character* player = nullptr; 
-
     if(PushQueueEntities.size() > 0)
     {
         std::cerr << "Check the first list in queue : " << PushQueueEntities[0]->name << std::endl;
@@ -500,6 +499,10 @@ bool TileMap::update(sf::Time dt)
         }
     }*/
     Character* player = getPlayer(); 
+    if (player == nullptr || player->isDeath())
+    {
+        return 0; 
+    }
     std::vector<Entity*> updateEntities;
     for (auto& entity : entities)
     {
