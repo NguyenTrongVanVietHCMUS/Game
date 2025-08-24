@@ -24,8 +24,9 @@ float Weapon2::getStat(const std::string& statName) const
 
 void Weapon2::activate(Entity*target)
 {
-    
+
     if( cooldownBehavior && !cooldownBehavior->isReady()) {
+        std::cerr << "Weapon is on cooldown." << std::endl;
         return; // If the weapon is on cooldown, do not activate
     // Play âm thanh ở đây
     } 
@@ -33,13 +34,13 @@ void Weapon2::activate(Entity*target)
     float ManaUsage = getStat("ManaUsage");
     if(auto player = dynamic_cast<Character*>(target)) {
         if(player->getMana() < ManaUsage) {
+            
             return; // Not enough mana to activate the weapon
         } else {
             player->reduceMana(ManaUsage); // Reduce the player's mana by the weapon's mana usage
         }
     }
     cooldownBehavior->reset(); // Reset the cooldown
-
     
     if (behavior) {
         sound.play();

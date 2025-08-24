@@ -131,7 +131,7 @@
       "type": "Laser Beam Movement",
       "HitCycle" : 0.1
     },
-    "Damage" : 100.0
+    "Damage" : 5.0
   },
   "Explosion Barrel": {
     "lifeTime" : 0.45,
@@ -157,5 +157,21 @@
         "intensity" : 100.0
       }
     }
+  },"ZulanBullet": {
+    "lifeTime": 3.0,
+    "scale": 2.0,
+    "texturePath": "Media/Assets/Projectiles/PurpleBullet.png",
+
+    "movement": {
+      "type": "Straight Movement",
+      "speed": 500.0,
+      "criticalAngle": 200.0,
+      "targetPosition": { "x": 500.0, "y": 300.0 }
+    },
+
+    "collisionBehavior": {
+      "type": "Projectile Collision Behavior"
+    },
+    "Damage" : 50.0
   }
 }

@@ -55,6 +55,16 @@ void Enemy::shoot(Entity* target,sf::Time dt)
     inventory->update(dt); 
 }
 
+std::string Enemy::getCurrentWeaponName() const
+{
+    return inventory->getCurrentWeaponName();
+}
+
+void Enemy::SwitchWeapon()
+{
+    inventory->SwitchRandomWeapon();
+}
+
 bool Enemy::isAllowClean()
 {
     return false;

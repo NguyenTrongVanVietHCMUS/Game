@@ -1,0 +1,111 @@
+{
+  "Zulan Laser": {
+    "name": "Zulan Laser",
+    "position": {
+      "x": 150,
+      "y": 75
+    },
+    "cooldownTime": 0.0,
+    "behavior": {
+      "type": "Hold Laser Gun Behavior"
+    },
+    "animation": {
+      "type": "Gun Animation",
+      "totalTime": 0.3,
+      "scale": 0.35,
+      "texture": "Media/Assets/Weapons/LazerGun/XRay.png",
+      "startAngle": 10.0,
+      "endAngle": 0.0,
+      "recoilOffset": 10.0,
+      "middlePositionX": 0.4,
+      "middlePositionY": 0.6
+
+    },
+    "scaleBulletSpawnPosition": {
+      "x": 0.6,
+      "y": -0.2
+    },
+    "SoundPath": "Media/Sound/Laser.wav"
+  },
+  "Zulan Radial Shot": {
+    "name": "Zulan Radial Shot",
+    "position": {
+      "x": 150,
+      "y": 75
+    },
+    "cooldownTime": 0.0,
+    "behavior": {
+      "type": "Balance Spread Behavior",
+      "numBullet": 20,
+      "Projectile": "ZulanBullet"
+    },
+    "animation": {
+      "type": "Gun Animation",
+      "totalTime": 0.3,
+      "scale": 3.0,
+      "texture": "Media/Assets/Weapons/Staff/Staff.png",
+      "startAngle": 10.0,
+      "endAngle": 0.0,
+      "recoilOffset": 10.0,
+      "middlePositionX": 0.2,
+      "middlePositionY": 0.5
+    },
+    "scaleBulletSpawnPosition": {
+      "x": 0.7,
+      "y": 0.3
+    }
+  },
+  "Zulan Shot": {
+    "name": "Zulan Shot",
+    "position": {
+      "x": 150,
+      "y": 75
+    },
+
+    "behavior": {
+      "type": "Ranged Weapon Behavior",
+      "projectileSpeed": 2000.0,
+      "spreadAngle": 20.0,
+      "Projectile": "PurpleBullet"
+    },
+
+    "animation": {
+      "type": "Gun Animation",
+      "totalTime": 0.3,
+      "scale": 0.4,
+      "texture": "Media/Assets/Weapons/Gun/AK_47.png",
+      "startAngle": 10.0,
+      "endAngle": 0.0,
+      "recoilOffset": 10.0
+    },
+    "SoundPath": "Media/Sound/AK_47.wav",
+    "cooldownTime": 0.0,
+
+    "scaleBulletSpawnPosition": {
+      "x": 0.6,
+      "y": -0.2
+    }
+  },
+  "Zulan Bomb": {
+    "name": "Zulan Bomb",
+    "position": {
+      "x": 150,
+      "y": 75
+    },
+    "cooldownTime": 0.7,
+    "behavior": {
+      "type": "Throwing Weapon Behavior",
+      "explosionRadius": 100.0,
+      "damage": 50
+    },
+    "animation": {
+      "type": "Gun Animation",
+      "totalTime": 0.3,
+      "scale": 0.4,
+      "texture": "Media/Assets/Weapons/Gun/AK_47.png",
+      "startAngle": 10.0,
+      "endAngle": 0.0,
+      "recoilOffset": 50.0
+    }
+  }
+}

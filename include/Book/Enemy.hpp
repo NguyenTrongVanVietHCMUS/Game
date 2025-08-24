@@ -43,6 +43,8 @@ public:
     virtual void chase(Entity* target,sf::Time dt);
     virtual void wander(sf::Time dt); 
     virtual void shoot(Entity* target,sf::Time dt); 
+    virtual void SwitchWeapon();
+    std::string getCurrentWeaponName() const;
 public:
     virtual bool isAllowClean();
     virtual bool isDeath();
