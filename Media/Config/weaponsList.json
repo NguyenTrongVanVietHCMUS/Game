@@ -137,7 +137,7 @@
     "cooldownTime": 0.5,
     "behavior": {
       "type": "Melee Weapon Behavior",
-      "Projectile": "Basic Slash"
+      "Projectile": "Blind Slash"
     },
     "animation": {
       "type": "Sword Animation",

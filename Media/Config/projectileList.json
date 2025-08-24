@@ -71,6 +71,31 @@
     },
     "Damage": 10.0
   },
+  "Blind Slash" :{
+    "lifeTime": 0.15,
+    "scale": 5.0,
+    "texturePath": "Media/Assets/Projectiles/sword_slash.png",
+
+    "collisionBehavior": {
+      "type": "Melee Collision Behavior"
+    },
+    "animation" : {
+      "type": "Slash Projectile Animation",
+      "texture": "Media/Assets/Projectiles/sword_slash.png",
+      "imageCount" : { "x": 3, "y": 1 },
+      "switchTime" : 0.05,
+      "scale": 7.5,
+      "middlePositionX": 0.5,
+      "middlePositionY": 0.5
+    },
+    "Damage": 0.0,
+    "Effects":{
+      "Effect1":{
+        "type":"Darkness",
+        "duration" : 10.0
+      }
+    }
+  },
   "Explosion basic": {
     "lifeTime" : 0.45,
     "scale" : 2.0,
@@ -124,6 +149,13 @@
     "collisionBehavior": {
       "type": "Melee Collision Behavior"
     },
-    "Damage" : 20.0
+    "Damage" : 20.0,
+    "Effects":{
+      "Effect1":{
+        "type":"Camera Shake Effect",
+        "duration" : 0.4,
+        "intensity" : 100.0
+      }
+    }
   }
 }

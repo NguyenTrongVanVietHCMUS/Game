@@ -4,6 +4,8 @@
 #include <Control/State.hpp>
 #include <Book/Strategy/WeaponBehavior.hpp>
 #include <Book/Strategy/WeaponAnimation.hpp>
+#include <Book/Strategy/CameraEffectBehavior.hpp>
+#include <Book/Strategy/StatusEffect/CameraEffect.hpp>
 using json = nlohmann::json;
 
 class StrategyFactory
@@ -59,6 +61,17 @@ public:
         throw std::runtime_error("Unknown moving animation type: " + data.at("type").get<std::string>());
     }
 
+    static IStatusEffect* createEffectBehavior(const json& data, CameraManager* cameraManager = nullptr, Entity* target = nullptr)
+    {
+        auto it = effectBehaviorRegistry().find(data.at("type").get<std::string>());
+        std::cerr << "Creating effect behavior of type: " << data.at("type").get<std::string>() << std::endl;
+        if (it != effectBehaviorRegistry().end())
+        {
+            return it->second(data, cameraManager, target);
+        }
+        throw std::runtime_error("Unknown effect behavior type: " + data.at("type").get<std::string>());
+    }
+
 private:
 //SlashProjectile_MovingAnimation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f& position, float scale,float Angle = 0.5f, sf::Vector2f middlePosition = sf::Vector2f(0.5f, 1));
     using BehaviorFactoryMap = std::unordered_map<std::string, std::function<std::unique_ptr<IBehavior>(const json&, State*)>>;
@@ -66,10 +79,34 @@ private:
     using MovingBehaviorFactoryMap = std::unordered_map<std::string, std::function<std::unique_ptr<IMovement>(const json&, State*, sf::Vector2f, sf::Vector2f)>>;
     using CollisionBehaviorFactoryMap = std::unordered_map<std::string, std::function<std::unique_ptr<ICollision>(const json&, State*)>>;
     using MovingAnimationFactoryMap = std::unordered_map<std::string, std::function<std::unique_ptr<MovingAnimation>(const json&, sf::Vector2f, sf::Vector2f, sf::Vector2f&)>>;
+    using EffectBehaviorFactoryMap = std::unordered_map<std::string, std::function<IStatusEffect*(const json&, CameraManager*, Entity*)>>;
 private:
     static std::unordered_map<std::string, sf::Texture*> textureCache;
 private:
     // Factory methods for each type of behavior
+
+    static EffectBehaviorFactoryMap& effectBehaviorRegistry()
+    {
+        static EffectBehaviorFactoryMap registry{
+            {"Camera Shake Effect", [](const json& data, CameraManager* cameraManager, Entity* target){
+                auto effect = new ShakeCameraEffect(
+                    data.value("duration", 0.5f),
+                    cameraManager,
+                    data.value("intensity", 5.0f)
+                );
+                return effect;
+            }},
+            {"Darkness", [](const json& data, CameraManager* cameraManager, Entity* target){
+                auto effect = new DarknessCameraEffect(
+                    data.value("duration", 2.0f),
+                    cameraManager
+                );
+                return effect;
+            }}
+        };
+        return registry;
+    }
+
     static BehaviorFactoryMap& behaviorRegistry()
     {
         static BehaviorFactoryMap registry{
@@ -248,6 +285,7 @@ private:
         };
         return registry;
     }
+
 private:
     static sf::Texture* getTexture(const std::string& texturePath)
     {

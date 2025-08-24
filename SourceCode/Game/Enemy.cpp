@@ -80,6 +80,5 @@ void Enemy::knockBack(sf::Vector2f force)
 
 void Enemy::knockBack(const Projectile2* projectile, float Force, Entity *other)
 {
-    std::cerr << "KnockBack with force : " << Force << '\n';
     movingAnimation->Knockback(projectile, Force, other);
 }

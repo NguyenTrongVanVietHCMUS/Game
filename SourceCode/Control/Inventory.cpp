@@ -66,7 +66,6 @@ std::shared_ptr<Weapon2> Inventory::getCurrentWeapon() const {
 
 void Inventory::update(sf::Time dt) {
     std::shared_ptr<Weapon2> currentWeapon = getCurrentWeapon();
-    std::cerr << "Updating weapon: " << (currentWeapon ? currentWeapon->name: "None") << std::endl;
     if (currentWeapon) {
         currentWeapon->update(dt);
     }
@@ -75,7 +74,7 @@ void Inventory::update(sf::Time dt) {
 void Inventory::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     std::shared_ptr<Weapon2> currentWeapon = getCurrentWeapon();
     if (currentWeapon) {
-        currentWeapon->draw(target, states);
+        currentWeapon->draw(target, states); 
     }
 }
 

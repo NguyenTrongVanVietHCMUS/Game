@@ -127,5 +127,7 @@ public:
 
 // Trait of the class 
     virtual void SetCamera(CameraManager* cameraManager) {};
+    virtual void setTarget(Entity* target) {};
+
 };
 

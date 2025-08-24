@@ -9,6 +9,7 @@ class WeaponBuilder
     std::string             _name;
     sf::Vector2f            _position;
     
+    std::vector<std::unique_ptr<IEffect>> _effects;
     std::unique_ptr<IBehavior> _behavior = nullptr;
     std::unique_ptr<IWeaponAnimation> _animation = nullptr;
     std::unique_ptr<ICooldownBehavior> _cooldownBehavior = nullptr;
@@ -73,6 +74,12 @@ public:
     WeaponBuilder& withManaUsage(float manaUsage)
     {
         _manaUsage = manaUsage;
+        return *this;
+    }
+
+    WeaponBuilder& addEffect(std::unique_ptr<IEffect> effect)
+    {
+        _effects.push_back(std::move(effect));
         return *this;
     }
 
