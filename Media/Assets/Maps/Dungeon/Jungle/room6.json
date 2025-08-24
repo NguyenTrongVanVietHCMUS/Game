@@ -2055,6 +2055,18 @@
                  "width":32,
                  "x":352,
                  "y":608
+                }, 
+                {
+                 "height":0,
+                 "id":209,
+                 "name":"GoblinShooter",
+                 "point":true,
+                 "rotation":0,
+                 "type":"Point",
+                 "visible":true,
+                 "width":0,
+                 "x":245.333333333333,
+                 "y":740
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -2063,7 +2075,7 @@
          "y":0
         }],
  "nextlayerid":3,
- "nextobjectid":208,
+ "nextobjectid":210,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",

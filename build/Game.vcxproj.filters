@@ -190,6 +190,9 @@
     <ClCompile Include="V:\Game\SourceCode\Screens\Dungeon\Jungle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="V:\Game\SourceCode\Screens\GameOver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="V:\Game\SourceCode\Screens\HUD\StatPlayer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

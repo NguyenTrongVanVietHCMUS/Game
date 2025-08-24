@@ -659,6 +659,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="V:\Game\SourceCode\Game\Weapon2.cpp" />
     <ClCompile Include="V:\Game\SourceCode\Game\World.cpp" />
     <ClCompile Include="V:\Game\SourceCode\Screens\Dungeon\Jungle.cpp" />
+    <ClCompile Include="V:\Game\SourceCode\Screens\GameOver.cpp" />
     <ClCompile Include="V:\Game\SourceCode\Screens\HUD\StatPlayer.cpp" />
     <ClCompile Include="V:\Game\SourceCode\Screens\Lobby.cpp" />
     <ClCompile Include="V:\Game\SourceCode\Screens\Title.cpp" />

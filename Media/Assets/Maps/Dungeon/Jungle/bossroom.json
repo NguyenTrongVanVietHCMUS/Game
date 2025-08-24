@@ -2019,6 +2019,18 @@
                  "width":32,
                  "x":608,
                  "y":1376
+                }, 
+                {
+                 "height":0,
+                 "id":219,
+                 "name":"Zulan",
+                 "point":true,
+                 "rotation":0,
+                 "type":"Point",
+                 "visible":true,
+                 "width":0,
+                 "x":722,
+                 "y":414
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -2027,7 +2039,7 @@
          "y":0
         }],
  "nextlayerid":3,
- "nextobjectid":219,
+ "nextobjectid":220,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",
