@@ -55,6 +55,16 @@ void Enemy::shoot(Entity* target,sf::Time dt)
     inventory->update(dt); 
 }
 
+std::string Enemy::getCurrentWeaponName() const
+{
+    return inventory->getCurrentWeaponName();
+}
+
+void Enemy::SwitchWeapon()
+{
+    inventory->SwitchRandomWeapon();
+}
+
 bool Enemy::isAllowClean()
 {
     return false;
@@ -82,6 +92,5 @@ void Enemy::knockBack(sf::Vector2f force)
 
 void Enemy::knockBack(const Projectile2* projectile, float Force, Entity *other)
 {
-    std::cerr << "KnockBack with force : " << Force << '\n';
     movingAnimation->Knockback(projectile, Force, other);
 }

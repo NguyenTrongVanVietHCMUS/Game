@@ -13,10 +13,16 @@
 class Zulan : public Enemy
 {
 public:
-    Zulan(sf::Vector2f position, State* state) : Enemy("Zulan", position)
+    Zulan(sf::Vector2f position, State* state) : Enemy("Blind shot", position)
     {
-        sightRange = 350.f;
-        inventory->addWeapon(WeaponLoader(state).LoadWeapons("Zulan Laser"), this);
+        sightRange = 1350.f;
+        WeaponLoader weaponLoader(state, "Media/Config/ZulanWeaponPhase1.json");
+        inventory->addWeapon(weaponLoader.LoadWeapons("Zulan Radial Shot"), this);
+        inventory->addWeapon(weaponLoader.LoadWeapons("Zulan Laser"), this);
+        inventory->addWeapon(weaponLoader.LoadWeapons("Zulan Shot"), this);
+        inventory->addWeapon(weaponLoader.LoadWeapons("Zulan Bomb"), this);
+        inventory->addWeapon(weaponLoader.LoadWeapons("Blind shot"), this);
+    
         movingAnimation = std::make_unique<Zulan_MovingAnimation>(this->position, 3, this);
         movingAnimation->speed = 80.0f;
         aiEnemy = std::make_unique<AIZulan>();

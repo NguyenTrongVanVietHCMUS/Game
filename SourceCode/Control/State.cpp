@@ -85,7 +85,6 @@ void State::popEntityNoDelete(Entity* entity)
 {
 	if (map)
 	{
-		std::cerr << entity->name << " pop no delete\n";
 		if (entity && std::find(map->PopQueueEntitiesNoDelete.begin(), map->PopQueueEntitiesNoDelete.end(), entity) == map->PopQueueEntitiesNoDelete.end())
 		{
 			map->PopQueueEntitiesNoDelete.push_back(entity);

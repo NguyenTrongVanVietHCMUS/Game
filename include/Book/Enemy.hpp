@@ -43,13 +43,15 @@ public:
     virtual void chase(Entity* target,sf::Time dt);
     virtual void wander(sf::Time dt); 
     virtual void shoot(Entity* target,sf::Time dt); 
+    virtual void SwitchWeapon();
+    std::string getCurrentWeaponName() const;
 public:
     virtual bool isAllowClean();
     virtual bool isDeath();
 
     virtual float getRange()const final
     {
-        std::cerr << "Enemy getRange called, returning sightRange: " << sightRange << std::endl;
+
         return sightRange;
     }
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override

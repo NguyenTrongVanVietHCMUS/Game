@@ -27,12 +27,14 @@ public:
     void activateSkill(Entity* user);
 
     void SwitchWeapon(); // Switch to the next weapon in the inventory
+    void SwitchRandomWeapon(); // Switch to a random weapon in the inventory
     void SwitchSkill(); // Switch to the next skill in the inventory
 
     void update(sf::Time dt); // Update the inventory state
     void draw(sf::RenderTarget& target, sf::RenderStates states) const; // Draw the inventory
 
     std::shared_ptr<Weapon2> getCurrentWeapon() const;
+    std::string getCurrentWeaponName() const;
     void removeCurrentWeapon(); // Remove the currently active weapon from the inventory
 public:
     void shoot(Entity* shooter, Entity* target); // Shoot the current weapon at the target

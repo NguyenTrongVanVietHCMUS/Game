@@ -54,6 +54,19 @@ void Inventory::SwitchWeapon() {
     std::cerr << "Switched to weapon at index: " << CurrentWeaponIndex << std::endl;
 }
 
+void Inventory::SwitchRandomWeapon() {
+    if (weapons.empty()) {
+        std::cerr << "No weapons in inventory to switch." << std::endl;
+        return;
+    }
+    int newIndex;
+    do {
+        newIndex = rand() % weapons.size();
+    } while (newIndex == CurrentWeaponIndex && weapons.size() > 1); // Ensure a different weapon is selected
+    CurrentWeaponIndex = newIndex;
+    std::cerr << "Switched to random weapon at index: " << CurrentWeaponIndex << std::endl;
+}
+
 std::shared_ptr<Weapon2> Inventory::getCurrentWeapon() const {
     if (CurrentWeaponIndex < weapons.size()) {
         return weapons[CurrentWeaponIndex];
@@ -63,19 +76,25 @@ std::shared_ptr<Weapon2> Inventory::getCurrentWeapon() const {
     }
 }
 
+std::string Inventory::getCurrentWeaponName() const {
+    auto currentWeapon = getCurrentWeapon();
+    if (currentWeapon) {
+        return currentWeapon->name;
+    } else {
+        return "No weapon selected";
+    }
+}
 
 void Inventory::update(sf::Time dt) {
-    std::shared_ptr<Weapon2> currentWeapon = getCurrentWeapon();
-    std::cerr << "Updating weapon: " << (currentWeapon ? currentWeapon->name: "None") << std::endl;
-    if (currentWeapon) {
-        currentWeapon->update(dt);
+    for(auto& weapon : weapons) {
+        weapon->update(dt); // Update each weapon in the inventory
     }
 }
 
 void Inventory::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     std::shared_ptr<Weapon2> currentWeapon = getCurrentWeapon();
     if (currentWeapon) {
-        currentWeapon->draw(target, states);
+        currentWeapon->draw(target, states); 
     }
 }
 

@@ -54,7 +54,8 @@ protected:
 public:
     ICooldownBehavior(float cooldownTime) : cooldownTime(cooldownTime), currentCooldown(0.0f) {}
     virtual void update(const sf::Time& dt) = 0;
-    bool isReady() const { return currentCooldown >= cooldownTime; }
+    bool isReady() const {
+         return currentCooldown >= cooldownTime; }
     void reset() { currentCooldown = 0; }
     virtual std::unique_ptr<ICooldownBehavior> clone() const = 0;
 };
@@ -127,5 +128,7 @@ public:
 
 // Trait of the class 
     virtual void SetCamera(CameraManager* cameraManager) {};
+    virtual void setTarget(Entity* target) {};
+
 };
 

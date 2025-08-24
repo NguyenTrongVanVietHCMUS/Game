@@ -12,12 +12,14 @@ private:
     std::unique_ptr<ICollision> collisionStrategy; // Strategy for collision handling
     std::unique_ptr<MovingAnimation> movingAnimation; // Animation for the projectile
     std::vector<std::unique_ptr<IStatusEffect>> trailStrategies; // Strategies for visual trails
+    std::vector<IStatusEffect *> ProjectileEffects;
     sf::Sprite sprite; // Sprite representing the projectile
     sf::Texture texture; // Texture for the projectile sprite
     std::unordered_map<std::string, float> attributes; // Additional stats for the projectile
     std::string texturePath;
     State* currentMap; // Pointer to the current map or state
-    
+    bool isAddedCameraEffect = false; // Flag to check if camera effect is added
+    CameraManager* cameraManager = nullptr; // Pointer to the camera manager
 private: 
     float debounceTime = 1.0f;
     std::vector<const Entity*> collidedEntitiesFlag;
@@ -38,7 +40,8 @@ public:
     void setCollision(std::unique_ptr<ICollision> collision);
     void setMovingAnimation(std::unique_ptr<MovingAnimation> animation);
     void addTrailEffect(std::unique_ptr<IStatusEffect> effect);
-    
+    void addEffect(IStatusEffect* effect);
+
     void setSpriteScale(float scale);
     void setSpriteRotation(float angle);
     void setAttribute(const std::string& attributeName, float value);
@@ -51,6 +54,9 @@ public:
 
     Projectile2* clone(sf::Vector2f direction)const;
     sf::Vector2f getProjDirection(Entity *other = nullptr) const;
+
+    void setCameraManager(CameraManager* camera);
+    void activateEffect(Entity* target = nullptr);
 public:
     void selfDelete();
 public:

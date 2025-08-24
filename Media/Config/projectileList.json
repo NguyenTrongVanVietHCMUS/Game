@@ -31,7 +31,7 @@
     "collisionBehavior": {
       "type": "Projectile Collision Behavior"
     },
-    "Damage" : 10.0
+    "Damage" : 100.0
   },
   "GoblinBullet": {
     "lifeTime": 15.0,
@@ -71,6 +71,31 @@
     },
     "Damage": 10.0
   },
+  "Blind Slash" :{
+    "lifeTime": 0.15,
+    "scale": 5.0,
+    "texturePath": "Media/Assets/Projectiles/sword_slash.png",
+
+    "collisionBehavior": {
+      "type": "Melee Collision Behavior"
+    },
+    "animation" : {
+      "type": "Slash Projectile Animation",
+      "texture": "Media/Assets/Projectiles/sword_slash.png",
+      "imageCount" : { "x": 3, "y": 1 },
+      "switchTime" : 0.05,
+      "scale": 7.5,
+      "middlePositionX": 0.5,
+      "middlePositionY": 0.5
+    },
+    "Damage": 0.0,
+    "Effects":{
+      "Effect1":{
+        "type":"Darkness",
+        "duration" : 10.0
+      }
+    }
+  },
   "Explosion basic": {
     "lifeTime" : 0.45,
     "scale" : 2.0,
@@ -86,6 +111,13 @@
     },
     "collisionBehavior": {
       "type": "Melee Collision Behavior"
+    },
+    "Effects":{
+      "Effect1":{
+        "type":"Camera Shake Effect",
+        "duration" : 0.4,
+        "intensity" : 50.0
+      }
     },
     "Damage" : 20.0
   }, 
@@ -106,7 +138,7 @@
       "type": "Laser Beam Movement",
       "HitCycle" : 0.1
     },
-    "Damage" : 1.0
+    "Damage" : 3.0
   },
   "Explosion Barrel": {
     "lifeTime" : 0.45,
@@ -124,6 +156,78 @@
     "collisionBehavior": {
       "type": "Melee Collision Behavior"
     },
+    "Damage" : 20.0,
+    "Effects":{
+      "Effect1":{
+        "type":"Camera Shake Effect",
+        "duration" : 0.4,
+        "intensity" : 100.0
+      }
+    }
+  },
+  "ZulanBullet": {
+    "lifeTime": 3.0,
+    "scale": 2.0,
+    "texturePath": "Media/Assets/Projectiles/PurpleBullet.png",
+
+    "movement": {
+      "type": "Straight Movement",
+      "speed": 500.0,
+      "criticalAngle": 200.0,
+      "targetPosition": { "x": 500.0, "y": 300.0 }
+    },
+
+    "collisionBehavior": {
+      "type": "Projectile Collision Behavior"
+    },
     "Damage" : 20.0
+  },
+  "Blind Bullet": {
+    "lifeTime": 15.0,
+    "scale": 2.0,
+    "texturePath": "Media/Assets/Projectiles/MagicBullet.png",
+
+    "movement": {
+      "type": "Follow Movement",
+      "speed": 600.0,
+      "criticalAngle": 2000.0,
+      "targetPosition": { "x": 500.0, "y": 300.0 }
+    },
+
+    "collisionBehavior": {
+      "type": "Projectile Collision Behavior"
+    },
+    "Damage" : 2.0,
+    "Effects":{
+      "Effect1":{
+        "type":"Darkness",
+        "duration" : 60.0
+      }
+    }
+  },
+  "Blind explosion": {
+    "lifeTime" : 0.45,
+    "scale" : 2.0,
+    "texturePath" : "Media/Assets/Projectiles/image.png",
+    "animation" : {
+      "type": "Explosion Animation",
+      "texture": "Media/Assets/Projectiles/FlySword.png",
+      "imageCount" : { "x": 3, "y": 3 },
+      "switchTime" : 0.05,
+      "scale": 1.0,
+      "middlePositionX": 0.5,
+      "middlePositionY": 0.5
+    },
+    "collisionBehavior": {
+      "type": "Melee Collision Behavior"
+    },
+    "Damage" : 0.0,
+    "Effects":{
+      "Effect1":{
+        "type":"Darkness",
+        "duration" : 0.4,
+        "intensity" : 100.0
+      }
+    }
   }
 }

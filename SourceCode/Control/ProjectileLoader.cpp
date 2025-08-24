@@ -45,6 +45,15 @@ Projectile2* ProjectileLoader::LoadProjectile(const std::string& name, sf::Vecto
             StrategyFactory::createCollisionBehavior(j["collisionBehavior"], mState)
         );
     }
+
+    if (j.contains("Effects")) {
+        for (const auto& effectData : j["Effects"]) {
+            builder.addEffect(
+                StrategyFactory::createEffectBehavior(effectData)
+            );
+        }
+    }
+
     auto proj = builder.build();
     if(j.contains("animation")) {
         proj->setMovingAnimation(
