@@ -55,6 +55,7 @@ public:
             shader.loadFromFile("Media/Shader/spotlight.frag", sf::Shader::Fragment);
         }
 
+
     void update(const sf::Time& dt) override;
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override ;
 };

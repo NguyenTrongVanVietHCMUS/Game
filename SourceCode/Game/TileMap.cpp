@@ -517,6 +517,10 @@ bool TileMap::update(sf::Time dt)
                 PopQueueEntities.push_back(entity); // Remove projectiles that are out of range
             } 
         }
+        if(auto projectile = dynamic_cast<Projectile2*>(entity))
+        {
+            projectile->setCameraManager(&camera);
+        }
     }
     
     if(player && player->isDeath()) player = nullptr;

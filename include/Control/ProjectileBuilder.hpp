@@ -14,7 +14,7 @@ class ProjectileBuilder
     std::unique_ptr<IMovement>     _movement   = nullptr;
     std::unique_ptr<ICollision>    _collision  = nullptr;
     std::unique_ptr<MovingAnimation> _animation = nullptr;
-    std::vector<std::unique_ptr<IEffect>> _effects;
+    std::vector<IStatusEffect*>     _effects;
 
     ProjectileBuilder(
         std::string name,
@@ -63,8 +63,8 @@ public:
         _animation = std::move(a);
         return *this;
     }
-    ProjectileBuilder& addEffect(std::unique_ptr<IEffect> e) {
-        _effects.push_back(std::move(e));
+    ProjectileBuilder& addEffect(IStatusEffect* e) {
+        _effects.push_back(e);
         return *this;
     }
 
@@ -80,7 +80,10 @@ public:
             std::move(_collision),
             std::move(_animation)
         );
-
+        for (auto& effect : _effects) {
+            proj->addEffect(effect);
+        }
+        _effects.clear(); // Clear effects to avoid dangling pointers
         return proj;
     }
 };

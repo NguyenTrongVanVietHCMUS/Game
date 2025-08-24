@@ -1,5 +1,6 @@
 #include <Book/Projectile2.hpp>
 #include <Control/State.hpp>
+#include <Control/CameraManager.hpp>
 void Projectile2::setBehavior(std::unique_ptr<IMovement> movement, std::unique_ptr<ICollision> collision)
 {
     if (movement) {
@@ -28,6 +29,14 @@ void Projectile2::addTrailEffect(std::unique_ptr<IStatusEffect> effect)
 {
     if (effect) {
         trailStrategies.push_back(std::move(effect));
+    }
+}
+
+void Projectile2::addEffect(IStatusEffect* effect)
+{
+    if (effect) {
+        std::cerr << "Adding effect to proj\n";
+        ProjectileEffects.push_back(effect);
     }
 }
 
@@ -129,7 +138,7 @@ bool Projectile2::update(sf::Time dt)
 
 void Projectile2::collide(Entity* other)
 {
-    if (collisionStrategy) {
+    if (collisionStrategy && isAddedCameraEffect) {
         if (AllowCollide(const_cast<Entity*>(other))) {
             collisionStrategy->collide(*this, other);
             collidedEntitiesFlag.push_back(other);
@@ -266,4 +275,26 @@ sf::Vector2f Projectile2::getProjDirection(Entity *other) const {
     }
     std::cerr << "Warning: No movement strategy set and no entity to calculate. RETURN THE DIRECTION TO THE RIGHT\n";
     return sf::Vector2f(0.0f, 5.0f);
+}
+
+void Projectile2::setCameraManager(CameraManager* camera) {
+    if(!isAddedCameraEffect && camera) {
+        isAddedCameraEffect = true;
+        cameraManager = camera;
+
+        for(const auto& effect : ProjectileEffects) {
+            effect->SetCamera(camera);
+        }
+    }
+}
+
+void Projectile2::activateEffect(Entity* target) {
+    for (const auto& effect : ProjectileEffects) {
+        if(auto cameraEffect = dynamic_cast<CameraEffect*>(effect)) {
+            if(cameraManager) {
+                cameraManager->applyEffect(cameraEffect);
+            }
+        }
+    }
+    ProjectileEffects.clear();
 }
