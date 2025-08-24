@@ -8,6 +8,7 @@
 #include<Object/Chest/Cage.hpp>
 #include<Object/Floor/SpikeFloor.hpp>
 #include<Object/Chest/ExplosiveBarrel.hpp>
+#include<Object/Chest/Barrel.hpp>
 #include <Control/WeaponLoader.hpp>
 #include <Control/WeaponBuilder.hpp>
 
@@ -329,6 +330,19 @@ bool TileMap::load(const std::string& jsonFile,int x , int y,int height, int wid
                                 scaley
                             )
                         );
+                    }else if (objectData["name"] == "Barrel")
+                    {
+                        float scalex = float(objectData["width"]) / tile.tileWidth;
+                        float scaley = float(objectData["height"]) / tile.tileHeight;
+                        layer->entities.push_back(
+                            new Barrel
+                            (
+                                sf::Vector2f(objectData["x"] + x, objectData["y"] + y - float(objectData["height"])),
+                                sf::FloatRect(x + objectData["x"] + tile.hitbox.hitbox.left * scalex, y + objectData["y"] - objectData["height"] + tile.hitbox.hitbox.top * scaley, tile.hitbox.hitbox.width * scalex, tile.hitbox.hitbox.height * scaley),
+                                scalex,
+                                scaley
+                            )
+                        );
                     }
                     else if (objectData["name"] == "Cage")
                     {
@@ -596,7 +610,6 @@ void TileMap::updateQueueEntities()
         auto it = std::find(entities.begin(), entities.end(), entity);
         if (it != entities.end())
         {
-            std::cerr << "entity pop no delete\n";
             entities.erase(it);
         }
     }

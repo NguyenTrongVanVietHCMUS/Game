@@ -3,6 +3,7 @@
 #include<Object/Character/Knight.hpp>
 #include<Object/Chest/Chest.hpp>
 #include <Object/Chest/ExplosiveBarrel.hpp>
+#include <Object/Chest/Barrel.hpp>
 Jungle::Jungle(StateStack& stack,Context context):
     State(stack,context)
 {         
@@ -24,6 +25,9 @@ Jungle::Jungle(StateStack& stack,Context context):
 			} else if (auto explosiveBarrel = dynamic_cast<ExplosiveBarrel*>(x))
             {
                 explosiveBarrel->setMap(this); // Set the current map for the explosive barrel
+            } else if (auto barrel = dynamic_cast<Barrel*>(x))
+            {
+                barrel->setMap(this); // Set the current map for the explosive barrel
             }
 		}
 	}

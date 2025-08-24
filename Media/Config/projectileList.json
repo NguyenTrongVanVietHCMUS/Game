@@ -131,7 +131,7 @@
       "type": "Laser Beam Movement",
       "HitCycle" : 0.1
     },
-    "Damage" : 1.0
+    "Damage" : 100.0
   },
   "Explosion Barrel": {
     "lifeTime" : 0.45,
