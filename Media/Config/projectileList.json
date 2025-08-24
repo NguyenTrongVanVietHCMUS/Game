@@ -31,7 +31,7 @@
     "collisionBehavior": {
       "type": "Projectile Collision Behavior"
     },
-    "Damage" : 10.0
+    "Damage" : 100.0
   },
   "GoblinBullet": {
     "lifeTime": 15.0,
@@ -112,6 +112,13 @@
     "collisionBehavior": {
       "type": "Melee Collision Behavior"
     },
+    "Effects":{
+      "Effect1":{
+        "type":"Camera Shake Effect",
+        "duration" : 0.4,
+        "intensity" : 50.0
+      }
+    },
     "Damage" : 20.0
   }, 
   "Laser Beam": {
@@ -131,7 +138,7 @@
       "type": "Laser Beam Movement",
       "HitCycle" : 0.1
     },
-    "Damage" : 5.0
+    "Damage" : 3.0
   },
   "Explosion Barrel": {
     "lifeTime" : 0.45,
@@ -157,7 +164,8 @@
         "intensity" : 100.0
       }
     }
-  },"ZulanBullet": {
+  },
+  "ZulanBullet": {
     "lifeTime": 3.0,
     "scale": 2.0,
     "texturePath": "Media/Assets/Projectiles/PurpleBullet.png",
@@ -172,6 +180,54 @@
     "collisionBehavior": {
       "type": "Projectile Collision Behavior"
     },
-    "Damage" : 50.0
+    "Damage" : 20.0
+  },
+  "Blind Bullet": {
+    "lifeTime": 15.0,
+    "scale": 2.0,
+    "texturePath": "Media/Assets/Projectiles/MagicBullet.png",
+
+    "movement": {
+      "type": "Follow Movement",
+      "speed": 600.0,
+      "criticalAngle": 2000.0,
+      "targetPosition": { "x": 500.0, "y": 300.0 }
+    },
+
+    "collisionBehavior": {
+      "type": "Projectile Collision Behavior"
+    },
+    "Damage" : 2.0,
+    "Effects":{
+      "Effect1":{
+        "type":"Darkness",
+        "duration" : 60.0
+      }
+    }
+  },
+  "Blind explosion": {
+    "lifeTime" : 0.45,
+    "scale" : 2.0,
+    "texturePath" : "Media/Assets/Projectiles/image.png",
+    "animation" : {
+      "type": "Explosion Animation",
+      "texture": "Media/Assets/Projectiles/FlySword.png",
+      "imageCount" : { "x": 3, "y": 3 },
+      "switchTime" : 0.05,
+      "scale": 1.0,
+      "middlePositionX": 0.5,
+      "middlePositionY": 0.5
+    },
+    "collisionBehavior": {
+      "type": "Melee Collision Behavior"
+    },
+    "Damage" : 0.0,
+    "Effects":{
+      "Effect1":{
+        "type":"Darkness",
+        "duration" : 0.4,
+        "intensity" : 100.0
+      }
+    }
   }
 }

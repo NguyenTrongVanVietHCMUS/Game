@@ -92,7 +92,7 @@
       "x": 150,
       "y": 75
     },
-    "cooldownTime": 0.7,
+    "cooldownTime": 0.0,
     "behavior": {
       "type": "Throwing Weapon Behavior",
       "explosionRadius": 100.0,
@@ -106,6 +106,37 @@
       "startAngle": 10.0,
       "endAngle": 0.0,
       "recoilOffset": 50.0
+    }
+  },
+  "Blind shot": {
+    "name": "Blind shot",
+    "position": {
+      "x": 150,
+      "y": 75
+    },
+
+    "behavior": {
+      "type": "Ranged Weapon Behavior",
+      "projectileSpeed": 2000.0,
+      "spreadAngle": 20.0,
+      "Projectile": "Blind Bullet"
+    },
+
+    "animation": {
+      "type": "Gun Animation",
+      "totalTime": 0.3,
+      "scale": 0.4,
+      "texture": "Media/Assets/Weapons/Gun/AK_47.png",
+      "startAngle": 10.0,
+      "endAngle": 0.0,
+      "recoilOffset": 10.0
+    },
+    "SoundPath": "Media/Sound/AK_47.wav",
+    "cooldownTime": 0.0,
+
+    "scaleBulletSpawnPosition": {
+      "x": 0.6,
+      "y": -0.2
     }
   }
 }

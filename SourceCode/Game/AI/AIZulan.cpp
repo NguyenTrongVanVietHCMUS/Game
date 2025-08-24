@@ -23,6 +23,17 @@ int AIZulan::getNumTimesToShoot(std::string weaponName) const
 void AIZulan::update(Enemy* mob, Entity* target, sf::Time dt)
 {
 	ElapseTime += dt.asSeconds();
+	if(auto zulan = dynamic_cast<Zulan*>(mob))
+	{
+		if(zulan->isFury())
+		{
+			NextShootTime = 0.5f;
+			spamShootTime = 0.1f;
+		} else {
+			NextShootTime = 1.0f;
+			spamShootTime = 0.2f;
+		}
+	}
 	if (mob->inRange(target))
 	{
 		mob->chase(target, dt);
