@@ -10,6 +10,10 @@ Cage::Cage(sf::Vector2f position, Hitbox hitbox, float scalex, float scaley) : O
 	activated = false; 
 	
 }
+Cage::~Cage()
+{
+	activated = true; 
+}
 void Cage::update(Entity* player)
 {
 	// Check collision with player

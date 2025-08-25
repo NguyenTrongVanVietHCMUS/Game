@@ -15,9 +15,9 @@ public:
     GoblinExecutor(sf::Vector2f position, State* state) : Enemy("GoblinExecutor", position)
     {
         WeaponLoader weaponLoader(state);
-        sightRange = 250.f;
+        sightRange = 350.f;
         movingAnimation = std::make_unique<ShortRangeMob_MovingAnimation>(&ResourceManager::getInstance().get<sf::Texture>(Textures::ID::GoblinExecutor), sf::Vector2u(8, 3), 0.1f, this->position, 2.2, this);
-        movingAnimation->speed = 175.0f;
+        movingAnimation->speed = 120 + rand() % 30;
         aiEnemy = std::make_unique<AIHighRangeEnemy>();
         inventory->addWeapon(WeaponLoader(state).LoadWeapons("GoblinExecutorWeapon"),this);
     }

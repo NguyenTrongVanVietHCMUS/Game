@@ -61,6 +61,9 @@
     <ClCompile Include="V:\Game\SourceCode\Game\Ally.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="V:\Game\SourceCode\Game\Animation\Ally_MovingAnimation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="V:\Game\SourceCode\Game\Animation\BarrelAnimation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

@@ -547,13 +547,15 @@ bool TileMap::update(sf::Time dt)
     }
     
     if(player && player->isDeath()) player = nullptr;
+    bool ok = 1; 
     for (auto& x : updateEntities)
     {
         if (auto enemy = dynamic_cast<Enemy*>(x))
         {
             enemy->update(player, dt); 
-            if (!enemy->isDeath())
+            if (ok&&!enemy->isDeath())
             {
+                ok = 0;
                 for (auto x : updateEntities)
                 {
                     if (auto t = dynamic_cast<Ally*>(x))
@@ -561,6 +563,16 @@ bool TileMap::update(sf::Time dt)
                         t->update(enemy, dt);
                     }
                 }
+            }
+        }
+    }
+    if (ok)
+    {
+        for (auto x : updateEntities)
+        {
+            if (auto t = dynamic_cast<Ally*>(x))
+            {
+                t->update(nullptr, dt);
             }
         }
     }

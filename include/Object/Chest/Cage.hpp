@@ -11,6 +11,7 @@ private:
 	bool activated; 
 public:
 	Cage(sf::Vector2f position, Hitbox hibox, float scalex, float scaley);
+	~Cage();
 	virtual Hitbox getBodyHitbox() const override;
 	virtual void activate();
 	virtual void deactivate();

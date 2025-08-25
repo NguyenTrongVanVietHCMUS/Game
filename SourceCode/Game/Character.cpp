@@ -13,6 +13,7 @@ Character::Character(
     map = state;
     this->cameraManager = cameraManager;
     this->updateRange = 1000.0f; // Set the update range for the character
+    hurt = false ; 
 }
 
 Character::~Character()

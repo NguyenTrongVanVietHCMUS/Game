@@ -153,6 +153,15 @@ public :
 	sf::Vector2f getHandPosition()const; // Get the hand position for weapon activation
 };
 
+class Ally_MovingAnimation : public MovingAnimation
+{
+public:
+    Ally_MovingAnimation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f& position, float scale, Entity* entity, sf::Vector2f middlePosition = sf::Vector2f(0.5f, 1));
+    ~Ally_MovingAnimation();
+
+    virtual void handleCollision(const Entity* other);
+    void getshot(const Entity* other);
+};
 class ShortRangeMob_MovingAnimation : public MovingAnimation
 {   
 private : 

@@ -14,6 +14,7 @@ class MovingAnimation;
 class Character : public Entity
 {
 protected:
+    bool hurt ; 
     float pickupRange = 150.0f;
     bool isClickHold = false;
 protected:

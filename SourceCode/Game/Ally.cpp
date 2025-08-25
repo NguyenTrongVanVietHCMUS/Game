@@ -8,6 +8,8 @@ Ally::Ally(
 {
     type = Entity::Type::Ally; // Set the type of the ally
     this->owner = owner;
+
+
 }
 Entity* Ally::getOwner()const
 {

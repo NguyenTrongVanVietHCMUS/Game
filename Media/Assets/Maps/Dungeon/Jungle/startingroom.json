@@ -1435,8 +1435,8 @@
                  "type":"Point",
                  "visible":true,
                  "width":0,
-                 "x":362,
-                 "y":556
+                 "x":375.333333333333,
+                 "y":533.333333333333
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1445,7 +1445,7 @@
          "y":0
         }],
  "nextlayerid":4,
- "nextobjectid":880,
+ "nextobjectid":881,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",
@@ -1696,7 +1696,7 @@
          "margin":0,
          "name":"Object",
          "spacing":0,
-         "tilecount":9,
+         "tilecount":10,
          "tileheight":295,
          "tiles":[
                 {
@@ -1951,6 +1951,36 @@
                              "width":100.5,
                              "x":16,
                              "y":84
+                            }],
+                     "opacity":1,
+                     "type":"objectgroup",
+                     "visible":true,
+                     "x":0,
+                     "y":0
+                    },
+                 "type":"Object"
+                }, 
+                {
+                 "id":11,
+                 "image":"..\/..\/..\/TileSets\/Chest\/body.png",
+                 "imageheight":51,
+                 "imagewidth":58,
+                 "objectgroup":
+                    {
+                     "draworder":"index",
+                     "id":2,
+                     "name":"",
+                     "objects":[
+                            {
+                             "height":44.8522622345337,
+                             "id":1,
+                             "name":"",
+                             "rotation":0,
+                             "type":"Object",
+                             "visible":true,
+                             "width":58.1071098799631,
+                             "x":0.133887349953832,
+                             "y":3.88273314866113
                             }],
                      "opacity":1,
                      "type":"objectgroup",

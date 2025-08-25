@@ -26,20 +26,6 @@ public:
 
     virtual void collide(Entity* other);
     virtual void update(Entity*target, sf::Time dt);
-    virtual Hitbox getHitbox() const
-    {
-        sf::Vector2f position = this->getPosition() - sf::Vector2f(22.0f, 12.0f);
-        Hitbox tempHitbox;
-        tempHitbox.hitbox = sf::FloatRect(position.x, position.y, 50, 12);
-        return tempHitbox; // Return the hitbox of the boar
-    }
-    virtual Hitbox getBodyHitbox() const override
-    {
-        sf::Vector2f position = this->getPosition() - sf::Vector2f(22.0f, 60.0f);
-        Hitbox tempHitbox;
-        tempHitbox.hitbox = sf::FloatRect(position.x, position.y, 50, 60);
-        return tempHitbox; // Return the body hitbox of the knight  
-    }
 public:
     virtual void chase(Entity* target, sf::Time dt);
     virtual void wander(sf::Time dt);

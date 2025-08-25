@@ -26,7 +26,6 @@ void Weapon2::activate(Entity*target)
 {
 
     if( cooldownBehavior && !cooldownBehavior->isReady()) {
-        std::cerr << "Weapon is on cooldown." << std::endl;
         return; // If the weapon is on cooldown, do not activate
     // Play âm thanh ở đây
     } 

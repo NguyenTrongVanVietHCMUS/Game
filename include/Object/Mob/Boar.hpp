@@ -19,7 +19,7 @@ public:
     {
         if (other->type == Entity::Type::Ally)
         {
-            //other->takeDamage(10); 
+            other->takeDamage(10); 
         }
     }
     ~Boar() override = default; 

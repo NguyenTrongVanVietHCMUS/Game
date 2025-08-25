@@ -73,7 +73,7 @@
 
     "behavior": {
       "type": "Ranged Weapon Behavior",
-      "projectileSpeed": 1200.0,
+      "projectileSpeed": 1.0,
       "spreadAngle": 0.0,
       "Projectile": "GoblinBullet"
     },
@@ -88,7 +88,7 @@
       "recoilOffset": 10.0
     },
 
-    "cooldownTime": 0.1,
+    "cooldownTime": 0.4,
     "SoundPath": "Media/Sound/ShotSound.wav",
     "scaleBulletSpawnPosition": {
       "x": 0.6,
@@ -196,6 +196,7 @@
     },
     "cooldownTime": 0.5,
     "behavior": {
+      "Projectile": "Basic Slash",
       "type": "Melee Weapon Behavior"
     },
     "animation": {
@@ -241,17 +242,19 @@
     },
     "cooldownTime": 0.5,
     "behavior": {
-      "type": "Melee Weapon Behavior"
+      "type": "Melee Weapon Behavior",
+      "Projectile": "Basic Slash"
     },
     "animation": {
       "type": "Sword Animation",
       "totalTime": 0.2,
-      "scale": -0.8,
+      "scale": -2.5,
       "texture": "Media/Assets/Weapons/sword/GoblinExecutorWeapon.png",
       "startAngle": -90.0,
       "endAngle": 90.0,
       "middlePositionX": 0.2,
       "middlePositionY": 0.5
+
     },
     "SoundPath": "Media/Sound/WhipSound.wav"
   },
@@ -269,7 +272,7 @@
     "animation": {
       "type": "Sword Animation",
       "totalTime": 0.2,
-      "scale": -0.8,
+      "scale": -0.4,
       "texture": "Media/Assets/Weapons/sword/LongLongSword.png",
       "startAngle": -90.0,
       "endAngle": 90.0,
@@ -292,7 +295,7 @@
     "animation": {
       "type": "Sword Animation",
       "totalTime": 0.2,
-      "scale": -0.8,
+      "scale": -0.4,
       "texture": "Media/Assets/Weapons/sword/LongSword.png",
       "startAngle": -90.0,
       "endAngle": 90.0,
@@ -319,7 +322,7 @@
       "type": "Gun Animation",
       "totalTime": 0.3,
       "scale": 0.4,
-      "texture": "Media/Assets/Weapons/Gun/AK_47.png",
+      "texture": "Media/Assets/Weapons/Gun/launcher.png",
       "startAngle": 10.0,
       "endAngle": 0.0,
       "recoilOffset": 50.0

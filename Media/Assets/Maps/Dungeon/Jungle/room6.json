@@ -2070,18 +2070,6 @@
                 }, 
                 {
                  "height":0,
-                 "id":210,
-                 "name":"StartingPoint",
-                 "point":true,
-                 "rotation":0,
-                 "type":"Point",
-                 "visible":true,
-                 "width":0,
-                 "x":424,
-                 "y":770.666666666667
-                }, 
-                {
-                 "height":0,
                  "id":211,
                  "name":"Boar",
                  "point":true,
@@ -2125,22 +2113,9 @@
                  "type":"Point",
                  "visible":true,
                  "width":0,
-                 "x":856,
-                 "y":388
+                 "x":747,
+                 "y":551
                 }, 
-                {
-                 "height":0,
-                 "id":215,
-                 "name":"Boar",
-                 "point":true,
-                 "rotation":0,
-                 "type":"Point",
-                 "visible":true,
-                 "width":0,
-                 "x":715,
-                 "y":692
-                },
-            
                 {
                  "height":0,
                  "id":216,
@@ -2160,7 +2135,7 @@
          "y":0
         }],
  "nextlayerid":3,
- "nextobjectid":217,
+ "nextobjectid":219,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",

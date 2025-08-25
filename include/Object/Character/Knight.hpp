@@ -14,6 +14,8 @@ class Knight : public Character
 public:
     Knight(sf::Vector2f position,State* state, CameraManager* cameraManager = nullptr): Character("Knight", position, state, cameraManager)
     {
+        this->attributes.setMaxHealth(2000000); 
+		this->attributes.setHealth(2000000);
         WeaponLoader weaponLoader(state);
         type = Entity::Type::Ally; 
         movingAnimation = std::make_unique<Character_MovingAnimation>(
@@ -75,6 +77,10 @@ public:
         tempHitbox.hitbox = sf::FloatRect(position.x, position.y, 50, 60);
 		return tempHitbox; // Return the body hitbox of the knight
     }
+    void collide(Entity* other) override final 
+    {
+        movingAnimation->handleCollision(other); 
+	}
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override
     {
         movingAnimation->draw(target, states);
@@ -90,10 +96,6 @@ public:
         // Draw the circle at the hand position for debugging purposes
         target.draw(circle, states);
     }
-    void collide(Entity* other) override final 
-    {
-        movingAnimation->handleCollision(other); 
-	}
     void bodyCollide(Entity* other)override final
     {
         // here is right ; 

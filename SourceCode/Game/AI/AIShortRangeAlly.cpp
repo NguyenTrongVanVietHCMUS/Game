@@ -3,31 +3,30 @@
 
 void AIShortRangeAlly::update(Ally* ally , Entity* target, sf::Time dt)
 {
-	if (target == nullptr)
+	if (ally->distanceTo(ally->getOwner()) >= 32 * 30.0)
 	{
-		if (ally->distanceTo(ally->getOwner()) >= 32 * 15.0)
-		{
-			ally->teleport(ally->getOwner()->getPosition());
-		}
-		else if (ally->distanceTo(ally->getOwner()) <= 64.0)
-		{
-			ally->wander(dt);
-		}
-		else
-		{
-			ally->chase(ally->getOwner(), dt);
-		}
+		ally->teleport(ally->getOwner()->getPosition());
 	}
 	else
 	{
-		ally->chase(target, dt);
-		if (ally->distanceTo(target) <= 64.0)
+		if (target == nullptr)
 		{
-			ally->shoot(target, dt);
+			if (ally->distanceTo(ally->getOwner()) <= 32*3.0)
+			{
+				ally->wander(dt);
+			}
+			else
+			{
+				ally->chase(ally->getOwner(), dt);
+			}
 		}
-		if (ally->distanceTo(ally->getOwner()) >= 32 * 15.0)
+		else
 		{
-			ally->teleport(ally->getOwner()->getPosition());
+			ally->chase(target, dt);
+			if(ally->distanceTo(target) <= 64.0)
+			{
+				ally->shoot(target, dt);
+			}
 		}
 	}
 }
