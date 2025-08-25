@@ -5,6 +5,40 @@
     "texturePath": "Media/Assets/Projectiles/PurpleBullet.png",
 
     "movement": {
+      "type": "Straight Movement",
+      "speed": 500.0,
+      "criticalAngle": 200.0,
+      "targetPosition": { "x": 500.0, "y": 300.0 }
+    },
+
+    "collisionBehavior": {
+      "type": "Projectile Collision Behavior"
+    },
+    "Damage" : 20.0
+  },
+  "AK_Bullet": {
+    "lifeTime": 3.0,
+    "scale": 2.0,
+    "texturePath": "Media/Assets/Projectiles/PurpleBullet.png",
+
+    "movement": {
+      "type": "Straight Movement",
+      "speed": 1500.0,
+      "criticalAngle": 200.0,
+      "targetPosition": { "x": 500.0, "y": 300.0 }
+    },
+
+    "collisionBehavior": {
+      "type": "Projectile Collision Behavior"
+    },
+    "Damage" : 30.0
+  },
+  "FollowPurpleBullet": {
+    "lifeTime": 3.0,
+    "scale": 2.0,
+    "texturePath": "Media/Assets/Projectiles/PurpleBullet.png",
+
+    "movement": {
       "type": "Follow Movement",
       "speed": 500.0,
       "criticalAngle": 200.0,
@@ -35,7 +69,7 @@
   },
   "GoblinBullet": {
     "lifeTime": 15.0,
-    "scale": 0.8,
+    "scale": 1.5,
     "texturePath": "Media/Assets/Projectiles/PurpleBullet.png",
 
     "movement": {
@@ -48,7 +82,7 @@
     "collisionBehavior": {
       "type": "Projectile Collision Behavior"
     },
-    "Damage": 1.0
+    "Damage": 15.0
   },
 
 
@@ -70,6 +104,63 @@
       "middlePositionY": 0.5
     },
     "Damage": 10.0
+  },
+  "LongLong Slash" :{
+    "lifeTime": 0.15,
+    "scale": 5.0,
+    "texturePath": "Media/Assets/Projectiles/sword_slash.png",
+
+    "collisionBehavior": {
+      "type": "Melee Collision Behavior"
+    },
+    "animation" : {
+      "type": "Slash Projectile Animation",
+      "texture": "Media/Assets/Projectiles/sword_slash.png",
+      "imageCount" : { "x": 3, "y": 1 },
+      "switchTime" : 0.05,
+      "scale": 15.5,
+      "middlePositionX": 0.5,
+      "middlePositionY": 0.5
+    },
+    "Damage": 10.0
+  },
+  "Crowbar Slash" :{
+    "lifeTime": 0.15,
+    "scale": 5.0,
+    "texturePath": "Media/Assets/Projectiles/sword_slash.png",
+
+    "collisionBehavior": {
+      "type": "Melee Collision Behavior"
+    },
+    "animation" : {
+      "type": "Slash Projectile Animation",
+      "texture": "Media/Assets/Projectiles/sword_slash.png",
+      "imageCount" : { "x": 3, "y": 1 },
+      "switchTime" : 0.05,
+      "scale": 5.5,
+      "middlePositionX": 0.5,
+      "middlePositionY": 0.5
+    },
+    "Damage": 20.0
+  },
+  "Long Slash" :{
+    "lifeTime": 0.15,
+    "scale": 5.0,
+    "texturePath": "Media/Assets/Projectiles/sword_slash.png",
+
+    "collisionBehavior": {
+      "type": "Melee Collision Behavior"
+    },
+    "animation" : {
+      "type": "Slash Projectile Animation",
+      "texture": "Media/Assets/Projectiles/sword_slash.png",
+      "imageCount" : { "x": 3, "y": 1 },
+      "switchTime" : 0.05,
+      "scale": 10.5,
+      "middlePositionX": 0.5,
+      "middlePositionY": 0.5
+    },
+    "Damage": 100.0
   },
   "Blind Slash" :{
     "lifeTime": 0.15,

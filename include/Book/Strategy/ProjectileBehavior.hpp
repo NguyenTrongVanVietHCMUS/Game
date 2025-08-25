@@ -41,6 +41,7 @@ public:
             speedX = (direction.x / length) * speed;
             speedY = (direction.y / length) * speed;
         }
+        std::cerr << "Set Direction : " << speedX << ", " << speedY << std::endl;
     }
 
     sf::Vector2f getDirection() const override

@@ -1216,6 +1216,42 @@
                  "width":53,
                  "x":480,
                  "y":192
+                }, 
+                {
+                 "height":0,
+                 "id":382,
+                 "name":"StartingPoint",
+                 "point":true,
+                 "rotation":0,
+                 "type":"Point",
+                 "visible":true,
+                 "width":0,
+                 "x":128,
+                 "y":384
+                }, 
+                {
+                 "height":0,
+                 "id":384,
+                 "name":"StartingPoint",
+                 "point":true,
+                 "rotation":0,
+                 "type":"Point",
+                 "visible":true,
+                 "width":0,
+                 "x":128,
+                 "y":384
+                }, 
+                {
+                 "height":0,
+                 "id":383,
+                 "name":"GoblinSupport",
+                 "point":true,
+                 "rotation":0,
+                 "type":"Point",
+                 "visible":true,
+                 "width":0,
+                 "x":704,
+                 "y":304
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1224,7 +1260,7 @@
          "y":0
         }],
  "nextlayerid":3,
- "nextobjectid":382,
+ "nextobjectid":385,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",
