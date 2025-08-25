@@ -4,10 +4,7 @@
 
 AIZulan::AIZulan()
 {
-	NumShootPerSkill["Zulan Laser"] = 1;
-	NumShootPerSkill["Zulan Radial Shot"] = 20;
-	NumShootPerSkill["Zulan Shot"] = 10;
-	NumShootPerSkill["Zulan Bomb"] = 3;
+	
 }
 
 int AIZulan::getNumTimesToShoot(std::string weaponName) const
@@ -23,15 +20,27 @@ int AIZulan::getNumTimesToShoot(std::string weaponName) const
 void AIZulan::update(Enemy* mob, Entity* target, sf::Time dt)
 {
 	ElapseTime += dt.asSeconds();
+	
 	if(auto zulan = dynamic_cast<Zulan*>(mob))
 	{
 		if(zulan->isFury())
 		{
 			NextShootTime = 0.5f;
 			spamShootTime = 0.1f;
+			
+			NumShootPerSkill["Zulan Laser"] = 1;
+			NumShootPerSkill["Zulan Radial Shot"] = 20;
+			NumShootPerSkill["Zulan Shot"] = 0;
+			NumShootPerSkill["Zulan Bomb"] = 3;
+			NumShootPerSkill["Blind shot"] = 10;
 		} else {
 			NextShootTime = 1.0f;
-			spamShootTime = 0.2f;
+			spamShootTime = 0.1f;
+			NumShootPerSkill["Zulan Laser"] = 0;
+			NumShootPerSkill["Zulan Radial Shot"] = 20;
+			NumShootPerSkill["Zulan Shot"] = 30;
+			NumShootPerSkill["Zulan Bomb"] = 0;
+			NumShootPerSkill["Blind shot"] = 0;
 		}
 	}
 	if (mob->inRange(target))
@@ -39,6 +48,12 @@ void AIZulan::update(Enemy* mob, Entity* target, sf::Time dt)
 		mob->chase(target, dt);
 		if(isShooting)
 		{
+			if(getNumTimesToShoot(CurrentWeapon) == 0)
+			{
+				isShooting = false;
+				ElapseTime = 0.0f;
+				return;
+			}
 			if(ElapseTime)
 			{
 				if(ElapseTime >= spamShootTime)
