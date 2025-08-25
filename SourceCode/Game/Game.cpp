@@ -1,5 +1,10 @@
-#include "Book/Game.hpp"
+#include <Book/Game.hpp>
 #include <iostream>
+#include<Screens/GameOver.hpp>
+#include<Screens/Lobby.hpp>
+#include<Screens/Title.hpp>
+#include<Screens/Dungeon/Jungle.hpp>
+#include<Screens/GameWin.hpp>
 // Constructor
 template <typename Resource, typename Identifier>
 void Game::load(Identifier id, const std::string& filename)
@@ -30,8 +35,8 @@ Game::Game()
 			load<sf::Texture>(Textures::ID::GoblinMageRoyal, "Media/Assets/Mobs/Enemy/GoblinMageRoyal.png");
 			load<sf::Texture>(Textures::ID::GoblinSupport, "Media/Assets/Mobs/Enemy/GoblinSupport.png");
 			load<sf::Texture>(Textures::ID::GoblinWarrior, "Media/Assets/Mobs/Enemy/GoblinWarrior.png");
-
 			load<sf::Texture>(Textures::ID::MadScientist, "Media/Assets/Mobs/Enemy/MadScientist.png");
+			load<sf::Texture>(Textures::ID::KnightServant, "Media/Assets/Mobs/Ally/KnightServant.png");
 			
 
 
@@ -147,6 +152,7 @@ void Game::registerStates()
 	stateStack.registerState<Lobby>(States::Lobby);
 	stateStack.registerState<Jungle>(States::Jungle);
 	stateStack.registerState<GameOver>(States::GameOver); 
+	stateStack.registerState<GameWin>(States::GameWin);
 	// stateStack.registerState<PauseState>(States::Pause);
 	// stateStack.registerState<SettingsState>(States::Settings);
 	// stateStack.registerState<ChessGame1PlayerState>(States::ChessGame1Player);

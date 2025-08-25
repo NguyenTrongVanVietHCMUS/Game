@@ -9,7 +9,7 @@ Jungle::Jungle(StateStack& stack,Context context):
 {         
     map = new TileMap(ResourceManager::getInstance().get<TileMap>(Map::ID::Jungle)); 
     map->entities.push_back(new Knight(map->startingPoint, this, &map->camera)); 
-    
+    map->setState(this); 
     map->initEntities(this); 
     context.music->play(Music::Jungle);
     map->setWeaponLoader(weaponLoader); // Set the weapon loader for the map
@@ -54,13 +54,19 @@ bool Jungle::update(sf::Time dt)
         requestStackPush(States::GameOver);
         getContext().music->stop();
     }
+    else if(!map->getZulan()||map->getZulan()->isDeath())
+    {
+        requestStackPop(); 
+        requestStackPush(States::GameWin); 
+        getContext().music->stop(); 
+    }
     return 0; 
 }
 bool Jungle::handleEvent(const sf::Event& event)
 {
     sf::RenderWindow*window = getContext().window;
-    map->handleEvent(event, window); // Handle events for the map and entities 
-
+    map->handleEvent(event, window); // Handle events for the map and  
+    
     if (event.type == sf::Event::Closed)
     {
         requestStackPop(); // Pop the current state when the window is closed

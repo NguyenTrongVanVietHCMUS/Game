@@ -1,3 +1,4 @@
+
 #include<Book/MovingAnimation.hpp>
 #include<Book/Projectile2.hpp>
 MovingAnimation::~MovingAnimation()
@@ -168,3 +169,8 @@ void MovingAnimation::Knockback(const Projectile2* projectile, float Force, Enti
         CurrentKnockbackForce += direction * Force;
     }
 }
+void MovingAnimation::teleport(sf::Vector2f position)
+{
+    this->position = position;
+    setSpritePosition();
+}   

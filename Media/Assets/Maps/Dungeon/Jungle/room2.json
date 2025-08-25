@@ -662,18 +662,6 @@
                 }, 
                 {
                  "height":0,
-                 "id":69,
-                 "name":"StartingPoint",
-                 "point":true,
-                 "rotation":0,
-                 "type":"Point",
-                 "visible":true,
-                 "width":0,
-                 "x":251.363636363636,
-                 "y":224.666666666667
-                }, 
-                {
-                 "height":0,
                  "id":103,
                  "name":"SwordMinion",
                  "point":true,
@@ -755,8 +743,7 @@
                  "width":0,
                  "x":225.5,
                  "y":298
-                },
-            
+                }, 
                 {
                  "height":0,
                  "id":110,

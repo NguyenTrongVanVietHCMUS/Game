@@ -3,6 +3,7 @@
 
 void AIHighRangeEnemy::update(Enemy* mob, Entity*target, sf::Time dt)
 {
+	
 	if(mob->distanceTo(target)<mob->getRange()/2)
 	{
 		mob->shoot(target, dt);

@@ -107,7 +107,7 @@ public:
     virtual sf::Vector2f getHandPosition()const;
     void setSpriteScale(float scale);
     void setSpriteRotation(float angle);
-
+    void teleport(sf::Vector2f position); 
 public:
     sf::FloatRect getBoundingBox() const {
         sf::FloatRect boundingBox = sprite.getGlobalBounds();

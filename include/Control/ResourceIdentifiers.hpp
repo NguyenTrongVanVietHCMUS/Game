@@ -25,7 +25,7 @@ namespace Textures
 		BlunderbussPistolMinion,
 		RifleMinion,
 		MadScientist,
-
+		KnightServant,
 		Sword,
 		Crowbar,
 		SwordMinionSword,

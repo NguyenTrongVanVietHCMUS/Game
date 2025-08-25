@@ -15,6 +15,12 @@ public:
 		movingAnimation->speed = 150.0f; // Set the speed of the boar
         aiEnemy = std::make_unique<AIShortRangeEnemy>(); 
     }
-
+    virtual void bodyCollide(Entity* other)override
+    {
+        if (other->type == Entity::Type::Ally)
+        {
+            //other->takeDamage(10); 
+        }
+    }
     ~Boar() override = default; 
 };  

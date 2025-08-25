@@ -10,6 +10,7 @@ namespace States
 		Pause,
 		Settings,
 		GameOver, 
+		GameWin,
 		SettingOnlyAudio,
 		ChessGame1Player,
 		ChessGame2Players,

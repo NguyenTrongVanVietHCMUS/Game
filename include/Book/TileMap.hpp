@@ -157,7 +157,7 @@ private:
     std::string File;
     std::vector<Layer*> layers; 
     WeaponLoader* weaponLoader; // Reference to the weapon loader for loading weapons
-
+    State* state;
 public:
     TileMap();
     ~TileMap();    
@@ -175,6 +175,7 @@ public:
         this->weaponLoader = weaponLoader; 
     }
     void initEntities(State* state); 
-
+    void setState(State* state); 
     Character* getPlayer()const;
+    Entity* getZulan() const; 
 };

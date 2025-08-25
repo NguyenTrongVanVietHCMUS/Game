@@ -8,6 +8,7 @@ class Cage :public Object
 private:
 	std::shared_ptr<Weapon2> items = nullptr;
 	bool itemAdded = false;
+	bool activated; 
 public:
 	Cage(sf::Vector2f position, Hitbox hibox, float scalex, float scaley);
 	virtual Hitbox getBodyHitbox() const override;

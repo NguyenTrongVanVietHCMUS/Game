@@ -10,7 +10,7 @@ class Entity:public sf::Drawable, public std::enable_shared_from_this<Entity>
 public :
 	typedef std::unique_ptr<Entity> Ptr; // Smart pointer for managing Entity objects
     std::vector<Ptr>children;
-    
+    std::vector<std::string>ally; 
     enum class Type
     {
 		EnemyProjectile, 

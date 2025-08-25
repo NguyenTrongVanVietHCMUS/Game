@@ -23,6 +23,7 @@
 #include<Object/Mob/SwordMinion.hpp>
 #include<Object/Mob/BlunderbussPistolMinion.hpp>
 #include<Object/Mob/RifleMinion.hpp>
+#include<Object/Ally/KnightServant.hpp>
 #include<Boss/GoblinPriest.hpp>
 #include<Boss/Zulan.hpp> 
 
@@ -410,7 +411,7 @@ void TileMap::initEntities(State* state)
         }
         else if (s == "GoblinShooter")
         {
-            //entities.push_back(new GoblinShooter(position, state));
+            entities.push_back(new GoblinShooter(position, state));
         }
         else if(s=="GoblinWarrior")
         {
@@ -515,15 +516,23 @@ bool TileMap::update(sf::Time dt)
     Character* player = getPlayer(); 
     if (player == nullptr || player->isDeath())
     {
-        return 0; 
+        return 0;
     }
+    for (auto x : player->ally)
+    {
+        if (x == "KnightServant")
+        {
+			entities.push_back(new KnightServant(player->getPosition() , state,player));
+        }
+    }
+    player->ally.clear();
     std::vector<Entity*> updateEntities;
     for (auto& entity : entities)
     {
         if (player)
         {
             float distance = sqrt(pow(entity->getPosition().x - player->getPosition().x, 2) + pow(entity->getPosition().y - player->getPosition().y, 2));
-            if (distance < player->updateRange)
+            if (dynamic_cast<Ally*>(entity)||distance < player->updateRange)
             {
                 updateEntities.push_back(entity);
             } else if (entity->type == Entity::Type::AllyProjectile || entity->type == Entity::Type::EnemyProjectile)
@@ -538,12 +547,24 @@ bool TileMap::update(sf::Time dt)
     }
     
     if(player && player->isDeath()) player = nullptr;
+    Entity* attack = nullptr; 
     for (auto& x : updateEntities)
     {
         if (auto enemy = dynamic_cast<Enemy*>(x))
         {
-            if(!enemy->isAllowClean()) enemy->update(player, dt);
+            if (!enemy->isAllowClean())
+            {
+                enemy->update(player, dt);
+                attack = enemy; 
+            }
             else PopQueueEntitiesNoDelete.push_back(enemy);
+        }
+    }
+    for (auto x : updateEntities)
+    {
+        if (auto t = dynamic_cast<Ally*>(x))
+        {
+            t->update(attack, dt); 
         }
     }
     for (auto& x : updateEntities)x->update(dt);
@@ -622,7 +643,6 @@ void TileMap::handleCollision()
     std::vector<Entity*> updateEntities;
 	std::vector<std::pair<Entity*, Entity*>> collision; // To avoid checking the same pair twice
     Character* player = getPlayer();
-    
     for(auto& entity : entities){
         if(player){
             float updateRange = player->updateRange * 1.5f;
@@ -719,4 +739,19 @@ Character* TileMap::getPlayer()const
     }
     return nullptr; 
     //throw std::runtime_error("No player found in the TileMap entities."); 
+}
+Entity* TileMap::getZulan()const
+{
+    for (auto x : entities)
+    {
+        if (auto zulan= dynamic_cast<Zulan*>(x))
+        {
+            return zulan;
+        }
+    }
+    return nullptr;
+}
+void TileMap::setState(State* state)
+{
+    this->state = state;
 }
