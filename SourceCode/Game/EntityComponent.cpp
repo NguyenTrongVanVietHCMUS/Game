@@ -66,6 +66,12 @@ void EntityAttributeActionComponent::update(sf::Time dt) {
     if(elapseTime >= TimeToRegenShield && attributes[CharacterResourceType::Shield].current < attributes[CharacterResourceType::Shield].max) {
         updateShieldRegen(dt);
     }
+    elapseTimeMana += dt.asSeconds();
+    if(elapseTimeMana >= ManaRegenRate)
+    {
+        attributes[CharacterResourceType::Mana].change(ManaRegenAmount);
+        elapseTimeMana -= ManaRegenRate;
+    }
 }
 
 void EntityAttributeActionComponent::updateShieldRegen(sf::Time dt) {
