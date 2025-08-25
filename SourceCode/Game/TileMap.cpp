@@ -552,12 +552,7 @@ bool TileMap::update(sf::Time dt)
     {
         if (auto enemy = dynamic_cast<Enemy*>(x))
         {
-            if (!enemy->isAllowClean())
-            {
-                enemy->update(player, dt);
-                attack = enemy; 
-            }
-            else PopQueueEntitiesNoDelete.push_back(enemy);
+            PopQueueEntitiesNoDelete.push_back(enemy);
         }
     }
     for (auto x : updateEntities)

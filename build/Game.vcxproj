@@ -609,10 +609,13 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="V:\Game\SourceCode\Control\StateStack.cpp" />
     <ClCompile Include="V:\Game\SourceCode\Control\StrategyFactory.cpp" />
     <ClCompile Include="V:\Game\SourceCode\Control\WeaponLoader.cpp" />
+    <ClCompile Include="V:\Game\SourceCode\Game\AI\AIHighRangeAlly.cpp" />
     <ClCompile Include="V:\Game\SourceCode\Game\AI\AIHighRangeEnemy.cpp" />
+    <ClCompile Include="V:\Game\SourceCode\Game\AI\AIShortRangeAlly.cpp" />
     <ClCompile Include="V:\Game\SourceCode\Game\AI\AIShortRangeEnemy.cpp" />
     <ClCompile Include="V:\Game\SourceCode\Game\AI\AIZulan.cpp" />
     <ClCompile Include="V:\Game\SourceCode\Game\AdvancedWeaponComponent.cpp" />
+    <ClCompile Include="V:\Game\SourceCode\Game\Ally.cpp" />
     <ClCompile Include="V:\Game\SourceCode\Game\Animation\BarrelAnimation.cpp" />
     <ClCompile Include="V:\Game\SourceCode\Game\Animation\CageAnimation.cpp" />
     <ClCompile Include="V:\Game\SourceCode\Game\Animation\Character_MovingAnimation.cpp" />
@@ -633,6 +636,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="V:\Game\SourceCode\Game\Entity.cpp" />
     <ClCompile Include="V:\Game\SourceCode\Game\EntityComponent.cpp" />
     <ClCompile Include="V:\Game\SourceCode\Game\Game.cpp" />
+    <ClCompile Include="V:\Game\SourceCode\Game\Object\Barrel.cpp" />
     <ClCompile Include="V:\Game\SourceCode\Game\Object\Cage.cpp" />
     <ClCompile Include="V:\Game\SourceCode\Game\Object\Chest.cpp" />
     <ClCompile Include="V:\Game\SourceCode\Game\Object\ExplosiveBarrel.cpp" />
@@ -660,6 +664,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="V:\Game\SourceCode\Game\World.cpp" />
     <ClCompile Include="V:\Game\SourceCode\Screens\Dungeon\Jungle.cpp" />
     <ClCompile Include="V:\Game\SourceCode\Screens\GameOver.cpp" />
+    <ClCompile Include="V:\Game\SourceCode\Screens\GameWin.cpp" />
     <ClCompile Include="V:\Game\SourceCode\Screens\HUD\StatPlayer.cpp" />
     <ClCompile Include="V:\Game\SourceCode\Screens\Lobby.cpp" />
     <ClCompile Include="V:\Game\SourceCode\Screens\Title.cpp" />

@@ -19,7 +19,7 @@ public:
         sightRange = 250.f;
         movingAnimation = std::make_unique<ShortRangeMob_MovingAnimation>(&ResourceManager::getInstance().get<sf::Texture>(Textures::ID::MadScientist), sf::Vector2u(8, 3), 0.1f, this->position, 2.2, this);
         movingAnimation->speed = 400.0f;
-        aiEnemy = std::make_unique<AIHighRangeEnemy>();
+        aiEnemy = std::make_unique<AIShortRangeEnemy>();
         inventory->addWeapon(WeaponLoader(state).LoadWeapons("Crowbar"), this);
     }
 
