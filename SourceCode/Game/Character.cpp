@@ -158,6 +158,7 @@ bool Character::isDeath() const
 void Character::takeDamage(int damage)
 {
     attributes.TakeDamage(damage);
+    std::cerr << "Character took " << damage << " damage. Current health: " << attributes.getHealth() << std::endl;
     if (isDeath()) {   
         attributes.TakeDamage(attributes.getHealth()); 
     }

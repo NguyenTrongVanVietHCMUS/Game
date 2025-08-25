@@ -10,7 +10,7 @@
       "type": "Ranged Weapon Behavior",
       "projectileSpeed": 1200.0,
       "spreadAngle": 20.0,
-      "Projectile": "PurpleBullet"
+      "Projectile": "AK_Bullet"
     },
 
     "animation": {
@@ -61,7 +61,7 @@
       "x": 0.6,
       "y": -0.2
     },
-    "manaUsage": 2.0
+    "manaUsage": 4.0
   },
 
   "GoblinGun": {
@@ -73,7 +73,7 @@
 
     "behavior": {
       "type": "Ranged Weapon Behavior",
-      "projectileSpeed": 1.0,
+      "projectileSpeed": 1200.0,
       "spreadAngle": 0.0,
       "Projectile": "GoblinBullet"
     },
@@ -88,7 +88,39 @@
       "recoilOffset": 10.0
     },
 
-    "cooldownTime": 0.4,
+    "cooldownTime": 0.1,
+
+    "scaleBulletSpawnPosition": {
+      "x": 0.6,
+      "y": -0.2
+    },
+    "manaUsage": 1.0
+  },
+  "GoblinMageGun": {
+    "name": "GoblinMageGun",
+    "position": {
+      "x": 150,
+      "y": 75
+    },
+
+    "behavior": {
+      "type": "Ranged Weapon Behavior",
+      "projectileSpeed": 1200.0,
+      "spreadAngle": 0.0,
+      "Projectile": "GoblinMageBullet"
+    },
+
+    "animation": {
+      "type": "Gun Animation",
+      "totalTime": 0.3,
+      "scale": 0.4,
+      "texture": "Media/Assets/Weapons/Gun/BlowPipe.png",
+      "startAngle": 10.0,
+      "endAngle": 0.0,
+      "recoilOffset": 10.0
+    },
+
+    "cooldownTime": 4.0,
     "SoundPath": "Media/Sound/ShotSound.wav",
     "scaleBulletSpawnPosition": {
       "x": 0.6,
@@ -121,12 +153,12 @@
     },
 
     "cooldownTime": 1.0,
-    "SoundPath": "Media/Sound/ShotSound.wav",
+
     "scaleBulletSpawnPosition": {
       "x": 0.6,
       "y": -0.2
-    }
-
+    },
+    "manaUsage": 2.0
   },
   "BlunderbussPistol": {
     "name": "BlunderbussPistol",
@@ -151,9 +183,9 @@
       "endAngle": 0.0,
       "recoilOffset": 10.0
     },
-
+    "manaUsage": 4.0,
     "cooldownTime": 1.0,
-    "SoundPath": "Media/Sound/ShotSound.wav",
+
     "scaleBulletSpawnPosition": {
       "x": 0.6,
       "y": -0.2
@@ -196,8 +228,8 @@
     },
     "cooldownTime": 0.5,
     "behavior": {
-      "Projectile": "Basic Slash",
-      "type": "Melee Weapon Behavior"
+      "type": "Melee Weapon Behavior",
+      "Projectile": "Basic Slash"
     },
     "animation": {
       "type": "Sword Animation",
@@ -209,7 +241,7 @@
       "middlePositionX": 0.2,
       "middlePositionY": 0.5
     },
-    "SoundPath": "Media/Sound/AK_47.wav"
+    "SoundPath": "Media/Sound/SwordSwing.wav"
   },
   "Crowbar": {
     "name": "Crowbar",
@@ -219,20 +251,18 @@
     },
     "cooldownTime": 0.5,
     "behavior": {
-      "type": "Melee Weapon Behavior",
-      "Projectile": "Crowbar Slash"
+      "type": "Melee Weapon Behavior"
     },
     "animation": {
       "type": "Sword Animation",
       "totalTime": 0.2,
-      "scale": -0.8,
+      "scale": -0.5,
       "texture": "Media/Assets/Weapons/sword/Crowbar.png",
       "startAngle": -90.0,
       "endAngle": 90.0,
       "middlePositionX": 0.2,
       "middlePositionY": 0.5
-    },
-    "SoundPath": "Media/Sound/WhipSound.wav"
+    }
   },
   "GoblinExecutorWeapon": {
     "name": "GoblinExecutorWeapon",
@@ -242,21 +272,18 @@
     },
     "cooldownTime": 0.5,
     "behavior": {
-      "type": "Melee Weapon Behavior",
-      "Projectile": "Basic Slash"
+      "type": "Melee Weapon Behavior"
     },
     "animation": {
       "type": "Sword Animation",
       "totalTime": 0.2,
-      "scale": -2.5,
+      "scale": -0.8,
       "texture": "Media/Assets/Weapons/sword/GoblinExecutorWeapon.png",
       "startAngle": -90.0,
       "endAngle": 90.0,
       "middlePositionX": 0.2,
       "middlePositionY": 0.5
-
-    },
-    "SoundPath": "Media/Sound/WhipSound.wav"
+    }
   },
   "LongLongSword": {
     "name": "LongLongSword",
@@ -267,19 +294,18 @@
     "cooldownTime": 0.5,
     "behavior": {
       "type": "Melee Weapon Behavior",
-      "Projectile": "Basic Slash"
+      "Projectile": "LongLong Slash"
     },
     "animation": {
       "type": "Sword Animation",
       "totalTime": 0.2,
-      "scale": -0.4,
+      "scale": -0.8,
       "texture": "Media/Assets/Weapons/sword/LongLongSword.png",
       "startAngle": -90.0,
       "endAngle": 90.0,
-      "middlePositionX": 0.2,
+      "middlePositionX": 0.1,
       "middlePositionY": 0.5
-    },
-    "SoundPath": "Media/Sound/WhipSound.wav"
+    }
   },
   "LongSword": {
     "name": "LongSword",
@@ -287,22 +313,20 @@
       "x": 100.0,
       "y": 200.0
     },
-    "cooldownTime": 2.0,
+    "cooldownTime": 0.5,
     "behavior": {
-      "type": "Melee Weapon Behavior",
-      "Projectile": "Long Slash"
+      "type": "Melee Weapon Behavior"
     },
     "animation": {
       "type": "Sword Animation",
       "totalTime": 0.2,
-      "scale": -0.4,
+      "scale": -0.8,
       "texture": "Media/Assets/Weapons/sword/LongSword.png",
       "startAngle": -90.0,
       "endAngle": 90.0,
       "middlePositionX": 0.2,
       "middlePositionY": 0.5
-    },
-    "SoundPath": "Media/Sound/WhipSound.wav"
+    }
   },
 
 
@@ -322,13 +346,13 @@
       "type": "Gun Animation",
       "totalTime": 0.3,
       "scale": 0.4,
-      "texture": "Media/Assets/Weapons/Gun/launcher.png",
+      "texture": "Media/Assets/Weapons/Gun/AK_47.png",
       "startAngle": 10.0,
       "endAngle": 0.0,
       "recoilOffset": 50.0
     },
-    "SoundPath": "Media/Sound/ThrowSound.wav"
-
+    "SoundPath": "Media/Sound/ThrowSound.wav",
+    "manaUsage" : 20.0
   },
 
 
@@ -359,7 +383,8 @@
       "x": 0.6,
       "y": -0.2
     },
-    "SoundPath": "Media/Sound/Laser.wav"
+    "SoundPath": "Media/Sound/Laser.wav",
+    "manaUsage": 5.0
   },
   "Staff": {
     "name": "Staff",
@@ -388,7 +413,8 @@
       "x": 0.7,
       "y": 0.3
     },
-    "SoundPath": "Media/Sound/TwinkSound.wav"
+    "SoundPath": "Media/Sound/TwinkSound.wav",
+    "manaUsage": 5.0
   },
   "ShootingStar": {
     "name": "ShootingStar",
@@ -416,7 +442,8 @@
     "scaleBulletSpawnPosition": {
       "x": 0.7,
       "y": 0.3
-    }
+    },
+    "manaUsage" : 9.0
   },
   "Zulan Laser": {
     "name": "Zulan Laser",
@@ -443,7 +470,8 @@
     "scaleBulletSpawnPosition": {
       "x": 0.0,
       "y": 0.0
-    }
+    },
+    "manaUsage":10.0
   },
   "Sword": {
     "name": "Sword",
