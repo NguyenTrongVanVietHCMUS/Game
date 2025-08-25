@@ -18,7 +18,7 @@ public:
         movingAnimation->speed = 175.0f;
         aiEnemy = std::make_unique<AIShortRangeEnemy>();
         inventory->addWeapon(WeaponLoader(state).LoadWeapons("MinionSword"), this);
-    }   
+    }    
 
     ~SwordMinion() override = default; 
 };

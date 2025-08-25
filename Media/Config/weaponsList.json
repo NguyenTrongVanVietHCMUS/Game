@@ -253,7 +253,7 @@
       "middlePositionX": 0.2,
       "middlePositionY": 0.5
     },
-    "SoundPath": "Media/Sound/WhipSwing.wav"
+    "SoundPath": "Media/Sound/WhipSound.wav"
   },
   "LongLongSword": {
     "name": "LongLongSword",
@@ -276,7 +276,7 @@
       "middlePositionX": 0.2,
       "middlePositionY": 0.5
     },
-    "SoundPath": "Media/Sound/WhipSwing.wav"
+    "SoundPath": "Media/Sound/WhipSound.wav"
   },
   "LongSword": {
     "name": "LongSword",

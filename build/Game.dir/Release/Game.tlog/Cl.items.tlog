@@ -11,10 +11,13 @@ V:\Game\SourceCode\Control\State.cpp;V:\Game\build\Game.dir\Release\State.obj
 V:\Game\SourceCode\Control\StateStack.cpp;V:\Game\build\Game.dir\Release\StateStack.obj
 V:\Game\SourceCode\Control\StrategyFactory.cpp;V:\Game\build\Game.dir\Release\StrategyFactory.obj
 V:\Game\SourceCode\Control\WeaponLoader.cpp;V:\Game\build\Game.dir\Release\WeaponLoader.obj
+V:\Game\SourceCode\Game\AI\AIHighRangeAlly.cpp;V:\Game\build\Game.dir\Release\AIHighRangeAlly.obj
 V:\Game\SourceCode\Game\AI\AIHighRangeEnemy.cpp;V:\Game\build\Game.dir\Release\AIHighRangeEnemy.obj
+V:\Game\SourceCode\Game\AI\AIShortRangeAlly.cpp;V:\Game\build\Game.dir\Release\AIShortRangeAlly.obj
 V:\Game\SourceCode\Game\AI\AIShortRangeEnemy.cpp;V:\Game\build\Game.dir\Release\AIShortRangeEnemy.obj
 V:\Game\SourceCode\Game\AI\AIZulan.cpp;V:\Game\build\Game.dir\Release\AIZulan.obj
 V:\Game\SourceCode\Game\AdvancedWeaponComponent.cpp;V:\Game\build\Game.dir\Release\AdvancedWeaponComponent.obj
+V:\Game\SourceCode\Game\Ally.cpp;V:\Game\build\Game.dir\Release\Ally.obj
 V:\Game\SourceCode\Game\Animation\BarrelAnimation.cpp;V:\Game\build\Game.dir\Release\BarrelAnimation.obj
 V:\Game\SourceCode\Game\Animation\CageAnimation.cpp;V:\Game\build\Game.dir\Release\CageAnimation.obj
 V:\Game\SourceCode\Game\Animation\Character_MovingAnimation.cpp;V:\Game\build\Game.dir\Release\Character_MovingAnimation.obj
@@ -35,6 +38,7 @@ V:\Game\SourceCode\Game\Enemy.cpp;V:\Game\build\Game.dir\Release\Enemy.obj
 V:\Game\SourceCode\Game\Entity.cpp;V:\Game\build\Game.dir\Release\Entity.obj
 V:\Game\SourceCode\Game\EntityComponent.cpp;V:\Game\build\Game.dir\Release\EntityComponent.obj
 V:\Game\SourceCode\Game\Game.cpp;V:\Game\build\Game.dir\Release\Game.obj
+V:\Game\SourceCode\Game\Object\Barrel.cpp;V:\Game\build\Game.dir\Release\Barrel.obj
 V:\Game\SourceCode\Game\Object\Cage.cpp;V:\Game\build\Game.dir\Release\Cage.obj
 V:\Game\SourceCode\Game\Object\Chest.cpp;V:\Game\build\Game.dir\Release\Chest.obj
 V:\Game\SourceCode\Game\Object\ExplosiveBarrel.cpp;V:\Game\build\Game.dir\Release\ExplosiveBarrel.obj
@@ -61,6 +65,8 @@ V:\Game\SourceCode\Game\TileMap.cpp;V:\Game\build\Game.dir\Release\TileMap.obj
 V:\Game\SourceCode\Game\Weapon2.cpp;V:\Game\build\Game.dir\Release\Weapon2.obj
 V:\Game\SourceCode\Game\World.cpp;V:\Game\build\Game.dir\Release\World.obj
 V:\Game\SourceCode\Screens\Dungeon\Jungle.cpp;V:\Game\build\Game.dir\Release\Jungle.obj
+V:\Game\SourceCode\Screens\GameOver.cpp;V:\Game\build\Game.dir\Release\GameOver.obj
+V:\Game\SourceCode\Screens\GameWin.cpp;V:\Game\build\Game.dir\Release\GameWin.obj
 V:\Game\SourceCode\Screens\HUD\StatPlayer.cpp;V:\Game\build\Game.dir\Release\StatPlayer.obj
 V:\Game\SourceCode\Screens\Lobby.cpp;V:\Game\build\Game.dir\Release\Lobby.obj
 V:\Game\SourceCode\Screens\Title.cpp;V:\Game\build\Game.dir\Release\Title.obj
