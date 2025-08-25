@@ -48,9 +48,12 @@ protected:
         {CharacterResourceType::Shield, EntityResource(50, 50)}
     };
     float elapseTime = 0.0f;
-    float elapseTimeShield = 0.0f; 
+    float elapseTimeShield = 0.0f;
+    float elapseTimeMana = 0.0f; 
     float TimeToRegenShield = 5.0f; 
     float TimeShieldRegenRate = 0.1f;
+    float ManaRegenRate = 0.5f;
+    int ManaRegenAmount = 1;
     void updateShieldRegen(sf::Time dt);
 public:
     EntityAttributeActionComponent() = default;
