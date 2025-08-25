@@ -128,8 +128,8 @@
   },
 
 
-  "Sword": {
-    "name": "Sword",
+  "Blind Sword": {
+    "name": "Blind Sword",
     "position": {
       "x": 100.0,
       "y": 200.0
@@ -397,5 +397,32 @@
       "x": 0.0,
       "y": 0.0
     }
+  },
+  "Sword": {
+    "name": "Sword",
+    "position": {
+      "x": 100.0,
+      "y": 200.0
+    },
+    "cooldownTime": 0.5,
+    "behavior": {
+      "type": "Melee Weapon Behavior",
+      "Projectile": "Blind Slash"
+    },
+    "animation": {
+      "type": "Sword Animation",
+      "totalTime": 0.2,
+      "scale": -0.4,
+      "texture": "Media/Assets/Weapons/sword/MinionSword.png",
+      "startAngle": -90.0,
+      "endAngle": 90.0,
+      "middlePositionX": 0.2,
+      "middlePositionY": 0.5
+    },
+    "scaleBulletSpawnPosition": {
+      "x": 0.2,
+      "y": -0.1
+    },
+    "SoundPath": "Media/Sound/SwordSwing.wav"
   }
 }
