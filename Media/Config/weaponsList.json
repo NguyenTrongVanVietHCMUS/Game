@@ -31,6 +31,38 @@
     },
     "manaUsage": 2.0
   },
+  "AKMagic": {
+    "name": "AKMagic",
+    "position": {
+      "x": 150,
+      "y": 75
+    },
+
+    "behavior": {
+      "type": "Ranged Weapon Behavior",
+      "projectileSpeed": 1200.0,
+      "spreadAngle": 20.0,
+      "Projectile": "FollowPurpleBullet"
+    },
+
+    "animation": {
+      "type": "Gun Animation",
+      "totalTime": 0.3,
+      "scale": 0.4,
+      "texture": "Media/Assets/Weapons/Gun/AK_47.png",
+      "startAngle": 10.0,
+      "endAngle": 0.0,
+      "recoilOffset": 10.0
+    },
+    "SoundPath": "Media/Sound/AK_47.wav",
+    "cooldownTime": 0.15,
+
+    "scaleBulletSpawnPosition": {
+      "x": 0.6,
+      "y": -0.2
+    },
+    "manaUsage": 2.0
+  },
 
   "GoblinGun": {
     "name": "GoblinGun",
@@ -186,7 +218,8 @@
     },
     "cooldownTime": 0.5,
     "behavior": {
-      "type": "Melee Weapon Behavior"
+      "type": "Melee Weapon Behavior",
+      "Projectile": "Crowbar Slash"
     },
     "animation": {
       "type": "Sword Animation",

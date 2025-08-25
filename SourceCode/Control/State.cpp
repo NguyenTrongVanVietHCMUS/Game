@@ -2,6 +2,8 @@
 #include "Control/StateStack.hpp"
 #include "Control/WeaponLoader.hpp"
 #include "Object/Chest/Chest.hpp"
+#include "Book/Enemy.hpp"
+#include "Book/Ally.hpp"
 State::Context::Context(sf::RenderWindow& window, TextureHolder& textures, FontHolder& fonts, MusicPlayer& music, SoundPlayer& sounds, MapHolder& maps)
 : window(&window)
 , textures(&textures)
@@ -102,13 +104,19 @@ Entity* State::GetClosestEntity(Entity::Type type, sf::Vector2f position) const
 	if(map)
 	{
 		
-		for(const auto& entity : map->entities)
+		for(auto& entity : map->entities)
 		{
 			sf::Vector2f entityPosition = entity->getPosition();
 			float distance = std::sqrt(std::pow(entityPosition.x - position.x, 2) + std::pow(entityPosition.y - position.y, 2));
 			if(distance < ClosestDistance && entity->type == type)
 			{
 				// If this entity is closer than the current closest, update closestEntity
+				if(auto enemy = dynamic_cast<Enemy*>(entity)) {
+					if(enemy->isDeath()) continue;
+				}
+				if(auto ally = dynamic_cast<Ally*>(entity)) {
+					if(ally->isDeath()) continue;
+				}	
 				ClosestDistance = distance;
 				closestEntity = entity;
 			} 
