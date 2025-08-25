@@ -9,6 +9,7 @@ struct EntityResource{
     void setCurrent(int value) {
         current = value;
         current = std::max(0, current); // Ensure current is not negative
+        current = std::min(current, max); // Ensure current does not exceed max
     }
 
     void setMax(int value) {

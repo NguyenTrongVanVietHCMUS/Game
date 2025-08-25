@@ -95,6 +95,37 @@
       "y": -0.2
     }
   },
+  "GoblinMageGun": {
+    "name": "GoblinMageGun",
+    "position": {
+      "x": 150,
+      "y": 75
+    },
+
+    "behavior": {
+      "type": "Ranged Weapon Behavior",
+      "projectileSpeed": 1200.0,
+      "spreadAngle": 0.0,
+      "Projectile": "GoblinMageBullet"
+    },
+
+    "animation": {
+      "type": "Gun Animation",
+      "totalTime": 0.3,
+      "scale": 0.4,
+      "texture": "Media/Assets/Weapons/Gun/BlowPipe.png",
+      "startAngle": 10.0,
+      "endAngle": 0.0,
+      "recoilOffset": 10.0
+    },
+
+    "cooldownTime": 4.0,
+    "SoundPath": "Media/Sound/ShotSound.wav",
+    "scaleBulletSpawnPosition": {
+      "x": 0.6,
+      "y": -0.2
+    }
+  },
 
   "MinionRifle": {
     "name": "MinionRifle",
@@ -196,7 +227,8 @@
     },
     "cooldownTime": 0.5,
     "behavior": {
-      "type": "Melee Weapon Behavior"
+      "type": "Melee Weapon Behavior",
+      "Projectile": "Basic Slash"
     },
     "animation": {
       "type": "Sword Animation",
@@ -208,7 +240,7 @@
       "middlePositionX": 0.2,
       "middlePositionY": 0.5
     },
-    "SoundPath": "Media/Sound/AK_47.wav"
+    "SoundPath": "Media/Sound/SwordSwing.wav"
   },
   "Crowbar": {
     "name": "Crowbar",
@@ -324,8 +356,8 @@
       "endAngle": 0.0,
       "recoilOffset": 50.0
     },
-    "SoundPath": "Media/Sound/ThrowSound.wav"
-
+    "SoundPath": "Media/Sound/ThrowSound.wav",
+    "manaUsage" : 20.0
   },
 
 
