@@ -69,7 +69,26 @@
       "middlePositionX": 0.5,
       "middlePositionY": 0.5
     },
-    "Damage": 10.0
+    "Damage": 20.0
+  },
+  "Long Slash" :{
+    "lifeTime": 0.15,
+    "scale": 5.0,
+    "texturePath": "Media/Assets/Projectiles/sword_slash.png",
+
+    "collisionBehavior": {
+      "type": "Melee Collision Behavior"
+    },
+    "animation" : {
+      "type": "Slash Projectile Animation",
+      "texture": "Media/Assets/Projectiles/sword_slash.png",
+      "imageCount" : { "x": 3, "y": 1 },
+      "switchTime" : 0.05,
+      "scale": 10.5,
+      "middlePositionX": 0.5,
+      "middlePositionY": 0.5
+    },
+    "Damage": 100.0
   },
   "Blind Slash" :{
     "lifeTime": 0.15,

@@ -17,8 +17,8 @@ public:
         sightRange = 250.f;
         movingAnimation = std::make_unique<ShortRangeMob_MovingAnimation>(&ResourceManager::getInstance().get<sf::Texture>(Textures::ID::GoblinExecutor), sf::Vector2u(8, 3), 0.1f, this->position, 2.2, this);
         movingAnimation->speed = 175.0f;
-        aiAlly = std::make_unique<AIHighRangeAlly>();
-        inventory->addWeapon(WeaponLoader(state).LoadWeapons("GoblinExecutorWeapon"), this);
+        aiAlly = std::make_unique<AIShortRangeAlly>();
+        inventory->addWeapon(WeaponLoader(state).LoadWeapons("LongSword"), this);
     }
 
     ~KnightServant() override = default; // Default destructor    

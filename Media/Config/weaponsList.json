@@ -226,7 +226,8 @@
     },
     "cooldownTime": 0.5,
     "behavior": {
-      "type": "Melee Weapon Behavior"
+      "type": "Melee Weapon Behavior",
+      "Projectile": "Basic Slash"
     },
     "animation": {
       "type": "Sword Animation",
@@ -245,9 +246,10 @@
       "x": 100.0,
       "y": 200.0
     },
-    "cooldownTime": 0.5,
+    "cooldownTime": 2.0,
     "behavior": {
-      "type": "Melee Weapon Behavior"
+      "type": "Melee Weapon Behavior",
+      "Projectile": "Long Slash"
     },
     "animation": {
       "type": "Sword Animation",
@@ -407,7 +409,7 @@
     "cooldownTime": 0.5,
     "behavior": {
       "type": "Melee Weapon Behavior",
-      "Projectile": "Blind Slash"
+      "Projectile": "Basic Slash"
     },
     "animation": {
       "type": "Sword Animation",

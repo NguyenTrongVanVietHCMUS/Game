@@ -5,7 +5,7 @@ void AIShortRangeAlly::update(Ally* ally , Entity* target, sf::Time dt)
 {
 	if (target == nullptr)
 	{
-		if (ally->distanceTo(ally->getOwner()) <= 32 * 30.0)
+		if (ally->distanceTo(ally->getOwner()) >= 32 * 15.0)
 		{
 			ally->teleport(ally->getOwner()->getPosition());
 		}
@@ -24,6 +24,10 @@ void AIShortRangeAlly::update(Ally* ally , Entity* target, sf::Time dt)
 		if (ally->distanceTo(target) <= 64.0)
 		{
 			ally->shoot(target, dt);
+		}
+		if (ally->distanceTo(ally->getOwner()) >= 32 * 15.0)
+		{
+			ally->teleport(ally->getOwner()->getPosition());
 		}
 	}
 }
