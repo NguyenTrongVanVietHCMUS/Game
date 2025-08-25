@@ -547,21 +547,24 @@ bool TileMap::update(sf::Time dt)
     }
     
     if(player && player->isDeath()) player = nullptr;
-    Entity* attack = nullptr; 
     for (auto& x : updateEntities)
     {
         if (auto enemy = dynamic_cast<Enemy*>(x))
         {
-            PopQueueEntitiesNoDelete.push_back(enemy);
+            enemy->update(player, dt); 
+            if (!enemy->isDeath())
+            {
+                for (auto x : updateEntities)
+                {
+                    if (auto t = dynamic_cast<Ally*>(x))
+                    {
+                        t->update(enemy, dt);
+                    }
+                }
+            }
         }
     }
-    for (auto x : updateEntities)
-    {
-        if (auto t = dynamic_cast<Ally*>(x))
-        {
-            t->update(attack, dt); 
-        }
-    }
+    
     for (auto& x : updateEntities)x->update(dt);
     for (auto& x : updateEntities)
     {
