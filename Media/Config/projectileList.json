@@ -293,7 +293,7 @@
     "Effects":{
       "Effect1":{
         "type":"Darkness",
-        "duration" : 60.0
+        "duration" : 3.0
       }
     }
   },

@@ -10,7 +10,7 @@
       "type": "Ranged Weapon Behavior",
       "projectileSpeed": 1200.0,
       "spreadAngle": 20.0,
-      "Projectile": "AK_Bullet"
+      "Projectile": "PurpleBullet"
     },
 
     "animation": {

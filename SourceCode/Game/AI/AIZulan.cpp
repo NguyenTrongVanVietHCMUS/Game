@@ -63,7 +63,7 @@ void AIZulan::update(Enemy* mob, Entity* target, sf::Time dt)
 					ShootTime++;
 					if(ShootTime >= getNumTimesToShoot(CurrentWeapon))
 					{
-						std::cerr << "Finished shooting with weapon: " << CurrentWeapon << ' ' << " - " << getNumTimesToShoot(CurrentWeapon) << std::endl;
+						//std::cerr << "Finished shooting with weapon: " << CurrentWeapon << ' ' << " - " << getNumTimesToShoot(CurrentWeapon) << std::endl;
 						isShooting = false;
 						ElapseTime = 0.0f;
 					}

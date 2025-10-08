@@ -662,18 +662,6 @@
                 }, 
                 {
                  "height":0,
-                 "id":103,
-                 "name":"SwordMinion",
-                 "point":true,
-                 "rotation":0,
-                 "type":"Point",
-                 "visible":true,
-                 "width":0,
-                 "x":322,
-                 "y":76
-                }, 
-                {
-                 "height":0,
                  "id":104,
                  "name":"RifleMinion",
                  "point":true,
@@ -683,66 +671,6 @@
                  "width":0,
                  "x":131.333333333333,
                  "y":88
-                }, 
-                {
-                 "height":0,
-                 "id":106,
-                 "name":"MadScientist",
-                 "point":true,
-                 "rotation":0,
-                 "type":"Point",
-                 "visible":true,
-                 "width":0,
-                 "x":360.5,
-                 "y":133
-                }, 
-                {
-                 "height":0,
-                 "id":107,
-                 "name":"MadScientist",
-                 "point":true,
-                 "rotation":0,
-                 "type":"Point",
-                 "visible":true,
-                 "width":0,
-                 "x":376.5,
-                 "y":229
-                }, 
-                {
-                 "height":0,
-                 "id":108,
-                 "name":"GoblinMageSorcerer",
-                 "point":true,
-                 "rotation":0,
-                 "type":"Point",
-                 "visible":true,
-                 "width":0,
-                 "x":369.666666666667,
-                 "y":267
-                }, 
-                {
-                 "height":0,
-                 "id":110,
-                 "name":"GoblinSupport",
-                 "point":true,
-                 "rotation":0,
-                 "type":"Point",
-                 "visible":true,
-                 "width":0,
-                 "x":94.5,
-                 "y":241
-                }, 
-                {
-                 "gid":41,
-                 "height":51,
-                 "id":121,
-                 "name":"Chest",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":58,
-                 "x":209.666666666667,
-                 "y":154.5
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1187,7 +1115,6 @@
                  "objectgroup":
                     {
                      "draworder":"index",
-                     "id":2,
                      "name":"",
                      "objects":[
                             {

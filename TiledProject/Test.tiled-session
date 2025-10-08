@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "V:/Game/Media/Assets/Maps/Dungeon/Jungle/room6.json",
+    "activeFile": "V:/Game/Media/Assets/Maps/Dungeon/Jungle/bossroom.json",
     "expandedProjectPaths": [
         "."
     ],
@@ -11,7 +11,7 @@
     "fileStates": {
         "": {
             "dynamicWrapping": false,
-            "scaleInDock": 0.75,
+            "scaleInDock": 1,
             "scaleInEditor": 1
         },
         "#Map Tileset": {
@@ -134,11 +134,11 @@
             "expandedObjectLayers": [
                 2
             ],
-            "scale": 0.75,
+            "scale": 0.33,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": -882.6666666666666,
-                "y": 612
+                "x": 512.1212121212121,
+                "y": 559.0909090909092
             }
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/battleroom1.json#GroundTiles": {
@@ -189,11 +189,11 @@
             "expandedObjectLayers": [
                 2
             ],
-            "scale": 1,
+            "scale": 2,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 619,
-                "y": 2746
+                "x": 697,
+                "y": 683.5
             }
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/bossroom.json#GroundTiles": {
@@ -221,8 +221,8 @@
             "scale": 0.33,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": -463.6363636363635,
-                "y": -281.81818181818176
+                "x": 280.3030303030303,
+                "y": 304.54545454545473
             }
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/chestroom2.json#GroundTiles": {
@@ -256,8 +256,8 @@
             "scale": 0.33,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 248.4848484848485,
-                "y": -612.121212121212
+                "x": 368.18181818181813,
+                "y": 110.60606060606074
             }
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway1.json#GroundTiles": {
@@ -287,8 +287,8 @@
             "scale": 0.75,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 38.66666666666663,
-                "y": 454.6666666666666
+                "x": 122.66666666666666,
+                "y": 351.33333333333337
             }
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway2.json#GroundTiles": {
@@ -312,8 +312,8 @@
             "scale": 0.33,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 730.3030303030303,
-                "y": 315.15151515151524
+                "x": 112.1212121212121,
+                "y": 319.69696969696975
             }
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway3.json#GroundTiles": {
@@ -344,11 +344,11 @@
             "expandedObjectLayers": [
                 2
             ],
-            "scale": 0.5,
+            "scale": 0.33,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": -1302,
-                "y": 222
+                "x": 263.6363636363636,
+                "y": 319.69696969696975
             }
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway6.json#GroundTiles": {
@@ -366,8 +366,8 @@
             "scale": 0.33,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": -312.121212121212,
-                "y": 209.090909090909
+                "x": 342.4242424242424,
+                "y": 110.60606060606074
             }
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway7.json#GroundTiles": {
@@ -382,11 +382,11 @@
             "expandedObjectLayers": [
                 2
             ],
-            "scale": 0.33,
+            "scale": 1,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 184.848484848485,
-                "y": 890.909090909091
+                "x": 368,
+                "y": 111.5
             }
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway8.json#GroundTiles": {
@@ -401,11 +401,11 @@
             "expandedObjectLayers": [
                 2
             ],
-            "scale": 0.5,
+            "scale": 1,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": -1534,
-                "y": 1034
+                "x": 272,
+                "y": 111.5
             }
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway9.json#GroundTiles": {
@@ -420,11 +420,11 @@
             "expandedObjectLayers": [
                 3
             ],
-            "scale": 0.125,
+            "scale": 0.75,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 72,
-                "y": 2320
+                "x": 122.66666666666666,
+                "y": 527.3333333333334
             }
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathwaytobossroom.json#GroundTiles": {
@@ -473,11 +473,11 @@
             "expandedObjectLayers": [
                 2
             ],
-            "scale": 1,
+            "scale": 0.33,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 3704,
-                "y": -962
+                "x": 1372.7272727272727,
+                "y": -4912.121212121212
             }
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/room2.json#GroundTiles": {
@@ -533,11 +533,11 @@
             "expandedObjectLayers": [
                 2
             ],
-            "scale": 0.5,
+            "scale": 1,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": -1280,
-                "y": -3284
+                "x": 430,
+                "y": 319.5
             }
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/room5.json#GroundTiles": {
@@ -560,11 +560,11 @@
             "expandedObjectLayers": [
                 2
             ],
-            "scale": 0.33,
+            "scale": 0.75,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 1115.151515151515,
-                "y": 1242.4242424242425
+                "x": 454,
+                "y": 463.33333333333337
             }
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/room6.json#GoblinPriest": {
@@ -587,11 +587,11 @@
             "expandedObjectLayers": [
                 2
             ],
-            "scale": 0.33,
+            "scale": 1,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": -551.5151515151515,
-                "y": 1242.4242424242425
+                "x": 456.5,
+                "y": 464.5
             }
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/room7.json#GroundTiles": {
@@ -607,14 +607,11 @@
             "scaleInDock": 1
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/roomweapon.json": {
-            "expandedObjectLayers": [
-                4
-            ],
-            "scale": 1,
+            "scale": 0.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": -1125,
-                "y": -1192
+                "x": 336,
+                "y": 335
             }
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/roomweapon.json#GroundTiles": {
@@ -647,11 +644,11 @@
             "expandedObjectLayers": [
                 2
             ],
-            "scale": 0.75,
+            "scale": 0.33,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 665.3333333333333,
-                "y": 1592
+                "x": 368.18181818181813,
+                "y": 365.15151515151524
             }
         },
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/startingroom.json#GroundTiles": {
@@ -983,21 +980,33 @@
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/battleroom1.json",
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/bossroom.json",
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/room2.json",
-        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/room6.json"
+        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/room6.json",
+        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway2.json",
+        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/room5.json",
+        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway6.json",
+        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/chestroom2.json",
+        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway1.json",
+        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway7.json",
+        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway3.json",
+        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway8.json",
+        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/room7.json",
+        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathwaytobossroom.json",
+        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway9.json",
+        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/roomweapon.json"
     ],
     "project": "Test.tiled-project",
     "recentFiles": [
-        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathwaytobossroom.json",
-        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/testroom.json",
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/startingroom.json",
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/battleroom1.json",
-        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/bossroom.json",
-        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/room2.json",
-        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/room6.json",
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/roomweapon.json",
-        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway2.json",
-        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/room5.json",
+        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway9.json",
+        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathwaytobossroom.json",
+        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/room7.json",
+        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway8.json",
         "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway3.json",
-        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/room7.json"
+        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway7.json",
+        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway1.json",
+        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/chestroom2.json",
+        "V:/Game/Media/Assets/Maps/Dungeon/Jungle/pathway6.json"
     ]
 }
